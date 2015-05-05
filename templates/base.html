@@ -1,0 +1,15 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head lang="zh">
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="image/png" href="{% block icon %}{% static 'images/favicon.ico' %}{% endblock %}">
+    <title>{% block title %}Untitled{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/pmo.css' %}">
+    <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+</head>
+<body>
+    {% block body %}
+    {% endblock %}
+</body>
+</html>

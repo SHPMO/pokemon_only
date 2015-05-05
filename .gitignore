@@ -1,4 +1,5 @@
 *.pyc
 /db.sqlite3
-/pmo/settings.py
+/msite/settings.py
+/msite/secret_key.txt
 .idea/

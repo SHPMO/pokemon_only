@@ -17,7 +17,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'jv9(q6+8(^3k2#@jylc1l21a_*w-knz#f^wf_2m*9rucggzf(0'
+with open('secret_key.txt') as f:
+    SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -48,9 +49,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'pmo.urls'
+ROOT_URLCONF = 'msite.urls'
 
-WSGI_APPLICATION = 'pmo.wsgi.application'
+WSGI_APPLICATION = 'msite.wsgi.application'
 
 
 # Database

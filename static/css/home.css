@@ -1,20 +1,24 @@
 body {
     margin: 0;
     color: white;
-    overflow: hidden;
 }
 
 #main-container {
+    overflow: hidden;
     position: absolute;
     height: 100%;
     width: 100%;
-    background: #000000;
-    opacity: 0;
 }
 .ball-half {
-    position: relative;
+    position: absolute;
     height: 50%;
     width: 100%;
+}
+#ball-redhalf {
+    top: 0;
+}
+#ball-whitehalf {
+    bottom: 0;
 }
 .ball-half-bg {
     height: 100%;
@@ -66,6 +70,11 @@ body {
     border-radius: 0 0 118px 118px;
 }
 
+#main-content-bg {
+    background: #000000;
+    height: 100%;
+    width: 100%;
+}
 #main-content {
     position: absolute;
     top: 50%;

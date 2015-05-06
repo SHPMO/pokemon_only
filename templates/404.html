@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}404 - 页面未找到{% endblock %}
+{% block heads %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/error.css' %}">
+    <script type="text/javascript" src="{% static 'js/autosize.js' %}"></script>
+{% endblock %}
+{% block body %}
+    <div id="error-container">
+        <a id="href-return" href="/"><img src="{% static 'images/hrefhome.png' %}"></a>
+    </div>
+{% endblock %}

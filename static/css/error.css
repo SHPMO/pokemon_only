@@ -1,0 +1,19 @@
+body {
+    overflow: hidden;
+    background: url("/static/pmo2015/images/mainbg.png");
+}
+#error-container {
+    background: url("/static/images/bg404.png") no-repeat center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -397px;
+    margin-top: -295px;
+    width: 794px;
+    height: 590px;
+}
+#href-return {
+    position: absolute;
+    right: 81px;
+    bottom: 105px;
+}

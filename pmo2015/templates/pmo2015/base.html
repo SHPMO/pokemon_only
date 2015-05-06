@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block heads %}
+    <link rel="stylesheet" type="text/css" href="{% static 'pmo2015/css/pmo2015.css' %}">
+    {% block more_heads %}{% endblock %}
+{% endblock %}
+{% block body %}
+    <header></header>
+    <div id="main-container">
+        {% block content %}Maintaining{% endblock %}
+    </div>
+    <footer></footer>
+{% endblock %}

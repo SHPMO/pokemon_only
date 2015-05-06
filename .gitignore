@@ -2,4 +2,6 @@
 /db.sqlite3
 /msite/settings.py
 /msite/secret_key.txt
-.idea/
+/.idea/
+migrations/
+/__pycache__/

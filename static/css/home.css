@@ -1,0 +1,152 @@
+body {
+    margin: 0;
+    color: white;
+    overflow: hidden;
+}
+
+#main-container {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: #000000;
+    opacity: 0;
+}
+.ball-half {
+    position: relative;
+    height: 50%;
+    width: 100%;
+}
+.ball-half-bg {
+    height: 100%;
+    width: 100%;
+}
+#ball-redhalf-bg {
+    background: #ff3636;
+}
+#ball-whitehalf-bg {
+    background: #ffffff;
+}
+.ball-half-line {
+    background: #000000;
+    position: absolute;
+    width: 100%;
+}
+#ball-redhalf-line {
+    bottom: -27px;
+    height: 54px;
+}
+#ball-whitehalf-line {
+    top: 0;
+    height: 27px;
+}
+.ball-half-circle {
+    position: absolute;
+    left: 50%;
+    margin-left: -75px;
+    width: 104px;
+    border: #000000 solid;
+}
+#ball-redhalf-circle {
+    height: 104px;
+    bottom: -75px;
+    background-color: #ffffff;
+    border-width: 23px;
+    -moz-border-radius: 118px;
+    -webkit-border-radius: 118px;
+    border-radius: 118px;
+    z-index: 1;
+}
+#ball-whitehalf-circle {
+    height: 52px;
+    top: 0;
+    background-color: #000000;
+    border-width: 0 23px 23px 23px;
+    -moz-border-radius: 0 0 118px 118px;
+    -webkit-border-radius: 0 0 118px 118px;
+    border-radius: 0 0 118px 118px;
+}
+
+#main-content {
+    position: absolute;
+    top: 50%;
+    margin-top: -327px;
+    left: 50%;
+    margin-left: -550px;
+    height: 654px;
+    width: 1100px;
+}
+
+#home-picture {
+    position: absolute;
+    top: 64px;
+    right: 129px;
+}
+#home-copyright {
+    position: absolute;
+    right: 129px;
+    bottom: 134px;
+}
+
+.main-side {
+    height: 100%;
+}
+#main-left {
+    float: left;
+    width: 340px;
+}
+#main-right {
+    float: right;
+    width: 750px;
+}
+#main-hrefs {
+    height: 100%;
+}
+.href-icon {
+    margin-bottom: 5px;
+}
+.href-image {
+    margin-left: 15px;
+}
+.href-object {
+    position: relative;
+    width: 100%;
+}
+.href-object a:hover .hidden-object {
+    opacity: 1;
+}
+.href-object a {
+    float: right;
+}
+#href-gdz {
+    top: 170px;
+    right: 20px;
+    height: 50px;
+}
+#href-pmo2 {
+    top: 235px;
+    right: -7px;
+    height: 50px;
+}
+#href-pmos {
+    top: 290px;
+    right: 10px;
+    height: 32px;
+}
+
+.main-line {
+    position: absolute;
+    background: -webkit-radial-gradient(#ffffff,#444444, #111111, #000000);
+    background: -moz-radial-gradient(#ffffff,#444444, #111111, #000000);
+}
+#main-line-vertical {
+    top: 0;
+    left: 358px;
+    width: 10px;
+    height: 550px;
+}
+#main-line-horizontal {
+    top: 245px;
+    left: 100px;
+    width: 280px;
+    height: 10px;
+}

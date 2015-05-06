@@ -1,0 +1,10 @@
+html, body {
+    font-family: "Microsoft Yahei UI Light","Microsoft Yahei",Verdana,Simsun,"Segoe UI Light","Segoe UI Web Light",
+        "Segoe UI Web Regular","Segoe UI","Segoe UI Symbol","HelveticaNeue-Light","Helvetica Neue",Arial,sans-serif;
+}
+a {
+    text-decoration:none;
+}
+.hidden-object {
+    opacity: 0;
+}

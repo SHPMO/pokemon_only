@@ -1,2 +1,50 @@
 {% extends "base.html" %}
-{% block body %}Maintaining{% endblock %}
+{% load staticfiles %}
+{% block heads %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+    <script type="text/javascript" src="{% static 'js/home.js' %}"></script>
+{% endblock %}
+{% block body %}
+    <div id="main-container">
+        <div id="main-content">
+            <div id="main-left" class="main-side">
+                <div id="main-hrefs">
+                    <div id="href-gdz" class="href-object">
+                        <a href="/gdz">
+                            <img id="href-gdz-icon" src="{% static 'images/icongdz.png' %}" class="href-icon hidden-object">
+                            <img id="href-gdz-img" src="{% static 'images/hrefgdz.png' %}" class="href-image">
+                        </a>
+                    </div>
+                    <div id="href-pmo2" class="href-object">
+                        <a href="/pmo2015">
+                            <img id="href-pmo2-icon" src="{% static 'images/iconpmo2.png' %}" class="href-icon hidden-object">
+                            <img id="href-pmo2-img" src="{% static 'images/hrefpmo2.png' %}" class="href-image">
+                        </a>
+                    </div>
+                    <div id="href-pmos" class="href-object">
+                        <a href="/pmos">
+                            <img id="href-pmos-icon" src="{% static 'images/iconpmos.png' %}" class="hidden-object">
+                            <img id="href-pmos-img" src="{% static 'images/hrefpmos.png' %}" class="href-image">
+                        </a>
+                    </div>
+                </div>
+                <div id="main-line-horizontal" class="main-line"></div>
+                <div id="main-line-vertical" class="main-line"></div>
+            </div>
+            <div id="main-right" class="main-side">
+                <img id="home-picture" src="{% static 'images/homepic.png' %}">
+                <img id="home-copyright" src="{% static 'images/copyright.png' %}">
+            </div>
+        </div>
+    </div>
+        <div id="ball-redhalf" class="ball-half">
+            <div id="ball-redhalf-bg" class="ball-half-bg"></div>
+            <div id="ball-redhalf-line" class="ball-half-line"></div>
+            <div id="ball-redhalf-circle" class="ball-half-circle"></div>
+        </div>
+        <div id="ball-whitehalf" class="ball-half">
+            <div id="ball-whitehalf-line" class="ball-half-line"></div>
+            <div id="ball-whitehalf-bg" class="ball-half-bg"></div>
+            <div id="ball-whitehalf-circle" class="ball-half-circle"></div>
+        </div>
+{% endblock %}

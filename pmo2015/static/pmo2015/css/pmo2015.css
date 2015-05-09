@@ -1,0 +1,123 @@
+#pmo-header {
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 74px;
+    min-width: 980px;
+    background: #ffffff;
+}
+#pmo-footer {
+    z-index: 2;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 373px;
+    background: url("../images/footer.png") no-repeat center;
+    min-width: 980px;
+}
+#header-container {
+    width: 980px;
+    height: 64px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.global-nav {
+    float: left;
+}
+#logo {
+    width: 100px;
+    height: 100%;
+}
+.logo {
+    display: block;
+    height: 37px;
+    background: url('../images/logo.png') no-repeat;
+}
+.logo-href {
+    display: block;
+    margin-top: 16px;
+    height: 37px;
+}
+.nav-href {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #000000;
+    float: left;
+    height: 64px;
+    width: 100%;
+    line-height: 64px;
+}
+.nav-href:hover {
+    background: #838ba3;
+    color: #ffffff;
+}
+.global-nav li {
+    float: left;
+    height: 100%;
+    width: 140px;
+}
+#header-border {
+    height: 10px;
+    width: 100%;
+    background: -moz-linear-gradient(left, #8589a4, #a9def1);
+    background: -webkit-linear-gradient(left, #8589a4, #a9def1);
+}
+#main-container {
+    height: 100%;
+    min-width: 980px;
+    background: url("../images/bg.png");
+}
+#pmo-backicon {
+    z-index: 1;
+    width: 345px;
+    height: 295px;
+    position: fixed;
+    left: 50%;
+    top: 40%;
+    margin-left: -174px;
+    background: url("../images/bgicon.png");
+}
+#sub-container {
+    position: absolute;
+    top: 110px;
+    left: 50%;
+    margin-left: -436px;
+    width: 871px;
+}
+.sub-object {
+    position: absolute;
+}
+#sub-header {
+    top: 0;
+    width: 100%;
+    height: 253px;
+    background: url("../images/cheader.png") no-repeat;
+}
+#sub-footer {
+    bottom: 0;
+    width: 100%;
+    height: 253px;
+    background: url("../images/cfooter.png") no-repeat;
+}
+#sub-content {
+    top: 252px;
+    width: 100%;
+    background: url("../images/ccontent.png") repeat-y;
+}
+#main-content {
+    position: absolute;
+    width: 660px;
+    left: 50%;
+    top: 162px;
+    margin-left: -336px;
+    border: 5px solid #626c70;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    background-color: rgba(248, 248, 248, 0.7);
+}
+#content {
+    /* TODO: complete this */
+}

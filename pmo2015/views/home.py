@@ -7,4 +7,4 @@ def home(request):
 
 
 def test(request):
-    return render(request, "404.html")
+    return render(request, "pmo2015/base.html")

@@ -1,5 +1,4 @@
 body {
-    margin: 0;
     color: white;
 }
 
@@ -55,9 +54,9 @@ body {
     bottom: -75px;
     background-color: #ffffff;
     border-width: 23px;
-    -moz-border-radius: 118px;
-    -webkit-border-radius: 118px;
-    border-radius: 118px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
     z-index: 1;
 }
 #ball-whitehalf-circle {

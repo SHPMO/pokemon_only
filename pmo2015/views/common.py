@@ -19,5 +19,21 @@ class CommonView(TemplateView):
 
 
 class BaseInfoView(CommonView):
-    _sub_list = ['schedule', 'place', 'ticket', 'prize']
-    name = 'baseinfo'
+    _sub_list = ["schedule", "place", "ticket", "prize"]
+    name = "baseinfo"
+
+
+class StallView(CommonView):
+    _sub_list = ["diagram", "circle", "goods"]
+    name = "stall"
+
+
+class EventView(CommonView):
+    _sub_list = ["battle", "stage", "venue", "raffle"]
+    name = "event"
+
+
+class RegisterView(CommonView):
+    _sub_list = ["battle", "stall", "consign"]
+    name = "register"
+

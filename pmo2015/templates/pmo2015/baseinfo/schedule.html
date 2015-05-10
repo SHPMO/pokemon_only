@@ -1,4 +1,34 @@
 {% extends "pmo2015/base.html" %}
 {% load staticfiles %}
 {% block subtitle %}活动时间与当日行程 - 基本信息{% endblock %}
-{% block content %}schedule{% endblock %}
+{% block stitle %}title-schedule{% endblock %}
+{% block content %}
+<p>
+    主题：水舰队vs熔岩团哪边更帅更有钱<br>
+    主标题：大海对陆地，结果我第一！<br>
+    主办：水舰队&熔岩团联合委员会GDZ分会
+</p>
+<p>
+    时间：2015年8月15日/星期六 9:30~16:30<br>
+    地点：上海国际工业设计中心（宝山区逸仙路3000号）<br>
+    场地相关请戳<a href="{% url 'pmo2015:baseinfo' 'place' %}" class="maintext-href">这里</a>
+</p>
+<p>
+    主要内容：<br>
+    水舰队vs熔岩团三大回合战<br>
+    第一回合：<a href="{% url 'pmo2015:event' 'battle'%}" class="maintext-href">联机对战赛</a><br>
+    第二回合：<a href="{% url 'pmo2015:event' 'stage'%}" class="maintext-href">舞台游戏赛</a><br>
+    第三回合：【保密至活动当日揭晓】<br>
+    （若是前两场回合战都由同一队获胜则不存在第三回合）
+</p>
+<p>
+    当日行程<br>
+    8：30     摊主&官方布置<br>
+    9：30     正式开场<br>
+    10:00     战斗区水舰队&熔岩团内部胜负【第一回合战开始】<br>
+    12:00     水舰队&熔岩团代表赛*2+水舰队vs熔岩团决赛<br>
+    13:00     舞台区表演&舞台游戏【第二回合战开始】<br>
+    15:30     第三回合战胜负&抽奖<br>
+    16:30     闭场
+</p>
+{% endblock %}

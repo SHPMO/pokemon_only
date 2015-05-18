@@ -1,10 +1,23 @@
 html, body {
-    font-family: "Microsoft Yahei UI Light","Microsoft Yahei",Verdana,Simsun,"Segoe UI Light","Segoe UI Web Light",
-        "Segoe UI Web Regular","Segoe UI","Segoe UI Symbol","HelveticaNeue-Light","Helvetica Neue",Arial,sans-serif;
+    font-family:  "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+}
+body {
+    margin: 0;
 }
 a {
     text-decoration:none;
 }
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
 .hidden-object {
     opacity: 0;
+}
+.nodisplay-object {
+    display: none;
+}
+.img-href {
+    text-indent: -9999em;
 }

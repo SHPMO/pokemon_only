@@ -1,9 +1,9 @@
 body {
     overflow: hidden;
-    background: url("/static/pmo2015/images/mainbg.png");
+    background: url("../images/mainbg.png");
 }
 #error-container {
-    background: url("/static/images/bg404.png") no-repeat center;
+    background: url("../images/bg404.png") no-repeat center;
     position: absolute;
     left: 50%;
     top: 50%;

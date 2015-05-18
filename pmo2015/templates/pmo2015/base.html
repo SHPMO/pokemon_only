@@ -1,13 +1,116 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% block title %}{% block subtitle %}{% endblock %} - Pokemon Only 2015{% endblock %}
 {% block heads %}
     <link rel="stylesheet" type="text/css" href="{% static 'pmo2015/css/pmo2015.css' %}">
+    <script type="text/javascript" src="{% static 'pmo2015/js/pmo2015.js' %}"></script>
     {% block more_heads %}{% endblock %}
 {% endblock %}
 {% block body %}
-    <header></header>
+    <header id="pmo-header">
+        <div id="header-container">
+            <div id="logo" class="global-nav">
+                <a href="{% url 'pmo2015:home' %}" class="logo-href img-href"><span class="logo">home</span></a>
+            </div>
+            <ul id="nav-hrefs" class="global-nav">
+                <li id="nav-baseinfo" class="nav-list">
+                    <a class="nav-href">基本信息</a>
+                    <ul id="subnav-baseinfo" class="subnav-hrefs nodisplay-object">
+                        <li class="subnav-list">
+                            <a href="{% url 'pmo2015:baseinfo' 'schedule' %}" class="subnav-href">活动时间与当日行程</a>
+                        </li>
+                        <li class="subnav-list">
+                            <a href="{% url 'pmo2015:baseinfo' 'place' %}" class="subnav-href">场地信息</a>
+                        </li>
+                        <li class="subnav-list">
+                            <a href="{% url 'pmo2015:baseinfo' 'ticket' %}" class="subnav-href">票务信息</a>
+                        </li>
+                        <li class="subnav-list subnav-list-last">
+                            <a href="{% url 'pmo2015:baseinfo' 'prize' %}" class="subnav-href">奖品一览</a>
+                        </li>
+                    </ul>
+                </li>
+                <li id="nav-stall" class="nav-list">
+                    <a class="nav-href">现场摊位</a>
+                    <ul id="subnav-stall" class="subnav-hrefs nodisplay-object">
+                        <li class="subnav-list">
+                            <a href="{% url 'pmo2015:stall' 'diagram'%}"  class="subnav-href">现场摊位图</a>
+                        </li>
+                        <li class="subnav-list">
+                            <a href="{% url 'pmo2015:stall' 'circle' %}" class="subnav-href">参展社团</a>
+                        </li>
+                        <li class="subnav-list subnav-list-last">
+                            <a href="{% url 'pmo2015:stall' 'goods' %}" class="subnav-href">参展贩售物</a>
+                        </li>
+                    </ul>
+                </li>
+                <li id="nav-event" class="nav-list">
+                    <a class="nav-href">现场活动</a>
+                    <ul id="subnav-event" class="subnav-hrefs nodisplay-object">
+                        <li class="subnav-list">
+                            <a href="{% url 'pmo2015:event' 'battle'%}"  class="subnav-href">联机对战</a>
+                        </li>
+                        <li class="subnav-list">
+                            <a href="{% url 'pmo2015:event' 'stage' %}" class="subnav-href">舞台游戏</a>
+                        </li>
+                        <li class="subnav-list">
+                            <a href="{% url 'pmo2015:event' 'venue' %}" class="subnav-href">场地活动</a>
+                        </li>
+                        <li class="subnav-list subnav-list-last">
+                            <a href="{% url 'pmo2015:event' 'raffle' %}" class="subnav-href">幸运抽奖</a>
+                        </li>
+                    </ul>
+                </li>
+                <li id="nav-register" class="nav-list">
+                    <a class="nav-href">在线报名</a>
+                    <ul id="subnav-register" class="subnav-hrefs nodisplay-object">
+                        <li class="subnav-list">
+                            <a href="{% url 'pmo2015:register' 'battle'%}"  class="subnav-href">对战报名</a>
+                        </li>
+                        <li class="subnav-list">
+                            <a href="{% url 'pmo2015:register' 'stall' %}" class="subnav-href">摊位申请</a>
+                        </li>
+                        <li class="subnav-list subnav-list-last">
+                            <a href="{% url 'pmo2015:register' 'consign' %}" class="subnav-href">寄卖申请</a>
+                        </li>
+                    </ul>
+                </li>
+                <li id="nav-news" class="nav-list">
+                    <a href="{% url 'pmo2015:news' %}" class="nav-href">PMO新闻</a>
+                </li>
+                <li id="nav-qabook" class="nav-list">
+                    <a href="{% url 'pmo2015:qabook' %}" class="nav-href">QA留言板</a>
+                    <ul id="subnav-qabook" class="subnav-hrefs nodisplay-object">
+                        <li class="subnav-list">
+                            <a href="{% url 'pmo2015:qabook' 'faq'%}"  class="subnav-href">常见Q&A</a>
+                        </li>
+                        <li class="subnav-list">
+                            <a href="{% url 'pmo2015:qabook' 'manner' %}" class="subnav-href">参展礼仪与建议</a>
+                        </li>
+                        <li class="subnav-list subnav-list-last">
+                            <a href="{% url 'pmo2015:qabook' 'guestbook' %}" class="subnav-href">留言板</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div id="header-border"></div>
+    </header>
     <div id="main-container">
-        {% block content %}Maintaining{% endblock %}
+        <div id="sub-container">
+            <div id="sub-title" class="sub-object">
+                <div id="subtitle" class="{% block stitle %}title-untitled{% endblock %}"></div>
+            </div>
+            <div id="sub-header" class="sub-object"></div>
+            <div id="sub-content" class="sub-object"></div>
+            <div id="sub-footer" class="sub-object"></div>
+        </div>
+        <div id="pmo-backicon"></div>
+        <div id="main-content">
+            <div id="content">
+                {% block content %}Maintaining{% endblock %}
+            </div>
+        </div>
     </div>
-    <footer></footer>
+    <footer id="pmo-footer"></footer>
 {% endblock %}

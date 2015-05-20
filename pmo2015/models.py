@@ -1,5 +1,6 @@
 # coding=utf-8
 from django.db import models
+from tourney.models import BasePlayer
 
 
 class Vote(models.Model):
@@ -20,3 +21,12 @@ class Vote(models.Model):
         auto_now=True
     )
     vote_address = models.GenericIPAddressField()
+
+
+class Player(BasePlayer):
+    team = models.CharField(
+        '所属队伍',
+        max_length=2,
+        choices=Vote.TEAM_CHOICES,
+        null=False
+    )

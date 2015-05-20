@@ -1,0 +1,16 @@
+{% extends "pmo2015/base.html" %}
+{% load staticfiles %}
+{% block subtitle %}场地信息 - 基本信息{% endblock %}
+{% block stitle %}title-place{% endblock %}
+{% block content %}
+    <p><strong>地点</strong>：上海国际工业设计中心</p>
+    <p>上海市宝山区逸仙路3000号</p>
+    <p><strong>附近地铁站</strong>：3号线-淞发路站</p>
+    <p>点击下图获取更多信息</p>
+    <p>
+        <a href='http://api.map.baidu.com/geocoder?address=上海国际工业设计中心&output=html' target='_blank'>
+        <img style="margin:2px" width="580" height="500" src="http://api.map.baidu.com/staticimage?
+            width=540&height=360&zoom=18&center=上海国际工业设计中心" />
+        </a>
+    </p>
+{% endblock %}

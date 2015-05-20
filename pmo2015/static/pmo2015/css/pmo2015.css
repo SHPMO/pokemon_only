@@ -1,3 +1,23 @@
+p {
+    line-height: 1.5em;
+    margin-bottom: 1.5em;
+    text-indent: 1em;
+}
+h2 {
+    font-size: 2em;
+}
+h3 {
+    font-size: 1.5em;
+}
+h4 {
+    font-size: 1.25em;
+}
+td {
+    text-indent: 0.5em;
+}
+tr {
+    line-height: 1.5em;
+}
 #pmo-header {
     z-index: 2;
     position: relative;
@@ -119,10 +139,11 @@
     z-index: 1;
     width: 345px;
     height: 295px;
-    position: fixed;
+    position: absolute;
     left: 50%;
-    top: 40%;
-    margin-left: -174px;
+    top: 50%;
+    margin-left: -172px;
+    margin-top: -190px;
     background: url("../images/bgicon.png");
 }
 #sub-container {
@@ -171,11 +192,11 @@
     -webkit-box-shadow: 4px 4px 4px rgba(74, 75, 75, 0.58);
     -moz-box-shadow: 4px 4px 4px rgba(74, 75, 75, 0.58);
     box-shadow: 4px 4px 4px rgba(74, 75, 75, 0.58);
-    background-color: rgba(248, 248, 248, 0.7);
+    background-color: rgba(248, 248, 248, 0.75);
 }
 #content {
     position: relative;
-    z-index: 2;
+    z-index: 1;
     margin: 30px 40px 120px 40px;
 }
 .maintext-href {
@@ -187,7 +208,7 @@
     -ms-transition: all 0.4s;
     -o-transition: all 0.4s;
     transition: all 0.4s;
-    background-color: #a9def1;
+    background-color: #e4f190;
 }
 
 #subtitle {
@@ -195,7 +216,7 @@
     height: 100%;
     width: 100%;
     font-weight: bold;
-    text-shadow: 0 0 4px #003aef;
+    text-shadow: 0 0 4px #000000;
     font-size: 24px;
     color: #ffffff;
 }
@@ -210,11 +231,51 @@ div#subtitle::after {
 
 div.title-schedule::before {
     content: "活动时间与";
-    right: 22%;
-    top: 10%;
+    right: 22px;
+    top: 25px;
 }
 div.title-schedule::after {
     content: "当日行程";
-    left: 23%;
-    top: 35%;
+    left: 23px;
+    top: 87px;
+}
+div.title-place::before {
+    content: "场地信息";
+    right: 39px;
+    top: 50px;
+}
+div.title-ticket::before {
+    content: "票务信息";
+    right: 39px;
+    top: 50px;
+}
+div.title-prize::before {
+    content: "奖品一览";
+    right: 39px;
+    top: 50px;
+}
+div.stall-diagram::before {
+    content: "现场摊位";
+    right: 39px;
+    top: 50px;
+}
+div.event-battle::before {
+    content: "联机对战";
+    right: 39px;
+    top: 50px;
+}
+div.event-stage::before {
+    content: "舞台游戏";
+    right: 39px;
+    top: 50px;
+}
+div.event-venue::before {
+    content: "场地活动";
+    right: 39px;
+    top: 50px;
+}
+div.event-raffle::before {
+    content: "幸运抽奖";
+    right: 39px;
+    top: 50px;
 }

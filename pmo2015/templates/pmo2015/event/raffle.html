@@ -1,0 +1,16 @@
+{% extends "pmo2015/base.html" %}
+{% load staticfiles %}
+{% block subtitle %}幸运抽奖 - 现场活动{% endblock %}
+{% block stitle %}event-raffle{% endblock %}
+{% block content %}
+    <h4>【抽奖规则】</h4>
+    <p>在官摊上设有水舰队和熔岩团两个箱子</p>
+    <p>请将随票附赠的抽奖券填写好，在活动当天12:30前投入你支持的那个团队的箱子。</p>
+    <p>15:30我们将会从获胜团队的箱子中抽取一名训练师，获得当日大奖</p>
+    <p></p>
+    <p>与去年相同，由当日对战赛冠军来进行抽奖。开奖时直接在台上报出中奖编号，无人领取则继续抽，直至有在场的训练师领取为止。</p>
+    <p>每个摊位也将获得抽奖券*1</p>
+    <p></p>
+    <h4>【抽奖奖品】</h4>
+    <p><a href="{% url 'pmo2015:baseinfo' 'prize' %}" class="maintext-href">点我查看</a></p>
+{% endblock %}

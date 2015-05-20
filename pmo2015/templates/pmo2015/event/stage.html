@@ -1,0 +1,15 @@
+{% extends "pmo2015/base.html" %}
+{% load staticfiles %}
+{% block subtitle %}舞台游戏 - 现场活动{% endblock %}
+{% block stitle %}event-stage{% endblock %}
+{% block content %}
+    <h2>水舰队vs熔岩团 第二回合战</h2>
+    <p><strong>舞台开始时间</strong>：13:30</p>
+    <p>STAFF为训练师们准备了精彩的游戏和节目！欢迎参与！</p>
+    <p>一共五个游戏，全部结束后由获胜多的队伍取得本回合胜利</p>
+    <p>每个游戏都有1~3回合，且每场参与人数都不同</p>
+    <p>所有游戏内容和详细规则都会保密，活动当日才揭晓</p>
+    <p>届时请听从水舰队和熔岩团队员安排~祝大家玩的愉快</p>
+    <h4>【舞台区奖品】</h4>
+    <p><a href="{% url 'pmo2015:baseinfo' 'prize' %}" class="maintext-href">点我查看</a></p>
+{% endblock %}

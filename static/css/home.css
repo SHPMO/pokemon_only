@@ -45,28 +45,28 @@ body {
 .ball-half-circle {
     position: absolute;
     left: 50%;
-    margin-left: -75px;
-    width: 104px;
+    margin-left: -110px;
+    width: 120px;
     border: #000000 solid;
 }
 #ball-redhalf-circle {
-    height: 104px;
-    bottom: -75px;
+    height: 120px;
+    bottom: -110px;
     background-color: #ffffff;
-    border-width: 23px;
+    border-width: 50px;
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     border-radius: 50%;
     z-index: 1;
 }
 #ball-whitehalf-circle {
-    height: 52px;
+    height: 60px;
     top: 0;
     background-color: #000000;
-    border-width: 0 23px 23px 23px;
-    -moz-border-radius: 0 0 118px 118px;
-    -webkit-border-radius: 0 0 118px 118px;
-    border-radius: 0 0 118px 118px;
+    border-width: 0 50px 50px 50px;
+    -moz-border-radius: 0 0 257px 257px;
+    -webkit-border-radius: 0 0 257px 257px;
+    border-radius: 0 0 257px 257px;
 }
 
 #main-content-bg {

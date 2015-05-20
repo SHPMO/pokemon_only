@@ -34,7 +34,7 @@
                     <a class="nav-href">现场摊位</a>
                     <ul id="subnav-stall" class="subnav-hrefs nodisplay-object">
                         <li class="subnav-list">
-                            <a href="{% url 'pmo2015:stall' 'diagram'%}"  class="subnav-href">现场摊位图</a>
+                            <a href="{% url 'pmo2015:stall' 'diagram'%}"  class="subnav-href">现场摊位</a>
                         </li>
                         <li class="subnav-list">
                             <a href="{% url 'pmo2015:stall' 'circle' %}" class="subnav-href">参展社团</a>
@@ -104,8 +104,8 @@
             <div id="sub-header" class="sub-object"></div>
             <div id="sub-content" class="sub-object"></div>
             <div id="sub-footer" class="sub-object"></div>
+            <div id="pmo-backicon"></div>
         </div>
-        <div id="pmo-backicon"></div>
         <div id="main-content">
             <div id="content">
                 {% block content %}Maintaining{% endblock %}

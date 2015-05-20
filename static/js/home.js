@@ -2,8 +2,8 @@ var ball_opened = false;
 
 function ball_open() {
     if(!ball_opened){
-        $('#ball-redhalf').animate({top: '-40%'}, 800);
-        $('#ball-whitehalf').animate({bottom: '-40%'}, 800);
+        $('#ball-redhalf').animate({top: '-43%'}, 800);
+        $('#ball-whitehalf').animate({bottom: '-43%'}, 800);
         $('#main-content-bg').animate({opacity: '1'}, 800, function () {
             ball_opened = true;
         });

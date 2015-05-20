@@ -3,32 +3,27 @@
 {% block subtitle %}活动时间与当日行程 - 基本信息{% endblock %}
 {% block stitle %}title-schedule{% endblock %}
 {% block content %}
-<p>
-    主题：水舰队vs熔岩团哪边更帅更有钱<br>
-    主标题：大海对陆地，结果我第一！<br>
-    主办：水舰队&熔岩团联合委员会GDZ分会
-</p>
-<p>
-    时间：2015年8月15日/星期六 9:30~16:30<br>
-    地点：上海国际工业设计中心（宝山区逸仙路3000号）<br>
-    场地相关请戳<a href="{% url 'pmo2015:baseinfo' 'place' %}" class="maintext-href">这里</a>
-</p>
-<p>
-    主要内容：<br>
-    水舰队vs熔岩团三大回合战<br>
-    第一回合：<a href="{% url 'pmo2015:event' 'battle'%}" class="maintext-href">联机对战赛</a><br>
-    第二回合：<a href="{% url 'pmo2015:event' 'stage'%}" class="maintext-href">舞台游戏赛</a><br>
-    第三回合：【保密至活动当日揭晓】<br>
-    （若是前两场回合战都由同一队获胜则不存在第三回合）
-</p>
-<p>
-    当日行程<br>
-    8：30     摊主&官方布置<br>
-    9：30     正式开场<br>
-    10:00     战斗区水舰队&熔岩团内部胜负【第一回合战开始】<br>
-    12:00     水舰队&熔岩团代表赛*2+水舰队vs熔岩团决赛<br>
-    13:00     舞台区表演&舞台游戏【第二回合战开始】<br>
-    15:30     第三回合战胜负&抽奖<br>
-    16:30     闭场
-</p>
+    <h3>主题</h3>
+    <p>水舰队vs熔岩团哪边更帅更有钱</p>
+    <p><strong>主标题</strong>：大海对陆地，结果我第一！</p>
+    <p><strong>主办</strong>：水舰队&熔岩团联合委员会GDZ分会</p>
+    <p><strong>时间</strong>：2015年8月15日/星期六 9:30~16:30</p>
+    <p><strong>地点</strong>：上海国际工业设计中心（宝山区逸仙路3000号）</p>
+    <p>场地相关请戳<a href="{% url 'pmo2015:baseinfo' 'place' %}" class="maintext-href">这里</a></p>
+    <h3>主要内容</h3>
+    <p>水舰队vs熔岩团三大回合战</p>
+    <p>第一回合：<a href="{% url 'pmo2015:event' 'battle'%}" class="maintext-href">联机对战赛</a></p>
+    <p>第二回合：<a href="{% url 'pmo2015:event' 'stage'%}" class="maintext-href">舞台游戏赛</a></p>
+    <p>第三回合：【保密至活动当日揭晓】</p>
+    <p>（若是前两场回合战都由同一队获胜则不存在第三回合）</p>
+    <h3>当日行程</h3>
+    <table>
+        <tr><td>08:30</td><td>摊主&官方布置</td></tr>
+        <tr><td>09:30</td><td>正式开场</td></tr>
+        <tr><td>10:00</td><td>战斗区水舰队&熔岩团内部胜负【第一回合战开始】</td></tr>
+        <tr><td>12:00</td><td>水舰队&熔岩团代表赛*2+水舰队vs熔岩团决赛</td></tr>
+        <tr><td>13:00</td><td>舞台区表演&舞台游戏【第二回合战开始】</td></tr>
+        <tr><td>15:30</td><td>第三回合战胜负&抽奖</td></tr>
+        <tr><td>16:30</td><td>闭场</td></tr>
+    </table>
 {% endblock %}

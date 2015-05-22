@@ -1,3 +1,6 @@
+span {
+    margin-left: 1em;
+}
 p {
     line-height: 1.5em;
     margin-bottom: 1.5em;
@@ -278,4 +281,13 @@ div.event-raffle::before {
     content: "幸运抽奖";
     right: 39px;
     top: 50px;
+}
+div.faq-qabook::before {
+    content: "常见Q & A";
+    right: 39px;
+    top: 50px;
+}
+
+.content-list li{
+    margin-bottom: 1.5em;
 }

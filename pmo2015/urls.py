@@ -23,6 +23,7 @@ urlpatterns = [
 
     url(r'^qabook/$', QABookView.as_view(), name='qabook'),
     url(r'^qabook/(?P<sub>.+)/$', QABookView.as_view(), name='qabook'),
+    url(r'^qabook/(?P<sub>.+)/(?P<page>\d+)/$', QABookView.as_view(), name='qabook'),
 
     url(r'^test/$', 'pmo2015.views.test', name='test'),
 ]

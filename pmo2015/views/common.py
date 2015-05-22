@@ -14,7 +14,7 @@ class CommonView(TemplateView):
             return redirect(reverse("pmo2015:%s" % self.name, args=[self._sub_list[0]]))
         if sub in self._sub_list:
             self.template_name = "pmo2015/%s/%s.html" % (self.name, sub)
-            return super().get(self, request, *args, **kwargs)
+            return super().get(request, *args, **kwargs)
         raise Http404
 
 

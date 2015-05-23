@@ -4,16 +4,21 @@
     <link rel="stylesheet" type="text/css" href="{% static 'pmo2015/css/pmo2015.css' %}">
     <script type="text/javascript" src="{% static 'pmo2015/js/home.js' %}"></script>
 {% endblock %}
+{% block bodytype %} id="home-body"{% endblock %}
 {% block body %}
     <header id="home-header">
         <div id="home-header-line"></div>
     </header>
     <div id="home-main-container">
-
+        <div id="mascot-left" class="mascot"></div>
+        <div id="mascot-right" class="mascot"></div>
     </div>
     <footer id="home-footer">
-        <div id="home-footer-left"></div>
-        <div id="home-footer-center"></div>
-        <div id="home-footer-right"></div>
+        <div id="home-footer-left" class="home-footer-part home-footer-side"></div>
+        <div id="home-footer-center" class="home-footer-part">
+            <div id="home-footer-center-top"></div>
+            <div id="home-footer-center-bottom"></div>
+        </div>
+        <div id="home-footer-right" class="home-footer-part home-footer-side"></div>
     </footer>
 {% endblock %}

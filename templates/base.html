@@ -9,7 +9,7 @@
     <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
     {% block heads %}{% endblock %}
 </head>
-<body>
+<body{% block bodytype %}{% endblock %}>
     {% block body %}
     {% endblock %}
 </body>

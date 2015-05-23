@@ -8,7 +8,6 @@ class BaseModel(models.Model):
         abstract = True
     ip_address = models.GenericIPAddressField()
     gen_time = models.DateTimeField(
-        '投票时间',
         auto_now=True
     )
 

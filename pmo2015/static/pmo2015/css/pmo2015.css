@@ -445,6 +445,9 @@ div.faq-guestbook::before {
 
 
 /* home */
+#home-body {
+    overflow: hidden;
+}
 #home-header {
     position: relative;
     z-index: 1;
@@ -466,17 +469,62 @@ div.faq-guestbook::before {
     width: 100%;
     min-width: 1350px;
     min-height: 108px;
-    background: #ffffff;
+    margin-top: -15px;
+}
+.home-footer-part {
+    position: absolute;
+    height: 100%;
 }
 #home-footer-center {
-    background: url("../images/home-footer-center.png") no-repeat;
+    left: 50%;
+    margin-left: -675px;
     width: 1350px;
+}
+#home-footer-center-top {
+    background: url("../images/home-footer-center.png") no-repeat;
     height: 108px;
+    width: 100%;
+}
+#home-footer-center-bottom {
+    background: url("../images/home-footer-cbg.png");
+    width: 100%;
+    margin-top: -8px;
+}
+#home-footer-left {
+    left: 0;
+    background: url("../images/home-footer-lbg.png");
+}
+#home-footer-right {
+    right: 0;
+    background: url("../images/home-footer-rbg.png");
+}
+.home-footer-side {
+    border-top: solid 5px #ebebeb;
 }
 #home-main-container {
     background: url("../images/bg.png");
-    overflow: hidden;
-    height: 598px;
+    height: 506px;
     min-width: 1350px;
     width: 100%;
+}
+.mascot {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+}
+#mascot-left {
+    background: url("../images/as.gif") no-repeat;
+    width: 115px;
+    height: 191px;
+    left: 50%;
+    margin-left: -558px;
+    margin-top: 57px;
+}
+#mascot-right {
+    background: url("../images/or.gif") no-repeat;
+    width: 225px;
+    height: 202px;
+    right: 50%;
+    margin-right: -590px;
+    margin-top: 46px;
 }

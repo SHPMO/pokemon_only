@@ -1,65 +1,66 @@
 {% extends "pmo2015/base.html" %}
 {% load staticfiles %}
+{% block more_heads %}<script type="text/javascript" src="{% static 'pmo2015/js/switch.js' %}"></script>{% endblock %}
 {% block subtitle %}常见Q&A - QA留言板{% endblock %}
 {% block stitle %}faq-qabook{% endblock %}
 {% block content %}
-    <div id="content-p0">
+    <div id="content-p0" class="page-current">
         <h3>【摊主与寄卖篇】</h3>
         <ul class="content-list">
             <li>
-                <span>Q：怎么报名申请摊位？要求有哪些？</span>
+                <span><strong>Q：</strong>怎么报名申请摊位？要求有哪些？</span>
                 <br>
-                <span>A：请戳<a href="{% url 'pmo2015:register' 'stall' %}" class="maintext-href">这里</a>。具体的要求也已经清楚地写在里面了</span>
+                <span><strong>A：</strong>请戳<a href="{% url 'pmo2015:register' 'stall' %}" class="maintext-href">这里</a>。具体的要求也已经清楚地写在里面了</span>
             </li>
             <li>
-                <span>Q：摊位审核要多久？</span>
+                <span><strong>Q：</strong>摊位审核要多久？</span>
                 <br>
-                <span>A：摊位将会在提交后的两周内进行审核。通过与没通过都会显示在摊主通知中。请记得登陆查看。</span>
+                <span><strong>A：</strong>摊位将会在提交后的两周内进行审核。通过与没通过都会显示在摊主通知中。请记得登陆查看。</span>
             </li>
             <li>
-                <span>Q：没有本子可以开摊位吗？</span>
+                <span><strong>Q：</strong>没有本子可以开摊位吗？</span>
                 <br>
-                <span>A：假如是有版权的同人周边或手工小物的话可以。禁止商用物品的申摊要求。</span>
+                <span><strong>A：</strong>假如是有版权的同人周边或手工小物的话可以。禁止商用物品的申摊要求。</span>
             </li>
             <li>
-                <span>Q：摊位费是多少？什么时候交钱？怎么交？</span>
+                <span><strong>Q：</strong>摊位费是多少？什么时候交钱？怎么交？</span>
                 <br>
-                <span>A：摊位费是100RMB/摊。只接受TB交易。具体时间会另行通知。</span>
+                <span><strong>A：</strong>摊位费是100RMB/摊。只接受TB交易。具体时间会另行通知。</span>
             </li>
             <li>
-                <span>Q：摊主证什么时候可以拿到？人手不够可以加摊主证吗？</span>
+                <span><strong>Q：</strong>摊主证什么时候可以拿到？人手不够可以加摊主证吗？</span>
                 <br>
-                <span>A：布场签约时领取。摊主证可以加购，费用为50RMB。一个摊位限定加购一张。</span>
+                <span><strong>A：</strong>布场签约时领取。摊主证可以加购，费用为50RMB。一个摊位限定加购一张。</span>
             </li>
             <li>
-                <span>Q：可不可以自己决定摊位位置？</span>
+                <span><strong>Q：</strong>可不可以自己决定摊位位置？</span>
                 <br>
-                <span>A：摊位位置将会统一安排。可以在申请备注中写明您的意愿，这里会酌情安排，但是并不保证所写的条件一定会满足。</span>
+                <span><strong>A：</strong>摊位位置将会统一安排。可以在申请备注中写明您的意愿，这里会酌情安排，但是并不保证所写的条件一定会满足。</span>
             </li>
             <li>
-                <span>Q：会场有没有仓库？能不能把商品寄过去？</span>
+                <span><strong>Q：</strong>会场有没有仓库？能不能把商品寄过去？</span>
                 <br>
-                <span>A：抱歉会场没有仓库无法提供物流服务，请当日或前一日来会场时自行携带。</span>
+                <span><strong>A：</strong>抱歉会场没有仓库无法提供物流服务，请当日或前一日来会场时自行携带。</span>
             </li>
             <li>
-                <span>Q：请问摊主有车位吗？</span>
+                <span><strong>Q：</strong>请问摊主有车位吗？</span>
                 <br>
-                <span>A：没有。</span>
+                <span><strong>A：</strong>没有。</span>
             </li>
             <li>
-                <span>Q：什么时候截止申请？</span>
+                <span><strong>Q：</strong>什么时候截止申请？</span>
                 <br>
-                <span>A：2015年7月25日晚24:00。</span>
+                <span><strong>A：</strong>2015年7月25日晚24:00。</span>
             </li>
             <li>
-                <span>Q：寄卖的话费用怎么算？来回邮费呢？</span>
+                <span><strong>Q：</strong>寄卖的话费用怎么算？来回邮费呢？</span>
                 <br>
-                <span>A：寄卖费收取已贩售物品总价的15%。例如官方摊位卖掉了100元的商品这里则收取15元。若是没有贩售出去则不收任何费用。来回邮费请自行承担。</span>
+                <span><strong>A：</strong>寄卖费收取已贩售物品总价的15%。例如官方摊位卖掉了100元的商品这里则收取15元。若是没有贩售出去则不收任何费用。来回邮费请自行承担。</span>
             </li>
             <li>
-                <span>Q：寄卖邮寄的时间和地址呢？</span>
+                <span><strong>Q：</strong>寄卖邮寄的时间和地址呢？</span>
                 <br>
-                <span>A：若是通过审核的话将会统一给出邮寄时间和地址。</span>
+                <span><strong>A：</strong>若是通过审核的话将会统一给出邮寄时间和地址。</span>
             </li>
         </ul>
     </div>
@@ -67,59 +68,64 @@
         <h3>【游客篇】</h3>
         <ul class="content-list">
             <li>
-                <span>Q：门票多少钱？怎么买？</span>
+                <span><strong>Q：</strong>门票多少钱？怎么买？</span>
                 <br>
-                <span>A：预售的门票是35RMB，通过淘宝官方页面进行购买。具体戳这里【链接2-1-3】现场的门票是45RMB，可以直接到会场门口购买。</span>
+                <span><strong>A：</strong>预售的门票是35RMB，通过淘宝官方页面进行购买。具体戳<a href="{% url 'pmo2015:baseinfo' 'ticket' %}" class="maintext-href">这里</a>现场的门票是45RMB，可以直接到会场门口购买。</span>
             </li>
             <li>
-                <span>Q：门票有什么福利？</span>
+                <span><strong>Q：</strong>门票有什么福利？</span>
                 <br>
-                <span>A：本次使用入团证书式样的入场票十分具有收藏价值，同时随机附赠大吾或米可利的纸模。</span>
-            </li>
-                <span>Q：门票可以自由出入会场吗？</span>
-                <br>
-                <span>A：可以。临时离开会场需要手背敲章证明，二次入场时凭借手背印章入场。请注意出去的时候不要完全抹掉印章的痕迹</span>
+                <span><strong>A：</strong>本次使用入团证书式样的入场票十分具有收藏价值，同时随机附赠大吾或米可利的纸模。</span>
             </li>
             <li>
-                <span>Q：cos社团可以表演吗？</span>
+                <span><strong>Q：</strong>门票可以自由出入会场吗？</span>
                 <br>
-                <span>A：非常欢迎。请务必邮箱联系我们：pokemongdz@sina.com</span>
+                <span><strong>A：</strong>可以。临时离开会场需要手背敲章证明，二次入场时凭借手背印章入场。请注意出去的时候不要完全抹掉印章的痕迹</span>
             </li>
             <li>
-                <span>Q：普通的游客coser能在会场内换衣服吗？</span>
+                <span><strong>Q：</strong>cos社团可以表演吗？</span>
                 <br>
-                <span>A：十分抱歉，会场内并不提供更衣室和化妆间</span>
+                <span><strong>A：</strong>非常欢迎。请务必邮箱联系我们：<a href="mailto:pokemongdz@sina.com" class="maintext-href">pokemongdz@sina.com</a></span>
             </li>
             <li>
-                <span>Q：cos有限定吗？拟人呢？</span>
+                <span><strong>Q：</strong>普通的游客coser能在会场内换衣服吗？</span>
                 <br>
-                <span>A：对于coser不做任何限定，但是请注意不要给他人带来麻烦。另外本场不接受pm主题以外的cos，请注意自身着装。</span>
+                <span><strong>A：</strong>十分抱歉，会场内并不提供更衣室和化妆间</span>
             </li>
             <li>
-                <span>Q：会场内有食物贩售吗？中饭怎么办？</span>
+                <span><strong>Q：</strong>cos有限定吗？拟人呢？</span>
                 <br>
-                <span>A：会场内可能会有小零食摊位，但是并不提供正餐。午餐可以选择临时离场解决。当然可以外带食物，但是自己制造的垃圾请自行处理。</span>
+                <span><strong>A：</strong>对于coser不做任何限定，但是请注意不要给他人带来麻烦。另外本场不接受pm主题以外的cos，请注意自身着装。</span>
             </li>
             <li>
-                <span>Q：会场内有厕所吗？</span>
+                <span><strong>Q：</strong>会场内有食物贩售吗？中饭怎么办？</span>
                 <br>
-                <span>A：有两个。其中有一个位于上午的战斗区内。该时段内，推荐非战斗赛游客使用不在战斗区内的厕所。比赛结束后随意啦。具体场地图【链接2-2-1】</span>
+                <span><strong>A：</strong>会场内可能会有小零食摊位，但是并不提供正餐。午餐可以选择临时离场解决。当然可以外带食物，但是自己制造的垃圾请自行处理。</span>
             </li>
             <li>
-                <span>Q：会场内可以抽烟吗？</span>
+                <span><strong>Q：</strong>会场内有厕所吗？</span>
                 <br>
-                <span>A：全场禁烟。</span>
+                <span><strong>A：</strong>有两个。其中有一个位于上午的战斗区内。该时段内，推荐非战斗赛游客使用不在战斗区内的厕所。比赛结束后随意啦。具体场<a href="{% url 'pmo2015:stall' 'diagram' %}" class="maintext-href">地图</a></span>
             </li>
             <li>
-                <span>Q：参加对战也想参加活动可以吗？</span>
+                <span><strong>Q：</strong>会场内可以抽烟吗？</span>
                 <br>
-                <span>A：可以。两个完全不冲突。</span>
+                <span><strong>A：</strong>全场禁烟。</span>
             </li>
             <li>
-                <span>Q：想参加下午的舞台游戏需要提前报名吗？</span>
+                <span><strong>Q：</strong>参加对战也想参加活动可以吗？</span>
                 <br>
-                <span>A：不需要。届时直接参与即可。</span>
+                <span><strong>A：</strong>可以。两个完全不冲突。</span>
+            </li>
+            <li>
+                <span><strong>Q：</strong>想参加下午的舞台游戏需要提前报名吗？</span>
+                <br>
+                <span><strong>A：</strong>不需要。届时直接参与即可。</span>
             </li>
         </ul>
     </div>
+{% endblock %}
+{% block panels %}
+    <div id="switch-p0" class="switch-panel panel-red-r"><span>摊主与寄卖篇</span></div>
+    <div id="switch-p1" class="switch-panel panel-blue-r"><span>游客篇</span></div>
 {% endblock %}

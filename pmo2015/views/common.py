@@ -31,9 +31,3 @@ class StallView(CommonView):
 class EventView(CommonView):
     _sub_list = ["battle", "stage", "venue", "raffle"]
     name = "event"
-
-
-class RegisterView(CommonView):
-    _sub_list = ["battle", "stall", "consign"]
-    name = "register"
-

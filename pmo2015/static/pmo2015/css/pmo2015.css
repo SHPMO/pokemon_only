@@ -22,7 +22,7 @@ tr {
     line-height: 1.5em;
 }
 #pmo-header {
-    z-index: 2;
+    z-index: 4;
     position: relative;
     width: 100%;
     height: 74px;
@@ -199,7 +199,7 @@ tr {
 }
 #content {
     position: relative;
-    z-index: 1;
+    z-index: 3;
     margin: 30px 40px 120px 40px;
 }
 .maintext-href {
@@ -215,7 +215,7 @@ tr {
 }
 
 #subtitle {
-    z-index: 2;
+    z-index: 1;
     height: 100%;
     width: 100%;
     font-weight: bold;
@@ -224,10 +224,12 @@ tr {
     color: #ffffff;
 }
 div#subtitle::before {
+    text-align: center;
     position: absolute;
     width: 24px;
 }
 div#subtitle::after {
+    text-align: center;
     position: absolute;
     width: 24px;
 }
@@ -262,6 +264,11 @@ div.stall-diagram::before {
     right: 39px;
     top: 50px;
 }
+div.register-battle::before {
+    content: "对战报名";
+    right: 39px;
+    top: 50px;
+}
 div.event-battle::before {
     content: "联机对战";
     right: 39px;
@@ -287,7 +294,189 @@ div.faq-qabook::before {
     right: 39px;
     top: 50px;
 }
+div.faq-manner::before {
+    content: "参展礼仪";
+    right: 22px;
+    top: 40px;
+}
+div.faq-manner::after {
+    content: "与建议";
+    left: 23px;
+    top: 110px;
+}
+div.faq-guestbook::before {
+    content: "留言板";
+    right: 39px;
+    top: 60px;
+}
 
-.content-list li{
+.content-list li {
     margin-bottom: 1.5em;
+}
+
+#nav-panel {
+    position: relative;
+    top: 139px;
+    z-index: 4;
+    width: 0;
+}
+.switch-panel {
+    position: relative;
+    margin-bottom: 15px;
+    cursor: pointer;
+    left: -303px;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
+}
+.switch-panel:hover {
+    left: -100px;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
+}
+.switch-panel span {
+    float: right;
+    color: #ffffff;
+    font-size: 1.5em;
+    padding-right: 70px;
+    position: relative;
+    top: 50%;
+    margin-top: -0.75em;
+}
+.panel-red-r {
+    background: url("../images/panel-red-r.png") no-repeat;
+    width: 368px;
+    height: 62px;
+}
+.panel-blue-r {
+    background: url("../images/panel-blue-r.png") no-repeat;
+    width: 368px;
+    height: 62px;
+}
+
+.controls-group {
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+.oneline-group {
+    height: 35px;
+}
+.form-label {
+    float: left;
+    width: 67px;
+    height: 26px;
+    margin: 0;
+    padding-left: 20px;
+    padding-top: 5px;
+    border: solid #5c92ef;
+    border-width: 2px 0 2px 2px;
+    background-color: #5c92ef;
+    color: #ffffff;
+    font-size: 16px;
+}
+.form-control  {
+    border: 2px solid #5c92ef;
+    padding: 5px;
+    margin-left: -2px;
+}
+.form-text {
+    height: 21px;
+    width: 430px;
+    font-size: 14px;
+}
+.form-small-text {
+    width: 40px;
+}
+.form-textarea {
+    height: 11em;
+    width: 430px;
+    resize: none;
+    font-size: 14px;
+}
+.form-button {
+    width: 89px;
+    background-color: #5c92ef;
+    color: #ffffff;
+    font-size: 16px;
+    margin: 0;
+}
+.form-button:hover {
+    background-color: #63a2ff;
+}
+.form-button:active {
+    background-color: #5585d4;
+}
+.oneline-select {
+    height: 21px;
+    width: 430px;
+    margin-left: 87px;
+    background-color: #ffffff;
+}
+.inline-control {
+    float: left;
+    margin-left: 40px;
+    color: #355487;
+}
+
+#input-area {
+    position: relative;
+}
+#split-line {
+    width: 100%;
+    height: 2px;
+    background: #000000;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#message-nav {
+    margin-bottom: 20px;
+}
+.comment-box {
+    width: 100%;
+    min-height: 150px;
+    border: 2px solid #5c92ef;
+    margin-top: -2px;
+}
+
+
+/* home */
+#home-header {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    min-width: 1350px;
+    min-height: 56px;
+    background: #ffffff;
+}
+#home-header-line {
+    width: 100%;
+    height: 4px;
+    background-color: #f4d171;
+    position: absolute;
+    bottom: 10px;
+}
+#home-footer {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    min-width: 1350px;
+    min-height: 108px;
+    background: #ffffff;
+}
+#home-footer-center {
+    background: url("../images/home-footer-center.png") no-repeat;
+    width: 1350px;
+    height: 108px;
+}
+#home-main-container {
+    background: url("../images/bg.png");
+    overflow: hidden;
+    height: 598px;
+    min-width: 1350px;
+    width: 100%;
 }

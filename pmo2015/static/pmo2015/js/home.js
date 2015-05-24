@@ -20,9 +20,10 @@ function autoHeight() {
     $('#home-footer-center-bottom').height(ph - 500);
 }
 
-var q;
+var q, p;
 var hostesses;
 var icons;
+var mouths;
 var section = "";
 var pst = {
     "baseinfo": [0, 0, {
@@ -115,7 +116,9 @@ function switchHostess() {
 var nowObject, nowString, nowIndex;
 var nowKeys, nowKeyIndex;
 var sa, href;
+var sot = null;
 function doPrint() {
+    if (sot != null) clearTimeout(sot);
     if(nowIndex>=nowString.length) {
         nowKeyIndex++;
         setTimeout(doAppend, 100);
@@ -123,7 +126,7 @@ function doPrint() {
     }
     nowObject.append(nowString[nowIndex]);
     nowIndex++;
-    setTimeout(doPrint, 100);
+    sot = setTimeout(doPrint, 100);
 }
 function doAppend() {
     if(nowKeyIndex>nowKeys.length) {
@@ -163,14 +166,25 @@ function switchSection() {
     doAppend();
 }
 
+function switchMouth() {
+    p = 1 - p;
+    if(p==1)
+        mouths[q].addClass("nodisplay-object");
+    else
+        mouths[q].removeClass("nodisplay-object");
+}
+
 var nowSentence, nowSIndex;
 var ts;
+var sto = null;
 function doSay() {
+    if (sto != null) clearTimeout(sto);
     if(nowSIndex>nowSentence.length)
         return;
+    switchMouth();
     ts.text(nowSentence.substring(nowSIndex-29, nowSIndex));
     nowSIndex++;
-    setTimeout(doSay, 100);
+    sto = setTimeout(doSay, 100);
 }
 function doSpeak(sentence) {
     nowSentence = sentence;
@@ -193,9 +207,11 @@ $(document).ready(function (){
     $('#tv-nise-hostess').click(switchSentence);
 
     autoHeight();
-    hostesses = [$('.hostess-izumi'), $('.hostess-kagari')];
+    hostesses = [$('.izumi'), $('.kagari')];
     icons = [$('#tv-icon-izumi'), $('#tv-icon-kagari')];
+    mouths = [$('#mouth-izumi'), $('#mouth-kagari')];
     q = Math.floor(Math.random() * 2);
+    p = 1;
     sa = $('#tv-selection');
     hostesses[1-q].addClass("hidden-object");
     ts = $('#tv-sentence');

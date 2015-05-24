@@ -736,30 +736,30 @@ div.faq-guestbook::before {
     -o-transition: all 0.8s;
     transition: all 0.8s;
 }
-.hostess-izumi {
+.izumi {
     position: absolute;
     top: 84px;
     left: 371px;
     width: 269px;
     height: 242px;
 }
-#hostess-izumi-o {
+#mouth-izumi {
     background: url("../images/izumi-o.png") no-repeat;
 }
-#hostess-izumi-c {
+#hostess-izumi {
     background: url("../images/izumi-c.png") no-repeat;
 }
-.hostess-kagari {
+.kagari {
     position: absolute;
     top: 82px;
     left: 392px;
     width: 220px;
     height: 260px;
 }
-#hostess-kagari-o {
+#mouth-kagari {
     background: url("../images/kagari-o.png") no-repeat;
 }
-#hostess-kagari-c {
+#hostess-kagari {
     background: url("../images/kagari-c.png") no-repeat;
 }
 

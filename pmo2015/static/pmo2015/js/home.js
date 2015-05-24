@@ -91,12 +91,17 @@ var lines = [
 
 
 function startTV() {
-    $("#tv-off").addClass("hidden-object");
+    var tvoff = $("#tv-off");
+    tvoff.addClass("hidden-object");
     $("#home-content-tv").append(tvContent);
     setTimeout(function () {
         $("#tv-off").addClass("nodisplay-object");
         doSpeak(lines[q][0]);
     }, 500);
+    tvoff.click(startTV);
+    $("#tv-ins").click(switchHostess);
+    $('.tv-section-text').click(switchSection);
+    $('#tv-nise-hostess').click(switchSentence);
     hostesses = [$('.izumi'), $('.kagari')];
     icons = [$('#tv-icon-izumi'), $('#tv-icon-kagari')];
     mouths = [$('#mouth-izumi'), $('#mouth-kagari')];
@@ -221,10 +226,6 @@ var tvContent = '<div id="tv-dialog"><div id="tv-nise-hostess"></div></div><div 
 
 $(document).ready(function (){
     $(window).resize(autoHeight);
-    $("#tv-off").click(startTV);
-    $("#tv-ins").click(switchHostess);
-    $('.tv-section-text').click(switchSection);
-    $('#tv-nise-hostess').click(switchSentence);
 
     autoHeight();
 

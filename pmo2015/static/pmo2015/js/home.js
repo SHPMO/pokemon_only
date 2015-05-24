@@ -92,10 +92,19 @@ var lines = [
 
 function startTV() {
     $("#tv-off").addClass("hidden-object");
+    $("#home-content-tv").append(tvContent);
     setTimeout(function () {
         $("#tv-off").addClass("nodisplay-object");
         doSpeak(lines[q][0]);
     }, 500);
+    hostesses = [$('.izumi'), $('.kagari')];
+    icons = [$('#tv-icon-izumi'), $('#tv-icon-kagari')];
+    mouths = [$('#mouth-izumi'), $('#mouth-kagari')];
+    q = Math.floor(Math.random() * 2);
+    p = 1;
+    sa = $('#tv-selection');
+    hostesses[1-q].addClass("hidden-object");
+    ts = $('#tv-sentence');
 }
 
 function switchHostess() {
@@ -199,6 +208,17 @@ function switchSentence() {
     doSpeak(newSentence);
 }
 
+var tvContent = '<div id="tv-dialog"><div id="tv-nise-hostess"></div></div><div id="tv-ins"></div><div id="tv-hostess' +
+    '"><div id="hostess-izumi" class="izumi hostess"></div><div id="mouth-izumi" class="izumi hostess nodisplay-objec' +
+    't"></div><div id="hostess-kagari" class="kagari hostess"></div><div id="mouth-kagari" class="kagari hostess nodi' +
+    'splay-object"></div></div><div id="tv-section"><div id="tv-icon-izumi" class="tv-icon hidden-object"></div><div ' +
+    'id="tv-icon-kagari" class="tv-icon hidden-object"></div><div id="tv-section-baseinfo" class="tv-section-text"><s' +
+    'pan>基本信息</span></div><div id="tv-section-stall" class="tv-section-text"><span>现场摊位</span></div><div id="t' +
+    'v-section-event" class="tv-section-text"><span>现场活动</span></div><div id="tv-section-register" class="tv-sect' +
+    'ion-text"><span>在线报名</span></div><div id="tv-section-news" class="tv-section-text"><span>PMO新闻</span></div>' +
+    '<div id="tv-section-qabook" class="tv-section-text"><span>QA留言板</span></div></div><div id="tv-selection"></di' +
+    'v><div id="tv-sentence"></div>'
+
 $(document).ready(function (){
     $(window).resize(autoHeight);
     $("#tv-off").click(startTV);
@@ -207,12 +227,5 @@ $(document).ready(function (){
     $('#tv-nise-hostess').click(switchSentence);
 
     autoHeight();
-    hostesses = [$('.izumi'), $('.kagari')];
-    icons = [$('#tv-icon-izumi'), $('#tv-icon-kagari')];
-    mouths = [$('#mouth-izumi'), $('#mouth-kagari')];
-    q = Math.floor(Math.random() * 2);
-    p = 1;
-    sa = $('#tv-selection');
-    hostesses[1-q].addClass("hidden-object");
-    ts = $('#tv-sentence');
+
 });

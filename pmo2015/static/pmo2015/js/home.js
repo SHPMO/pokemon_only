@@ -91,14 +91,12 @@ var lines = [
 
 
 function startTV() {
-    var tvoff = $("#tv-off");
-    tvoff.addClass("hidden-object");
+    $("#tv-off").addClass("hidden-object");
     $("#home-content-tv").append(tvContent);
     setTimeout(function () {
         $("#tv-off").addClass("nodisplay-object");
         doSpeak(lines[q][0]);
     }, 500);
-    tvoff.click(startTV);
     $("#tv-ins").click(switchHostess);
     $('.tv-section-text').click(switchSection);
     $('#tv-nise-hostess').click(switchSentence);
@@ -226,6 +224,7 @@ var tvContent = '<div id="tv-dialog"><div id="tv-nise-hostess"></div></div><div 
 
 $(document).ready(function (){
     $(window).resize(autoHeight);
+    tvoff.click(startTV);
 
     autoHeight();
 

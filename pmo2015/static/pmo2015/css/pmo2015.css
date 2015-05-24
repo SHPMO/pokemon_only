@@ -49,13 +49,12 @@ tr {
 }
 .logo {
     display: block;
-    height: 37px;
+    height: 34px;
     background: url('../images/logo.png') no-repeat;
+    width: 40px;
 }
 .logo-href {
-    display: block;
     margin-top: 16px;
-    height: 37px;
 }
 .nav-href {
     -webkit-transition: all 0.4s;
@@ -322,7 +321,6 @@ div.faq-guestbook::before {
 }
 .pmo-panel {
     margin-bottom: 15px;
-    cursor: pointer;
 }
 .pmo-panel span {
     color: #ffffff;
@@ -331,6 +329,7 @@ div.faq-guestbook::before {
 }
 .switch-panel {
     position: relative;
+    cursor: pointer;
     left: -303px;
     -webkit-transition: all 0.4s;
     -moz-transition: all 0.4s;
@@ -351,6 +350,11 @@ div.faq-guestbook::before {
     padding-right: 70px;
     top: 50%;
     margin-top: -0.75em;
+}
+.panel-href {
+    display: block;
+    height: 100%;
+    width: 100%;
 }
 .panel-red-r {
     background: url("../images/panel-red-r.png") no-repeat;
@@ -410,6 +414,7 @@ div.faq-guestbook::before {
 }
 .form-small-text {
     width: 40px;
+    text-align: center;
 }
 .form-textarea {
     height: 11em;
@@ -471,7 +476,7 @@ div.faq-guestbook::before {
     position: relative;
     z-index: 1;
     width: 100%;
-    min-width: 1350px;
+    min-width: 1280px;
     min-height: 56px;
     background: #ffffff;
 }
@@ -482,11 +487,19 @@ div.faq-guestbook::before {
     position: absolute;
     bottom: 10px;
 }
+#home-header-wb {
+    position: absolute;
+    right: 100px;
+    bottom: -10px;
+    background: url("../images/wb.png") no-repeat;
+    width: 233px;
+    height: 50px;
+}
 #home-footer {
     position: relative;
     z-index: 1;
     width: 100%;
-    min-width: 1350px;
+    min-width: 1280px;
     min-height: 108px;
     margin-top: -15px;
 }
@@ -496,11 +509,11 @@ div.faq-guestbook::before {
 }
 #home-footer-center {
     left: 50%;
-    margin-left: -675px;
-    width: 1350px;
+    margin-left: -640px;
+    min-width: 1280px;
 }
 #home-footer-center-top {
-    background: url("../images/home-footer-center.png") no-repeat;
+    background: url("../images/home-footer-center.png") center;
     height: 108px;
     width: 100%;
 }
@@ -523,7 +536,7 @@ div.faq-guestbook::before {
 #home-main-container {
     background: url("../images/bg.png");
     min-height: 506px;
-    min-width: 1350px;
+    min-width: 1280px;
     width: 100%;
 }
 .mascot {
@@ -536,14 +549,14 @@ div.faq-guestbook::before {
     width: 115px;
     height: 191px;
     top: 327px;
-    left: 117px;
+    left: 82px;
 }
 #mascot-right {
     background: url("../images/or.gif") no-repeat;
     width: 225px;
     height: 202px;
     top: 315px;
-    left: 928px;
+    left: 893px;
 }
 #home-panels {
     position: relative;
@@ -561,7 +574,7 @@ div.faq-guestbook::before {
 }
 #home-content {
     position: relative;
-    width: 1350px;
+    width: 1280px;
     height: 506px;
     margin-left: auto;
     margin-right: auto;

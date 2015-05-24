@@ -19,5 +19,8 @@ ul {
     display: none;
 }
 .img-href {
+    display: block;
     text-indent: -9999em;
+    height: 100%;
+    width: 100%;
 }

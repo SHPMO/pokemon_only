@@ -1,6 +1,6 @@
 from django.conf.urls import include, url
 from django.contrib import admin
-from pmo2015.views import BaseInfoView, StallView, EventView, RegisterView, NewsView, QABookView
+from pmo2015.views import BaseInfoView, StallView, EventView, RegisterView, NewsListView, NewsView, QABookView
 
 
 urlpatterns = [
@@ -19,7 +19,9 @@ urlpatterns = [
     url(r'^register/$', RegisterView.as_view(), name='register'),
     url(r'^register/(?P<sub>.+)/$', RegisterView.as_view(), name='register'),
 
-    url(r'^news/$', NewsView.as_view(), name='news'),
+    url(r'^news/$', NewsListView.as_view(), name='news'),
+    url(r'^news/page/(?P<page>\d+)/$', NewsListView.as_view(), name='news'),
+    url(r'^news/(?P<news_id>\d+)/$', NewsView.as_view(), name='news'),
 
     url(r'^qabook/$', QABookView.as_view(), name='qabook'),
     url(r'^qabook/(?P<sub>.+)/$', QABookView.as_view(), name='qabook'),

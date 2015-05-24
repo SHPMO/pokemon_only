@@ -224,7 +224,7 @@ var tvContent = '<div id="tv-dialog"><div id="tv-nise-hostess"></div></div><div 
 
 $(document).ready(function (){
     $(window).resize(autoHeight);
-    tvoff.click(startTV);
+    $('#tv-off').click(startTV);
 
     autoHeight();
 

@@ -141,7 +141,8 @@ function doAppend() {
         doPrint();
         return;
     }
-    var pz = pst[section][nowKeys[nowKeyIndex]];
+    href = section + "/";
+    var pz = pst[section][2][nowKeys[nowKeyIndex]];
     if (pz != "")
         href += pz + "/";
     sa.append('<a id="s'+ nowKeyIndex +'" href="'+href+'"></a>');
@@ -159,7 +160,6 @@ function switchSection() {
         'top': 10 + t[0] * 40,
         'left': 5 + t[1] * 120
     });
-    href = section + "/";
     sa.empty();
     nowKeys = Object.keys(t[2]);
     nowKeyIndex = 0;

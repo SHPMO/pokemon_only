@@ -18,6 +18,7 @@ td {
 tr {
     line-height: 1.5em;
 }
+
 #pmo-header {
     z-index: 4;
     position: relative;
@@ -34,6 +35,7 @@ tr {
     background: url("../images/footer.png") repeat-x center;
     min-width: 980px;
 }
+
 #header-container {
     width: 980px;
     height: 64px;
@@ -470,7 +472,7 @@ div.faq-guestbook::before {
 
 /* home */
 #home-body {
-
+    min-width: 1280px;
 }
 #home-header {
     position: relative;
@@ -495,6 +497,7 @@ div.faq-guestbook::before {
     width: 233px;
     height: 50px;
 }
+
 #home-footer {
     position: relative;
     z-index: 1;
@@ -533,10 +536,23 @@ div.faq-guestbook::before {
 .home-footer-side {
     border-top: solid 5px #ebebeb;
 }
+
 #home-main-container {
     background: url("../images/bg.png");
     min-height: 506px;
     min-width: 1280px;
+    width: 100%;
+}
+#home-content-bottom {
+    position: relative;
+    top: 325px;
+    height: 191px;
+    width: 100%;
+}
+
+#home-mascots {
+    position: absolute;
+    height: 100%;
     width: 100%;
 }
 .mascot {
@@ -548,21 +564,91 @@ div.faq-guestbook::before {
     background: url("../images/as.gif") no-repeat;
     width: 115px;
     height: 191px;
-    top: 327px;
+    top: 2px;
     left: 82px;
 }
 #mascot-right {
     background: url("../images/or.gif") no-repeat;
     width: 225px;
     height: 202px;
-    top: 315px;
+    top: -10px;
     left: 893px;
 }
+
+#home-vote {
+    position: relative;
+    height: 58px;
+    width: 884px;
+    top: 148px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.vote-area {
+    height: 100%;
+}
+.vote-part {
+    width: 388px;
+}
+.vote-href {
+    cursor: pointer;
+}
+#vote-vs {
+    position: absolute;
+    background: url("../images/vs.png") no-repeat;
+    width: 72px;
+    height: 42px;
+    left: 405px;
+}
+#vote-team-aq {
+    position: absolute;
+    left: 0;
+}
+#vote-team-mg {
+    position: absolute;
+    right: 0;
+}
+.vote-aq {
+    float: right;
+}
+.vote-mg {
+    float: left;
+}
+.vote-area span {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.vote-text {
+    padding-top: 10px;
+    font-size: 10px;
+}
+#vote-aq-href {
+    background: url("../images/vote-aq.png") no-repeat;
+    width: 105px;
+    height: 28px;
+}
+#vote-mg-href {
+    background: url("../images/vote-mg.png") no-repeat;
+    width: 108px;
+    height: 32px;
+    margin-top: -2px;
+}
+.vote-bar {
+    position: relative;
+    top: 5px;
+    height: 17px;
+    width: 380px;
+    border: solid 3px #434343;
+    border-radius: 9px;
+    background: -moz-linear-gradient(top, #7d797a, #dddcdc, #e9e9e9);
+    background: -webkit-linear-gradient(top, #7d797a, #dddcdc, #e9e9e9);
+    background: linear-gradient(to bottom, #7d797a, #dddcdc, #e9e9e9);;
+}
+
 #home-panels {
     position: relative;
     top: 45px;
-    width: 294px;
     float: right;
+    width: 284px;
     overflow: hidden;
 }
 .home-panel {
@@ -573,9 +659,238 @@ div.faq-guestbook::before {
     top: 22px;
 }
 #home-content {
-    position: relative;
+    /*position: relative;*/
+    /*margin-left: auto;*/
+    /*margin-right: auto;*/
+    position: absolute;
+    z-index: 3;
     width: 1280px;
     height: 506px;
-    margin-left: auto;
-    margin-right: auto;
+}
+
+#home-content-tv {
+    position: absolute;
+    background: url("../images/tv-bg.png") no-repeat;
+    width: 701px;
+    height: 456px;
+    left: 289px;
+    top: 16px;
+}
+#tv-title {
+    position: absolute;
+    z-index: 5;
+    top: -31px;
+    left: -3px;
+    background: url("../images/tv-title.png") no-repeat;
+    width: 371px;
+    height: 68px;
+}
+#tv-off {
+    position: absolute;
+    z-index: 4;
+    top: 5px;
+    left: 5px;
+    background: url("../images/tv-off.png") no-repeat;
+    width: 682px;
+    height: 435px;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
+}
+#tv-ins {
+    position: absolute;
+    z-index: 3;
+    top: 16px;
+    left: 580px;
+    background: url("../images/tv-ins.png") no-repeat;
+    width: 73px;
+    height: 74px;
+}
+#tv-dialog {
+    position: absolute;
+    z-index: 2;
+    top: 17px;
+    left: 5px;
+    background: url("../images/tv-dialog.png") no-repeat;
+    width: 682px;
+    height: 422px;
+}
+#tv-nise-hostess {
+    position: absolute;
+    top: 82px;
+    left: 371px;
+    width: 269px;
+    height: 260px;
+}
+
+#tv-hostess {
+    position: relative;
+    z-index: 1;
+}
+.hostess {
+    -webkit-transition: all 0.8s;
+    -moz-transition: all 0.8s;
+    -ms-transition: all 0.8s;
+    -o-transition: all 0.8s;
+    transition: all 0.8s;
+}
+.hostess-izumi {
+    position: absolute;
+    top: 84px;
+    left: 371px;
+    width: 269px;
+    height: 242px;
+}
+#hostess-izumi-o {
+    background: url("../images/izumi-o.png") no-repeat;
+}
+#hostess-izumi-c {
+    background: url("../images/izumi-c.png") no-repeat;
+}
+.hostess-kagari {
+    position: absolute;
+    top: 82px;
+    left: 392px;
+    width: 220px;
+    height: 260px;
+}
+#hostess-kagari-o {
+    background: url("../images/kagari-o.png") no-repeat;
+}
+#hostess-kagari-c {
+    background: url("../images/kagari-c.png") no-repeat;
+}
+
+#tv-section {
+    position: absolute;
+    z-index: 3;
+    top: 104px;
+    left: 95px;
+    height: 120px;
+    width: 240px;
+}
+.tv-section-text {
+    cursor: pointer;
+    float: left;
+    width: 120px;
+    height: 40px;
+}
+.tv-section-text:hover{
+    background: #aedff1;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
+}
+.tv-section-text span {
+    position: relative;
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: 0 0 4px #ffffff;
+    width: 100%;
+    padding-left: 10px;
+    top: 6px;
+}
+.tv-section-text span::before {
+    content: "· ";
+}
+.tv-icon {
+    position: absolute;
+    -webkit-transition: all 0.8s;
+    -moz-transition: all 0.8s;
+    -ms-transition: all 0.8s;
+    -o-transition: all 0.8s;
+    transition: all 0.8s;
+}
+#tv-icon-izumi {
+    background: url("../images/izumi-icon.png") no-repeat;
+    width: 19px;
+    height: 20px;
+}
+#tv-icon-kagari {
+    background: url("../images/kagari-icon.png") no-repeat;
+    width: 18px;
+    height: 23px;
+    margin-top: -2px;
+}
+
+#tv-selection {
+    position: absolute;
+    z-index: 3;
+    top: 332px;
+    left: 60px;
+    width: 468px;
+    height: 60px;
+}
+#tv-selection a{
+    display: block;
+    float: left;
+    width: 200px;
+    height: 27px;
+    font-size: 18px;
+    color: white;
+    padding-left: 20px;
+    padding-top: 3px;
+}
+#tv-selection span {
+    position: absolute;
+    font-size: 18px;
+    color: white;
+    width: 90px;
+    height: 24px;
+    left: 380px;
+    top: 33px;
+}
+#tv-selection a:hover {
+    background: #444444;
+}
+#tv-selection a::before {
+    content: "· "
+}#tv-selection-end {
+    position: absolute;
+    z-index: 3;
+    top: 47px;
+    left: 535px;
+    background: url("../images/ends.png") no-repeat;
+    width: 28px;
+    height: 13px;
+    animation:updown 0.2s infinite;
+    -moz-animation:updown 0.2s infinite;
+    -webkit-animation:updown 0.2s infinite;
+    -o-animation:updown 0.2s infinite;
+}
+@keyframes updown
+{
+from {top: 47px;}
+to {top: 50px;}
+}
+@-moz-keyframes updown
+{
+from {top: 47px;}
+to {top: 50px;}
+}
+@-webkit-keyframes updown
+{
+from {top: 47px;}
+to {top: 50px;}
+}
+@-o-keyframes updown
+{
+from {top: 47px;}
+to {top: 50px;}
+}
+
+#tv-sentence {
+    position: absolute;
+    top: 44px;
+    left: 45px;
+    width: 500px;
+    height: 20px;
+    text-overflow: clip;
+    color: #ffffff;
+    text-shadow: 0 0 2px #000000;
+    font-size: 17px;
 }

@@ -4,14 +4,14 @@ function ball_open() {
     if(!ball_opened){
         $('#ball-redhalf').animate({top: '-43%'}, 800);
         $('#ball-whitehalf').animate({bottom: '-43%'}, 800);
-        $('#main-content-bg').animate({opacity: '1'}, 800, function () {
+        $('#main-content-bg').animate({opacity: '1'}, 400, function () {
             ball_opened = true;
         });
     }
     else {
         $('#ball-redhalf').animate({top: '0'}, 800);
         $('#ball-whitehalf').animate({bottom: '0'}, 800);
-        $('#main-content-bg').animate({opacity: '0'}, 800, function () {
+        $('#main-content-bg').animate({opacity: '0'}, 400, function () {
             ball_opened = false;
         });
     }

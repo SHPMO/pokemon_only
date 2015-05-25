@@ -1,5 +1,6 @@
 # coding=utf-8
 from django.db import models
+from django.utils.html import escape
 
 
 class BaseModel(models.Model):
@@ -10,4 +11,8 @@ class BaseModel(models.Model):
     gen_time = models.DateTimeField(
         auto_now=True
     )
+
+    @classmethod
+    def create(cls, *args, **kwargs):
+        return cls.objects.create(*args, **kwargs)
 

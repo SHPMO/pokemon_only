@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.html import escape
 
 
 class BasePlayer(models.Model):
@@ -11,3 +12,12 @@ class BasePlayer(models.Model):
     validated = models.BooleanField(default=False)
     signup_time = models.DateTimeField(auto_now=True)
     signup_ip = models.GenericIPAddressField()
+
+    def __str__(self):
+        return "%s %s" % (self.player_id, self.email)
+
+    @classmethod
+    def create(cls, *args, **kwargs):
+        assert len(kwargs['player_id']) <= 30
+        assert len(kwargs['taobao_id']) <= 20
+        return cls.objects.create(*args, **kwargs)

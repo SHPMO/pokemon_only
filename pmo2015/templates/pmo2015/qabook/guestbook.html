@@ -8,10 +8,10 @@
 {% block stitle %}faq-guestbook{% endblock %}
 {% block content %}
     <div id="error-message">
-        <p>{% if eroor == 0 %}留言成功{% elif error == 1 %}*为必填项目{% elif error == 2 %}页码错误{% elif error == -1 %}未知错误{% endif %}</p>
+        <p id="error-message-text"></p>
     </div>
     <div id="input-area">
-        <form id="message-input" action="#" method="post">
+        <form id="message-input" onsubmit="return false;" method="post" action="{% url 'pmo2015:api' 'guestbook'%}">
             <div class="controls-group oneline-group">
                 <label class="form-label" for="text-nickname">昵称*</label>
                 <input id="text-nickname" class="form-control form-text" type="text" name="nickname" value="{{ nickname }}">
@@ -36,12 +36,15 @@
             <span>共 {{ comment_number }} 条留言 第 {{ page }} 页</span>
             <label for="text-page">跳转到</label>
             <input id="text-page" class="form-control form-small-text" type="number" min="1" max="{{ max_page }}" name="page" value="{{ page }}">
+            <button id="page-submit" class="button-small form-button form-control">提交</button>
         </div>
     {% for main_comment in main_comments %}
         <div id="message-p{{ main_comment.id }}" class="comment-box">
             <span>{{ main_comment.nickname }}</span>
             <p>{{ main_comment.content }}</p>
         </div>
+    {% empty %}
+        <div id="message-none">暂时没有留言。</div>
     {% endfor %}
     </div>
 {% endblock %}

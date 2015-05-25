@@ -1,6 +1,10 @@
 from django.conf.urls import include, url
 from django.contrib import admin
-from pmo2015.views import BaseInfoView, StallView, EventView, RegisterView, NewsListView, NewsView, QABookView
+from pmo2015.views import (
+    BaseInfoView, StallView, EventView,
+    RegisterView, NewsListView, NewsView,
+    QABookView, ApiView
+)
 
 
 urlpatterns = [
@@ -25,6 +29,8 @@ urlpatterns = [
 
     url(r'^qabook/$', QABookView.as_view(), name='qabook'),
     url(r'^qabook/(?P<sub>.+)/$', QABookView.as_view(), name='qabook'),
+
+    url(r'^api/(?P<sub>.+)/$', ApiView.as_view(), name='api'),
 
     url(r'^test/$', 'pmo2015.views.test', name='test'),
 ]

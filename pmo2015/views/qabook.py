@@ -18,26 +18,3 @@ class QABookView(CommonView):
             kwargs["comment_number"] = MainComment.objects.count()
             kwargs["max_page"] = (kwargs["comment_number"] + 4) // 5
         return super().get(request, sub, *args, **kwargs)
-
-    def post(self, request, sub=None, *args, **kwargs):
-        nickname = request.POST.get("nickname", "")
-        message = request.POST.get("message", "").strip()
-        ip_address = request.META.get("REMOTE_ADDR", None)
-        if nickname == "" or message == "":
-            kwargs["error"] = 1
-            kwargs["nickname"] = nickname
-            kwargs["message"] = message
-        elif ip_address is None:
-            kwargs["error"] = -1
-        else:
-            try:
-                MainComment.objects.create(
-                    nickname=nickname,
-                    content=message,
-                    email=request.POST.get("email", None),
-                    ip_address=ip_address
-                )
-                kwargs["error"] = 0
-            except:
-                kwargs["error"] = -1
-        return self.get(request, sub, *args, **kwargs)

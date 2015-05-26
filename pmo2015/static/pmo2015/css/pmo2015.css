@@ -458,8 +458,9 @@ div.faq-guestbook::before {
 }
 .button-small {
     font-size: 15px;
-    width: 80px;
-    height: 26px;
+    width: 50px;
+    height: 29px;
+    padding: 0;
 }
 
 #input-area {
@@ -895,7 +896,6 @@ to {top: 50px;}
 from {top: 47px;}
 to {top: 50px;}
 }
-
 #tv-sentence {
     position: absolute;
     top: 44px;
@@ -906,4 +906,14 @@ to {top: 50px;}
     color: #ffffff;
     text-shadow: 0 0 2px #000000;
     font-size: 17px;
+}
+
+#comment-meta {
+    height: 21px;
+    padding: 10px;
+}
+#comment-nickname {
+}
+#comment-datetime {
+    float: right;
 }

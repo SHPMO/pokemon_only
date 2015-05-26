@@ -1,11 +1,11 @@
 function bindPages() {
-    $("#text-page").keypress(function (e){
+    $('#text-page').keypress(function (e){
         var code = e.keyCode;
         if (code == 13) {
-            window.location = ".?page=" + this.value;
+            $('#page-submit').click();
         }
     });
-    $("#button-submit").click(function () {
+    $('#button-submit').click(function () {
         var mi = $('#message-input');
         $.post(mi[0].action,
             mi.serialize(),
@@ -23,9 +23,7 @@ function bindPages() {
                 $('#error-message-text').text(msg);
             }
         );
-    }
-
-    )
+    });
 }
 
 $(document).ready(bindPages);

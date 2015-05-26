@@ -33,15 +33,27 @@
     <div id="split-line"></div>
     <div id="message-area">
         <div id="message-nav">
-            <span>共 {{ comment_number }} 条留言 第 {{ page }} 页</span>
-            <label for="text-page">跳转到</label>
-            <input id="text-page" class="form-control form-small-text" type="number" min="1" max="{{ max_page }}" name="page" value="{{ page }}">
-            <button id="page-submit" class="button-small form-button form-control">提交</button>
+            <form id="page-nav" method="get" action=".">
+                <span>共 {{ comment_number }} 条留言 第 {{ page }} 页</span>
+                <label for="text-page">跳转到</label>
+                <input id="text-page" class="form-control form-small-text" type="number" min="1" max="{{ max_page }}" name="page" value="{{ page }}">
+                <button id="page-submit" class="button-small form-button form-control">提交</button>
+            </form>
         </div>
     {% for main_comment in main_comments %}
         <div id="message-p{{ main_comment.id }}" class="comment-box">
-            <span>{{ main_comment.nickname }}</span>
-            <p>{{ main_comment.content }}</p>
+            <div id="comment-meta">
+                <span id="comment-nickname">{{ main_comment.nickname }}</span>
+                <span id="comment-datetime">{{ main_comment.gen_time }}</span>
+            </div>
+            <div id="comment-content">{{ main_comment.content|linebreaks }}</div>
+        {% for back_comment in main_comment.backcomment_set.all %}
+            <div id="comment-back">
+                <div id="backcomment-admin">{{ back_comment.admin.nickname }}</div>
+                <div id="backcomment-datetime">{{ back_comment.gen_time }}</div>
+                <div id="backcomment-content">{{ back_comment.content|linebreaks }}</div>
+            </div>
+        {% endfor %}
         </div>
     {% empty %}
         <div id="message-none">暂时没有留言。</div>

@@ -5,3 +5,4 @@ secret_key.txt
 /.idea/
 migrations/
 /__pycache__/
+/media/

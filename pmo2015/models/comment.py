@@ -26,4 +26,4 @@ class BackComment(BaseComment):
     class Meta:
         app_label = 'pmo2015'
     toward = models.ForeignKey(MainComment)
-    user = PmoAdmin
+    user = models.ForeignKey(PmoAdmin, null=True)

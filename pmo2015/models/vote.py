@@ -13,7 +13,7 @@ class Vote(BaseModel):
         (TEAM_MAGMA, '熔岩团'),
     )
     choice = models.CharField(
-        '选择',
+        help_text='选择',
         max_length=2,
         choices=TEAM_CHOICES,
         null=False

@@ -8,7 +8,7 @@ class Player(BasePlayer):
     class Meta:
         app_label = 'pmo2015'
     team = models.CharField(
-        '所属队伍',
+        help_text='所属队伍',
         max_length=2,
         choices=Vote.TEAM_CHOICES,
         null=False

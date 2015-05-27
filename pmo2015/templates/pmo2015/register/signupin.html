@@ -1,0 +1,100 @@
+{% extends "pmo2015/base.html" %}
+{% load staticfiles %}
+{% block more_heads %}
+    <script type="text/javascript" src="{% static 'pmo2015/js/switch.js' %}"></script>
+    <script type="text/javascript" src="{% static 'pmo2015/js/signupin.js' %}"></script>
+{% endblock %}
+{% block subtitle %}注册和登录账号 - 在线报名{% endblock %}
+{% block stitle %}register-signupin{% endblock %}
+{% block content %}
+    <div id="error-message">
+        <p id="error-message-text"></p>
+    </div>
+    <div id="content-p0" class="page-current content-page">
+        <h3>【注册】</h3>
+        <form id="signup-input" action="{% url "stall:signup" %}" method="post" onsubmit="return false;">
+            <div class="controls-group oneline-group">
+                <label class="form-label" for="text-email">Email*</label>
+                <input id="text-email" class="form-control form-text" type="email" name="email">
+            </div>
+            <div class="controls-group oneline-group">
+                <label class="form-label" for="text-password">密码*</label>
+                <input id="text-password" class="form-control form-text" type="password" name="password">
+            </div>
+            <div class="controls-group oneline-group">
+                <label class="form-label" for="text-repassword">重复*</label>
+                <input id="text-repassword" class="form-control form-text" type="password" name="repassword">
+            </div>
+            <div class="controls-group oneline-group">
+                <label class="form-label" for="text-circle">社团名*</label>
+                <input id="text-circle" class="form-control form-text" type="text" name="circle_name">
+            </div>
+            <div class="controls-group oneline-group">
+                <label class="form-label">类型*</label>
+                <div id="type-select" class="oneline-select form-control">
+                    <div class="inline-control-two">
+                        <input id="type-stall" type="radio" name="type" value="stall">
+                        <label for="type-stall">摊位</label>
+                    </div>
+                    <div class="inline-control-two">
+                        <input id="type-consign" type="radio" name="type" value="consign">
+                        <label for="type-consign">寄卖</label>
+                    </div>
+                </div>
+            </div>
+            <div class="controls-group oneline-group">
+                <label class="form-label">验证码*</label>
+                <div id="login_captcha" class="captcha-box form-control">
+                    {{ login_form.captcha }}
+                </div>
+            </div>
+            <div class="controls-group oneline-group">
+                <button id="signup-submit" class="form-control form-button" name="submit">提交</button>
+            </div>
+            {% csrf_token %}
+            <input type="hidden" name="pmo" value="pmo2015">
+        </form>
+    </div>
+    <div id="content-p1" class="nodisplay-object content-page">
+        <h3>【登录】</h3>
+        <form id="login-input" action="{% url "stall:login" %}" method="post" onsubmit="return false;">
+            <div class="controls-group oneline-group">
+                <label class="form-label" for="text-email">Email</label>
+                <input id="text-email" class="form-control form-text" type="email" name="email">
+            </div>
+            <div class="controls-group oneline-group">
+                <label class="form-label" for="text-password">密码</label>
+                <input id="text-password" class="form-control form-text" type="text" name="password">
+            </div>
+            <div class="controls-group oneline-group">
+                <label class="form-label">类型</label>
+                <div id="type-select" class="oneline-select form-control">
+                    <div class="inline-control-two">
+                        <input id="type-stall" type="radio" name="type" value="stall">
+                        <label for="type-stall">摊位</label>
+                    </div>
+                    <div class="inline-control-two">
+                        <input id="type-consign" type="radio" name="type" value="consign">
+                        <label for="type-consign">寄卖</label>
+                    </div>
+                </div>
+            </div>
+            <div class="controls-group oneline-group">
+                <label class="form-label">验证码</label>
+                <div id="login_captcha" class="captcha-box form-control">
+                    {{ login_form.captcha }}
+                </div>
+            </div>
+            <div class="controls-group oneline-group">
+                <button id="login-submit" class="form-control form-button" name="submit">提交</button>
+            </div>
+            {% csrf_token %}
+            <input type="hidden" name="pmo" value="pmo2015">
+        </form>
+    </div>
+{% endblock %}
+
+{% block panels %}
+    <div id="switch-p0" class="pmo-panel switch-panel panel-red-r"><span>注册</span></div>
+    <div id="switch-p1" class="pmo-panel switch-panel panel-blue-r"><span>登录</span></div>
+{% endblock %}

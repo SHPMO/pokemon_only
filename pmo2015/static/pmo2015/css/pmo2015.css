@@ -278,6 +278,11 @@ div.register-battle::before {
     right: 39px;
     top: 50px;
 }
+div.register-signupin::before {
+    content: "注册登录";
+    right: 39px;
+    top: 50px;
+}
 div.event-battle::before {
     content: "联机对战";
     right: 39px;
@@ -419,8 +424,10 @@ div.faq-guestbook::before {
 }
 .form-text {
     height: 21px;
-    width: 430px;
+    width: 380px;
     font-size: 14px;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 .form-small-text {
     width: 40px;
@@ -451,9 +458,32 @@ div.faq-guestbook::before {
     margin-left: 87px;
     background-color: #ffffff;
 }
+.captcha-box {
+    height: 31px;
+    width: 440px;
+    margin-left: 87px;
+    background-color: #ffffff;
+    padding: 0;
+}
+.captcha-box #id_captcha_1 {
+    border: 0;
+    padding: 5px 30px;
+    height: 21px;
+    width: 180px;
+}
+.controls-group img{
+    display: block;
+    float: left;
+}
+
 .inline-control {
     float: left;
     margin-left: 40px;
+    color: #355487;
+}
+.inline-control-two {
+    float: left;
+    margin-left: 100px;
     color: #355487;
 }
 .button-small {

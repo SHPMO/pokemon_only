@@ -75,7 +75,7 @@ class ApiView(View):
         func = _api_list[sub]
         return HttpResponse(json.dumps(func(
             request, *args, **kwargs
-        )))
+        )), content_type='application/json')
 
     @staticmethod
     def get(*args, **kwargs):

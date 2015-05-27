@@ -14,4 +14,4 @@ class ApiView(View):
         response = {'error': error_code, 'message': message}
         if data is not None and isinstance(data, dict):
             response.update(data)
-        return HttpResponse(json.dumps(response))
+        return HttpResponse(json.dumps(response), content_type='application/json')

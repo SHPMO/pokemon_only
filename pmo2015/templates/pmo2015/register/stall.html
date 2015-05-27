@@ -7,7 +7,7 @@
 {% block stitle %}register-battle{% endblock %}
 {% block content %}
     <div id="error-message">
-        <p id="error-message-text"></p>
+        <p id="error-message-text">{{ sub }}</p>
     </div>
     <div id="input-area">
         <form id="register-input" action="{% url "pmo2015:api" "battle" %}" method="post" onsubmit="return false;">

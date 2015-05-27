@@ -11,7 +11,7 @@ class Seller(BaseStallModel):
     user = models.OneToOneField(User)
     email = models.EmailField(
         verbose_name='email address',
-        max_length=255,
+        max_length=30,
         unique=True,
     )
     is_active = models.BooleanField(default=False, help_text='是否激活')

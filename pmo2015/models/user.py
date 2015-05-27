@@ -18,3 +18,6 @@ class PmoAdmin(models.Model):
             nickname=username,
             user=user
         )
+
+    def __str__(self):
+        return "%s" % self.nickname

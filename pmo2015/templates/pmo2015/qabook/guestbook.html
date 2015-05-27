@@ -42,16 +42,18 @@
         </div>
     {% for main_comment in main_comments %}
         <div id="message-p{{ main_comment.id }}" class="comment-box">
-            <div id="comment-meta">
-                <span id="comment-nickname">{{ main_comment.nickname }}</span>
-                <span id="comment-datetime">{{ main_comment.gen_time }}</span>
+            <div class="comment-meta">
+                <span class="comment-nickname">{{ main_comment.nickname }}</span>
+                <span class="comment-datetime">{{ main_comment.gen_time }}</span>
             </div>
-            <div id="comment-content">{{ main_comment.content|linebreaks }}</div>
+            <div class="comment-content">{{ main_comment.content|linebreaks }}</div>
         {% for back_comment in main_comment.backcomment_set.all %}
-            <div id="comment-back">
-                <div id="backcomment-admin">{{ back_comment.admin.nickname }}</div>
-                <div id="backcomment-datetime">{{ back_comment.gen_time }}</div>
-                <div id="backcomment-content">{{ back_comment.content|linebreaks }}</div>
+            <div id="backcomment-p{{ back_comment.id }}" class="backcomment-box">
+                <div class="backcomment-meta comment-meta">
+                    <span class="backcomment-admin comment-nickname">{{ back_comment.admin.nickname }}</span><span> 的回复</span>
+                    <span class="backcomment-datetime comment-datetime">{{ back_comment.gen_time }}</span>
+                </div>
+                <div class="backcomment-content comment-content">{{ back_comment.content|linebreaks }}</div>
             </div>
         {% endfor %}
         </div>

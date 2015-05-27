@@ -1,4 +1,4 @@
-function bindPages() {
+function bindEvents() {
     $('#text-page').keypress(function (e){
         var code = e.keyCode;
         if (code == 13) {
@@ -14,9 +14,9 @@ function bindPages() {
                 var msg;
                 switch(x.error){
                     case 0:
-                        msg = '留言成功'; mi[0].reset(); break;
+                        msg = '留言成功'; location.replace(location.href); break;
                     case 1:
-                        msg = '*为必填项目';break;
+                        msg = '*为必填项目'; break;
                     default:
                         msg = '未知错误';
                 }
@@ -26,4 +26,4 @@ function bindPages() {
     });
 }
 
-$(document).ready(bindPages);
+$(document).ready(bindEvents);

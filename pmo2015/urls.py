@@ -1,5 +1,5 @@
-from django.conf.urls import include, url
-from django.contrib import admin
+from django.conf.urls import url
+
 from pmo2015.views import (
     BaseInfoView, StallView, EventView,
     RegisterView, NewsListView, NewsView,
@@ -8,7 +8,6 @@ from pmo2015.views import (
 
 
 urlpatterns = [
-    # Examples:
     url(r'^$', 'pmo2015.views.home', name='home'),
 
     url(r'^baseinfo/$', BaseInfoView.as_view(), name='baseinfo'),

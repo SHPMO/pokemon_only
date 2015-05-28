@@ -23,9 +23,8 @@ class RegisterView(CommonView):
         if sub == 'signupin':
             kwargs.update({
                 'login_form': LoginForm(),
-                'signup_form': SignupForm()
+                'signup_form': SignupForm(),
+                'f': request.GET.get('f', None) == 'login',
+                'error_message': "邮箱已通过验证，请登录" if request.GET.get('validated', None) == "1" else ""
             })
         return super().get(request, sub, *args, **kwargs)
-
-    def post(self, request, sub=None, *args, **kwargs):
-        pass

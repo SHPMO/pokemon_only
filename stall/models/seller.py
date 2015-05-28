@@ -34,7 +34,7 @@ class Seller(BaseStallModel):
     remarks = models.TextField(help_text="备注")
 
     def __str__(self):
-        return "%s" % self.circle_name
+        return "%s %s" % (self.circle_name, self.email)
 
     @classmethod
     def create_seller(cls, email, circle_name, password=None, **kwargs):

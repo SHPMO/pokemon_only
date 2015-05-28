@@ -1,13 +1,22 @@
 from django.conf import settings
 from django.core.mail import send_mail
-from django.http import HttpResponse
-from django.shortcuts import redirect
+from django.http import Http404, HttpResponse
+from django.shortcuts import redirect, loader
+from django.utils.datastructures import MultiValueDictKeyError
 from stall.views.bases import ApiView, View
 from stall.models import Seller, ValidateCode
 from stall.forms import LoginForm, SignupForm
 
 
 class SignupView(ApiView):
+    @staticmethod
+    def send_validate_mail(seller, validate_code):
+        send_mail(
+            '%sPMO摊位/寄卖用户激活邮件' % settings.EMAIL_SUBJECT_PREFIX, "",
+            settings.EMAIL_HOST_USER, [seller.email], fail_silently=True,
+            html_message=loader.get_template('stall/validate_email.html').render({'validate_code': validate_code.code}),
+        )
+
     def post(self, request, *args, **kwargs):
         signup = SignupForm(request.POST)
         if not signup.is_valid():
@@ -22,9 +31,16 @@ class SignupView(ApiView):
             return self.return_me(4, "请选择类型。")
         if signup.cleaned_data['pmo'] not in Seller.PMO_LIST:
             return self.return_me(5, "非法请求。")
-        if len(Seller.objects.filter(email=signup.cleaned_data['email'])) > 0:
-            return self.return_me(2, "该Email已被注册。")
+        s_seller = Seller.objects.filter(email=signup.cleaned_data['email'])
+        if len(s_seller) > 0:
+            if s_seller[0].is_active:
+                return self.return_me(2, "该Email已被注册。")
+            else:
+                validate_code = ValidateCode.objects.get(seller=s_seller[0])
+                self.send_validate_mail(s_seller[0], validate_code)
+                return self.return_me(6, "已重新发送激活邮件，请前往邮箱查收。")
         try:
+            print(signup.cleaned_data)
             seller = Seller.create_seller(
                 email=signup.cleaned_data['email'],
                 circle_name=signup.cleaned_data['circle_name'],
@@ -33,19 +49,28 @@ class SignupView(ApiView):
                 signup_address=request.META['REMOTE_ADDR'],
                 pmo=signup.cleaned_data['pmo']
             )
-        except:
+            print(seller.pmo)
+        except Exception as e:
             return self.return_me(-1, "未知错误。")
 
         validate_code = ValidateCode.create(seller=seller)
-        send_mail(
-            '%sPMO摊位/寄卖用户激活邮件' % settings.EMAIL_SUBJECT_PREFIX,
-            '%s' % validate_code.code, settings.EMAIL_HOST_USER, [seller.email], fail_silently=False)
+        self.send_validate_mail(seller, validate_code)
         return self.return_me(0, "注册成功，请前往邮箱查收激活邮件。")
 
 
 class ValidateView(View):
-    def get(self, request, validate_code, *args, **kwargs):
-        vc = ValidateCode.objects.get(code=validate_code)
+    @staticmethod
+    def get(request, *args, **kwargs):
+        try:
+            vc = ValidateCode.objects.get(code=request.GET["validate_code"])
+        except MultiValueDictKeyError:
+            raise Http404
+        except ValidateCode.DoesNotExist:
+            raise Http404
         if vc.validated:
             return HttpResponse("请勿重复激活邮箱。")
-        return redirect("%s:register" % vc.pmo, {'sub': 'stall'})
+        vc.seller.is_active = vc.validated = True
+        vc.save()
+        response = redirect("%s:register" % vc.pmo, sub='signupin')
+        response['Location'] += '?f=login&validated=1'
+        return response

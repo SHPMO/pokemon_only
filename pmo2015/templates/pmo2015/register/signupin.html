@@ -8,9 +8,9 @@
 {% block stitle %}register-signupin{% endblock %}
 {% block content %}
     <div id="error-message">
-        <p id="error-message-text"></p>
+        <p id="error-message-text">{{ error_message }}</p>
     </div>
-    <div id="content-p0" class="page-current content-page">
+    <div id="content-p0" class="{% if not f %}page-current{% else %}nodisplay-object{% endif %} content-page">
         <h3>【注册】</h3>
         <form id="signup-input" action="{% url "stall:signup" %}" method="post" onsubmit="return false;">
             <div class="controls-group oneline-group">
@@ -55,7 +55,7 @@
             <input type="hidden" name="pmo" value="pmo2015">
         </form>
     </div>
-    <div id="content-p1" class="nodisplay-object content-page">
+    <div id="content-p1" class="{% if f %}page-current{% else %}nodisplay-object{% endif %} content-page">
         <h3>【登录】</h3>
         <form id="login-input" action="{% url "stall:login" %}" method="post" onsubmit="return false;">
             <div class="controls-group oneline-group">

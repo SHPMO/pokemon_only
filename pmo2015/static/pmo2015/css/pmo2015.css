@@ -475,6 +475,12 @@ div.faq-guestbook::before {
     display: block;
     float: left;
 }
+.button-submitting {
+    background: #838ba3;
+}
+.button-submitting:hover {
+    background: #838ba3;
+}
 
 .inline-control {
     float: left;

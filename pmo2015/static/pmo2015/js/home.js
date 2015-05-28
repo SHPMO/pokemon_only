@@ -191,8 +191,10 @@ var ts;
 var sto = null;
 function doSay() {
     if (sto != null) clearTimeout(sto);
-    if(nowSIndex>nowSentence.length)
+    if(nowSIndex>nowSentence.length){
+        mouths[q].removeClass("nodisplay-object");
         return;
+    }
     switchMouth();
     ts.text(nowSentence.substring(nowSIndex-29, nowSIndex));
     nowSIndex++;

@@ -5,7 +5,7 @@ from captcha.fields import CaptchaField
 
 class SignupForm(forms.Form):
     email = forms.EmailField(max_length=30)
-    password = forms.CharField(max_length=128)
+    password = forms.CharField(min_length=6, max_length=128)
     repassword = forms.CharField(max_length=128)
     type = forms.CharField(max_length=10)
     captcha = CaptchaField()

@@ -24,12 +24,18 @@ class Item(models.Model):
     circle = models.CharField(max_length=40, help_text="出品社团")
     is_started_with = models.BooleanField(help_text="是否首发")
 
+    def __str__(self):
+        return "%s %s" % (self.name, self.seller.circle_name)
+
 
 class ItemPicture(models.Model):
     class Meta:
         app_label = 'stall'
     picture = models.ImageField(upload_to="items/%Y/%m/%d", help_text="图片")
     item = models.ForeignKey(Item)
+
+    def __str__(self):
+        return "%s %s" % (self.id, self.item.name)
 
     @classmethod
     def get_default(cls):

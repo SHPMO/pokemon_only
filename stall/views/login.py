@@ -1,12 +1,11 @@
 # -*- coding:utf-8 -*-
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.core.urlresolvers import reverse
-from stall.views.bases import ApiView, View
+from stall.views.bases import ApiView
 from stall.forms import LoginForm
 
 
 class LoginView(ApiView):
-
     def post(self, request, *args, **kwargs):
         form = LoginForm(request.POST)
         if not form.is_valid():
@@ -29,3 +28,11 @@ class LoginView(ApiView):
             0, "登录成功",
             redirect_to=reverse("%s:register" % form.cleaned_data["pmo"], kwargs={"sub": "stall" if seller.is_stall else "consign"})
         )
+
+
+class LogoutView(ApiView):
+    def get(self, request, *args, **kwargs):
+        if not request.user.is_authenticated():
+            return self.return_me(1, "未登录")
+        logout(request)
+        return self.return_me(0, "注销成功")

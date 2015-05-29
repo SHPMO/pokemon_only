@@ -1,13 +1,13 @@
 <h3>{% if seller.is_stall %}摊主{% else %}寄卖{% endif %}通知</h3>
 <p>
     <span>您的{% if seller.is_stall %}摊位{% else %}寄卖{% endif %}状态是 </span>
-    <span>
+    <span><strong>
         {% if seller.status <= 2 %}未提交申请
         {% elif seller.status == 3 %}已提交申请，待审核
         {% elif seller.status == 4 %}已通过审核
         {% elif seller.status == 5 %}未通过审核
         {% else %}未知状态{% endif %}
-    </span>
+    </strong></span>
 </p>
 <p>{% if seller.is_stall %}摊主{% else %}寄卖{% endif %}通知：</p>
 {% if not seller.notice %}
@@ -15,3 +15,5 @@
 {% else %}
     {{ seller.notice|linebreaks }}
 {% endif %}
+
+<button id="logout-button" data-url="{% url "stall:logout" %}" class="button-submit form-control form-button">注销</button>

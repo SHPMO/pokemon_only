@@ -1,26 +1,32 @@
-function autoHeight() {
-    var h = $(window).height();
-    var w = $(window).width();
-    var ph = Math.floor(h / 2) + 179.5;
-    var body = $('#home-body');
-    var zh = Math.floor(h / 2) - 271;
-    body.height(h);
-    body.width(w);
-    $('#home-header').height(zh);
-//    $('#home-main-container').height(ph);
-//    var qh = ph - 506;
-//    if (qh<0) qh = 0;
-//    $('#home-content').css({"top": qh});
-    var qw = Math.floor(w / 2) - 640;
-    if (qw<0) qw = 0;
-    $('#home-content').css({"left": qw});
 
-    $('.home-footer-side').width(Math.round((w - 1280) / 2));
-    $('#home-footer').height(ph - 405);
-    $('#home-footer-center-bottom').height(ph - 500);
+function bindHeight() {
+    function autoHeight() {
+        var h = $(window).height();
+        var w = $(window).width();
+        var ph = Math.floor(h / 2) + 179.5;
+        var body = $('#home-body');
+        var zh = Math.floor(h / 2) - 271;
+        body.height(h);
+        body.width(w);
+        $('#home-header').height(zh);
+    //    $('#home-main-container').height(ph);
+    //    var qh = ph - 506;
+    //    if (qh<0) qh = 0;
+    //    $('#home-content').css({"top": qh});
+        var qw = Math.floor(w / 2) - 640;
+        if (qw<0) qw = 0;
+        $('#home-content').css({"left": qw});
+
+        $('.home-footer-side').width(Math.round((w - 1280) / 2));
+        $('#home-footer').height(ph - 405);
+        $('#home-footer-center-bottom').height(ph - 500);
+    }
+    $(window).resize(autoHeight);
+    autoHeight();
+
 }
 
-var q, p;
+var p, q = 0;
 var hostesses;
 var icons;
 var mouths;
@@ -69,8 +75,11 @@ var lines = [
             '游泳是入团的必备技能呢~我们是最喜欢海洋的组织。',
             '我要一生追随总长，支持着他的梦想。'
         ],
-        '谢谢你！选择我们是你的福气，我们水舰队是最强的！',
-        '你！选择了熔岩团就是与我们水舰队作对！要让你后悔没选择我们！'
+        [
+            '谢谢你！选择我们是你的福气，我们水舰队是最强的！',
+            '你！选择了熔岩团就是与我们水舰队作对！要让你后悔没选择我们！',
+            '注意，重复投票是禁止的哦！敢这麽做的也挺有胆量的嘛！'
+        ]
     ],
     [
         '……麻古麻古团……你追来了呢。',
@@ -83,12 +92,13 @@ var lines = [
             '这样……世界就，结束了?'
         ],
         [
+            '……你……遵（真）有趣……',
             '……快要……实现了……老大的……梦想~?',
-            '……你……遵（真）有趣……'
+            '……投票……只能……一次。老大……只有……一个。'
         ]
     ]
 ];
-
+var tvOn = false;
 
 function startTV() {
     $("#tv-off").addClass("hidden-object");
@@ -108,6 +118,7 @@ function startTV() {
     sa = $('#tv-selection');
     hostesses[1-q].addClass("hidden-object");
     ts = $('#tv-sentence');
+    tvOn = true;
 }
 
 function switchHostess() {
@@ -223,11 +234,52 @@ var tvContent = '<div id="tv-dialog"><div id="tv-nise-hostess"></div></div><div 
     'ion-text"><span>在线报名</span></div><div id="tv-section-news" class="tv-section-text"><span>PMO新闻</span></div>' +
     '<div id="tv-section-qabook" class="tv-section-text"><span>QA留言板</span></div></div><div id="tv-selection"></di' +
     'v><div id="tv-sentence"></div>'
-
-$(document).ready(function (){
-    $(window).resize(autoHeight);
+function bindTV() {
     $('#tv-off').click(startTV);
 
-    autoHeight();
+}
 
+function bindVote() {
+    var vbs = $('.vote-bar-content');
+    function updateVote() {
+        vbs.each(function () {
+            this.style.width = (this.dataset.vote / 3).toString() +'%';
+        })
+    }
+    var url = $('#home-vote').data('url');
+    $('.vote-href').click(function () {
+        var s = this;
+        $.post(
+            url,
+            {
+                'team': s.id.substr(5,2),
+                'csrfmiddlewaretoken': $.cookie('csrftoken')
+            },
+            function (data) {
+                var msg;
+                switch(data.error){
+                    case 0:
+                        msg = lines[q][2][data.vote];
+                        $("#"+s.id.substr(0, 8)+"bar-content")[0].dataset.vote++;
+                        updateVote();
+                        break;
+                    case 1:
+                        msg = lines[q][2][2];
+                        break;
+                    default:
+                        msg = '未知错误';
+                }
+                if (tvOn)
+                    doSpeak(msg);
+                updateVote();
+            }
+        );
+    });
+    updateVote();
+}
+
+$(document).ready(function (){
+    bindHeight();
+    bindTV();
+    bindVote();
 });

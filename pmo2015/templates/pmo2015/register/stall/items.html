@@ -1,13 +1,46 @@
-<h3>{% if seller.is_stall %}摊主{% else %}寄卖{% endif %}通知</h3>
-<p>
-    <span>您的{% if seller.is_stall %}摊位{% else %}寄卖{% endif %}状态是 </span>
-    <span>
-        {% if seller.status <= 2 %}未提交申请
-        {% elif seller.status == 3 %}已提交申请，待审核
-        {% elif seller.status == 4 %}已通过审核
-        {% elif seller.status == 5 %}未通过审核
-        {% else %}未知状态{% endif %}
-    </span>
-</p>
-<p>{% if seller.is_stall %}摊主{% else %}寄卖{% endif %}通知：</p>
-{{ seller.notice|linebreaks }}
+<h3>参展物品</h3>
+<div id="error-message-information">
+    <p id="error-information" class="error-message-text"></p>
+</div>
+<form id="items-input" action="{% url "stall:items" %}" method="post" onsubmit="return false;">
+    <h4>【社团资料】</h4>
+    <table class="controls-group items-table">
+        <thead>
+            <tr>
+                <th id="item-numbers" class="first-head">编号</th>
+                <th id="item-names" class="last-head">名称</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="oneline-group">
+                <td class="item-number">1</td>
+                <td class="item-name">物品1</td>
+            </tr>
+            <tr class="oneline-group">
+                <td class="item-number">2</td>
+                <td class="item-name">物品2</td>
+            </tr>
+            <tr class="oneline-group">
+                <td class="item-number">3</td>
+                <td class="item-name">物品3</td>
+            </tr>
+            <tr class="oneline-group">
+                <td class="item-number">4</td>
+                <td class="item-name">物品4</td>
+            </tr>
+            <tr class="oneline-group">
+                <td class="item-number">5</td>
+                <td class="item-name">物品5啊吧啊喂拉开距离看文件风看了维基付了款文件放屁王ie家风IPO文件</td>
+            </tr>
+            <tr class="oneline-group">
+                <td class="item-number">2</td>
+                <td class="item-name">物品2</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="controls-group oneline-group">
+        <label class="form-label" for="text-circle_name">摊位名*</label>
+        <input id="text-circle_name" class="form-control form-text" type="text" required="required"
+               name="circle_name" value="{{ seller.circle_name }}">
+    </div>
+</form>

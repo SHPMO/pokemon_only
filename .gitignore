@@ -1,8 +1,8 @@
 *.pyc
 /db.sqlite3
 /msite/settings.py
-secret_key.txt
-secret_email.txt
+data/secret_key.txt
+data/secret_email.txt
 /.idea/
 migrations/
 /__pycache__/

@@ -6,14 +6,15 @@ import json
 from pmo2015.models import MainComment, Player, Vote
 
 
-def _return_me(error_code):
-    return {"error": error_code}
+def _return_me(error_code, **kwargs):
+    kwargs["error"] = error_code
+    return kwargs
 
 
 def _guestbook(request, *args, **kwargs):
     nickname = request.POST.get("nickname", "")
     message = request.POST.get("message", "").strip()
-    ip_address = request.META.get("REMOTE_ADDR", None)
+    ip_address = request.META.get("REMOTE_ADDR")
     if nickname == "" or message == "":
         return _return_me(1)
     elif ip_address is None:
@@ -23,7 +24,7 @@ def _guestbook(request, *args, **kwargs):
             MainComment.create(
                 nickname=nickname,
                 content=message,
-                email=request.POST.get("email", None),
+                email=request.POST.get("email"),
                 ip_address=ip_address
             )
         except:
@@ -32,11 +33,11 @@ def _guestbook(request, *args, **kwargs):
 
 
 def _battle(request, *args, **kwargs):
-    player_id = request.POST.get("nickname", None)
-    email = request.POST.get("email", None)
-    taobao_id = request.POST.get("taobao", None)
-    team = request.POST.get("team", None)
-    ip_address = request.META.get("REMOTE_ADDR", None)
+    player_id = request.POST.get("nickname")
+    email = request.POST.get("email")
+    taobao_id = request.POST.get("taobao")
+    team = request.POST.get("team")
+    ip_address = request.META.get("REMOTE_ADDR")
     if not all((player_id, email, taobao_id, team)):
         return _return_me(1)
     elif ip_address is None:
@@ -55,14 +56,29 @@ def _battle(request, *args, **kwargs):
             )
         except AssertionError:
             return _return_me(3)
-        except Exception as e:
-
+        except:
             return _return_me(-1)
     return _return_me(0)
 
+
+def _vote(request, *args, **kwargs):
+    choice = request.POST.get("team").upper()
+    ip_address = request.META.get("REMOTE_ADDR")
+    if not all((choice, ip_address)) or choice not in {Vote.TEAM_AQUA, Vote.TEAM_MAGMA}:
+        return _return_me(-1)
+    if len(Vote.objects.filter(ip_address=ip_address)) > 0 or request.session.get('vote'):
+        return _return_me(1)
+    vote = Vote.objects.create(
+        choice=choice,
+        ip_address=ip_address
+    )
+    request.session['vote'] = vote.id
+    return _return_me(0, vote=0 if choice == Vote.TEAM_AQUA else 1)
+
 _api_list = {
     'guestbook': _guestbook,
-    'battle': _battle
+    'battle': _battle,
+    'vote': _vote
 }
 
 

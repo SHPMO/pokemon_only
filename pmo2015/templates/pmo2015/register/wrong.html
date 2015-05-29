@@ -1,0 +1,15 @@
+{% extends "pmo2015/base.html" %}
+{% load staticfiles %}
+{% block more_heads %}
+    <script type="text/javascript" src="{% static 'pmo2015/js/logout.js' %}"></script>
+{% endblock %}
+{% block subtitle %}{% if is_stall %}摊位{% else %}寄卖{% endif %}申请 - 在线报名{% endblock %}
+{% block stitle %}register-{% if is_stall %}stall{% else %}consign{% endif %}{% endblock %}
+{% block content %}
+    <p>
+        <span>您已登录为{% if is_stall %}寄卖{% else %}摊位{% endif %}用户，请在</span>
+        <span><a class="maintext-href" href="{{ correct_url }}">这里</a></span>
+        <span>编辑申请资料。</span>
+    </p>
+    <button id="logout-button" data-url="{% url "stall:logout" %}" class="button-submit form-control form-button">注销</button>
+{% endblock %}

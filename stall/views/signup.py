@@ -13,7 +13,7 @@ class SignupView(ApiView):
     def send_validate_mail(seller, validate_code):
         send_mail(
             '%sPMO摊位/寄卖用户激活邮件' % settings.EMAIL_SUBJECT_PREFIX, "",
-            settings.EMAIL_HOST_USER, [seller.email], fail_silently=True,
+            settings.EMAIL_HOST_USER, [seller.email], fail_silently=False,
             html_message=loader.get_template('stall/validate_email.html').render({'validate_code': validate_code.code}),
         )
 
@@ -29,8 +29,6 @@ class SignupView(ApiView):
             is_stall = False
         else:
             return self.return_me(4, "请选择类型。")
-        if signup.cleaned_data['pmo'] not in Seller.PMO_LIST:
-            return self.return_me(5, "非法请求。")
         s_seller = Seller.objects.filter(email=signup.cleaned_data['email'])
         if len(s_seller) > 0:
             if s_seller[0].is_active:

@@ -11,4 +11,3 @@ class SignupForm(BaseForm):
     type = forms.CharField(max_length=10)
     captcha = CaptchaField()
     circle_name = forms.CharField(max_length=40)
-    pmo = forms.CharField(max_length=10)

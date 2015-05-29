@@ -2,7 +2,7 @@
 <div id="error-message-information">
     <p id="error-information" class="error-message-text"></p>
 </div>
-<input type="file" id="file-circle_image" class="nodisplay-object" name="circle_image" data-url="{% url 'stall:seller' 'upload' %}">
+<input type="file" id="file-circle_image" name="circle_image" data-url="{% url 'stall:seller' 'upload' %}">
 <form id="seller-input" action="{% url "stall:seller" %}" method="post" onsubmit="return false;">
     <h4>【社团资料】</h4>
     <div class="controls-group oneline-group">

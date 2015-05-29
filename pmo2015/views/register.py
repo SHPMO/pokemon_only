@@ -23,7 +23,6 @@ class RegisterView(CommonView):
             kwargs.update({
                 'seller': request.user.seller,
                 'page': int(request.GET.get('page', 0)),
-                'error': int(request.GET.get('error', 0))
             })
         elif sub == 'signupin':
             kwargs.update({

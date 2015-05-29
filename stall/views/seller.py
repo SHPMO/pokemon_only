@@ -23,7 +23,7 @@ class SellerView(ApiView):
             return self.return_me(0, '上传成功', circle_image_url=seller.circle_image.url)
         form = SellerForm(request.POST, request.FILES)
         if not form.is_valid():
-            return self.return_me(1, '*为必填项', circle_image_url=seller.circle_image.url)
+            return self.return_me(1, '*为必填项')
         if seller.is_stall and len(form.cleaned_data['proposer_id']) != 18:
             return self.return_me(2, '身份证号码错误')
         seller.circle_name = form.cleaned_data['circle_name']

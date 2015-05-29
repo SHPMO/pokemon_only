@@ -72,6 +72,13 @@ tr {
     height: 64px;
     width: 100%;
     line-height: 64px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: default;
+}
+a.nav-href {
     cursor: pointer;
 }
 .nav-list {
@@ -534,11 +541,9 @@ div.faq-guestbook::before {
     display: block;
     float: left;
 }
-.button-submitting {
+.button-submitting, .button-submitting:hover {
     background: #838ba3;
-}
-.button-submitting:hover {
-    background: #838ba3;
+    border-color: #838ba3;
 }
 
 .inline-control {

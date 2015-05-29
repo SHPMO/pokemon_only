@@ -7,7 +7,7 @@
 {% block stitle %}register-battle{% endblock %}
 {% block content %}
     <div id="error-message">
-        <p id="error-message-text"></p>
+        <p class="error-message-text"></p>
     </div>
     <div id="input-area">
         <form id="register-input" action="{% url "pmo2015:api" "battle" %}" method="post" onsubmit="return false;">
@@ -25,7 +25,7 @@
             </div>
             <div class="controls-group oneline-group">
                 <label class="form-label">团队</label>
-                <div id="team-select" class="oneline-select form-control">
+                <div id="team-select" class="oneline-select form-control form-indent">
                     <div class="inline-control">
                         <input id="team-random" type="radio" name="team" value="random" checked="checked">
                         <label for="team-random">随机选择</label>
@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div class="controls-group oneline-group">
-                <button id="button-submit" class="form-control form-button" name="submit">提交</button>
+                <button id="button-submit" class="button-submit form-control form-button" name="submit">提交</button>
             </div>
             {% csrf_token %}
         </form>

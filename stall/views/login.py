@@ -11,16 +11,21 @@ class LoginView(ApiView):
         form = LoginForm(request.POST)
         if not form.is_valid():
             return self.return_me(1, form.errors)
-        username = form.cleaned_data["username"]
+        email = form.cleaned_data["email"]
         password = form.cleaned_data["password"]
-        user = authenticate(username=username, password=password)
+        user = authenticate(username=email, password=password)
         if user is None:
             return self.return_me(2, "账号与密码不匹配")
         seller = user.seller
         if not seller.is_active:
             return self.return_me(
                 3,
-                '邮箱未激活，若没有收到邮件请在注册处填写信息重新发送。如有疑问请<a href="%s">联系我们</a>。' %
-                reverse("%s:qabook" % seller.pmo, {"sub": "guestbook"})
+                '邮箱未激活，若没有收到邮件请在注册处填写信息重新发送。如有疑问请'
+                '<a href="%s" class="maintext-href">联系我们</a>。' %
+                reverse("%s:qabook" % form.cleaned_data["pmo"], kwargs={"sub": "guestbook"})
             )
-        return self.return_me(0, "登录成功")
+        login(request, user)
+        return self.return_me(
+            0, "登录成功",
+            redirect_to=reverse("%s:register" % form.cleaned_data["pmo"], kwargs={"sub": "stall" if seller.is_stall else "consign"})
+        )

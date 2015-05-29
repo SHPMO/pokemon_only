@@ -20,7 +20,7 @@ class Seller(BaseStallModel):
     signup_datetime = models.DateTimeField(auto_now=True)
     signup_address = models.GenericIPAddressField()
 
-    is_stall = models.BooleanField('是否摊位')
+    is_stall = models.BooleanField(help_text='是否摊位')
 
     circle_name = models.CharField(max_length=40, help_text="社团名")
     circle_description = models.TextField(help_text="社团介绍")
@@ -32,6 +32,9 @@ class Seller(BaseStallModel):
     proposer_id = models.CharField(max_length=18, help_text="身份证号")
     booth = models.SmallIntegerField(default=0, help_text="申请摊位数")
     remarks = models.TextField(help_text="备注")
+
+    status = models.PositiveSmallIntegerField(help_text="状态")
+    notice = models.TextField(help_text="通知")
 
     def __str__(self):
         return "%s %s" % (self.circle_name, self.email)
@@ -47,10 +50,15 @@ class Seller(BaseStallModel):
             email=email,
             password=password
         )
-        seller = cls.objects.create(
-            email=email,
-            user=user,
-            circle_name=circle_name,
-            **kwargs
-        )
-        return seller
+        try:
+            seller = cls.objects.create(
+                email=email,
+                user=user,
+                circle_name=circle_name,
+                status=0,
+                **kwargs
+            )
+            return seller
+        except:
+            user.delete()
+            raise

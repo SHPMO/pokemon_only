@@ -1,4 +1,5 @@
 function bindSubmit() {
+    var emt = $('.error-message-text');
     var ss = $("#signup-submit");
     ss.click(function () {
         var mi = $('#signup-input');
@@ -18,9 +19,9 @@ function bindSubmit() {
                         msg = data.message;
                         break;
                     case 1:
-                        if(typeof(data.message.captcha)!=undefined)
+                        if(data.message.captcha!=undefined)
                             msg = "验证码错误";
-                        else if(typeof(data.message.password)!=undefined)
+                        else if(data.message.password!=undefined)
                             msg = "密码至少需要6位";
                         else
                             msg = "*为必填项";
@@ -31,14 +32,14 @@ function bindSubmit() {
                 ss.removeClass("button-submitting");
                 ss.text("提交");
                 ss.removeAttr("disabled");
-                $('#error-message-text').text(msg);
+                emt.html(msg);
                 $(".captcha").click();
             }
         );
     });
     var ls = $("#login-submit");
     ls.click(function () {
-        var mi = $('#signup-input');
+        var mi = $('#login-input');
         var data = mi.serialize();
         ls.addClass("button-submitting");
         ls.text("提交中");
@@ -52,11 +53,14 @@ function bindSubmit() {
                     case 0:
                         $(".content-page").addClass("nodisplay-object");
                         $(".switch-panel").addClass("nodisplay-object");
-                        msg = data.message;
+                        emt.html(data.message);
+                        location.href = data.redirect_to;
                         break;
                     case 1:
-                        if(typeof(data.message.captcha)!=undefined)
+                        if(data.message.captcha!=undefined)
                             msg = "验证码错误";
+                        else if(data.message.email!=undefined)
+                            msg = "请输入正确的邮箱地址";
                         else
                             msg = "所有项目不能为空";
                         break;
@@ -66,7 +70,7 @@ function bindSubmit() {
                 ls.removeClass("button-submitting");
                 ls.text("提交");
                 ls.removeAttr("disabled");
-                $('#error-message-text').text(msg);
+                emt.html(msg);
                 $(".captcha").click();
             }
         );

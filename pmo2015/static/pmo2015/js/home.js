@@ -133,7 +133,7 @@ function doPrint() {
     if (sot != null) clearTimeout(sot);
     if(nowIndex>=nowString.length) {
         nowKeyIndex++;
-        setTimeout(doAppend, 100);
+        sot=setTimeout(doAppend, 100);
         return;
     }
     nowObject.append(nowString[nowIndex]);
@@ -192,7 +192,7 @@ var sto = null;
 function doSay() {
     if (sto != null) clearTimeout(sto);
     if(nowSIndex>nowSentence.length){
-        mouths[q].removeClass("nodisplay-object");
+        mouths[q].addClass("nodisplay-object");
         return;
     }
     switchMouth();

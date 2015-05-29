@@ -40,7 +40,6 @@ class SignupView(ApiView):
                 self.send_validate_mail(s_seller[0], validate_code)
                 return self.return_me(6, "已重新发送激活邮件，请前往邮箱查收。")
         try:
-            print(signup.cleaned_data)
             seller = Seller.create_seller(
                 email=signup.cleaned_data['email'],
                 circle_name=signup.cleaned_data['circle_name'],
@@ -49,9 +48,8 @@ class SignupView(ApiView):
                 signup_address=request.META['REMOTE_ADDR'],
                 pmo=signup.cleaned_data['pmo']
             )
-            print(seller.pmo)
         except Exception as e:
-            return self.return_me(-1, "未知错误。")
+            return self.return_me(-1, str(e))#"未知错误。")
 
         validate_code = ValidateCode.create(seller=seller)
         self.send_validate_mail(seller, validate_code)
@@ -59,6 +57,11 @@ class SignupView(ApiView):
 
 
 class ValidateView(View):
+    # TODO: send a success mail.
+    # @staticmethod
+    # def send_success_mail(seller, validate_code):
+    #     send_mail()
+
     @staticmethod
     def get(request, *args, **kwargs):
         try:
@@ -67,10 +70,11 @@ class ValidateView(View):
             raise Http404
         except ValidateCode.DoesNotExist:
             raise Http404
-        if vc.validated:
+        if vc.seller.is_active:
             return HttpResponse("请勿重复激活邮箱。")
         vc.seller.is_active = vc.validated = True
         vc.save()
+        vc.seller.save()
         response = redirect("%s:register" % vc.pmo, sub='signupin')
         response['Location'] += '?f=login&validated=1'
         return response

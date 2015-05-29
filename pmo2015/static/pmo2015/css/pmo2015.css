@@ -82,7 +82,7 @@ tr {
 .subnav-hrefs {
     position: absolute;
     top: 74px;
-    margin-left: -10px;
+    margin-left: -12px;
     height: auto;
     width: 160px;
     border: 2px solid #8589a4;
@@ -283,6 +283,16 @@ div.register-signupin::before {
     right: 39px;
     top: 50px;
 }
+div.register-stall::before {
+    content: "摊位申请";
+    right: 39px;
+    top: 50px;
+}
+div.register-consign::before {
+    content: "寄卖申请";
+    right: 39px;
+    top: 50px;
+}
 div.event-battle::before {
     content: "联机对战";
     right: 39px;
@@ -381,6 +391,26 @@ div.faq-guestbook::before {
     width: 368px;
     height: 62px;
 }
+.panel-purple-r {
+    background: url("../images/panel-purple-r.png") no-repeat;
+    width: 368px;
+    height: 62px;
+}
+.panel-green-r {
+    background: url("../images/panel-green-r.png") no-repeat;
+    width: 368px;
+    height: 62px;
+}
+.panel-yellow-r {
+    background: url("../images/panel-yellow-r.png") no-repeat;
+    width: 368px;
+    height: 62px;
+}
+.panel-grey-r {
+    background: url("../images/panel-grey-r.png") no-repeat;
+    width: 368px;
+    height: 62px;
+}
 .panel-red {
     background: url("../images/panel-red.png") no-repeat;
     width: 368px;
@@ -403,13 +433,22 @@ div.faq-guestbook::before {
 }
 .oneline-group {
     height: 35px;
+    width: 531px;
+}
+.multiline-group {
+    /*height: 110px;*/
+    width: 531px;
+}
+.clear-group {
+    clear: both;
+    padding-top: 20px;
 }
 .form-label {
     float: left;
-    width: 67px;
+    width: 77px;
     height: 26px;
     margin: 0;
-    padding-left: 20px;
+    padding-left: 10px;
     padding-top: 5px;
     border: solid #5c92ef;
     border-width: 2px 0 2px 2px;
@@ -421,6 +460,10 @@ div.faq-guestbook::before {
     border: 2px solid #5c92ef;
     padding: 5px;
     margin-left: -2px;
+}
+.form-image {
+    width: 100px;
+    height: 100px;
 }
 .form-text {
     height: 21px;
@@ -434,28 +477,44 @@ div.faq-guestbook::before {
     text-align: center;
 }
 .form-textarea {
-    height: 11em;
+    height: 100px;
     width: 430px;
     resize: none;
     font-size: 14px;
 }
 .form-button {
     width: 89px;
-    background-color: #5c92ef;
+    background-color: #e74c3c;
+    border: 2px solid #e74c3c;
     color: #ffffff;
     font-size: 16px;
     margin: 0;
 }
 .form-button:hover {
-    background-color: #63a2ff;
+    background-color: #ec7063;
 }
 .form-button:active {
-    background-color: #5585d4;
+    background-color: #dc2d1b;
+}
+.form-indent {
+    margin-left: 87px;
+}
+.form-float {
+    float: left;
+}
+.form-additional {
+    padding-left: 10px;
+    font-size: 14px;
+}
+.button-submit {
+    float: right;
+}
+.button-mleft {
+    margin-left: 20px;
 }
 .oneline-select {
     height: 21px;
     width: 430px;
-    margin-left: 87px;
     background-color: #ffffff;
 }
 .captcha-box {
@@ -467,9 +526,9 @@ div.faq-guestbook::before {
 }
 .captcha-box #id_captcha_1 {
     border: 0;
-    padding: 5px 30px;
+    padding: 5px;
     height: 21px;
-    width: 180px;
+    width: 130px;
 }
 .controls-group img{
     display: block;
@@ -508,6 +567,7 @@ div.faq-guestbook::before {
     background: #6E5959;
     margin-top: 20px;
     margin-bottom: 20px;
+    clear: both;
 }
 #message-nav {
     margin-bottom: 20px;
@@ -848,6 +908,10 @@ div.faq-guestbook::before {
     float: left;
     width: 120px;
     height: 40px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 .tv-section-text:hover{
     background: #aedff1;

@@ -8,7 +8,7 @@
 {% block stitle %}register-signupin{% endblock %}
 {% block content %}
     <div id="error-message">
-        <p id="error-message-text">{{ error_message }}</p>
+        <p class="error-message-text">{{ error_message }}</p>
     </div>
     <div id="content-p0" class="{% if not f %}page-current{% else %}nodisplay-object{% endif %} content-page">
         <h3>【注册】</h3>
@@ -31,7 +31,7 @@
             </div>
             <div class="controls-group oneline-group">
                 <label class="form-label">类型*</label>
-                <div id="type-select" class="oneline-select form-control">
+                <div id="type-select" class="oneline-select form-control form-indent">
                     <div class="inline-control-two">
                         <input id="type-stall" type="radio" name="type" value="stall">
                         <label for="type-stall">摊位</label>
@@ -49,7 +49,7 @@
                 </div>
             </div>
             <div class="controls-group oneline-group">
-                <button id="signup-submit" class="form-control form-button" name="submit">提交</button>
+                <button id="signup-submit" class="button-submit form-control form-button" name="submit">提交</button>
             </div>
             {% csrf_token %}
             <input type="hidden" name="pmo" value="pmo2015">
@@ -64,20 +64,7 @@
             </div>
             <div class="controls-group oneline-group">
                 <label class="form-label" for="text-password">密码</label>
-                <input id="text-password" class="form-control form-text" type="text" name="password">
-            </div>
-            <div class="controls-group oneline-group">
-                <label class="form-label">类型</label>
-                <div id="type-select" class="oneline-select form-control">
-                    <div class="inline-control-two">
-                        <input id="type-stall" type="radio" name="type" value="stall">
-                        <label for="type-stall">摊位</label>
-                    </div>
-                    <div class="inline-control-two">
-                        <input id="type-consign" type="radio" name="type" value="consign">
-                        <label for="type-consign">寄卖</label>
-                    </div>
-                </div>
+                <input id="text-password" class="form-control form-text" type="password" name="password">
             </div>
             <div class="controls-group oneline-group">
                 <label class="form-label">验证码</label>
@@ -86,7 +73,7 @@
                 </div>
             </div>
             <div class="controls-group oneline-group">
-                <button id="login-submit" class="form-control form-button" name="submit">提交</button>
+                <button id="login-submit" class="button-submit form-control form-button" name="submit">提交</button>
             </div>
             {% csrf_token %}
             <input type="hidden" name="pmo" value="pmo2015">

@@ -1,61 +1,36 @@
 {% extends "pmo2015/base.html" %}
 {% load staticfiles %}
 {% block more_heads %}
-    <script type="text/javascript" src="{% static 'pmo2015/js/battle.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.ui.widget.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.iframe-transport.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.fileupload.js' %}"></script>
+    <script type="text/javascript" src="{% static 'pmo2015/js/switch.js' %}"></script>
+    <script type="text/javascript" src="{% static 'pmo2015/js/stall.js' %}"></script>
 {% endblock %}
-{% block subtitle %}对战报名 - 在线报名{% endblock %}
-{% block stitle %}register-battle{% endblock %}
+{% block subtitle %}{% if seller.is_stall %}摊位{% else %}寄卖{% endif %}申请 - 在线报名{% endblock %}
+{% block stitle %}register-{% if seller.is_stall %}stall{% else %}consign{% endif %}{% endblock %}
 {% block content %}
-    <div id="error-message">
-        <p id="error-message-text">{{ sub }}</p>
+    <div id="content-p0" class="{% if page == 0 %}page-current{% else %}nodisplay-object{% endif %} content-page">
+        {% include "pmo2015/register/stall/notice.html" %}
     </div>
-    <div id="input-area">
-        <form id="register-input" action="{% url "pmo2015:api" "battle" %}" method="post" onsubmit="return false;">
-            <div class="controls-group oneline-group">
-                <label class="form-label" for="text-nickname">昵称*</label>
-                <input id="text-nickname" class="form-control form-text" type="text" name="nickname">
-            </div>
-            <div class="controls-group oneline-group">
-                <label class="form-label" for="text-email">Email*</label>
-                <input id="text-email" class="form-control form-text" type="email" name="email">
-            </div>
-            <div class="controls-group oneline-group">
-                <label class="form-label" for="text-taobao">交易号*</label>
-                <input id="text-taobao" class="form-control form-text" type="text" name="taobao">
-            </div>
-            <div class="controls-group oneline-group">
-                <label class="form-label">团队</label>
-                <div id="team-select" class="oneline-select form-control">
-                    <div class="inline-control">
-                        <input id="team-random" type="radio" name="team" value="random" checked="checked">
-                        <label for="team-random">随机选择</label>
-                    </div>
-                    <div class="inline-control">
-                        <input id="team-aq" type="radio" name="team" value="aq">
-                        <label for="team-aq">水舰队</label>
-                    </div>
-                    <div class="inline-control">
-                        <input id="team-mg" type="radio" name="team" value="mg">
-                        <label for="team-mg">熔岩团</label>
-                    </div>
-                </div>
-            </div>
-            <div class="controls-group oneline-group">
-                <button id="button-submit" class="form-control form-button" name="submit">提交</button>
-            </div>
-            {% csrf_token %}
-        </form>
+    <div id="content-p1" class="{% if page == 1 %}page-current{% else %}nodisplay-object{% endif %} content-page">
+        {% include "pmo2015/register/stall/instructions.html" %}
     </div>
-    <div id="split-line"></div>
-    <div id="intro-area">
-        <p><a class="maintext-href" href="{% url 'pmo2015:event' 'battle'%}">对战规则</a></p>
-        <ul>
-            <li><span>参赛报名费5r/人。包含参赛名额*1、战斗区参与奖*1</span></li>
-            <li><span>只接受提前报名，不提供现场报名。需拍下报名费，同时请备注昵称。</span></li>
-            <li><span>提交报名表时需提交淘宝交易号。</span></li>
-        </ul>
-        <p>提交则默认接受对战规则。若有疑问请提前提出。</p>
-        <p>提交后，队员们将会在7个工作日内以邮件方式将审核结果发送至您的邮箱，请注意查收。</p>
-        <p><审核结果为通过的情></审核结果为通过的情>况下将会随邮件附上参赛编号。当日到场时请前往指定区域领取号码牌。</p>
+    <div id="content-p2" class="{% if page == 2 %}page-current{% else %}nodisplay-object{% endif %} content-page">
+        {% include "pmo2015/register/stall/information.html" %}
     </div>
+    <div id="content-p3" class="{% if page == 3 %}page-current{% else %}nodisplay-object{% endif %} content-page">
+        {% include "pmo2015/register/stall/items.html" %}
+    </div>
+    <div id="content-p4" class="{% if page == 4 %}page-current{% else %}nodisplay-object{% endif %} content-page">
+        {% include "pmo2015/register/stall/submit.html" %}
+    </div>
+{% endblock %}
+
+{% block panels %}
+    <div id="switch-p0" class="pmo-panel switch-panel panel-red-r"><span>{% if seller.is_stall %}摊主{% else %}寄卖{% endif %}通知</span></div>
+    <div id="switch-p1" class="pmo-panel switch-panel panel-blue-r"><span>申请须知</span></div>
+    <div id="switch-p2" class="pmo-panel switch-panel panel-purple-r"><span>社团资料</span></div>
+    <div id="switch-p3" class="pmo-panel switch-panel panel-yellow-r"><span>参展物品</span></div>
+    <div id="switch-p4" class="pmo-panel switch-panel panel-green-r"><span>申请提交</span></div>
 {% endblock %}

@@ -1,13 +1,17 @@
 function bindSubmit() {
-    $("#button-submit").click(function () {
+    var ss = $("#button-submit");
+    ss.click(function () {
         var mi = $('#register-input');
+        var data = mi.serialize();
+        ss.addClass("button-submitting");
+        ss.text("提交中");
+        ss.attr("disabled", "disabled");
         $.post(
             mi[0].action,
-            mi.serialize(),
+            data,
             function (data) {
-                var x = $.parseJSON(data);
                 var msg;
-                switch(x.error){
+                switch(data.error){
                     case 0:
                         msg = '报名信息提交成功！'; mi[0].reset(); break;
                     case 1:
@@ -19,7 +23,10 @@ function bindSubmit() {
                     default:
                         msg = '未知错误';
                 }
-                $('#error-message-text').text(msg);
+                ss.removeClass("button-submitting");
+                ss.text("提交");
+                ss.removeAttr("disabled");
+                $('.error-message-text').text(msg);
             }
         );
     });

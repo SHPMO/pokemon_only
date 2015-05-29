@@ -31,7 +31,7 @@ class Item(models.Model):
 class ItemPicture(models.Model):
     class Meta:
         app_label = 'stall'
-    picture = models.ImageField(upload_to="items/%Y/%m/%d", help_text="图片")
+    picture = models.ImageField(upload_to="items/%Y/%m/%d", max_length=1024, help_text="图片")
     item = models.ForeignKey(Item)
 
     def __str__(self):

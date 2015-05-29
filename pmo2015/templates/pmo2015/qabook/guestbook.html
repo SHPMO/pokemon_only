@@ -8,7 +8,7 @@
 {% block stitle %}faq-guestbook{% endblock %}
 {% block content %}
     <div id="error-message">
-        <p id="error-message-text"></p>
+        <p class="error-message-text"></p>
     </div>
     <div id="input-area">
         <form id="message-input" onsubmit="return false;" method="post" action="{% url 'pmo2015:api' 'guestbook'%}">
@@ -20,12 +20,12 @@
                 <label class="form-label" for="text-email">Email</label>
                 <input id="text-email" class="form-control form-text" type="email" name="email" value="{{ email }}">
             </div>
-            <div class="controls-group">
+            <div class="controls-group multiline-group">
                 <label class="form-label" for="text-message">留言*</label>
                 <textarea id="text-message" class="form-control form-textarea" name="message">{{ message }}</textarea>
             </div>
             <div class="controls-group oneline-group">
-                <button id="button-submit" class="form-control form-button" name="submit">提交</button>
+                <button id="button-submit" class="button-submit form-control form-button" name="submit">提交</button>
             </div>
             {% csrf_token %}
         </form>
@@ -37,7 +37,7 @@
                 <span>共 {{ comment_number }} 条留言 第 {{ page }} 页</span>
                 <label for="text-page">跳转到</label>
                 <input id="text-page" class="form-control form-small-text" type="number" min="1" max="{{ max_page }}" name="page" value="{{ page }}">
-                <button id="page-submit" class="button-small form-button form-control">提交</button>
+                <button id="page-submit" class="button-small form-button form-control">跳转</button>
             </form>
         </div>
     {% for main_comment in main_comments %}

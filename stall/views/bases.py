@@ -5,13 +5,12 @@ import json
 
 
 class ApiView(View):
-
-    def get(self, request, *args, **kwargs):
+    @staticmethod
+    def get(request):
         raise Http404
 
     @staticmethod
-    def return_me(error_code, message=None, data=None):
+    def return_me(error_code, message=None, **kwargs):
         response = {'error': error_code, 'message': message}
-        if data is not None and isinstance(data, dict):
-            response.update(data)
+        response.update(kwargs)
         return HttpResponse(json.dumps(response), content_type='application/json')

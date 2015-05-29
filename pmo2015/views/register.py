@@ -20,7 +20,12 @@ class RegisterView(CommonView):
             sub = 'stall'
             if not request.user.is_authenticated():
                 return redirect("pmo2015:register", sub='signupin')
-        if sub == 'signupin':
+            kwargs.update({
+                'seller': request.user.seller,
+                'page': int(request.GET.get('page', 0)),
+                'error': int(request.GET.get('error', 0))
+            })
+        elif sub == 'signupin':
             kwargs.update({
                 'login_form': LoginForm(),
                 'signup_form': SignupForm(),

@@ -11,7 +11,7 @@ class ValidateCode(BaseStallModel):
     validated = models.BooleanField(default=False)
     seller = models.ForeignKey(Seller)
 
-    MSTR = string.ascii_letters+string.digits
+    MSTR = string.ascii_letters + string.digits
 
     def __str__(self):
         return "%s %s" % (self.seller.email, self.code)

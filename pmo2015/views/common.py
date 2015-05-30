@@ -24,7 +24,7 @@ class BaseInfoView(CommonView):
 
 
 class StallView(CommonView):
-    _sub_list = ["diagram", "circle", "goods"]
+    _sub_list = ["diagram", "circle", "items"]
     name = "stall"
 
 

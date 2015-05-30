@@ -9,7 +9,7 @@
     <div id="error-message">
         <p class="error-message-text"></p>
     </div>
-    <div id="input-area">
+    <div class="input-area">
         <form id="register-input" action="{% url "pmo2015:api" "battle" %}" method="post" onsubmit="return false;">
             <div class="controls-group oneline-group">
                 <label class="form-label" for="text-nickname">昵称*</label>
@@ -26,15 +26,15 @@
             <div class="controls-group oneline-group">
                 <label class="form-label">团队</label>
                 <div id="team-select" class="oneline-select form-control form-indent">
-                    <div class="inline-control">
+                    <div class="inline-control inline-control-three">
                         <input id="team-random" type="radio" name="team" value="random" checked="checked">
                         <label for="team-random">随机选择</label>
                     </div>
-                    <div class="inline-control">
+                    <div class="inline-control inline-control-three">
                         <input id="team-aq" type="radio" name="team" value="aq">
                         <label for="team-aq">水舰队</label>
                     </div>
-                    <div class="inline-control">
+                    <div class="inline-control inline-control-three">
                         <input id="team-mg" type="radio" name="team" value="mg">
                         <label for="team-mg">熔岩团</label>
                     </div>

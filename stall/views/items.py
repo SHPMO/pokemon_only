@@ -1,14 +1,12 @@
 # -*- coding:utf-8 -*-
 from django.http import Http404
-from django.shortcuts import redirect
-from stall.views.bases import ApiView, View
+from stall.views.bases import AuthedApiView
 from stall.forms import SellerForm
 
 
-class SellerView(ApiView):
+class ItemView(AuthedApiView):
     def post(self, request, sub=None, *args, **kwargs):
-        if not request.user.is_authenticated():
-            raise Http404
+        super().post(request, *args, **kwargs)
         seller = request.user.seller
         if sub == 'upload':
             image = request.FILES['circle_image']

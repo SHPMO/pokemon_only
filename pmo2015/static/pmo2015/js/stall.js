@@ -45,7 +45,7 @@ function bindSeller() {
         formData: {'csrfmiddlewaretoken': $.cookie('csrftoken')},
         add: function(e, data) {
             if(data.originalFiles[0]['size'] > 1048576) {
-                $('#error-upload-circle_image').text("文件过大");
+                $('#error-upload-circle_image').text("请上传小于 1 MB 的图片");
             } else {
                 data.submit();
             }
@@ -58,7 +58,12 @@ function bindSeller() {
     fci.fileupload(option);
 }
 
+function bindItems() {
+    var ss = $("#items-input");
+}
+
 
 $(document).ready(function () {
     bindSeller();
+    bindItems();
 });

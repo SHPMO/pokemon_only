@@ -31,6 +31,7 @@ class RegisterView(CommonView):
                 kwargs.update({
                     'seller': request.user.seller,
                     'page': int(request.GET.get('page', 0)),
+                    'item_range': range(5)
                 })
             else:
                 is_stall = sub == 'stall'

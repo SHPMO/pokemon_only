@@ -274,6 +274,16 @@ div.stall-diagram::before {
     right: 39px;
     top: 50px;
 }
+div.stall-circle::before {
+    content: "参展社团";
+    right: 39px;
+    top: 50px;
+}
+div.stall-items::before {
+    content: "参展贩售物";
+    right: 39px;
+    top: 44px;
+}
 div.register-battle::before {
     content: "对战报名";
     right: 39px;
@@ -506,6 +516,8 @@ div.faq-guestbook::before {
 .form-additional {
     padding-left: 10px;
     font-size: 14px;
+    position: relative;
+    top: -3px;
 }
 .button-submit {
     float: right;
@@ -529,8 +541,9 @@ div.faq-guestbook::before {
 }
 .oneline-select {
     height: 21px;
-    width: 430px;
+    width: 330px;
     background-color: #ffffff;
+    padding: 5px 55px;
 }
 .captcha-box {
     height: 31px;
@@ -587,14 +600,19 @@ div.faq-guestbook::before {
 
 .inline-control {
     float: left;
-    margin-left: 40px;
     color: #355487;
+    text-align: center;
+
 }
 .inline-control-two {
-    float: left;
-    margin-left: 100px;
-    color: #355487;
+    /*margin-left: 100px;*/
+    width: 50%;
 }
+.inline-control-three {
+    /*margin-left: 40px;*/
+    width: 33.3%;
+}
+
 .button-small {
     font-size: 15px;
     width: 50px;
@@ -615,7 +633,7 @@ div.faq-guestbook::before {
     text-indent: 1em;
 }
 
-#input-area {
+.input-area {
     position: relative;
 }
 #split-line {

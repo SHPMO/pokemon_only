@@ -1,0 +1,78 @@
+<div class="controls-group oneline-group">
+    <label class="form-label" for="text-name">名称*</label>
+    <input id="text-name" class="form-control form-text" type="text" required="required"
+           name="name" value="{{ item.name }}">
+    <span class="form-additional">（本子请打上《》）</span>
+</div>
+<div class="controls-group oneline-group">
+    <label class="form-label" for="text-item_type">种类*</label>
+    <input id="text-item_type" class="form-control form-text" type="text" required="required"
+           name="item_type" value="{{ item.item_type }}">
+    <span class="form-additional">（同人本/周边/手工品）</span>
+</div>
+<div class="controls-group oneline-group">
+    <label class="form-label" for="text-content">内容*</label>
+    <input id="text-content" class="form-control form-text" type="text" required="required"
+           name="content" value="{{ item.content }}">
+    <span class="form-additional">（例如漫画/小说/挂件/徽章）</span>
+</div>
+<div class="controls-group oneline-group">
+    <label class="form-label" for="text-price">价格*</label>
+    <input id="text-price" class="form-control form-text" type="text" required="required"
+           name="price" value="{{ item.price }}">
+    <span class="form-additional">（请写清楚价格，用-1表示“未定”）</span>
+</div>
+<div class="controls-group oneline-group">
+    <label class="form-label" for="text-url">链接</label>
+    <input id="text-url" class="form-control form-text" type="text"
+           name="url" value="{{ item.url }}">
+    <span class="form-additional">（外部链接）</span>
+</div>
+<div class="controls-group multiline-group">
+    <label class="form-label" for="text-authors">作者名单</label>
+    <textarea id="text-authors" class="form-control form-textarea" name="authors">{{ items.authors }}</textarea>
+    <span class="form-additional">（具体的制作人员们）</span>
+</div>
+<div class="controls-group multiline-group">
+    <label class="form-label" for="text-introduction">简介</label>
+    <textarea id="text-introduction" class="form-control form-textarea" name="introduction">{{ items.introduction }}</textarea>
+    <span class="form-additional">（将会显示在列表中）</span>
+</div>
+<div class="controls-group multiline-group">
+    <label class="form-label" for="text-introduction">图像</label>
+
+    <span class="form-additional"></span>
+</div>
+<div class="controls-group oneline-group">
+    <label class="form-label" for="text-forto">面向人群*</label>
+    <input id="text-forto" class="form-control form-text" type="text" required="required"
+           name="forto" value="{{ item.forto }}">
+    <span class="form-additional">（大众向/女性向/男性向等）</span>
+</div>
+<div class="controls-group oneline-group">
+    <label class="form-label" for="text-is_restricted">限制级*</label>
+    <input id="text-is_restricted" class="form-control form-text" type="text" required="required"
+           name="is_restricted" value="{{ item.is_restricted }}">
+    <span class="form-additional">（是的话请详细写明级别。R18以上须单独审核）</span>
+</div>
+<div class="controls-group oneline-group">
+    <label class="form-label" for="text-circle">出品社团*</label>
+    <input id="text-circle" class="form-control form-text" type="text" required="required"
+           name="circle" value="{{ item.circle }}">
+    <span class="form-additional">（是的话请详细写明级别。R18以上须单独审核）</span>
+</div>
+<div class="controls-group oneline-group">
+    <label class="form-label">是否首发*</label>
+    <div id="type-select" class="oneline-select form-control form-indent">
+        <div class="inline-control inline-control-two">
+            <input id="select-start_with" type="radio" name="is_started_with" value="true">
+            <label for="select-start_with">是</label>
+        </div>
+        <div class="inline-control inline-control-two">
+            <input id="select-start_without" type="radio" name="is_started_with" value="false">
+            <label for="select-start_without">否</label>
+        </div>
+    </div>
+</div>
+<input type="hidden" name="pmo" value="pmo2015">
+{% csrf_token %}

@@ -1,20 +1,18 @@
 # -*- coding:utf-8 -*-
 from django.http import Http404
-from django.shortcuts import redirect
-from stall.views.bases import ApiView, View
+from stall.views.bases import AuthedApiView
 from stall.forms import SellerForm
 
 
-class SellerView(ApiView):
+class SellerView(AuthedApiView):
     def post(self, request, sub=None, *args, **kwargs):
-        if not request.user.is_authenticated():
-            raise Http404
+        super().post(request, *args, **kwargs)
         seller = request.user.seller
         if sub == 'upload':
             image = request.FILES['circle_image']
             if image:
                 if image.size > (1 << 20):
-                    return self.return_me(1, '文件过大')
+                    return self.return_me(1, '请上传小于 1 MB 的图片')
                 try:
                     seller.circle_image = image
                 except:

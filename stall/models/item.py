@@ -10,19 +10,27 @@ class Item(models.Model):
     validated = models.BooleanField(default=False)
     seller = models.ForeignKey(Seller)
 
-    name = models.CharField(max_length=50)
-    item_type = models.CharField(max_length=20, help_text="种类")
+    name = models.CharField(max_length=50, default="")
+    item_type = models.CharField(max_length=20, default="", help_text="种类")
 
-    content = models.CharField(max_length=100, help_text="内容")
-    prize = models.FloatField(help_text="价格")
-    url = models.URLField(help_text="链接")
-    authors = models.TextField(help_text="作者名单")
-    introduction = models.TextField(help_text="简介")
+    content = models.CharField(max_length=100, default="", help_text="内容")
+    price = models.FloatField(default=0, help_text="价格")
+    url = models.URLField(default="", help_text="链接")
+    authors = models.TextField(default="", help_text="作者名单")
+    introduction = models.TextField(default="", help_text="简介")
 
-    forto = models.CharField(max_length=20, help_text="面向人群")
-    is_restricted = models.CharField(max_length=20, help_text="限制级是否")
-    circle = models.CharField(max_length=40, help_text="出品社团")
-    is_started_with = models.BooleanField(help_text="是否首发")
+    forto = models.CharField(max_length=20, default="", help_text="面向人群")
+    is_restricted = models.CharField(max_length=20, default="", help_text="限制级是否")
+    circle = models.CharField(max_length=40, default="", help_text="出品社团")
+    is_started_with = models.BooleanField(default=False, help_text="是否首发")
+
+    @classmethod
+    def create(cls, seller, **kwargs):
+        item = cls.objects.create(
+            seller=seller,
+            **kwargs
+        )
+        return item
 
     def __str__(self):
         return "%s %s" % (self.name, self.seller.circle_name)

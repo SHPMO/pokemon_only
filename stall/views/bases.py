@@ -14,3 +14,9 @@ class ApiView(View):
         response = {'error': error_code, 'message': message}
         response.update(kwargs)
         return HttpResponse(json.dumps(response), content_type='application/json')
+
+
+class AuthedApiView(ApiView):
+    def post(self, request, *args, **kwargs):
+        if not request.user.is_authenticated():
+            raise Http404

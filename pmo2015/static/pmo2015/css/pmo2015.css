@@ -519,6 +519,9 @@ div.faq-guestbook::before {
     position: relative;
     top: -3px;
 }
+.form-textspan {
+    top: -7px;
+}
 .button-submit {
     float: right;
 }

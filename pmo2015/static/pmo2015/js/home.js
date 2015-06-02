@@ -65,7 +65,7 @@ var pst = {
 };
 var lines = [
     [
-        '我们水舰队的目标是扩张海洋的面积。海洋，是所有生命的起源，藉由我们的双手，把更加丰饶的栖息地还给精灵们，让世界迈向新的境界！训练家们欢迎阿，跟着水梧桐总长一起前进！',
+        '我们水舰队的目标是扩张海洋的面积。海洋，是所有生命的起源，藉由我们的双手，把更加丰饶的栖息地还给精灵们，让世界迈向新的境界！训练家们欢迎啊，跟着水梧桐总长一起前进！',
         [
             '嗯？找我有事吗？',
             '我们家总长真的是有梦想的男人。',
@@ -233,7 +233,7 @@ var tvContent = '<div id="tv-dialog"><div id="tv-nise-hostess"></div></div><div 
     'v-section-event" class="tv-section-text"><span>现场活动</span></div><div id="tv-section-register" class="tv-sect' +
     'ion-text"><span>在线报名</span></div><div id="tv-section-news" class="tv-section-text"><span>PMO新闻</span></div>' +
     '<div id="tv-section-qabook" class="tv-section-text"><span>QA留言板</span></div></div><div id="tv-selection"></di' +
-    'v><div id="tv-sentence"></div>'
+    'v><div id="tv-sentence"></div>';
 function bindTV() {
     $('#tv-off').click(startTV);
 

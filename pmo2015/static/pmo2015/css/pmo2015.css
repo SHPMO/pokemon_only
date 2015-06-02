@@ -523,12 +523,11 @@ a.nav-href {
     position: relative;
     top: -3px;
 }
-div.clear-group::after {
+.clear-group::after {
     content: "";
     display: block;
     clear: both;
 }
-
 .button-submit {
     float: right;
 }

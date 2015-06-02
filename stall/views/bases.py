@@ -5,8 +5,7 @@ import json
 
 
 class ApiView(View):
-    @staticmethod
-    def get(request):
+    def get(self, request):
         raise Http404
 
     @staticmethod

@@ -1,4 +1,3 @@
-# -*- coding:utf-8 -*-
 from django.db import models
 from tourney.models import BasePlayer
 from pmo2015.models.vote import Vote

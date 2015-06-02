@@ -26,15 +26,14 @@ class RegisterView(CommonView):
         if sub in {'stall', 'consign'}:
             if not request.user.is_authenticated():
                 return redirect("pmo2015:register", sub='signupin')
-            if request.user.seller.is_stall == (sub == 'stall'):
+            is_stall = sub == 'stall'
+            if request.user.seller.is_stall == is_stall:
                 sub = 'stall'
                 kwargs.update({
                     'seller': request.user.seller,
-                    'page': int(request.GET.get('page', 0)),
                     'item_range': range(5)
                 })
             else:
-                is_stall = sub == 'stall'
                 kwargs.update({
                     'is_stall': is_stall,
                     'correct_url': reverse('pmo2015:register', kwargs={'sub': 'consign' if is_stall else 'stall'})
@@ -44,7 +43,6 @@ class RegisterView(CommonView):
             kwargs.update({
                 'login_form': LoginForm(),
                 'signup_form': SignupForm(),
-                'f': request.GET.get('f', None) == 'login',
                 'error_message': self._err_dict.get(request.GET.get('validated', None), "")
             })
         return super().get(request, sub, *args, **kwargs)

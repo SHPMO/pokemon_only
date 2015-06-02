@@ -11,27 +11,27 @@
 {% block subtitle %}{% if seller.is_stall %}摊位{% else %}寄卖{% endif %}申请 - 在线报名{% endblock %}
 {% block stitle %}register-{% if seller.is_stall %}stall{% else %}consign{% endif %}{% endblock %}
 {% block content %}
-    <div id="content-p0" class="{% if page == 0 %}page-current{% else %}nodisplay-object{% endif %} content-page">
+    <div id="content-notice" class="nodisplay-object content-page">
         {% include "pmo2015/register/stall/notice.html" %}
     </div>
-    <div id="content-p1" class="{% if page == 1 %}page-current{% else %}nodisplay-object{% endif %} content-page">
+    <div id="content-instructions" class="nodisplay-object content-page">
         {% include "pmo2015/register/stall/instructions.html" %}
     </div>
-    <div id="content-p2" class="{% if page == 2 %}page-current{% else %}nodisplay-object{% endif %} content-page">
+    <div id="content-information" class="nodisplay-object content-page">
         {% include "pmo2015/register/stall/information.html" %}
     </div>
-    <div id="content-p3" class="{% if page == 3 %}page-current{% else %}nodisplay-object{% endif %} content-page">
+    <div id="content-items" class="nodisplay-object content-page">
         {% include "pmo2015/register/stall/items.html" %}
     </div>
-    <div id="content-p4" class="{% if page == 4 %}page-current{% else %}nodisplay-object{% endif %} content-page">
+    <div id="content-submit" class="nodisplay-object content-page">
         {% include "pmo2015/register/stall/submit.html" %}
     </div>
 {% endblock %}
 
 {% block panels %}
-    <div id="switch-p0" class="pmo-panel switch-panel panel-red-r"><span>{% if seller.is_stall %}摊主{% else %}寄卖{% endif %}通知</span></div>
-    <div id="switch-p1" class="pmo-panel switch-panel panel-blue-r"><span>申请须知</span></div>
-    <div id="switch-p2" class="pmo-panel switch-panel panel-purple-r"><span>社团资料</span></div>
-    <div id="switch-p3" class="pmo-panel switch-panel panel-yellow-r"><span>参展物品</span></div>
-    <div id="switch-p4" class="pmo-panel switch-panel panel-green-r"><span>申请提交</span></div>
+    <div id="switch-notice" class="pmo-panel switch-panel panel-red-r"><span>{% if seller.is_stall %}摊主{% else %}寄卖{% endif %}通知</span></div>
+    <div id="switch-instructions" class="pmo-panel switch-panel panel-blue-r"><span>申请须知</span></div>
+    <div id="switch-information" class="pmo-panel switch-panel panel-purple-r"><span>社团资料</span></div>
+    <div id="switch-items" class="pmo-panel switch-panel panel-yellow-r"><span>参展物品</span></div>
+    <div id="switch-submit" class="pmo-panel switch-panel panel-green-r"><span>申请提交</span></div>
 {% endblock %}

@@ -1,4 +1,3 @@
-# -*- coding:utf-8 -*-
 import random
 from django.views.generic import View
 from django.http import HttpResponse, Http404

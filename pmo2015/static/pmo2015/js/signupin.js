@@ -78,14 +78,6 @@ function bindSubmit() {
 }
 
 function bindOthers() {
-    $(".captcha").click(function() {
-        var p = this;
-        var q = this.parentElement.children[1];
-        $.get("?newsn=1", function(result){
-            p.setAttribute("src", result);
-            q.setAttribute("value", result.split('/')[3]);
-        });
-    });
     $(".switch-panel").click(function() {
         $('#error-message-text').empty();
     })

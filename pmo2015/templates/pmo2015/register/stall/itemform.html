@@ -38,10 +38,47 @@
     <textarea id="text-introduction" class="form-control form-textarea" name="introduction">{{ items.introduction }}</textarea>
     <span class="form-additional">（将会显示在列表中）</span>
 </div>
-<div class="controls-group multiline-group">
+<div class="controls-group multiline-group clear-group">
     <label class="form-label" for="text-introduction">图像</label>
-
-    <span class="form-additional"></span>
+    <div class="images-preview clear-group">
+        <div id="preview-p1" class="image-preview form-control form-image">
+            <span class="image-tag">封面</span>
+            <span class="image-method upload-button">
+                <input type="file" id="file-item_image" class="upload-input" name="item_image_1"
+                       accept="image/*" data-url="{% url 'stall:item' 'upload' %}">
+            </span>
+        </div>
+        <div id="preview-p2" class="image-preview form-control">
+            <span class="image-method upload-button">
+                <input type="file" id="file-item_image" class="upload-input" name="item_image_2"
+                   accept="image/*" data-url="{% url 'stall:item' 'upload' %}">
+            </span>
+        </div>
+        <div id="preview-p3" class="image-preview form-control">
+            <span class="image-method upload-button">
+                <input type="file" id="file-item_image" class="upload-input" name="item_image_3"
+                   accept="image/*" data-url="{% url 'stall:item' 'upload' %}">
+            </span>
+        </div>
+        <div id="preview-p4" class="image-preview form-control">
+            <span class="image-method upload-button">
+                <input type="file" id="file-item_image" class="upload-input" name="item_image_4"
+                   accept="image/*" data-url="{% url 'stall:item' 'upload' %}">
+            </span>
+        </div>
+        <div id="preview-p5" class="image-preview form-control">
+            <span class="image-method upload-button">
+                <input type="file" id="file-item_image" class="upload-input" name="item_image_5"
+                   accept="image/*" data-url="{% url 'stall:item' 'upload' %}">
+            </span>
+        </div>
+        <div id="preview-p6" class="image-preview form-control">
+            <span class="image-method upload-button">
+                <input type="file" id="file-item_image" class="upload-input" name="item_image_6"
+                   accept="image/*" data-url="{% url 'stall:item' 'upload' %}">
+            </span>
+        </div>
+    </div>
 </div>
 <div class="controls-group oneline-group">
     <label class="form-label" for="text-forto">面向人群*</label>
@@ -59,7 +96,6 @@
     <label class="form-label" for="text-circle">出品社团*</label>
     <input id="text-circle" class="form-control form-text" type="text" required="required"
            name="circle" value="{{ item.circle }}">
-    <span class="form-additional">（是的话请详细写明级别。R18以上须单独审核）</span>
 </div>
 <div class="controls-group oneline-group">
     <label class="form-label">是否首发*</label>

@@ -1,4 +1,3 @@
-# -*- coding:utf-8 -*-
 from pmo2015.models.bases import BaseModel
 from django.db import models
 

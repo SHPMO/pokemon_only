@@ -14,18 +14,18 @@
         <textarea id="text-circle_description" class="form-control form-textarea"
                   name="circle_description">{{ seller.circle_description }}</textarea>
     </div>
-    <div class="controls-group multiline-group">
+    <div class="controls-group multiline-group clear-group">
         <label class="form-label" for="file-circle_image">社团logo</label>
         <img id="image-circle_image" class="form-control form-image"
                 {% if seller.circle_image %} src="{{ seller.circle_image.url }}"{% endif %}>
         <button id="file-upload" class="upload-button button-mleft form-control form-button">
             <span>上传文件</span>
-            <input type="file" id="file-circle_image" name="circle_image"
+            <input type="file" id="file-circle_image" class="upload-input" name="circle_image"
                    accept="image/*" data-url="{% url 'stall:seller' 'upload' %}">
         </button>
         <p id="error-upload-circle_image" class="error-message-text"></p>
     </div>
-    <h4 class="clear-group">【申请人信息】</h4>
+    <h4>【申请人信息】</h4>
     <div class="controls-group oneline-group">
         <label class="form-label" for="text-proposer_name">姓名*</label>
         <input id="text-proposer_name" class="form-control form-text" type="text" required="required"

@@ -3,6 +3,7 @@
 {% block more_heads %}
     <script type="text/javascript" src="{% static 'pmo2015/js/switch.js' %}"></script>
     <script type="text/javascript" src="{% static 'pmo2015/js/signupin.js' %}"></script>
+    <script type="text/javascript" src="{% static 'pmo2015/js/captcha.js' %}"></script>
 {% endblock %}
 {% block subtitle %}注册和登录账号 - 在线报名{% endblock %}
 {% block stitle %}register-signupin{% endblock %}
@@ -10,7 +11,7 @@
     <div id="error-message">
         <p class="error-message-text">{{ error_message }}</p>
     </div>
-    <div id="content-p0" class="{% if not f %}page-current{% else %}nodisplay-object{% endif %} content-page">
+    <div id="content-register" class="nodisplay-object content-page">
         <h3>【注册】</h3>
         <form id="signup-input" action="{% url "stall:signup" %}" method="post" onsubmit="return false;">
             <div class="controls-group oneline-group">
@@ -55,7 +56,7 @@
             <input type="hidden" name="pmo" value="pmo2015">
         </form>
     </div>
-    <div id="content-p1" class="{% if f %}page-current{% else %}nodisplay-object{% endif %} content-page">
+    <div id="content-login" class="nodisplay-object content-page">
         <h3>【登录】</h3>
         <form id="login-input" action="{% url "stall:login" %}" method="post" onsubmit="return false;">
             <div class="controls-group oneline-group">
@@ -82,6 +83,6 @@
 {% endblock %}
 
 {% block panels %}
-    <div id="switch-p0" class="pmo-panel switch-panel panel-red-r"><span>注册</span></div>
-    <div id="switch-p1" class="pmo-panel switch-panel panel-blue-r"><span>登录</span></div>
+    <div id="switch-register" class="pmo-panel switch-panel panel-red-r"><span>注册</span></div>
+    <div id="switch-login" class="pmo-panel switch-panel panel-blue-r"><span>登录</span></div>
 {% endblock %}

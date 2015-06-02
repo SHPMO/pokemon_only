@@ -1,4 +1,3 @@
-# -*- coding:utf-8 -*-
 from django.contrib.auth import authenticate, login, logout
 from django.core.urlresolvers import reverse
 from stall.views.bases import ApiView

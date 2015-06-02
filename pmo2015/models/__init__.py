@@ -1,4 +1,3 @@
-# -*- coding:utf-8 -*-
 
 from pmo2015.models.user import PmoAdmin
 from pmo2015.models.player import Player

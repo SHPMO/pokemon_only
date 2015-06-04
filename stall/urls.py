@@ -9,5 +9,4 @@ urlpatterns = [
     url(r'^seller/$', SellerView.as_view(), name='seller'),
     url(r'^seller/(?P<sub>.+)/$', SellerView.as_view(), name='seller'),
     url(r'^item/$', ItemView.as_view(), name='item'),
-    url(r'^item/(?P<sub>.+)/$', ItemView.as_view(), name='item'),
 ]

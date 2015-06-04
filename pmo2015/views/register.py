@@ -1,9 +1,10 @@
 # coding=utf-8
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, Http404
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from pmo2015.views.common import CommonView
 from stall.forms import LoginForm, SignupForm
+from stall.models import Item
 from captcha.helpers import captcha_image_url
 from captcha.models import CaptchaStore
 
@@ -16,6 +17,16 @@ class RegisterView(CommonView):
     }
     name = "register"
 
+    @staticmethod
+    def _get_items(seller, page=1):
+        items = Item.objects.filter(seller=seller, pmo='pmo2015')[page*5-5:page*5]
+        ret = []
+        for i in range(len(items)):
+            ret.append((page*5 - 4 + i, items[i]))
+        for i in range(len(items), 5):
+            ret.append((page*5 - 4 + i, None))
+        return ret
+
     def get(self, request, sub=None, *args, **kwargs):
         if request.GET.get('newsn') == '1':
             csn = CaptchaStore.generate_key()
@@ -26,12 +37,28 @@ class RegisterView(CommonView):
         if sub in {'stall', 'consign'}:
             if not request.user.is_authenticated():
                 return redirect("pmo2015:register", sub='signupin')
+            seller = request.user.seller_set.filter(pmo='pmo2015')
+            if len(seller) != 1:
+                return redirect("pmo2015:register", sub='signupin')
+            seller = seller[0]
+            if 'item_id' in request.GET:
+                item_id = request.GET['item_id']
+                item = Item.objects.filter(pk=item_id, pmo='pmo2015', seller=seller)
+                if len(item) == 1:
+                    return render(request, 'pmo2015/register/stall/itemform.html', {'item': item[0]})
+                else:
+                    return HttpResponse("")
+            if 'page' in request.GET:
+                page = int(request.GET['page'])
+                return render(request, 'pmo2015/register/stall/itemtable.html', {
+                    'items': self._get_items(seller, page)
+                })
             is_stall = sub == 'stall'
-            if request.user.seller.is_stall == is_stall:
+            if seller.is_stall == is_stall:
                 sub = 'stall'
                 kwargs.update({
-                    'seller': request.user.seller,
-                    'item_range': range(5)
+                    'seller': seller,
+                    'items': self._get_items(seller)
                 })
             else:
                 kwargs.update({

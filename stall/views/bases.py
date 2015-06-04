@@ -5,6 +5,9 @@ import json
 
 
 class ApiView(View):
+    seller = None
+    pmo = None
+
     def get(self, request):
         raise Http404
 
@@ -19,3 +22,10 @@ class AuthedApiView(ApiView):
     def post(self, request, *args, **kwargs):
         if not request.user.is_authenticated():
             raise Http404
+        pmo = request.POST.get('pmo')
+        seller = request.user.seller_set.filter(pmo=pmo)
+        if len(seller) != 1:
+            raise Http404
+        self.pmo = pmo
+        self.seller = seller[0]
+

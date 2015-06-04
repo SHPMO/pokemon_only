@@ -1,16 +1,17 @@
 # coding=utf-8
 from django.db import models
+from stall.models.bases import BaseStallModel
 from stall.models.seller import Seller
 
 
-class Item(models.Model):
+class Item(BaseStallModel):
     class Meta:
         app_label = 'stall'
 
     validated = models.BooleanField(default=False)
     seller = models.ForeignKey(Seller)
 
-    name = models.CharField(max_length=50, default="")
+    name = models.CharField(max_length=50, default="未命名")
     item_type = models.CharField(max_length=20, default="", help_text="种类")
 
     content = models.CharField(max_length=100, default="", help_text="内容")
@@ -19,15 +20,18 @@ class Item(models.Model):
     authors = models.TextField(default="", help_text="作者名单")
     introduction = models.TextField(default="", help_text="简介")
 
+    cover_image = models.ImageField(upload_to="items/%Y/%m/%d", null=True, max_length=1024, help_text="封面图片")
+
     forto = models.CharField(max_length=20, default="", help_text="面向人群")
     is_restricted = models.CharField(max_length=20, default="", help_text="限制级是否")
     circle = models.CharField(max_length=40, default="", help_text="出品社团")
     is_started_with = models.BooleanField(default=False, help_text="是否首发")
 
     @classmethod
-    def create(cls, seller, **kwargs):
+    def create(cls, seller, pmo, **kwargs):
         item = cls.objects.create(
             seller=seller,
+            pmo=pmo,
             **kwargs
         )
         return item
@@ -36,7 +40,7 @@ class Item(models.Model):
         return "%s %s" % (self.name, self.seller.circle_name)
 
 
-class ItemPicture(models.Model):
+class ItemPicture(BaseStallModel):
     class Meta:
         app_label = 'stall'
     picture = models.ImageField(upload_to="items/%Y/%m/%d", max_length=1024, help_text="图片")
@@ -48,3 +52,12 @@ class ItemPicture(models.Model):
     @classmethod
     def get_default(cls):
         return cls.objects.get(id=1)
+
+    @classmethod
+    def create(cls, item, pmo, **kwargs):
+        item_picture = cls.objects.create(
+            item=item,
+            pmo=pmo,
+            **kwargs
+        )
+        return item_picture

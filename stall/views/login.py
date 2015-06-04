@@ -14,7 +14,10 @@ class LoginView(ApiView):
         user = authenticate(username=email, password=password)
         if user is None:
             return self.return_me(2, "账号与密码不匹配")
-        seller = user.seller
+        seller = user.seller_set.filter(pmo=form.pmo)
+        if len(seller) != 1:
+            return self.return_me(-2, "不存在该账户")
+        seller = seller[0]
         if not seller.is_active:
             return self.return_me(
                 3,

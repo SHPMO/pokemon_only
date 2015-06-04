@@ -10,18 +10,25 @@
             <th id="item-names" class="last-head">名称</th>
         </tr>
     </thead>
-    <tbody>
-        {% for i in item_range %}
-        <tr class="oneline-group">
-            <td class="item-number">{{ i }}</td>
-            <td class="item-name">物品{{ i }}</td>
-        </tr>
-        {% endfor %}
+    <tbody id="items-table-body">
+        {% include "pmo2015/register/stall/itemtable.html" %}
     </tbody>
 </table>
-<h4>【商品信息】</h4>
-<div class="input-area">
+<div class="controls-group oneline-group">
+    <button id="items-add" class="button-submit form-control form-button" name="submit"
+            data-url="{% url "stall:item" %}">添加</button>
+    <button id="items-next" class="button-submit form-control form-button items-pages" value="-1">下一页</button>
+    <button id="items-prev" class="button-submit form-control form-button items-pages" value="1">上一页</button>
+</div>
+
+<div id="item-info" class="nodisplay-object input-area">
+    <h4>【商品信息】</h4>
+    <div class="controls-group oneline-group">
+        <label class="form-label" for="text-number">编号*</label>
+        <input id="text-number" class="form-control form-text" type="text"
+               name="number" disabled="disabled">
+    </div>
     <form id="items-input" action="{% url "stall:item" %}" method="post" onsubmit="return false;">
-        {% include "pmo2015/register/stall/itemform.html" %}
+
     </form>
 </div>

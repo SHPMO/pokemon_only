@@ -41,41 +41,42 @@
 <div class="controls-group multiline-group clear-group">
     <label class="form-label" for="text-introduction">图像</label>
     <div class="images-preview clear-group">
-        <div class="image-preview form-control form-image">
+        <div id="file-cover_image" class="image-preview form-control form-image"
+             {% if item.cover_image %}style="background-image: url('{{ item.cover_image.url }}');"{% endif %}>
             <span class="image-tag">封面</span>
             <span class="image-method upload-button">
-                <input type="file" id="file-item_image_p1" class="item-image upload-input" name="item_image_1"
-                       accept="image/*" data-url="{% url 'stall:item' 'upload' %}">
+                <input type="file" class="item-image upload-input" name="cover_image"
+                       accept="image/*" data-url="{% url 'stall:item' %}">
             </span>
         </div>
-        <div class="image-preview form-control">
+        <div id="file-item_image_2" class="image-preview form-control">
             <span class="image-method upload-button">
-                <input type="file" id="file-item_image_p2" class="item-image upload-input" name="item_image_2"
-                   accept="image/*" data-url="{% url 'stall:item' 'upload' %}">
+                <input type="file" class="item-image upload-input" name="item_image_2"
+                   accept="image/*" data-url="{% url 'stall:item' %}">
             </span>
         </div>
-        <div class="image-preview form-control">
+        <div id="file-item_image_3" class="image-preview form-control">
             <span class="image-method upload-button">
-                <input type="file" id="file-item_image_p3" class="item-image upload-input" name="item_image_3"
-                   accept="image/*" data-url="{% url 'stall:item' 'upload' %}">
+                <input type="file" class="item-image upload-input" name="item_image_3"
+                   accept="image/*" data-url="{% url 'stall:item' %}">
             </span>
         </div>
-        <div class="image-preview form-control">
+        <div id="file-item_image_4" class="image-preview form-control">
             <span class="image-method upload-button">
-                <input type="file" id="file-item_image_p4" class="item-image upload-input" name="item_image_4"
-                   accept="image/*" data-url="{% url 'stall:item' 'upload' %}">
+                <input type="file" class="item-image upload-input" name="item_image_4"
+                   accept="image/*" data-url="{% url 'stall:item' %}">
             </span>
         </div>
-        <div class="image-preview form-control">
+        <div id="file-item_image_5" class="image-preview form-control">
             <span class="image-method upload-button">
-                <input type="file" id="file-item_image_p5" class="item-image upload-input" name="item_image_5"
-                   accept="image/*" data-url="{% url 'stall:item' 'upload' %}">
+                <input type="file" class="item-image upload-input" name="item_image_5"
+                   accept="image/*" data-url="{% url 'stall:item' %}">
             </span>
         </div>
-        <div class="image-preview form-control">
+        <div id="file-item_image_6" class="image-preview form-control">
             <span class="image-method upload-button">
-                <input type="file" id="file-item_image_p6" class="item-image upload-input" name="item_image_6"
-                   accept="image/*" data-url="{% url 'stall:item' 'upload' %}">
+                <input type="file" class="item-image upload-input" name="item_image_6"
+                   accept="image/*" data-url="{% url 'stall:item' %}">
             </span>
         </div>
     </div>
@@ -110,5 +111,9 @@
         </div>
     </div>
 </div>
+<div class="controls-group oneline-group">
+    <button id="items-submit" class="button-submit form-control form-button">保存</button>
+</div>
+<input type="hidden" name="item_id" value="{{ item.pk }}">
 <input type="hidden" name="pmo" value="pmo2015">
 {% csrf_token %}

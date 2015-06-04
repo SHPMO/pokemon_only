@@ -530,6 +530,7 @@ a.nav-href {
 }
 .button-submit {
     float: right;
+    margin-left: 20px;
 }
 .button-mleft {
     margin-left: 20px;
@@ -618,6 +619,8 @@ a.nav-href {
     margin-right: 22px;
     width: 120px;
     height: 100px;
+    background: no-repeat center;
+    background-size: contain;
 }
 .image-preview:nth-child(3) {
     margin-bottom: 20px;
@@ -637,10 +640,16 @@ a.nav-href {
 .image-method::before {
     content: "添加图片";
 }
-.image-selected .image-method::before {
+.image-uploading .image-method::before {
+    content: "上传中";
+}
+.image-uploaded .image-method::before {
     content: "删除图片";
 }
-.image-selected .upload-input {
+.image-deleting .image-method::before {
+    content: "删除中";
+}
+.image-uploading .upload-input, .image-uploaded .upload-input, .image-deleting .upload-input {
     display: none;
 }
 .image-preview:hover .image-method {
@@ -653,6 +662,13 @@ a.nav-href {
     -o-transition: all 0.4s;
     transition: all 0.4s;
     background-color: #e4f190;
+}
+.image-uploading .image-method {
+    display: block;
+}
+.image-uploading .image-method:hover {
+    cursor: auto;
+    background-color: transparent;
 }
 .image-tag {
     position: absolute;
@@ -682,16 +698,25 @@ a.nav-href {
 }
 
 #item-numbers {
-    width: 100px;
+    width: 60px;
 }
 #item-names {
-    width: 431px;
+    width: 471px;
 }
 .item-number {
     text-align: center;
 }
 .item-name {
     text-indent: 1em;
+    cursor: pointer;
+}
+.item-name:hover {
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
+    background-color: #e4f190;
 }
 
 .input-area {

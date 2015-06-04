@@ -8,11 +8,10 @@ class Seller(BaseStallModel):
     class Meta:
         app_label = "stall"
 
-    user = models.OneToOneField(User)
+    user = models.ForeignKey(User)
     email = models.EmailField(
         verbose_name='email address',
         max_length=30,
-        unique=True,
     )
     is_active = models.BooleanField(default=False, help_text='是否激活')
     validated = models.BooleanField(default=False, help_text='是否通过')

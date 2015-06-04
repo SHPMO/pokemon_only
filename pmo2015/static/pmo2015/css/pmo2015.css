@@ -640,6 +640,9 @@ a.nav-href {
 .image-selected .image-method::before {
     content: "删除图片";
 }
+.image-selected .upload-input {
+    display: none;
+}
 .image-preview:hover .image-method {
     display: block;
 }

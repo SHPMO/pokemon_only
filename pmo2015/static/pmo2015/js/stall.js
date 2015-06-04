@@ -60,7 +60,8 @@ function bindSeller() {
 
 function bindItems() {
     var ss = $("#items-input");
-    var fci = $('#file-circle_image');
+    var fci = $('.item-image');
+
     var option = {
         dataType: 'json',
         formData: {'csrfmiddlewaretoken': $.cookie('csrftoken')},

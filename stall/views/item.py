@@ -1,6 +1,3 @@
-from django.core import serializers
-from django.http import Http404
-import json
 from stall.views.bases import AuthedApiView
 from stall.forms import ItemForm
 from stall.models import Item, ItemPicture
@@ -48,7 +45,7 @@ class ItemView(AuthedApiView):
                 return self.return_me(-1, '未知错误')
             return self.return_me(
                 0, "上传成功",
-                image_url=item.url,
+                image_url=item.cover_image.url,
                 image_id=0
             )
         for akey in request.FILES:
@@ -77,7 +74,7 @@ class ItemView(AuthedApiView):
         item = self._required_item(request)
         if item is None:
             return self.return_me(3, '未指定物品')
-        image_id = request.POST.get('imgae_id')
+        image_id = request.POST.get('image_id')
         if image_id == '0':
             try:
                 item.cover_image = None

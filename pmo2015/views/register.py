@@ -51,14 +51,16 @@ class RegisterView(CommonView):
             if 'page' in request.GET:
                 page = int(request.GET['page'])
                 return render(request, 'pmo2015/register/stall/itemtable.html', {
-                    'items': self._get_items(seller, page)
+                    'items': self._get_items(seller, page),
+                    'total': Item.objects.filter(seller=seller, pmo='pmo2015').count()
                 })
             is_stall = sub == 'stall'
             if seller.is_stall == is_stall:
                 sub = 'stall'
                 kwargs.update({
                     'seller': seller,
-                    'items': self._get_items(seller)
+                    'items': self._get_items(seller),
+                    'total': Item.objects.filter(seller=seller, pmo='pmo2015').count()
                 })
             else:
                 kwargs.update({

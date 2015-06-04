@@ -1,6 +1,9 @@
 {% for i, item in items %}
 <tr class="oneline-group">
     <td class="item-number">{% if item %}{{ i }}{% endif %}</td>
-    <td {% if item %}class="item-name" data-item_id="{{ item.pk }}"{% endif %}>{{ item.name|default:"" }}</td>
+    <td {% if item %}class="item-name" data-item_id="{{ item.pk }}"{% endif %}>
+        <span>{{ item.name|default:"" }}</span>
+        <span class="item-delete">删除</span>
+    </td>
 </tr>
 {% endfor %}

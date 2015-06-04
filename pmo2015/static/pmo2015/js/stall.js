@@ -64,7 +64,8 @@ function bindSeller() {
 }
 
 var item_id = null;
-
+var item_count = 0;
+var item_url = null;
 function showImages() {
 
 }
@@ -78,21 +79,21 @@ function showItem(itemid) {
     item_id = itemid;
 }
 function deleteImage() {
-    var ft = $('#file-' + this.name)
+    var $ii = $(this).children('.item-image');
+    var ft = $('#file-' + $ii[0].name)
         .removeClass('image-uploaded')
         .addClass('image-deleting');
     $.post(
-        $(this).children('.item-image').data('url'),
+        item_url,
         {
             "csrfmiddlewaretoken": $.cookie('csrftoken'),
             'item_id': item_id,
-            'image_id': $(this).data('image_id'),
+            'image_id': $ii.data('image_id'),
             'method': 'delete_image',
             'pmo': pmo
         },
         function (data, e) {
-            ft
-                .removeClass('image-deleting');
+            ft.removeClass('image-deleting');
             if (data.error!=0) {
                 ft.addClass('image-uploaded');
                 alert(data.message);
@@ -106,6 +107,7 @@ function deleteImage() {
 function bindItemForm() {
     var fci = $('.item-image');
     var option = {
+        url: item_url,
         dataType: 'json',
         formData: {
             "csrfmiddlewaretoken": $.cookie('csrftoken'),
@@ -130,8 +132,8 @@ function bindItemForm() {
                 ft
                     .addClass('image-uploaded')
                     .css('background-image', 'url("' + data.result.image_url + '")');
-                $('#file-' + this.name + ' .image-method').click(deleteImage);
                 $(this).data('image_id', data.result.image_id);
+                $('#file-' + this.name + ' .image-method').click(deleteImage);
             }
         }
     };
@@ -143,17 +145,12 @@ function bindItemForm() {
 }
 function bindItems() {
 
-    var page = 1;
-    $('.items-pages').click(function () {
-        page += parseInt(this.value);
-        $('#items-table-body').load('?page='+page);
-    });
-
     var ia = $('#items-add');
+    item_url = ia.data('url');
     ia.click(function () {
         startSaving(ia, '添加中');
         $.post(
-            ia.data('url'),
+            item_url,
             {
                 "csrfmiddlewaretoken": $.cookie('csrftoken'),
                 'method': 'add_item',
@@ -171,6 +168,23 @@ function bindItems() {
             }
         )
     });
+
+    item_count = $('.items-table').data('count');
+    var page = 1;
+    $('.items-pages').click(function () {
+        var q = parseInt(this.value) + page;
+        if (q < 1 || q > item_count / 5)
+            return;
+        page = q;
+        $('#items-table-body').load('?page='+page);
+    });
+    var id = $('.item-delete');
+    id.click(function () {
+        $.post(
+            item_url
+        )
+    });
+
     var ir = $('.item-name');
     ir.click(function () {
         $this = $(this);
@@ -178,6 +192,7 @@ function bindItems() {
         if (item_id)
             showItem($this.data('item_id'), $this.prev().text());
     });
+
     bindItemForm();
 }
 

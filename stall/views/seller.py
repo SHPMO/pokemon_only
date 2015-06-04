@@ -1,4 +1,3 @@
-from django.http import Http404
 from stall.views.bases import AuthedApiView
 from stall.forms import SellerForm
 

@@ -706,6 +706,22 @@ a.nav-href {
 .item-number {
     text-align: center;
 }
+.item-delete {
+    display: block;
+    float: right;
+    margin-right: 10px;
+    padding: 0 5px;
+    font-size: 14px;
+    text-indent: 0;
+}
+.item-delete:hover {
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
+    background-color: #b0d46a;
+}
 .item-name {
     text-indent: 1em;
     cursor: pointer;

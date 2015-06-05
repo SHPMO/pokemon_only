@@ -11,21 +11,29 @@ class ApiView(View):
     def get(self, request):
         raise Http404
 
-    @staticmethod
-    def return_me(error_code, message=None, **kwargs):
-        response = {'error': error_code, 'message': message}
-        response.update(kwargs)
-        return HttpResponse(json.dumps(response), content_type='application/json')
+    def return_me(self, error_code=-1, message=None, **kwargs):
+        if message is None:
+            message = '未知错误'
+        data = {'error': error_code, 'message': message}
+        data.update(kwargs)
+        response = HttpResponse(json.dumps(data), content_type='application/json')
+        if self.seller:
+            response.set_cookie('status', self.seller.status)
+        return response
 
 
 class AuthedApiView(ApiView):
-    def post(self, request, *args, **kwargs):
+    def post(self, request, cancel=True, *args, **kwargs):
         if not request.user.is_authenticated():
             raise Http404
         pmo = request.POST.get('pmo')
         seller = request.user.seller_set.filter(pmo=pmo)
-        if len(seller) != 1:
-            raise Http404
+        if len(seller) == 0:
+            return self.return_me(-2, '不存在该用户')
+        elif len(seller) > 1:
+            return self.return_me()
         self.pmo = pmo
         self.seller = seller[0]
-
+        if cancel and self.seller.status != 1:
+            return self.return_me(-3, '现在无法编辑')
+        return None

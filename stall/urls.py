@@ -1,5 +1,8 @@
 from django.conf.urls import url
-from stall.views import SignupView, ValidateView, LoginView, LogoutView, SellerView, ItemView
+from stall.views import (
+    SignupView, ValidateView, LoginView, LogoutView,
+    SellerView, ItemView, SubmitView, CancelView
+)
 
 urlpatterns = [
     url(r'^signup/$', SignupView.as_view(), name='signup'),
@@ -9,4 +12,6 @@ urlpatterns = [
     url(r'^seller/$', SellerView.as_view(), name='seller'),
     url(r'^seller/(?P<sub>.+)/$', SellerView.as_view(), name='seller'),
     url(r'^item/$', ItemView.as_view(), name='item'),
+    url(r'^submit/$', SubmitView.as_view(), name='submit'),
+    url(r'^cancel/$', CancelView.as_view(), name='cancel'),
 ]

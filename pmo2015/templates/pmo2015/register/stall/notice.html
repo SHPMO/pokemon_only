@@ -1,11 +1,14 @@
 <h3>{% if seller.is_stall %}摊主{% else %}寄卖{% endif %}通知</h3>
+<div id="error-message-notice">
+    <p id="error-notice" class="error-message-text"></p>
+</div>
 <p>
     <span>您的{% if seller.is_stall %}摊位{% else %}寄卖{% endif %}状态是 </span>
     <span><strong>
-        {% if seller.status <= 2 %}未提交申请
-        {% elif seller.status == 3 %}已提交申请，待审核
-        {% elif seller.status == 4 %}已通过审核
-        {% elif seller.status == 5 %}未通过审核
+        {% if seller.status == 1 %}未提交申请
+        {% elif seller.status == 2 %}已提交申请，待审核
+        {% elif seller.status == 3 %}已通过审核
+        {% elif seller.status == 4 %}未通过审核
         {% else %}未知状态{% endif %}
     </strong></span>
 </p>
@@ -17,3 +20,7 @@
 {% endif %}
 
 <button id="logout-button" data-url="{% url "stall:logout" %}" class="button-submit form-control form-button">注销</button>
+{% if seller.status >= 2 and seller.status <= 4 %}
+<button id="cancel-button" data-url="{% url "stall:cancel" %}" class="button-submit form-control form-button"
+        name="cancel">撤销{% if seller.is_stall %}摊位{% else %}寄卖{% endif %}</button>
+{% endif %}

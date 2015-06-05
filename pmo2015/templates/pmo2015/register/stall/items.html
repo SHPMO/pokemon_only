@@ -1,26 +1,20 @@
 <h3>参展物品</h3>
-<div id="error-message-information">
-    <p id="error-information" class="error-message-text"></p>
+<div id="error-message-items-add">
+    <p id="error-items-add" class="error-message-text"></p>
 </div>
 <h4>【已经登录的商品列表】</h4>
-<table class="controls-group items-table" data-count="{{ total }}">
-    <thead>
-        <tr>
-            <th id="item-numbers" class="first-head">编号</th>
-            <th id="item-names" class="last-head">名称</th>
-        </tr>
-    </thead>
-    <tbody id="items-table-body">
-        {% include "pmo2015/register/stall/itemtable.html" %}
-    </tbody>
-</table>
+<div id="items-table-container">
+{% include "pmo2015/register/stall/itemtable.html" %}
+</div>
 <div class="controls-group oneline-group">
     <button id="items-add" class="button-submit form-control form-button" name="submit"
             data-url="{% url "stall:item" %}">添加</button>
     <button id="items-next" class="button-submit form-control form-button items-pages" value="1">下一页</button>
     <button id="items-prev" class="button-submit form-control form-button items-pages" value="-1">上一页</button>
 </div>
-
+<div id="error-message-items">
+    <p id="error-items" class="error-message-text"></p>
+</div>
 <div id="item-info" class="nodisplay-object input-area">
     <h4>【商品信息】</h4>
     <div class="controls-group oneline-group">
@@ -28,7 +22,5 @@
         <input id="text-number" class="form-control form-text" type="text"
                name="number" disabled="disabled">
     </div>
-    <form id="items-input" action="{% url "stall:item" %}" method="post" onsubmit="return false;">
-
-    </form>
+    <form id="items-input" action="{% url "stall:item" %}" method="post" onsubmit="return false;"></form>
 </div>

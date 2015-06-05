@@ -2,7 +2,7 @@ function bindLogout() {
     var ss = $('#logout-button');
     ss.click(function () {
         ss.addClass("button-submitting");
-        ss.text("注销校中");
+        ss.text("注销中");
         ss.attr("disabled", "disabled");
         $.get(
             ss.data('url'),

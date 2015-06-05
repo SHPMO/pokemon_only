@@ -4,7 +4,9 @@ from stall.forms import SellerForm
 
 class SellerView(AuthedApiView):
     def post(self, request, sub=None, *args, **kwargs):
-        super().post(request, *args, **kwargs)
+        x = super().post(request, *args, **kwargs)
+        if x:
+            return x
         if sub == 'upload':
             image = request.FILES['circle_image']
             if image:
@@ -13,7 +15,7 @@ class SellerView(AuthedApiView):
                 try:
                     self.seller.circle_image = image
                 except:
-                    return self.return_me(2, '未知错误')
+                    return self.return_me()
             self.seller.save()
             return self.return_me(0, '上传成功', circle_image_url=self.seller.circle_image.url)
         form = SellerForm(request.POST, request.FILES)

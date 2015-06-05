@@ -46,8 +46,8 @@ class SignupView(ApiView):
                 signup_address=request.META['REMOTE_ADDR'],
                 pmo=signup.cleaned_data['pmo']
             )
-        except Exception as e:
-            return self.return_me(-1, str(e))#"未知错误。")
+        except:
+            return self.return_me()
 
         validate_code = ValidateCode.create(seller=seller)
         self.send_validate_mail(seller, validate_code)
@@ -71,6 +71,7 @@ class ValidateView(View):
         if vc.seller.is_active:
             return HttpResponse("请勿重复激活邮箱。")
         vc.seller.is_active = vc.validated = True
+        vc.seller.status = 1
         vc.save()
         vc.seller.save()
         response = redirect("%s:register" % vc.pmo, sub='signupin')

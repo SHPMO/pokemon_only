@@ -446,6 +446,9 @@ a.nav-href {
     left: -180px;
 }
 
+.error-message-text {
+    color: #e74c3c;
+}
 .controls-group {
     margin-left: 20px;
     margin-bottom: 20px;
@@ -707,7 +710,9 @@ a.nav-href {
     text-align: center;
 }
 .item-delete {
+    position: relative;
     display: block;
+    opacity: 0;
     float: right;
     margin-right: 10px;
     padding: 0 5px;
@@ -715,12 +720,12 @@ a.nav-href {
     text-indent: 0;
 }
 .item-delete:hover {
+    opacity: 1;
     -webkit-transition: all 0.4s;
     -moz-transition: all 0.4s;
     -ms-transition: all 0.4s;
     -o-transition: all 0.4s;
     transition: all 0.4s;
-    background-color: #b0d46a;
 }
 .item-name {
     text-indent: 1em;

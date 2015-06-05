@@ -29,10 +29,10 @@ class Seller(BaseStallModel):
     proposer_qq = models.CharField(max_length=11, help_text="QQ")
     proposer_phone = models.CharField(max_length=20, help_text="电话")
     proposer_id = models.CharField(max_length=18, help_text="身份证号")
-    booth = models.SmallIntegerField(default=0, help_text="申请摊位数")
+    booth = models.SmallIntegerField(default=1, help_text="申请摊位数")
     remarks = models.TextField(help_text="备注")
 
-    status = models.PositiveSmallIntegerField(help_text="状态")
+    status = models.IntegerField(help_text="状态")
     notice = models.TextField(help_text="通知")
 
     def __str__(self):

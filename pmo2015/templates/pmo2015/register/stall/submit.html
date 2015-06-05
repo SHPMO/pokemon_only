@@ -1,13 +1,30 @@
-<h3>{% if seller.is_stall %}摊主{% else %}寄卖{% endif %}通知</h3>
-<p>
-    <span>您的{% if seller.is_stall %}摊位{% else %}寄卖{% endif %}状态是 </span>
-    <span>
-        {% if seller.status <= 2 %}未提交申请
-        {% elif seller.status == 3 %}已提交申请，待审核
-        {% elif seller.status == 4 %}已通过审核
-        {% elif seller.status == 5 %}未通过审核
-        {% else %}未知状态{% endif %}
-    </span>
-</p>
-<p>{% if seller.is_stall %}摊主{% else %}寄卖{% endif %}通知：</p>
-{{ seller.notice|linebreaks }}
+<h3>申请提交</h3>
+<div id="error-message-submit">
+    <p id="error-submit" class="error-message-text"></p>
+</div>
+<form id="submit-input" action="{% url "stall:submit" %}" method="post" onsubmit="return false;">
+    <h4>【其他信息】</h4>
+    {% if seller.is_stall %}
+    <div class="controls-group oneline-group">
+        <label class="form-label" for="text-booth">摊位数*</label>
+        <input id="text-booth" class="form-control form-text" type="text" required="required"
+               name="booth" value="{{ seller.booth }}">
+    </div>
+    {% endif %}
+    <div class="controls-group multiline-group">
+        <label class="form-label" for="text-remarks">备注</label>
+        <textarea id="text-remarks" class="form-control form-textarea"
+                  name="remarks">{{ seller.remarks }}</textarea>
+    </div>
+    <p class="controls-group">
+        <input id="text-agreement" class="form-option" type="checkbox" required="required"
+               name="agreement" {% if seller.status != 1 %}checked="checked"{% endif %}>
+        <label for="text-agreement">我已仔细阅读并同意<a href="#instructions" class="maintext-href">申请须知</a>。</label>
+    </p>
+    <div class="controls-group oneline-group">
+        <button id="submit-submit" class="button-submit form-control form-button"
+                name="submit">申请{% if seller.is_stall %}摊位{% else %}寄卖{% endif %}</button>
+    </div>
+    {% csrf_token %}
+    <input type="hidden" name="pmo" value="pmo2015">
+</form>

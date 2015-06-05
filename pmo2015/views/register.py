@@ -19,12 +19,28 @@ class RegisterView(CommonView):
 
     @staticmethod
     def _get_items(seller, page=1):
+        if page <= 1:
+            page = 1
+        else:
+            a = Item.objects.filter(seller=seller, pmo='pmo2015').count()
+            if page > (a+4) // 5:
+                page = (a+4) // 5
         items = Item.objects.filter(seller=seller, pmo='pmo2015')[page*5-5:page*5]
         ret = []
         for i in range(len(items)):
             ret.append((page*5 - 4 + i, items[i]))
         for i in range(len(items), 5):
             ret.append((page*5 - 4 + i, None))
+        return ret, page
+
+    @staticmethod
+    def _get_images(item):
+        images = item.itempicture_set.all()
+        ret = []
+        for i in range(len(images)):
+            ret.append((i + 1, images[i].picture.url, images[i].pk))
+        for i in range(len(images), 5):
+            ret.append((i + 1, None, None))
         return ret
 
     def get(self, request, sub=None, *args, **kwargs):
@@ -45,22 +61,34 @@ class RegisterView(CommonView):
                 item_id = request.GET['item_id']
                 item = Item.objects.filter(pk=item_id, pmo='pmo2015', seller=seller)
                 if len(item) == 1:
-                    return render(request, 'pmo2015/register/stall/itemform.html', {'item': item[0]})
+                    return render(
+                        request,
+                        'pmo2015/register/stall/itemform.html',
+                        {
+                            'item': item[0],
+                            'images': self._get_images(item[0])
+                        }
+                    )
                 else:
                     return HttpResponse("")
             if 'page' in request.GET:
-                page = int(request.GET['page'])
+                try:
+                    page = int(request.GET['page'])
+                except ValueError:
+                    raise Http404
+                items, page = self._get_items(seller, page)
                 return render(request, 'pmo2015/register/stall/itemtable.html', {
-                    'items': self._get_items(seller, page),
-                    'total': Item.objects.filter(seller=seller, pmo='pmo2015').count()
+                    'items': items,
+                    'page': page
                 })
             is_stall = sub == 'stall'
             if seller.is_stall == is_stall:
                 sub = 'stall'
+                items, page = self._get_items(seller)
                 kwargs.update({
                     'seller': seller,
-                    'items': self._get_items(seller),
-                    'total': Item.objects.filter(seller=seller, pmo='pmo2015').count()
+                    'items': items,
+                    'page': page,
                 })
             else:
                 kwargs.update({

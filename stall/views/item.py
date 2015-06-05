@@ -15,7 +15,9 @@ class ItemView(AuthedApiView):
         }
 
     def post(self, request, *args, **kwargs):
-        super().post(request, *args, **kwargs)
+        x = super().post(request, *args, **kwargs)
+        if x:
+            return x
         method = request.POST.get('method')
         if method not in self.method_dict:
             return self.return_me(4, '未知方法')
@@ -42,7 +44,7 @@ class ItemView(AuthedApiView):
                 item.cover_image = image
                 item.save()
             except:
-                return self.return_me(-1, '未知错误')
+                return self.return_me()
             return self.return_me(
                 0, "上传成功",
                 image_url=item.cover_image.url,
@@ -63,7 +65,7 @@ class ItemView(AuthedApiView):
                 picture=image
             )
         except:
-            return self.return_me(-1, '未知错误')
+            return self.return_me()
         return self.return_me(
             0, '上传成功',
             image_url=item_picture.picture.url,
@@ -80,7 +82,7 @@ class ItemView(AuthedApiView):
                 item.cover_image = None
                 item.save()
             except:
-                return self.return_me(-1, "未知错误")
+                return self.return_me()
             return self.return_me(0, '删除成功')
         try:
             item_picture = ItemPicture.objects.filter(
@@ -92,7 +94,7 @@ class ItemView(AuthedApiView):
                 return self.return_me(5, '不存在的id')
             item_picture.delete()
         except:
-            return self.return_me(-1, "未知错误")
+            return self.return_me()
         return self.return_me(0, '删除成功')
 
     def _add_item(self, request):
@@ -102,8 +104,27 @@ class ItemView(AuthedApiView):
         return self.return_me(0, "添加成功", item_id=item.pk)
 
     def _delete_item(self, request, *args, **kwargs):
-        pass
+        item = self._required_item(request)
+        if item is None:
+            return self.return_me(3, '未指定物品')
+        item_id = item.pk
+        try:
+            item.delete()
+        except:
+            return self.return_me()
+        return self.return_me(0, "删除成功", item_id=item_id)
 
     def _save(self, request, *args, **kwargs):
-        ItemForm(request.POST)
-        pass
+        item = self._required_item(request)
+        if item is None:
+            return self.return_me(3, '未指定物品')
+        form = ItemForm(request.POST)
+        if not form.is_valid():
+            return self.return_me(4, "*为必填项")
+        try:
+            for each in form.cleaned_data:
+                setattr(item, each, form.cleaned_data[each])
+            item.save()
+        except:
+            return self.return_me()
+        return self.return_me(0, "保存成功")

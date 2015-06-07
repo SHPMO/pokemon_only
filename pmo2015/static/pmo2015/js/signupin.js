@@ -1,5 +1,4 @@
 function bindSubmit() {
-    var emt = $('.error-message-text');
     var ss = $("#signup-submit");
     ss.click(function () {
         var mi = $('#signup-input');
@@ -32,7 +31,7 @@ function bindSubmit() {
                 ss.removeClass("button-submitting");
                 ss.text("提交");
                 ss.removeAttr("disabled");
-                emt.html(msg);
+                $('#error-signup').html(msg);
                 $(".captcha").click();
             }
         );
@@ -53,7 +52,7 @@ function bindSubmit() {
                     case 0:
                         $(".content-page").addClass("nodisplay-object");
                         $(".switch-panel").addClass("nodisplay-object");
-                        emt.html(data.message);
+                        $('#error-signup').html(data.message);
                         location.href = data.redirect_to;
                         break;
                     case 1:
@@ -70,7 +69,7 @@ function bindSubmit() {
                 ls.removeClass("button-submitting");
                 ls.text("提交");
                 ls.removeAttr("disabled");
-                emt.html(msg);
+                $('error-signup').html(msg);
                 $(".captcha").click();
             }
         );

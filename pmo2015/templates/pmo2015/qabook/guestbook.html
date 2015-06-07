@@ -1,20 +1,15 @@
 {% extends "pmo2015/base.html" %}
 {% load staticfiles %}
 {% block more_heads %}
+    <script type="text/javascript" src="{% static 'pmo2015/js/captcha.js' %}"></script>
     <script type="text/javascript" src="{% static 'pmo2015/js/guestbook.js' %}"></script>
 {% endblock %}
 {% block subtitle %}留言板 - QA留言板{% endblock %}
 {% block stitle %}faq-guestbook{% endblock %}
 {% block content %}
-    <div id="guestbook-others">
-    <p>您还可以通过邮箱
-        <a class="maintext-href" href="mailto:contact@getdaze.org">contact@getdaze.org</a>
-        或是微博 <a class="maintext-href" href="http://weibo.com/SHPMO">@魔都PMO_结果我第一</a>
-        联系我们。
-    </p>
-    </div>
+    <h3>【留言】</h3>
     <div id="error-message">
-        <p class="error-message-text"></p>
+        <p id="error-guestbook" class="error-message-text"></p>
     </div>
     <div class="input-area">
         <form id="message-input" onsubmit="return false;" method="post" action="{% url 'pmo2015:api' 'guestbook'%}">
@@ -41,6 +36,13 @@
             </div>
             {% csrf_token %}
         </form>
+    </div>
+    <div id="guestbook-others">
+    <p>您还可以通过邮箱
+        <a class="maintext-href" href="mailto:contact@getdaze.org">contact@getdaze.org</a>
+        或是微博 <a class="maintext-href" href="http://weibo.com/SHPMO">@魔都PMO_结果我第一</a>
+        联系我们。
+    </p>
     </div>
     <div id="split-line"></div>
     <div id="message-area">

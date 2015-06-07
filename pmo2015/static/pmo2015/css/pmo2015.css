@@ -1,7 +1,7 @@
 p {
     line-height: 1.5em;
-    margin-bottom: 1.5em;
-    text-indent: 1em;
+    margin: 0 0 1.5em;
+    text-indent: 2em;
 }
 h2 {
     font-size: 2em;
@@ -42,6 +42,7 @@ h4 {
 #logo {
     width: 100px;
     height: 100%;
+    overflow: hidden;
 }
 .logo {
     display: block;
@@ -50,7 +51,7 @@ h4 {
     width: 40px;
 }
 .logo-href {
-    margin-top: 16px;
+    padding-top: 16px;
 }
 .nav-href {
     -webkit-transition: all 0.4s;
@@ -323,6 +324,16 @@ a.nav-href {
     content: "幸运抽奖";
     right: 39px;
     top: 50px;
+}
+.news-newslist::before {
+    content: "新闻列表";
+    right: 39px;
+    top: 50px;
+}
+.news-news::before {
+    content: "P M O新闻";
+    right: 39px;
+    top: 40px;
 }
 .faq-qabook::before {
     content: "常见Q & A";
@@ -1228,4 +1239,17 @@ to {top: 50px;}
     color: #ffffff;
     text-shadow: 0 0 2px #000000;
     font-size: 17px;
+}
+
+.news-title {
+    margin: 1em 0 0;
+}
+.news-meta {
+    font-size: 14px;
+}
+.news-content {
+    margin-top: 1em;
+}
+.news-content p {
+    text-indent: 2em;
 }

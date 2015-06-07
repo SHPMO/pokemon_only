@@ -14,10 +14,10 @@ class BasePlayer(models.Model):
     signup_ip = models.GenericIPAddressField()
 
     def __str__(self):
-        return "%s %s" % (self.player_id, self.email)
+        return "%s %s %s" % ('报名通过' if self.validated else '', self.player_id, self.email)
 
     @classmethod
-    def create(cls, *args, **kwargs):
+    def create(cls, **kwargs):
         assert len(kwargs['player_id']) <= 30
         assert len(kwargs['taobao_id']) <= 20
-        return cls.objects.create(*args, **kwargs)
+        return cls.objects.create(**kwargs)

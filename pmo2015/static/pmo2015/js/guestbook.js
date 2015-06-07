@@ -30,7 +30,8 @@ function bindEvents() {
                 ss.removeClass("button-submitting");
                 ss.text("提交");
                 ss.removeAttr("disabled");
-                $('.error-message-text').text(msg);
+                $('#error-guestbook').text(msg);
+                $(".captcha").click();
             }
         );
     });

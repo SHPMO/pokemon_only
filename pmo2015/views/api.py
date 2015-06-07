@@ -3,7 +3,7 @@ from django.views.generic import View
 from django.http import HttpResponse, Http404
 import json
 from pmo2015.models import MainComment, Player, Vote
-from pmo2015.forms import MessageForm
+from pmo2015.forms import MessageForm, BattleForm
 
 
 def _return_me(error_code, **kwargs):
@@ -33,15 +33,21 @@ def _guestbook(request, *args, **kwargs):
 
 
 def _battle(request, *args, **kwargs):
-    player_id = request.POST.get("nickname")
-    email = request.POST.get("email")
-    taobao_id = request.POST.get("taobao")
-    team = request.POST.get("team")
+    form = BattleForm(request.POST)
+    if not form.is_valid():
+        if 'captcha' in form.errors:
+            return _return_me(4)
+        return _return_me(1, errors=form.errors)
+
+    player_id = form.cleaned_data['nickname']
+    email = form.cleaned_data['email']
+    taobao_id = form.cleaned_data['taobao']
+    team = form.cleaned_data['team']
+    team = random.choice(Vote.TEAM_CHOICES)[0] if team == 'random' else team
+    if team not in {Vote.TEAM_AQUA, Vote.TEAM_MAGMA}:
+        return _return_me(-1)
     ip_address = request.META.get("REMOTE_ADDR")
-    if not all((player_id, email, taobao_id, team)):
-        return _return_me(1)
-    elif ip_address is None:
-        print(0)
+    if ip_address is None:
         return _return_me(-1)
     elif any(Player.objects.filter(email=email)):
         return _return_me(2)
@@ -52,7 +58,7 @@ def _battle(request, *args, **kwargs):
                 email=email,
                 taobao_id=taobao_id,
                 signup_ip=ip_address,
-                team=random.choice(Vote.TEAM_CHOICES)[0] if team == 'random' else team
+                team=team
             )
         except AssertionError:
             return _return_me(3)

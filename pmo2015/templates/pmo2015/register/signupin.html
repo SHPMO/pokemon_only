@@ -8,11 +8,11 @@
 {% block subtitle %}注册和登录账号 - 在线报名{% endblock %}
 {% block stitle %}register-signupin{% endblock %}
 {% block content %}
-    <div id="error-message">
-        <p class="error-message-text">{{ error_message }}</p>
-    </div>
-    <div id="content-register" class="nodisplay-object content-page">
+    <div id="content-signup" class="nodisplay-object content-page">
         <h3>【注册】</h3>
+        <div id="error-message">
+            <p id="error-signup" class="error-message-text">{{ error_message_signup }}</p>
+        </div>
         <form id="signup-input" action="{% url "stall:signup" %}" method="post" onsubmit="return false;">
             <div class="controls-group oneline-group">
                 <label class="form-label" for="text-email">Email*</label>
@@ -58,6 +58,9 @@
     </div>
     <div id="content-login" class="nodisplay-object content-page">
         <h3>【登录】</h3>
+        <div id="error-message">
+            <p id="error-login" class="error-message-text">{{ error_message_login }}</p>
+        </div>
         <form id="login-input" action="{% url "stall:login" %}" method="post" onsubmit="return false;">
             <div class="controls-group oneline-group">
                 <label class="form-label" for="text-email">Email</label>
@@ -83,6 +86,6 @@
 {% endblock %}
 
 {% block panels %}
-    <div id="switch-register" class="pmo-panel switch-panel panel-red-r"><span>注册</span></div>
+    <div id="switch-signup" class="pmo-panel switch-panel panel-red-r"><span>注册</span></div>
     <div id="switch-login" class="pmo-panel switch-panel panel-blue-r"><span>登录</span></div>
 {% endblock %}

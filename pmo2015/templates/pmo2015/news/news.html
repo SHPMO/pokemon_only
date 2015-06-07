@@ -1,0 +1,19 @@
+{% extends "pmo2015/base.html" %}
+{% load staticfiles %}
+{% block subtitle %}{{ news.title }} - PMO新闻{% endblock %}
+{% block stitle %}news-news{% endblock %}
+{% block content %}
+    {% if news %}
+        <h3 class="news-title">{{ news.title }}</h3>
+        <div class="news-meta">
+            <span>{{ news.user.nickname }}</span>
+            <span>发表于</span>
+            <span>{{ news.gen_time }}</span>
+        </div>
+        <div class="news-content">
+            {{ news.content|linebreaks }}
+        </div>
+    {% else %}
+        <h3>不存在此新闻</h3>
+    {% endif %}
+{% endblock %}

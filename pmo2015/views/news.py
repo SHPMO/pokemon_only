@@ -1,6 +1,7 @@
 # coding=utf-8
 from django.views.generic import TemplateView
 from django.http import Http404
+from pmo2015.models import News
 
 
 class NewsListView(TemplateView):
@@ -9,6 +10,9 @@ class NewsListView(TemplateView):
     def get(self, request, page=None, *args, **kwargs):
         if page is None:
             page = 1
+        kwargs.update({
+            'newslist': News.objects.all()[page * 5 - 5:page * 5]
+        })
         return super().get(request, *args, **kwargs)
 
 
@@ -18,4 +22,11 @@ class NewsView(TemplateView):
     def get(self, request, news_id=None, *args, **kwargs):
         if news_id is None:
             raise Http404
+        try:
+            news = News.objects.get(pk=news_id)
+        except News.DoesNotExist:
+            news = None
+        kwargs.update({
+            'news': news
+        })
         return super().get(request, *args, **kwargs)

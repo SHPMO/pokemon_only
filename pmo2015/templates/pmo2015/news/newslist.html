@@ -1,0 +1,21 @@
+{% extends "pmo2015/base.html" %}
+{% load staticfiles %}
+{% block subtitle %}新闻列表 - PMO新闻{% endblock %}
+{% block stitle %}news-newslist{% endblock %}
+{% block content %}
+    {% for news in newslist %}
+        <h3 class="news-title">{{ news.title }}</h3>
+        <div class="news-meta">
+            <span>{{ news.user.nickname }}</span>
+            <span>发表于</span>
+            <span>{{ news.gen_time }}</span>
+        </div>
+        <div class="news-content">
+            {{ news.content|linebreaksbr|truncatechars_html:200 }}
+            <a class="maintext-href" href="{{ news.pk }}">查看全文</a>
+        </div>
+    {% empty %}
+    <h3>【暂时没有新闻】</h3>
+    {% endfor %}
+
+{% endblock %}

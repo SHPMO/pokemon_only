@@ -1,11 +1,13 @@
 {% extends "pmo2015/base.html" %}
 {% load staticfiles %}
 {% block more_heads %}
+    <script type="text/javascript" src="{% static 'pmo2015/js/captcha.js' %}"></script>
     <script type="text/javascript" src="{% static 'pmo2015/js/battle.js' %}"></script>
 {% endblock %}
 {% block subtitle %}对战报名 - 在线报名{% endblock %}
 {% block stitle %}register-battle{% endblock %}
 {% block content %}
+    <h3>【报名信息】</h3>
     <div id="error-message">
         <p class="error-message-text"></p>
     </div>
@@ -38,6 +40,12 @@
                         <input id="team-mg" type="radio" name="team" value="mg">
                         <label for="team-mg">熔岩团</label>
                     </div>
+                </div>
+            </div>
+            <div class="controls-group oneline-group">
+                <label class="form-label">验证码*</label>
+                <div id="battle_captcha" class="captcha-box form-control">
+                    {{ form.captcha }}
                 </div>
             </div>
             <div class="controls-group oneline-group">

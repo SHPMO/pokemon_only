@@ -2,6 +2,7 @@
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, Http404
 from django.shortcuts import redirect, render
+from pmo2015.forms import BattleForm
 from pmo2015.views.common import CommonView
 from stall.forms import LoginForm, SignupForm
 from stall.models import Item
@@ -101,5 +102,9 @@ class RegisterView(CommonView):
                 'login_form': LoginForm(),
                 'signup_form': SignupForm(),
                 'error_message': self._err_dict.get(request.GET.get('validated', None), "")
+            })
+        elif sub == 'battle':
+            kwargs.update({
+                'form': BattleForm()
             })
         return super().get(request, sub, *args, **kwargs)

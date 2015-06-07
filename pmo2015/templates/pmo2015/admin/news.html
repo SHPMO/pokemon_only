@@ -1,0 +1,23 @@
+{% extends 'pmo2015/admin/base.html' %}
+{% block content %}
+<div>编辑新闻</div>
+<form action="." method="post">
+    <div>
+        <label for="title">标题：</label>
+        <input type="text" name="title" id="title" style="width:400px;" value="{{ current.title }}">
+    </div>
+    <div>
+        <label for="content">内容：</label>
+        <textarea name="content" id="content" style="height:400px;width:400px;">{{ current.content }}</textarea>
+    </div>
+    <input type="hidden" name="news_id" value="{{ current.pk|default:-1 }}">
+    <input type="submit" name="submit">
+    {% csrf_token %}
+</form>
+<ul>
+<li><a href=".">新建</a></li>
+{% for news in newslist %}
+    <li><a href=".?news_id={{ news.pk }}">{{ news.title }}</a></li>
+{% endfor %}
+</ul>
+{% endblock %}

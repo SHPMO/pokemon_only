@@ -3,7 +3,7 @@ from django.conf.urls import url
 from pmo2015.views import (
     BaseInfoView, StallView, EventView,
     RegisterView, NewsListView, NewsView,
-    QABookView, ApiView
+    QABookView, ApiView, AdminView
 )
 
 
@@ -30,6 +30,9 @@ urlpatterns = [
     url(r'^qabook/(?P<sub>.+)/$', QABookView.as_view(), name='qabook'),
 
     url(r'^api/(?P<sub>.+)/$', ApiView.as_view(), name='api'),
+
+    url(r'^admin/$', AdminView.as_view(), name='admin'),
+    url(r'^admin/(?P<sub>.+)/$', AdminView.as_view(), name='admin'),
 
     url(r'^test/$', 'pmo2015.views.test', name='test'),
 ]

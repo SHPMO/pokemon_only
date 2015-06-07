@@ -4,7 +4,7 @@
 {% block stitle %}news-newslist{% endblock %}
 {% block content %}
     {% for news in newslist %}
-        <h3 class="news-title">{{ news.title }}</h3>
+        <h3 class="news-title"><a href="{{ news.pk }}">{{ news.title }}</a></h3>
         <div class="news-meta">
             <span>{{ news.user.nickname }}</span>
             <span>发表于</span>

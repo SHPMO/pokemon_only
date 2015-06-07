@@ -11,7 +11,7 @@ class CommonView(TemplateView):
 
     def get(self, request, sub=None, *args, **kwargs):
         if not sub:
-            return redirect(reverse("pmo2015:%s" % self.name, args=[self._sub_list[0]]))
+            return redirect("pmo2015:%s" % self.name, sub=self._sub_list[0])
         if sub in self._sub_list:
             self.template_name = "pmo2015/%s/%s.html" % (self.name, sub)
             return super().get(request, *args, **kwargs)

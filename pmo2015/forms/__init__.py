@@ -1,0 +1,1 @@
+from pmo2015.forms.guestbook import MessageForm

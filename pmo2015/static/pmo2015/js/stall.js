@@ -33,6 +33,8 @@ function bindNotice() {
     var cb = $('#cancel-button');
     var obj_url = cb.data('url');
     cb.click(function () {
+        if (!confirm("您确定要撤销申请吗？"))
+            return;
         var name = cb.text();
         startSaving(cb, '撤销中');
         clearError('notice');
@@ -319,6 +321,8 @@ function bindSubmit() {
             return;
         }
 
+        if (!confirm("您确定要提交申请吗？"))
+            return;
         $.post(
             si[0].action,
             data,

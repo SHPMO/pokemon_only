@@ -1,4 +1,5 @@
 # coding=utf-8
+from pmo2015.forms import MessageForm
 from pmo2015.views.common import CommonView
 from pmo2015.models import MainComment
 
@@ -17,4 +18,5 @@ class QABookView(CommonView):
                 kwargs["error"] = 2
             kwargs["comment_number"] = MainComment.objects.count()
             kwargs["max_page"] = (kwargs["comment_number"] + 4) // 5
+            kwargs["form"] = MessageForm()
         return super().get(request, sub, *args, **kwargs)

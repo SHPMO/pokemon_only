@@ -3,6 +3,7 @@ from django.views.generic import View
 from django.http import HttpResponse, Http404
 import json
 from pmo2015.models import MainComment, Player, Vote
+from pmo2015.forms import MessageForm
 
 
 def _return_me(error_code, **kwargs):
@@ -11,23 +12,23 @@ def _return_me(error_code, **kwargs):
 
 
 def _guestbook(request, *args, **kwargs):
-    nickname = request.POST.get("nickname", "")
-    message = request.POST.get("message", "").strip()
-    ip_address = request.META.get("REMOTE_ADDR")
-    if nickname == "" or message == "":
+    form = MessageForm(request.POST)
+    if not form.is_valid():
+        if 'captcha' in form.errors:
+            return _return_me(2)
         return _return_me(1)
-    elif ip_address is None:
+    ip_address = request.META.get("REMOTE_ADDR")
+    if ip_address is None:
         return _return_me(-1)
-    else:
-        try:
-            MainComment.create(
-                nickname=nickname,
-                content=message,
-                email=request.POST.get("email"),
-                ip_address=ip_address
-            )
-        except:
-            return _return_me(-1)
+    try:
+        MainComment.create(
+            nickname=form.cleaned_data['nickname'],
+            content=form.cleaned_data['message'],
+            email=form.cleaned_data['email'],
+            ip_address=ip_address
+        )
+    except:
+        return _return_me(-1)
     return _return_me(0)
 
 

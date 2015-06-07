@@ -22,6 +22,8 @@ function bindEvents() {
                         msg = '留言成功'; location.replace(location.href); break;
                     case 1:
                         msg = '*为必填项目'; break;
+                    case 2:
+                        msg = '验证码错误'; break;
                     default:
                         msg = '未知错误';
                 }

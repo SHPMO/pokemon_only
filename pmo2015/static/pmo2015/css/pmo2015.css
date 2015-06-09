@@ -993,6 +993,7 @@ a.nav-href {
 }
 
 #home-panels {
+    z-index: 4;
     position: relative;
     top: 45px;
     float: right;

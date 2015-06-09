@@ -1254,6 +1254,15 @@ to {top: 50px;}
 .news-title {
     margin: 1em 0 0;
 }
+.news-title a {
+    color: inherit;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
+    background-color: #e4f190;
+}
 .news-meta {
     font-size: 14px;
 }

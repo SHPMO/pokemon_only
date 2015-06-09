@@ -14,13 +14,13 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+DATA_DIR = os.path.join(BASE_DIR, 'data')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-with open('../data/secret_key.txt') as f:
+with open(os.path.join(DATA_DIR, 'secret_key.txt')) as f:
     SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -39,8 +39,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'stall',
-    'pmo2015',
     'tourney',
+    'pmo2015',
+    'captcha',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -66,6 +67,7 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
+                'django.template.context_processors.media',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -110,3 +112,27 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     "static/",
 )
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MEDIA_URL = '/media/'
+
+BASE_URL = 'https://www.getdaze.org'
+CONTACT_EMAIL = 'contact@getdaze.org'
+WEIBO_URL = 'http://weibo.com/SHPMO'
+
+# Email settings
+with open(os.path.join(DATA_DIR, 'secret_email.txt')) as f:
+    EMAIL_HOST, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD = f.read().split()
+EMAIL_PORT = 465
+EMAIL_SUBJECT_PREFIX = '[PMO2015] '
+EMAIL_USE_SSL = True
+
+import pmo2015.helpers
+CAPTCHA_CHALLENGE_FUNCT = pmo2015.helpers.word_challenge
+CAPTCHA_IMAGE_SIZE = (300, 31)
+
+PMO_LIST = {
+    'unknown': False,
+    'pmo2015': True
+}

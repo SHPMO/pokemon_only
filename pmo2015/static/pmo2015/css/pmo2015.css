@@ -1256,6 +1256,8 @@ to {top: 50px;}
 }
 .news-title a {
     color: inherit;
+}
+.news-title a:hover {
     -webkit-transition: all 0.4s;
     -moz-transition: all 0.4s;
     -ms-transition: all 0.4s;

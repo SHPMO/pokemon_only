@@ -8,6 +8,8 @@
 <p>淘宝交易号：{{ current.taobao_id }}</p>
 <p>加入团队：{% if current.team == 'AQ' %}水舰队{% else %}熔岩团{% endif %}</p>
 <form action="." method="post">
+    <label for="battle-message">附加信息：</label>
+    <textarea id="battle-message" name="message" style="height:100px;width:200px;"></textarea>
     <input type="hidden" name="player_id" value="{{ current.pk }}">
     <button name="submit" value="accept">审核通过</button>
     <button name="submit" value="reject">审核不通过</button>

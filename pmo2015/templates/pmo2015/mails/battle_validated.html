@@ -1,1 +1,11 @@
-<p>审核{% if player.status == 1 %}通过{% else %}不通过。{% endif %}</p>
+{% if player.status == 1 %}
+    <p>恭喜您，您的对战报名申请审核已通过。</p>
+    <p>您的参赛编号为 <strong>{{ player.pk }}</strong> ，请于PMO当天于现场查询对战分区。</p>
+    <p>请凭您的淘宝订单号 {{ player.taobao_id }} 作为凭据报名参赛。</p>
+    <p>祝您好运！</p>
+{% else %}
+    <p>很遗憾，您的对战报名申请审核未通过。</p>
+{% endif %}
+{% if message %}
+    {{ message|linebreaks }}
+{% endif %}

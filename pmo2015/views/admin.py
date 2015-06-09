@@ -39,6 +39,13 @@ class AdminView(CommonView):
         news_id = request.POST.get('news_id')
         title = request.POST.get('title')
         content = request.POST.get('content')
+        if content == "":
+            try:
+                news = News.objects.get(pk=news_id)
+            except News.DoesNotExist:
+                raise Http404
+            news.delete()
+            return redirect("pmo2015:admin", sub='news')
         if news_id == '-1':
             news = News.create(
                 title=title,

@@ -11,7 +11,7 @@ class PmoAdmin(models.Model):
     def create(cls, username, email, password, *args, **kwargs):
         user = User.objects.create_user(username, email, password)
         user.is_staff = True
-        user.groups = [Group.objects.get_or_create(name="PMOAdminGroup")[0]]
+        user.groups = [Group.objects.get_or_create(name="Pmo2015AdminGroup")[0]]
         user.save()
         return cls.objects.create(
             nickname=username,

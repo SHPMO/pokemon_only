@@ -1,4 +1,7 @@
 import random
+from django.conf import settings
+from django.core.mail import send_mail
+from django.template import loader
 from django.views.generic import View
 from django.http import HttpResponse, Http404
 import json
@@ -39,7 +42,7 @@ def _battle(request, *args, **kwargs):
             return _return_me(4)
         return _return_me(1, errors=form.errors)
 
-    player_id = form.cleaned_data['nickname']
+    player_name = form.cleaned_data['nickname']
     email = form.cleaned_data['email']
     taobao_id = form.cleaned_data['taobao']
     team = form.cleaned_data['team']
@@ -53,8 +56,8 @@ def _battle(request, *args, **kwargs):
         return _return_me(2)
     else:
         try:
-            Player.create(
-                player_id=player_id,
+            player = Player.create(
+                player_name=player_name,
                 email=email,
                 taobao_id=taobao_id,
                 signup_ip=ip_address,
@@ -64,6 +67,16 @@ def _battle(request, *args, **kwargs):
             return _return_me(3)
         except:
             return _return_me(-1)
+    send_mail(
+        '%s对战报名' % settings.EMAIL_SUBJECT_PREFIX, "",
+        settings.EMAIL_HOST_USER, [email], fail_silently=False,
+        html_message=loader.get_template('pmo2015/mails/battle_signup.html').render({
+            'player': player,
+            'base_url': settings.BASE_URL,
+            'weibo_url': settings.WEIBO_URL,
+            'contact_mail': settings.CONTACT_EMAIL
+        }),
+    )
     return _return_me(0)
 
 

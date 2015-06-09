@@ -5,7 +5,11 @@
     <title>admin</title>
 </head>
 <body>
-<div>你好，{{ admin.nickname }}。<a href="{% url 'pmo2015:admin' 'logout' %}">注销</a></div>
+<div>
+    <span>你好，{{ admin.nickname }}。</span>
+    <a href="{% url 'pmo2015:admin' 'logout' %}">注销</a>
+    <a href="{% url 'pmo2015:admin' %}">管理主页</a>
+</div>
 {% block content %}{% endblock %}
 </body>
 </html>

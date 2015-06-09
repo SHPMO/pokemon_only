@@ -14,7 +14,6 @@ class Seller(BaseStallModel):
         max_length=30,
     )
     is_active = models.BooleanField(default=False, help_text='是否激活')
-    validated = models.BooleanField(default=False, help_text='是否通过')
 
     signup_datetime = models.DateTimeField(auto_now=True)
     signup_address = models.GenericIPAddressField()
@@ -73,3 +72,9 @@ class Seller(BaseStallModel):
         except:
             user.delete()
             raise
+
+    def do_validate(self, passed=True):
+        if passed:
+            self.status = 3
+        else:
+            self.status = 4

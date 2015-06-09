@@ -39,8 +39,8 @@
     </div>
     <div id="guestbook-others">
     <p>您还可以通过邮箱
-        <a class="maintext-href" href="mailto:contact@getdaze.org">contact@getdaze.org</a>
-        或是微博 <a class="maintext-href" href="http://weibo.com/SHPMO">@魔都PMO_结果我第一</a>
+        <a class="maintext-href" href="mailto:{{ contact_email }}">contact@getdaze.org</a>
+        或是微博 <a class="maintext-href" href="{{ weibo_url }}">@魔都PMO_结果我第一</a>
         联系我们。
     </p>
     </div>
@@ -55,7 +55,7 @@
             </form>
         </div>
     {% for main_comment in main_comments %}
-        <div id="message-p{{ main_comment.id }}" class="comment-box">
+        <div id="message-p{{ main_comment.id }}" class="comment-box{% if forloop.last %} comment-box-last{% endif %}">
             <div class="comment-meta">
                 <span class="comment-nickname">{{ main_comment.nickname }}</span>
                 <span class="comment-datetime">{{ main_comment.gen_time }}</span>

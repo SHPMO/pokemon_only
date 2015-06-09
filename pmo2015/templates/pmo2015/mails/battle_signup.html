@@ -1,0 +1,11 @@
+<p>您已提交报名信息，报名结果将以邮件形式通知您。</p>
+<p>昵称：{{ player.player_name }}</p>
+<p>Email：{{ player.email }}</p>
+<p>淘宝交易号：{{ player.taobao_id }}</p>
+<p>加入团队：{% if player.team == 'AQ' %}水舰队{% else %}熔岩团{% endif %}</p>
+<p>如有疑问，请通过以下方式联系我们：</p>
+<ul>
+    <li><a href="{{ base_url }}{% url 'pmo2015:qabook' 'guestbook'%}">PMO2015留言板</a></li>
+    <li>邮箱 <a href="mailto:{{ contact_mail }}">{{ contact_mail }}</a></li>
+    <li>微博 <a href="{{ weibo_url }}">@魔都PMO_结果我第一</a></li>
+</ul>

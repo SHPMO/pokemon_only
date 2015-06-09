@@ -13,6 +13,6 @@ class BaseModel(models.Model):
     )
 
     @classmethod
-    def create(cls, *args, **kwargs):
-        return cls.objects.create(*args, **kwargs)
+    def create(cls, **kwargs):
+        return cls.objects.create(**kwargs)
 

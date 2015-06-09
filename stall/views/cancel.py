@@ -8,7 +8,6 @@ class CancelView(AuthedApiView):
         if x:
             return x
         try:
-            self.seller.validated = False
             self.seller.status = 1
             self.seller.save()
         except:

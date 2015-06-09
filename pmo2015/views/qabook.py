@@ -1,6 +1,7 @@
 # coding=utf-8
 from captcha.helpers import captcha_image_url
 from captcha.models import CaptchaStore
+from django.conf import settings
 from django.http import HttpResponse
 from pmo2015.forms import MessageForm
 from pmo2015.views.common import CommonView
@@ -23,7 +24,12 @@ class QABookView(CommonView):
                 kwargs["main_comments"] = MainComment.objects.reverse()[l:r]
             except ValueError:
                 kwargs["error"] = 2
-            kwargs["comment_number"] = MainComment.objects.count()
-            kwargs["max_page"] = (kwargs["comment_number"] + 4) // 5
-            kwargs["form"] = MessageForm()
+            total = MainComment.objects.count()
+            kwargs.update({
+                'comment_number': total,
+                'max_page': (total + 4) // 5,
+                'form': MessageForm(),
+                'contact_email': settings.CONTACT_EMAIL,
+                'weibo_url': settings.WEIBO_URL
+            })
         return super().get(request, sub, *args, **kwargs)

@@ -1,0 +1,37 @@
+{% extends 'pmo2015/admin/base.html' %}
+{% block content %}
+<div>回复评论</div>
+{% if current %}
+<div>昵称：{{ current.nickname }}</div>
+<div>时间：{{ current.gen_time }}</div>
+<div>Email：{{ current.email }}</div>
+<div>内容：{{ current.content }}</div>
+<ul>
+{% for back_comment in current.backcomment_set.all %}
+    <li><a href=".?comment_id={{ current.pk }}&back_id={{ back_comment.pk }}">{{ back_comment.content }}</a></li>
+{% endfor %}
+<li><a href=".?comment_id={{ current.pk }}">新建</a></li>
+</ul>
+<form action="." method="post">
+    <div>
+        <label for="content">回复：</label>
+        <textarea name="content" id="content" style="height:400px;width:400px;">{{ current_back.content }}</textarea>
+    </div>
+    <div>
+        <input id="sendmail" type="checkbox" name="send_email" value="send"
+               {% if not current.email or current_back %}disabled="disabled" {% else %}checked="checked"{% endif %}>
+        <label for="sendmail">发送Email通知</label>
+    </div>
+
+    <input type="hidden" name="comment_id" value="{{ current.pk }}">
+    <input type="hidden" name="back_id" value="{{ current_back.pk|default:-1 }}">
+    <input type="submit" name="submit">
+    {% csrf_token %}
+</form>
+{% endif %}
+<ul>
+{% for main_comment in main_comments %}
+    <li><a href=".?comment_id={{ main_comment.pk }}">{{ main_comment.content }}</a></li>
+{% endfor %}
+</ul>
+{% endblock %}

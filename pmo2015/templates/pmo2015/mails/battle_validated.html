@@ -1,3 +1,5 @@
+{% extends 'mail_base.html' %}
+{% block content %}
 {% if player.status == 1 %}
     <p>恭喜您，您的对战报名申请审核已通过。</p>
     <p>您的参赛编号为 <strong>{{ player.pk }}</strong> ，请于PMO当天于现场查询对战分区。</p>
@@ -9,3 +11,4 @@
 {% if message %}
     {{ message|linebreaks }}
 {% endif %}
+{% endblock %}

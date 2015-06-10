@@ -6,9 +6,8 @@
     {% for news in newslist %}
         <h3 class="news-title"><a href="{{ news.pk }}">{{ news.title }}</a></h3>
         <div class="news-meta">
-            <span>{{ news.user.nickname }}</span>
-            <span>发表于</span>
-            <span>{{ news.gen_time }}</span>
+            <span class="news-author">{{ news.user.nickname }}</span>
+            <span class="news-datetime">{{ news.gen_time }}</span>
         </div>
         <div class="news-content">
             {{ news.content|linebreaksbr|truncatechars_html:200 }}

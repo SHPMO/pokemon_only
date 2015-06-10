@@ -13,8 +13,6 @@ function bindSubmit() {
                 var msg;
                 switch(data.error){
                     case 0:
-                        $(".content-page").addClass("nodisplay-object");
-                        $(".switch-panel").addClass("nodisplay-object");
                         msg = data.message;
                         break;
                     case 1:
@@ -50,9 +48,7 @@ function bindSubmit() {
                 var msg;
                 switch(data.error){
                     case 0:
-                        $(".content-page").addClass("nodisplay-object");
-                        $(".switch-panel").addClass("nodisplay-object");
-                        $('#error-signup').html(data.message);
+                        $('#error-login').html(data.message);
                         location.href = data.redirect_to;
                         break;
                     case 1:
@@ -69,7 +65,7 @@ function bindSubmit() {
                 ls.removeClass("button-submitting");
                 ls.text("提交");
                 ls.removeAttr("disabled");
-                $('error-signup').html(msg);
+                $('#error-login').html(msg);
                 $(".captcha").click();
             }
         );

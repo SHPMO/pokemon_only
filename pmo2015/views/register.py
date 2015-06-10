@@ -101,7 +101,7 @@ class RegisterView(CommonView):
             kwargs.update({
                 'login_form': LoginForm(),
                 'signup_form': SignupForm(),
-                'error_message': self._err_dict.get(request.GET.get('validated', None), "")
+                'error_message_login': self._err_dict.get(request.GET.get('validated', None), "")
             })
         elif sub == 'battle':
             kwargs.update({

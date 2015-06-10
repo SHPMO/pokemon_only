@@ -10,7 +10,7 @@ from pmo2015.views.common import CommonView
 
 
 class AdminView(CommonView):
-    _sub_list = ["news", "backcomment", "battle", "default", 'stall', 'login']
+    _sub_list = ["news", "backcomment", "battle", "default", 'stall', 'login', info]
     name = "admin"
     admin = None
 
@@ -163,6 +163,22 @@ class AdminView(CommonView):
         response['Location'] += '?player_id=%s' % current.pk
         return response
 
+    def _info_get(self, request, kwargs):
+        kwargs.update({
+            'admin': self.admin
+        })
+
+    def _info_post(self, request):
+        pwd = request.POST.get('password')
+        ncn = request.POST.get('nickname')
+        if pwd:
+            self.admin.user.set_password(pwd)
+            self.admin.user.save()
+        if ncn:
+            self.admin.nickname = ncn
+            self.admin.save()
+        return redirect("pmo2015:admin", sub='info')
+
     def get(self, request, sub=None, *args, **kwargs):
         if sub == 'login':
             if request.GET.get('fail') == '1':
@@ -185,6 +201,8 @@ class AdminView(CommonView):
             self._backcomment_get(request, kwargs)
         elif sub == 'battle':
             self._battle_get(request, kwargs)
+        elif sub == 'info':
+            self._info_get(request, kwargs)
         self.template_name = sub
         return super().get(request, sub, *args, **kwargs)
 
@@ -206,5 +224,7 @@ class AdminView(CommonView):
             return self._backcomment_post(request)
         elif sub == 'battle':
             return self._battle_post(request)
+        elif sub == 'info':
+            return self._info_post(request)
         else:
             raise Http404

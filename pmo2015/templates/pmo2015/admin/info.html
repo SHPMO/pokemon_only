@@ -1,0 +1,26 @@
+{% extends 'pmo2015/admin/base.html' %}
+{% block content %}
+<div>个人信息</div>
+<form action="." method="post">
+    <div>
+        <label for="username">用户名</label>
+        <input type="text" name="username" id="username" style="width:400px;" value="{{ admin.user.username }}" disabled="disabled">
+    </div>
+    <div>
+        <label for="email">邮箱</label>
+        <input type="text" name="email" id="email" style="width:400px;" value="{{ admin.user.email }}" disabled="disabled">
+    </div>
+    <div>
+        <label for="password">密码</label>
+        <input type="password" name="password" id="password" style="width:400px;">
+        <span>如不修改请留空</span>
+    </div>
+    <div>
+        <label for="nickname">昵称</label>
+        <input type="text" name="nickname" id="nickname" style="width:400px;" value="{{ admin.nickname }}">
+    </div>
+
+    <input type="submit" name="submit">
+    {% csrf_token %}
+</form>
+{% endblock %}

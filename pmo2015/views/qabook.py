@@ -21,7 +21,7 @@ class QABookView(CommonView):
             try:
                 page = kwargs["page"] = int(request.GET.get("page", 1))
                 l, r = (page-1) * 5, page * 5
-                kwargs["main_comments"] = MainComment.objects.reverse()[l:r]
+                kwargs["main_comments"] = MainComment.objects.order_by('-gen_time')[l:r]
             except ValueError:
                 kwargs["error"] = 2
             total = MainComment.objects.count()

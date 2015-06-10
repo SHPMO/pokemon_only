@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% block title %}{% block subtitle %}{% endblock %} - Pokemon Only 2015{% endblock %}
+{% block icon %}{% static 'pmo2015/images/favicon.ico' %}{% endblock %}
 {% block heads %}
     <link rel="stylesheet" type="text/css" href="{% static 'pmo2015/css/pmo2015.css' %}">
     <script type="text/javascript" src="{% static 'pmo2015/js/pmo2015.js' %}"></script>

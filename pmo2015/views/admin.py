@@ -107,7 +107,7 @@ class AdminView(CommonView):
             back_comment.content = content
             back_comment.save()
         if main_comment.email and request.POST.get('send_email') == 'send':
-            t = MainComment.objects.reverse()
+            t = MainComment.objects.order_by('-gen_time')
             page = None
             for i in range(len(t)):
                 if t[i].pk == comment_id:
@@ -120,7 +120,7 @@ class AdminView(CommonView):
                 settings.EMAIL_HOST_USER, [main_comment.email], fail_silently=False,
                 html_message=loader.get_template('pmo2015/mails/comment_back.html').render({
                     'back_comment': back_comment, 'page': page, 'base_url': settings.BASE_URL
-                }),
+                })
             )
         response = redirect("pmo2015:admin", sub='backcomment')
         response['Location'] += '?comment_id=%s' % main_comment.pk
@@ -156,7 +156,7 @@ class AdminView(CommonView):
             settings.EMAIL_HOST_USER, [current.email], fail_silently=False,
             html_message=loader.get_template('pmo2015/mails/battle_validated.html').render({
                 'player': current, 'base_url': settings.BASE_URL, 'message': request.POST.get('message')
-            }),
+            })
         )
         current.save()
         response = redirect("pmo2015:admin", sub='battle')

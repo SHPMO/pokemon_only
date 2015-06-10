@@ -106,7 +106,7 @@ function bindSeller() {
             startSaving(fu, '上传中');
         },
         done: function (e, data) {
-            startSaving(fu, '上传文件');
+            stopSaving(fu, '上传文件');
             $('#image-circle_image').attr('src', data.result.circle_image_url);
             $('#error-upload-circle_image').text(data.result.message);
         }

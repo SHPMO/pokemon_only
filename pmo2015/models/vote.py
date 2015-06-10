@@ -17,3 +17,6 @@ class Vote(BaseModel):
         choices=TEAM_CHOICES,
         null=False
     )
+
+    def __str__(self):
+        return '%s %s' % (self.TEAM_CHOICES[0][1] if self.choice == self.TEAM_AQUA else self.TEAM_CHOICES[1][1], self.gen_time)

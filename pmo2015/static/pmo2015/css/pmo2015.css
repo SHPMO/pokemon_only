@@ -993,6 +993,7 @@ a.nav-href {
 }
 
 #home-panels {
+    z-index: 4;
     position: relative;
     top: 45px;
     float: right;
@@ -1172,10 +1173,12 @@ a.nav-href {
 
 #tv-selection {
     position: absolute;
+    color: #ffffff;
+    font-size: 18px;
     z-index: 3;
-    top: 332px;
+    top: 327px;
     left: 60px;
-    width: 468px;
+    width: 540px;
     height: 60px;
 }
 #tv-selection a{
@@ -1191,7 +1194,7 @@ a.nav-href {
 #tv-selection span {
     position: absolute;
     font-size: 18px;
-    color: white;
+    color: #ffffff;
     width: 90px;
     height: 24px;
     left: 380px;
@@ -1250,6 +1253,17 @@ to {top: 50px;}
 
 .news-title {
     margin: 1em 0 0;
+}
+.news-title a {
+    color: inherit;
+}
+.news-title a:hover {
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
+    background-color: #e4f190;
 }
 .news-meta {
     font-size: 14px;

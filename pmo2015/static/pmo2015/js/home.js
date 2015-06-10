@@ -71,7 +71,7 @@ var lines = [
             '我们家总长真的是有梦想的男人。',
             '水舰队的团员们每天都保持着愉悦的心情，怎么样，羡慕吗？',
             '潮水那个家伙，又不知道到哪里去鬼混了。',
-            '喔！我的老天爷，欢迎你的光临阿！',
+            '喔！我的老天爷，欢迎你的光临啊！',
             '游泳是入团的必备技能呢~我们是最喜欢海洋的组织。',
             '我要一生追随总长，支持着他的梦想。'
         ],
@@ -84,16 +84,16 @@ var lines = [
     [
         '……麻古麻古团……你追来了呢。',
         [
-            '基地里……岩浆咕噜噜?……毛衣……好热……',
+            '基地里……岩浆咕噜噜♪……毛衣……好热……',
             '……闪闪发亮……老大的额头。',
             '九尾……？并没有…………树果……给我……？为什咩……？',
             '……Keystone……交出来……哟。',
             '果滋（汁）……老大……印在上面……（咕嘟咕嘟咕嘟）',
-            '这样……世界就，结束了?'
+            '这样……世界就，结束了♪'
         ],
         [
             '……你……遵（真）有趣……',
-            '……快要……实现了……老大的……梦想~?',
+            '……快要……实现了……老大的……梦想~♪',
             '……投票……只能……一次。老大……只有……一个。'
         ]
     ]
@@ -115,9 +115,8 @@ function startTV() {
     mouths = [$('#mouth-izumi'), $('#mouth-kagari')];
     q = Math.floor(Math.random() * 2);
     p = 1;
-    sa = $('#tv-selection');
+    ts = sa = $('#tv-selection');
     hostesses[1-q].addClass("hidden-object");
-    ts = $('#tv-sentence');
     tvOn = true;
 }
 
@@ -176,13 +175,13 @@ function doAppend() {
 }
 
 function switchSection() {
-    if (section=="") icons[q].removeClass("hidden-object");
     section = this.id.substring(11);
     var t = pst[section];
     $('.tv-icon').css({
         'top': 10 + t[0] * 40,
-        'left': 5 + t[1] * 120
+        'left': 3 + t[1] * 120
     });
+    icons[q].removeClass("hidden-object");
     sa.empty();
     nowKeys = Object.keys(t[2]);
     nowKeyIndex = 0;
@@ -199,22 +198,23 @@ function switchMouth() {
 
 var nowSentence, nowSIndex;
 var ts;
-var sto = null;
 function doSay() {
-    if (sto != null) clearTimeout(sto);
+    if (sot != null) clearTimeout(sot);
     if(nowSIndex>nowSentence.length){
+        ts.append('<div id="tv-selection-end"></div>');
         mouths[q].addClass("nodisplay-object");
         return;
     }
     switchMouth();
-    ts.text(nowSentence.substring(nowSIndex-29, nowSIndex));
+    ts.text(nowSentence.substring(0, nowSIndex));//.substring(nowSIndex-29, nowSIndex));
     nowSIndex++;
-    sto = setTimeout(doSay, 100);
+    sot = setTimeout(doSay, 100);
 }
 function doSpeak(sentence) {
     nowSentence = sentence;
     nowSIndex = 0;
     ts.empty();
+    icons[q].addClass("hidden-object");
     doSay()
 }
 function switchSentence() {
@@ -233,10 +233,9 @@ var tvContent = '<div id="tv-dialog"><div id="tv-nise-hostess"></div></div><div 
     'v-section-event" class="tv-section-text"><span>现场活动</span></div><div id="tv-section-register" class="tv-sect' +
     'ion-text"><span>在线报名</span></div><div id="tv-section-news" class="tv-section-text"><span>PMO新闻</span></div>' +
     '<div id="tv-section-qabook" class="tv-section-text"><span>QA留言板</span></div></div><div id="tv-selection"></di' +
-    'v><div id="tv-sentence"></div>';
+    'v><div id="tv-sentence">大海对陆地，结果我第一</div>';
 function bindTV() {
     $('#tv-off').click(startTV);
-
 }
 
 function bindVote() {

@@ -11,7 +11,7 @@ class NewsListView(TemplateView):
         if page is None:
             page = 1
         kwargs.update({
-            'newslist': News.objects.all()[page * 5 - 5:page * 5]
+            'newslist': News.objects.reverse()[page * 5 - 5:page * 5]
         })
         return super().get(request, *args, **kwargs)
 

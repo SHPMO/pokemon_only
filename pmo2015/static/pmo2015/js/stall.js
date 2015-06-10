@@ -90,6 +90,7 @@ function bindSeller() {
         );
     });
     var fci = $('#file-circle_image');
+    var fu = $('#file-upload');
     var option = {
         dataType: 'json',
         formData: {
@@ -102,8 +103,10 @@ function bindSeller() {
             } else {
                 data.submit();
             }
+            startSaving(fu, '上传中');
         },
         done: function (e, data) {
+            startSaving(fu, '上传文件');
             $('#image-circle_image').attr('src', data.result.circle_image_url);
             $('#error-upload-circle_image').text(data.result.message);
         }

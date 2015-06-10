@@ -115,12 +115,13 @@ class AdminView(CommonView):
                     break
             if page is None:
                 raise Http404
+            p = loader.get_template('pmo2015/mails/comment_back.html').render({
+                    'back_comment': back_comment, 'page': page, 'base_url': settings.BASE_URL
+                })
             send_mail(
                 '%s留言回复' % settings.EMAIL_SUBJECT_PREFIX, "",
                 settings.EMAIL_HOST_USER, [main_comment.email], fail_silently=False,
-                html_message=loader.get_template('pmo2015/mails/comment_back.html').render({
-                    'back_comment': back_comment, 'page': page, 'base_url': settings.BASE_URL
-                })
+                html_message=p
             )
         response = redirect("pmo2015:admin", sub='backcomment')
         response['Location'] += '?comment_id=%s' % main_comment.pk

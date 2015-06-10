@@ -10,7 +10,7 @@ from pmo2015.views.common import CommonView
 
 
 class AdminView(CommonView):
-    _sub_list = ["news", "backcomment", "battle", "default", 'stall', 'login', info]
+    _sub_list = ["news", "backcomment", "battle", "default", 'stall', 'login', 'info']
     name = "admin"
     admin = None
 

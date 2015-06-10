@@ -5,6 +5,7 @@ from django.utils.html import escape
 
 class BaseModel(models.Model):
     class Meta:
+        ordering = ['gen_time']
         app_label = 'pmo2015'
         abstract = True
     ip_address = models.GenericIPAddressField()

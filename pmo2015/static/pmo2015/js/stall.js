@@ -324,7 +324,7 @@ function bindSubmit() {
             return;
         }
 
-        if (!confirm("您确定要提交申请吗？"))
+        if (!confirm("申请之后将无法编辑信息，如需编辑请选择撤销申请。您确定要提交申请吗？"))
             return;
         $.post(
             si[0].action,

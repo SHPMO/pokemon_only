@@ -25,7 +25,8 @@
 
     <input type="hidden" name="comment_id" value="{{ current.pk }}">
     <input type="hidden" name="back_id" value="{{ current_back.pk|default:-1 }}">
-    <input type="submit" name="submit">
+    <button name="method" value="submit">提交</button>
+    <button name="method" value="delete">删除</button>
     {% csrf_token %}
 </form>
 {% endif %}

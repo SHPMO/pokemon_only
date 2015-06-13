@@ -92,6 +92,9 @@ class AdminView(CommonView):
         if len(main_comment) != 1:
             raise Http404
         main_comment = main_comment[0]
+        if request.POST.get('method') == 'delete':
+            main_comment.delete()
+            return redirect("pmo2015:admin", sub='backcomment')
         if back_id == '-1':
             back_comment = BackComment.create(
                 toward=main_comment,

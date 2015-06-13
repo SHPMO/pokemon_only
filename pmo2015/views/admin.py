@@ -53,6 +53,8 @@ class AdminView(CommonView):
                 raise Http404
             news.delete()
             return self._news_post_return()
+        if content == "":
+            return self._news_post_return()
         if news_id == '-1':
             news = News.create(
                 title=title,

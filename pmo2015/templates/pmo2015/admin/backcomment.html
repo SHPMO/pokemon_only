@@ -26,7 +26,8 @@
     <input type="hidden" name="comment_id" value="{{ current.pk }}">
     <input type="hidden" name="back_id" value="{{ current_back.pk|default:-1 }}">
     <button name="method" value="submit">提交</button>
-    <button name="method" value="delete">删除</button>
+    <button name="method" value="delete">删除整个留言</button>
+    <button name="method" value="delete_back">删除此回复</button>
     {% csrf_token %}
 </form>
 {% endif %}

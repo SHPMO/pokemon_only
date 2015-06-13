@@ -35,17 +35,24 @@ class AdminView(CommonView):
             'current': current
         })
 
+    @staticmethod
+    def _news_post_return(news_id=None):
+        response = redirect("pmo2015:admin", sub='news')
+        if news_id:
+            response['Location'] += '?news_id=%s' % news_id
+        return response
+
     def _news_post(self, request):
         news_id = request.POST.get('news_id')
         title = request.POST.get('title')
         content = request.POST.get('content')
-        if content == "":
+        if request.POST.get('method') == "delete":
             try:
                 news = News.objects.get(pk=news_id)
             except News.DoesNotExist:
                 raise Http404
             news.delete()
-            return redirect("pmo2015:admin", sub='news')
+            return self._news_post_return()
         if news_id == '-1':
             news = News.create(
                 title=title,
@@ -61,9 +68,7 @@ class AdminView(CommonView):
             news.title = title
             news.content = content
             news.save()
-        response = redirect("pmo2015:admin", sub='news')
-        response['Location'] += '?news_id=%s' % news.pk
-        return response
+        return self._news_post_return(news.pk)
 
     def _backcomment_get(self, request, kwargs):
         current = MainComment.objects.filter(pk=request.GET.get('comment_id'))
@@ -84,6 +89,13 @@ class AdminView(CommonView):
             'current_back': current_back
         })
 
+    @staticmethod
+    def _backcomment_post_return(comment_id=None):
+        response = redirect("pmo2015:admin", sub='backcomment')
+        if comment_id:
+            response['Location'] += '?comment_id=%s' % comment_id
+        return response
+
     def _backcomment_post(self, request):
         comment_id = int(request.POST.get('comment_id'))
         back_id = request.POST.get('back_id')
@@ -92,9 +104,18 @@ class AdminView(CommonView):
         if len(main_comment) != 1:
             raise Http404
         main_comment = main_comment[0]
-        if request.POST.get('method') == 'delete':
+        method = request.POST.get('method')
+        if method == 'delete':
             main_comment.delete()
-            return redirect("pmo2015:admin", sub='backcomment')
+            return self._backcomment_post_return()
+        elif method == 'delete_back':
+            back_comment = BackComment.objects.filter(pk=back_id)
+            if len(back_comment) == 1:
+                back_comment = back_comment[0]
+                back_comment.delete()
+            return self._backcomment_post_return(main_comment.pk)
+        if content == "":
+            return self._backcomment_post_return(main_comment.pk)
         if back_id == '-1':
             back_comment = BackComment.create(
                 toward=main_comment,
@@ -126,9 +147,7 @@ class AdminView(CommonView):
                 settings.EMAIL_HOST_USER, [main_comment.email], fail_silently=False,
                 html_message=p
             )
-        response = redirect("pmo2015:admin", sub='backcomment')
-        response['Location'] += '?comment_id=%s' % main_comment.pk
-        return response
+        return self._backcomment_post_return(main_comment.pk)
 
     def _battle_get(self, request, kwargs):
         current = Player.objects.filter(pk=request.GET.get('player_id'))

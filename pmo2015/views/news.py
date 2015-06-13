@@ -7,11 +7,13 @@ from pmo2015.models import News
 class NewsListView(TemplateView):
     template_name = "pmo2015/news/newslist.html"
 
-    def get(self, request, page=None, *args, **kwargs):
-        if page is None:
-            page = 1
+    def get(self, request, *args, **kwargs):
+        page = int(request.GET.get('page', 1))
+        total = (News.objects.count() + 4) // 5
         kwargs.update({
-            'newslist': News.objects.order_by('-gen_time')[page * 5 - 5:page * 5]
+            'newslist': News.objects.order_by('-gen_time')[page * 5 - 5:page * 5],
+            'prev': page - 1 if page > 1 else None,
+            'next': page + 1 if page < total else None
         })
         return super().get(request, *args, **kwargs)
 

@@ -800,6 +800,16 @@ a.nav-href {
 .news-author {
     margin-left: 1em;
 }
+.news-nav {
+    display: block;
+    color: #5c92ef;
+}
+.news-prev {
+    float: left;
+}
+.news-next {
+    float: right;
+}
 
 
 /* home */

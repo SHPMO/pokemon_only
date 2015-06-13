@@ -3,18 +3,23 @@
 {% block subtitle %}新闻列表 - PMO新闻{% endblock %}
 {% block stitle %}news-newslist{% endblock %}
 {% block content %}
-    {% for news in newslist %}
-        <h3 class="news-title"><a href="{{ news.pk }}">{{ news.title }}</a></h3>
-        <div class="news-meta">
-            <span class="news-author">{{ news.user.nickname }}</span>
-            <span class="news-datetime">{{ news.gen_time }}</span>
-        </div>
-        <div class="news-content">
-            {{ news.content|linebreaksbr|truncatechars_html:200 }}
-            <a class="maintext-href" href="{{ news.pk }}">查看全文</a>
-        </div>
-    {% empty %}
+    {% if newslist %}
+        {% for news in newslist %}
+            <h3 class="news-title"><a href="{{ news.pk }}">{{ news.title }}</a></h3>
+            <div class="news-meta">
+                <span class="news-author">{{ news.user.nickname }}</span>
+                <span class="news-datetime">{{ news.gen_time }}</span>
+            </div>
+            <div class="news-content">
+                {{ news.content|linebreaksbr|truncatechars_html:200 }}
+                <a class="maintext-href" href="{{ news.pk }}">查看全文</a>
+            </div>
+            <div id="split-line"></div>
+        {% endfor %}
+        {% if prev %} <a class="maintext-href news-nav news-prev" href=".?page={{ prev }}">上一页</a>{% endif %}
+        {% if next %} <a class="maintext-href news-nav news-next" href=".?page={{ next }}">下一页</a>{% endif %}
+    {% else %}
     <h3>【暂时没有新闻】</h3>
-    {% endfor %}
+    {% endif %}
 
 {% endblock %}

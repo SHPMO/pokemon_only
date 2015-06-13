@@ -23,7 +23,6 @@ urlpatterns = [
     url(r'^register/(?P<sub>.+)/$', RegisterView.as_view(), name='register'),
 
     url(r'^news/$', NewsListView.as_view(), name='news'),
-    url(r'^news/page/(?P<page>\d+)/$', NewsListView.as_view(), name='news'),
     url(r'^news/(?P<news_id>\d+)/$', NewsView.as_view(), name='news'),
 
     url(r'^qabook/$', QABookView.as_view(), name='qabook'),

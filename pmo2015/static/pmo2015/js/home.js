@@ -128,6 +128,7 @@ function switchHostess() {
     hostesses[q].removeClass("hidden-object");
     icons[1-q].css({'z-index': 0});
     icons[q].css({'z-index': 1});
+    icons[1-q].addClass("hidden-object");
     doSpeak(lines[q][0]);
 }
 
@@ -207,7 +208,6 @@ function doSay() {
     sot = setTimeout(doSay, 100);
 }
 function doSpeak(sentence) {
-    icons[q].addClass("hidden-object");
     nowSentence = sentence;
     nowSIndex = 0;
     ts.empty();

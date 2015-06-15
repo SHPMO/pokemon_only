@@ -180,7 +180,8 @@ class AdminView(CommonView):
             '%s对战报名结果' % settings.EMAIL_SUBJECT_PREFIX, "",
             settings.EMAIL_HOST_USER, [current.email], fail_silently=False,
             html_message=loader.get_template('pmo2015/mails/battle_validated.html').render({
-                'player': current, 'base_url': settings.BASE_URL, 'message': request.POST.get('message')
+                'player': current, 'base_url': settings.BASE_URL,
+                'message': request.POST.get('message'), 'signup_id': '%03d' % current.pk
             })
         )
         current.save()

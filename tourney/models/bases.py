@@ -20,7 +20,7 @@ class BasePlayer(models.Model):
             x = '通过'
         else:
             x = '拒绝'
-        return "%s %s %s" % (x, self.player_name, self.email)
+        return "%s %s %s %s" % (x, self.player_name, self.taobao_id, self.email)
 
     @classmethod
     def create(cls, **kwargs):

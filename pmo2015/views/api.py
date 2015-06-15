@@ -47,7 +47,7 @@ def _battle(request, *args, **kwargs):
     taobao_id = form.cleaned_data['taobao']
     team = form.cleaned_data['team']
     team = random.choice(Vote.TEAM_CHOICES)[0] if team == 'random' else team
-    if team not in {Vote.TEAM_AQUA, Vote.TEAM_MAGMA}:
+    if team.upper() not in {Vote.TEAM_AQUA, Vote.TEAM_MAGMA}:
         return _return_me(-1)
     ip_address = request.META.get("REMOTE_ADDR")
     if ip_address is None:

@@ -236,13 +236,14 @@ function bindTV() {
     $('#tv-off').click(startTV);
 }
 
+var vbs;
+function updateVote() {
+    vbs.each(function () {
+        this.style.width = (this.dataset.vote / 3).toString() +'%';
+    })
+}
+
 function bindVote() {
-    var vbs = $('.vote-bar-content');
-    function updateVote() {
-        vbs.each(function () {
-            this.style.width = (this.dataset.vote / 3).toString() +'%';
-        })
-    }
     var url = $('#home-vote').data('url');
     $('.vote-href').click(function () {
         var s = this;
@@ -272,10 +273,11 @@ function bindVote() {
             }
         );
     });
-    updateVote();
 }
 
 $(document).ready(function (){
     bindHeight();
     bindTV();
+    vbs = $('.vote-bar-content');
+    updateVote();
 });

@@ -181,6 +181,7 @@ function switchSection() {
     });
     icons[q].removeClass("hidden-object");
     sa.empty();
+    sa.unbind('click', switchSentence);
     nowKeys = Object.keys(t[2]);
     nowKeyIndex = 0;
     doAppend();
@@ -212,6 +213,7 @@ function doSpeak(sentence) {
     nowSentence = sentence;
     nowSIndex = 0;
     ts.empty();
+    ts.click(switchSentence);
     icons[q].addClass("hidden-object");
     doSay()
 }

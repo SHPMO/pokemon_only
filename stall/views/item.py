@@ -120,10 +120,11 @@ class ItemView(AuthedApiView):
             return self.return_me(3, '未指定物品')
         form = ItemForm(request.POST)
         if not form.is_valid():
-            return self.return_me(4, "*为必填项")
+            return self.return_me(5, "*为必填项", error=form.errors)
         try:
             for each in form.cleaned_data:
                 setattr(item, each, form.cleaned_data[each])
+            item.is_started_with = request.POST.get('is_started_with') == 'true'
             item.save()
         except:
             return self.return_me()

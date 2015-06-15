@@ -1,9 +1,13 @@
 *.pyc
 /db.sqlite3
 /msite/settings.py
-data/secret_key.txt
-data/secret_email.txt
+/data/secret_key.txt
+/data/secret_email.txt
 /.idea/
 migrations/
 /__pycache__/
 /media/
+/log/
+/static/admin/
+/static/pmo2015/
+/uwsgi_pmo.xml

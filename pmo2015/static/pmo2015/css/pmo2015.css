@@ -1186,6 +1186,11 @@ a.nav-href {
 
 #tv-selection {
     position: absolute;
+    cursor: default;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     color: #ffffff;
     font-size: 18px;
     z-index: 3;

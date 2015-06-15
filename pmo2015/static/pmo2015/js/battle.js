@@ -23,7 +23,7 @@ function bindSubmit() {
                     case 4:
                         msg = '验证码错误'; break;
                     case 5:
-                        msg = '订单号应为15位数字'; break;
+                        msg = '订单号应为15或16位数字'; break;
                     default:
                         msg = '未知错误';
                 }

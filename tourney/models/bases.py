@@ -8,7 +8,7 @@ class BasePlayer(models.Model):
         abstract = True
     player_name = models.CharField(max_length=30)
     email = models.EmailField()
-    taobao_id = models.CharField(max_length=15)
+    taobao_id = models.CharField(max_length=16)
     status = models.SmallIntegerField(default=0)
     signup_time = models.DateTimeField(auto_now=True)
     signup_ip = models.GenericIPAddressField()

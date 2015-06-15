@@ -117,6 +117,7 @@ function startTV() {
     p = 1;
     ts = sa = $('#tv-selection');
     hostesses[1-q].addClass("hidden-object");
+    bindVote();
     tvOn = true;
 }
 
@@ -277,5 +278,4 @@ function bindVote() {
 $(document).ready(function (){
     bindHeight();
     bindTV();
-    bindVote();
 });

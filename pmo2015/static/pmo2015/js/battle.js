@@ -22,6 +22,8 @@ function bindSubmit() {
                         msg = '内容超过限制'; break;
                     case 4:
                         msg = '验证码错误'; break;
+                    case 5:
+                        msg = '订单号应为15位数字'; break;
                     default:
                         msg = '未知错误';
                 }

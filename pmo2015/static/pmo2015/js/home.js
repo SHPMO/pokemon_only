@@ -240,6 +240,7 @@ var vbs;
 function updateVote() {
     vbs.each(function () {
         this.style.width = (this.dataset.vote / 3).toString() +'%';
+        $(this).next('.vote-value').text(this.dataset.vote);
     })
 }
 

@@ -237,15 +237,23 @@ function bindTV() {
 }
 
 var vbs;
+var voted = false;
 function updateVote() {
     vbs.each(function () {
         this.style.width = (this.dataset.vote / 3).toString() +'%';
-        $(this).next('.vote-value').text(this.dataset.vote);
+        if (voted)
+            $(this).next('.vote-value').text(this.dataset.vote);
     })
 }
 
 function bindVote() {
     var url = $('#home-vote').data('url');
+    $.get('.?method=check', function (data) {
+        if (data == 'true') {
+            voted = true;
+            updateVote();
+        }
+    });
     $('.vote-href').click(function () {
         var s = this;
         $.post(
@@ -260,6 +268,7 @@ function bindVote() {
                     case 0:
                         msg = lines[q][2][data.vote];
                         $("#"+s.id.substr(0, 8)+"bar-content")[0].dataset.vote++;
+                        voted = true;
                         updateVote();
                         break;
                     case 1:

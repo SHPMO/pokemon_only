@@ -1,10 +1,16 @@
 # coding=utf-8
 from django.conf import settings
+from django.http import HttpResponse
 from django.shortcuts import render
 from pmo2015.models import Vote
 
 
 def home(request):
+    if 'method' in request.GET:
+        if len(Vote.objects.filter(ip_address=request.META.get("REMOTE_ADDR"))) > 0 or request.session.get('vote'):
+            return HttpResponse('true')
+        else:
+            return HttpResponse('')
     vote_aq = len(Vote.objects.filter(choice=Vote.TEAM_AQUA))
     vote_mg = Vote.objects.count() - vote_aq
     return render(

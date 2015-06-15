@@ -250,6 +250,7 @@ function updateVote() {
 
 function bindVote() {
     var url = $('#home-vote').data('url');
+    $('.vote-text').removeClass('nodisplay-object');
     $.get('.?method=check', function (data) {
         if (data == 'true') {
             voted = true;

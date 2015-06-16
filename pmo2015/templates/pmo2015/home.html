@@ -42,17 +42,19 @@
                 <div id="home-vote" data-url="{% url "pmo2015:api" "vote" %}">
                     <div id="vote-team-aq" class="vote-area vote-part">
                         <div id="vote-aq-href" class="vote-aq vote-href"></div>
-                        <span class="vote-aq vote-text">（点击即可投票）</span>
+                        <span class="vote-aq vote-text nodisplay-object">（点击即可投票）</span>
                         <div id="vote-aq-bar" class="vote-aq vote-bar">
                             <div id="vote-aq-bar-content" class="vote-bar-content" data-vote="{{ vote_aq }}"></div>
+                            <span id="vote-value-aq" class="vote-value"></span>
                         </div>
                     </div>
                     <div id="vote-vs" class="vote-area"></div>
                     <div id="vote-team-mg" class="vote-area vote-part">
                         <div id="vote-mg-href" class="vote-mg vote-href"></div>
-                        <span class="vote-mg vote-text">（点击即可投票）</span>
+                        <span class="vote-mg vote-text nodisplay-object">（点击即可投票）</span>
                         <div id="vote-mg-bar" class="vote-mg vote-bar">
                             <div id="vote-mg-bar-content" class="vote-bar-content" data-vote="{{ vote_mg }}"></div>
+                            <span id="vote-value-mg" class="vote-value"></span>
                         </div>
                     </div>
                     {% csrf_token %}

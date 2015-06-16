@@ -40,19 +40,21 @@ def _battle(request, *args, **kwargs):
     if not form.is_valid():
         if 'captcha' in form.errors:
             return _return_me(4)
+        if 'taobao' in form.errors:
+            return _return_me(5)
         return _return_me(1, errors=form.errors)
 
     player_name = form.cleaned_data['nickname']
     email = form.cleaned_data['email']
     taobao_id = form.cleaned_data['taobao']
     team = form.cleaned_data['team']
-    team = random.choice(Vote.TEAM_CHOICES)[0] if team == 'random' else team
+    team = (random.choice(Vote.TEAM_CHOICES)[0] if team == 'random' else team).upper()
     if team not in {Vote.TEAM_AQUA, Vote.TEAM_MAGMA}:
         return _return_me(-1)
     ip_address = request.META.get("REMOTE_ADDR")
     if ip_address is None:
         return _return_me(-1)
-    elif any(Player.objects.filter(email=email)):
+    elif any(Player.objects.filter(email=email, status=0)) or any(Player.objects.filter(email=email, status=1)):
         return _return_me(2)
     else:
         try:

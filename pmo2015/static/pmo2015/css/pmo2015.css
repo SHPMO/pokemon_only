@@ -976,6 +976,7 @@ a.nav-href {
 }
 .vote-bar {
     position: relative;
+    text-align: center;
     height: 17px;
     width: 381px;
     border: solid 3px #434343;
@@ -990,16 +991,18 @@ a.nav-href {
 #vote-mg-bar {
     top: 3px;
 }
-#vote-aq-bar-content {
-    float: right;
-    background: url('../images/bar-aq.png') no-repeat right;
-    min-width: 2%;
+.vote-bar-content {
+    position: absolute;
     height: 17px;
+    min-width: 2%;
+}
+#vote-aq-bar-content {
+    right: 0;
+    background: url('../images/bar-aq.png') no-repeat right;
 }
 #vote-mg-bar-content {
+    left: 0;
     background: url('../images/bar-mg.png') no-repeat;
-    min-width: 2%;
-    height: 17px;
 }
 
 #home-panels {
@@ -1183,6 +1186,11 @@ a.nav-href {
 
 #tv-selection {
     position: absolute;
+    cursor: default;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     color: #ffffff;
     font-size: 18px;
     z-index: 3;

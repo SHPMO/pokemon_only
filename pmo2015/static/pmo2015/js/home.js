@@ -117,6 +117,7 @@ function startTV() {
     p = 1;
     ts = sa = $('#tv-selection');
     hostesses[1-q].addClass("hidden-object");
+    bindVote();
     tvOn = true;
 }
 
@@ -180,6 +181,7 @@ function switchSection() {
     });
     icons[q].removeClass("hidden-object");
     sa.empty();
+    sa.unbind('click', switchSentence);
     nowKeys = Object.keys(t[2]);
     nowKeyIndex = 0;
     doAppend();
@@ -211,6 +213,7 @@ function doSpeak(sentence) {
     nowSentence = sentence;
     nowSIndex = 0;
     ts.empty();
+    ts.click(switchSentence);
     icons[q].addClass("hidden-object");
     doSay()
 }
@@ -235,14 +238,25 @@ function bindTV() {
     $('#tv-off').click(startTV);
 }
 
+var vbs;
+var voted = false;
+function updateVote() {
+    vbs.each(function () {
+        this.style.width = (this.dataset.vote / 3).toString() +'%';
+        if (voted)
+            $(this).next('.vote-value').text(this.dataset.vote);
+    })
+}
+
 function bindVote() {
-    var vbs = $('.vote-bar-content');
-    function updateVote() {
-        vbs.each(function () {
-            this.style.width = (this.dataset.vote / 3).toString() +'%';
-        })
-    }
     var url = $('#home-vote').data('url');
+    $('.vote-text').removeClass('nodisplay-object');
+    $.get('.?method=check', function (data) {
+        if (data == 'true') {
+            voted = true;
+            updateVote();
+        }
+    });
     $('.vote-href').click(function () {
         var s = this;
         $.post(
@@ -257,6 +271,7 @@ function bindVote() {
                     case 0:
                         msg = lines[q][2][data.vote];
                         $("#"+s.id.substr(0, 8)+"bar-content")[0].dataset.vote++;
+                        voted = true;
                         updateVote();
                         break;
                     case 1:
@@ -271,11 +286,11 @@ function bindVote() {
             }
         );
     });
-    updateVote();
 }
 
 $(document).ready(function (){
     bindHeight();
     bindTV();
-    bindVote();
+    vbs = $('.vote-bar-content');
+    updateVote();
 });

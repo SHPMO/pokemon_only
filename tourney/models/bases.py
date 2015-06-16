@@ -7,8 +7,8 @@ class BasePlayer(models.Model):
         app_label = 'tourney'
         abstract = True
     player_name = models.CharField(max_length=30)
-    email = models.EmailField(unique=True)
-    taobao_id = models.CharField(max_length=20)
+    email = models.EmailField()
+    taobao_id = models.CharField(max_length=16)
     status = models.SmallIntegerField(default=0)
     signup_time = models.DateTimeField(auto_now=True)
     signup_ip = models.GenericIPAddressField()
@@ -20,7 +20,7 @@ class BasePlayer(models.Model):
             x = '通过'
         else:
             x = '拒绝'
-        return "%s %s %s" % (x, self.player_name, self.email)
+        return "%s %s %s %s" % (x, self.player_name, self.taobao_id, self.email)
 
     @classmethod
     def create(cls, **kwargs):

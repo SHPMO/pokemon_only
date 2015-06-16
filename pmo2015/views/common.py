@@ -23,11 +23,6 @@ class BaseInfoView(CommonView):
     name = "baseinfo"
 
 
-class StallView(CommonView):
-    _sub_list = ["diagram", "circle", "items"]
-    name = "stall"
-
-
 class EventView(CommonView):
     _sub_list = ["battle", "stage", "venue", "raffle"]
     name = "event"

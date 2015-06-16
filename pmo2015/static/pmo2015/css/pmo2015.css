@@ -1292,3 +1292,21 @@ to {top: 50px;}
 .news-content p {
     text-indent: 2em;
 }
+
+#display-stalls {
+    display: flex;
+}
+.display-seller {
+    position: relative;
+    float: left;
+    width: 163px;
+    height: 180px;
+    margin: 15px;
+}
+.seller-thumb {
+    height: 163px;
+    background-size: contain;
+}
+.seller-title {
+    text-align: center;
+}

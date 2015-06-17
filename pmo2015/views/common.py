@@ -8,6 +8,7 @@ from django.views.generic import TemplateView
 class CommonView(TemplateView):
     _sub_list = {}
     name = ''
+    pmo = 'pmo2015'
 
     def get(self, request, sub=None, *args, **kwargs):
         if not sub:

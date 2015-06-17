@@ -3,15 +3,32 @@
 {% block subtitle %}参展社团 - 现场摊位{% endblock %}
 {% block stitle %}stall-circle{% endblock %}
 {% block content %}
+    {% static 'pmo2015/images/circle_image.png' as default_circle_image %}
     <h3>【直参摊位】</h3>
-    {% if has_perm %}<h3>有权限</h3>{% else %}<h3>没权限</h3>{% endif %}
-    <div id="display-stalls">
+    <div id="display-stalls" class="clear-group">
     {% for stall in stalls %}
         <div class="display-seller">
-            <a href="{% url 'pmo2015:stall' 'circle' stall.pk as turl %}" style="background-image: url('{{ stall.circle_image.url }}');"
+            <a href=".?type=stall&p={{ stall.pk }}"
+               style="background-image: url('{% if stall.circle_image %}{{ stall.circle_image.url }}{% else %} {{ default_circle_image }}{% endif %}');"
                class="seller-thumb img-href">{{ stall.circle_name }}</a>
             <div class="seller-title">
-                <a href="{{ turl }}">{{ stall.circle_name }}</a>
+                <a href=".?type=stall&p={{ stall.pk }}" class="black">{{ stall.circle_name }}</a>
+            </div>
+        </div>
+    {% empty %}
+    <h4>暂时没有消息</h4>
+    {% endfor %}
+    </div>
+    <div class="split-line"></div>
+    <h3>【寄卖社团】</h3>
+    <div id="display-consigns" class="clear-group">
+    {% for consign in consigns %}
+        <div class="display-seller">
+            <a href=".?type=consign&p={{ consign.pk }}"
+               style="background-image: url('{% if consign.circle_image %}{{ consign.circle_image.url }}{% else %} {{ default_circle_image }}{% endif %}');"
+               class="seller-thumb img-href">{{ consign.circle_name }}</a>
+            <div class="seller-title">
+                <a href=".?type=consign&p={{ consign.pk }}" class="black">{{ consign.circle_name }}</a>
             </div>
         </div>
     {% empty %}

@@ -12,6 +12,17 @@ h3 {
 h4 {
     font-size: 1.25em;
 }
+a:hover {
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
+    background-color: #e4f190;
+}
+a.img-href:hover {
+    background-color: transparent;
+}
 
 #pmo-header {
     z-index: 4;
@@ -98,20 +109,13 @@ a.nav-href {
     border-bottom: #8589a4 dashed 2px;
     background: #ffffff;
 }
-.subnav-list:hover {
-    -webkit-transition: all 0.4s;
-    -moz-transition: all 0.4s;
-    -ms-transition: all 0.4s;
-    -o-transition: all 0.4s;
-    transition: all 0.4s;
-    background: #838ba3;
-}
 .subnav-list:hover .subnav-href {
     -webkit-transition: all 0.4s;
     -moz-transition: all 0.4s;
     -ms-transition: all 0.4s;
     -o-transition: all 0.4s;
     transition: all 0.4s;
+    background: #838ba3;
     color: #ffffff;
 }
 .subnav-list-last {
@@ -216,14 +220,6 @@ a.nav-href {
 .maintext-href {
     color: #ff3636;
 }
-.maintext-href:hover {
-    -webkit-transition: all 0.4s;
-    -moz-transition: all 0.4s;
-    -ms-transition: all 0.4s;
-    -o-transition: all 0.4s;
-    transition: all 0.4s;
-    background-color: #e4f190;
-}
 
 #subtitle {
     z-index: 1;
@@ -277,6 +273,11 @@ a.nav-href {
 }
 .stall-circle::before {
     content: "参展社团";
+    right: 39px;
+    top: 50px;
+}
+.stall-circle-detail::before {
+    content: "社团详情";
     right: 39px;
     top: 50px;
 }
@@ -537,11 +538,6 @@ a.nav-href {
     position: relative;
     top: -3px;
 }
-.clear-group::after {
-    content: "";
-    display: block;
-    clear: both;
-}
 .button-submit {
     float: right;
     margin-left: 20px;
@@ -754,12 +750,11 @@ a.nav-href {
 .input-area {
     position: relative;
 }
-#split-line {
+.split-line {
     width: 100%;
     height: 2px;
     background: #6E5959;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin: 20px 0;
     clear: both;
 }
 #message-nav {
@@ -1275,14 +1270,6 @@ to {top: 50px;}
 .news-title a {
     color: inherit;
 }
-.news-title a:hover {
-    -webkit-transition: all 0.4s;
-    -moz-transition: all 0.4s;
-    -ms-transition: all 0.4s;
-    -o-transition: all 0.4s;
-    transition: all 0.4s;
-    background-color: #e4f190;
-}
 .news-meta {
     font-size: 14px;
 }
@@ -1293,14 +1280,11 @@ to {top: 50px;}
     text-indent: 2em;
 }
 
-#display-stalls {
-    display: flex;
-}
 .display-seller {
     position: relative;
     float: left;
     width: 163px;
-    height: 180px;
+    height: 190px;
     margin: 15px;
 }
 .seller-thumb {
@@ -1308,5 +1292,46 @@ to {top: 50px;}
     background-size: contain;
 }
 .seller-title {
+    font-size: 1.25em;
+    margin-top: 9px;
     text-align: center;
+}
+.seller-title a {
+    color: inherit;
+}
+#seller-metas {
+    position: relative;
+    margin-top: 20px;
+    width: 100%;
+    height: 200px;
+}
+.seller-meta {
+    float: left;
+}
+#seller-meta-left {
+    width: 193px;
+}
+#seller-logo {
+    margin: 15px 15px 0;
+    width: 163px;
+    height: 163px;
+    background: center no-repeat;
+    background-size: contain;
+}
+#seller-id {
+    text-align: center;
+    width: 100%;
+    font-size: 1em;
+}
+#seller-name {
+    margin-top: 15px;
+    width: 387px;
+    height: 32px;
+    font-size: 1.75em;
+}
+#seller-description {
+    margin-top: 5px;
+    width: 387px;
+    height: 147px;
+    overflow: hidden;
 }

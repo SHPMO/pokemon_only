@@ -23,6 +23,7 @@ class Seller(BaseStallModel):
     circle_name = models.CharField(max_length=40, help_text="社团名")
     circle_description = models.TextField(help_text="社团介绍")
     circle_image = models.ImageField(upload_to="circle/%Y/%m/%d", help_text="社团图标")
+    seller_id = models.CharField(max_length=10, default="", help_text='摊位号')
     proposer_name = models.CharField(max_length=20, help_text="申请人姓名")
     proposer_sex = models.CharField(max_length=20, help_text="性别")
     proposer_qq = models.CharField(max_length=11, help_text="QQ")

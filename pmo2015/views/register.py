@@ -18,15 +18,14 @@ class RegisterView(CommonView):
     }
     name = "register"
 
-    @staticmethod
-    def _get_items(seller, page=1):
+    def _get_items(self, seller, page=1):
         if page <= 1:
             page = 1
         else:
-            a = Item.objects.filter(seller=seller, pmo='pmo2015').count()
+            a = Item.objects.filter(seller=seller, pmo=self.pmo).count()
             if page > (a+4) // 5:
                 page = (a+4) // 5
-        items = Item.objects.filter(seller=seller, pmo='pmo2015')[page*5-5:page*5]
+        items = Item.objects.filter(seller=seller, pmo=self.pmo)[page*5-5:page*5]
         ret = []
         for i in range(len(items)):
             ret.append((page*5 - 4 + i, items[i]))
@@ -54,13 +53,13 @@ class RegisterView(CommonView):
         if sub in {'stall', 'consign'}:
             if not request.user.is_authenticated():
                 return redirect("pmo2015:register", sub='signupin')
-            seller = request.user.seller_set.filter(pmo='pmo2015')
+            seller = request.user.seller_set.filter(pmo=self.pmo)
             if len(seller) != 1:
                 return redirect("pmo2015:register", sub='signupin')
             seller = seller[0]
             if 'item_id' in request.GET:
                 item_id = request.GET['item_id']
-                item = Item.objects.filter(pk=item_id, pmo='pmo2015', seller=seller)
+                item = Item.objects.filter(pk=item_id, pmo=self.pmo, seller=seller)
                 if len(item) == 1:
                     return render(
                         request,

@@ -14,7 +14,7 @@
                 {{ news.content|linebreaksbr|truncatechars_html:200 }}
                 <a class="maintext-href" href="{{ news.pk }}">查看全文</a>
             </div>
-            <div id="split-line"></div>
+            <div class="split-line"></div>
         {% endfor %}
         {% if prev %} <a class="maintext-href news-nav news-prev" href=".?page={{ prev }}">上一页</a>{% endif %}
         {% if next %} <a class="maintext-href news-nav news-next" href=".?page={{ next }}">下一页</a>{% endif %}

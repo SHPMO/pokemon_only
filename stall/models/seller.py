@@ -35,6 +35,9 @@ class Seller(BaseStallModel):
     notice = models.TextField(default='', help_text="通知")
 
     def __str__(self):
+        return "%s %s" % (self.pmo, self.get_status_string())
+
+    def get_status_string(self):
         if self.status == 0:
             status = '未激活'
         elif self.status == 1:
@@ -47,7 +50,7 @@ class Seller(BaseStallModel):
             status = '不通过'
         else:
             status = '未知状态'
-        return "%s %s %s %s" % (status, self.pmo, self.circle_name, self.email)
+        return "%s %s %s" % (status, '摊位' if self.is_stall else '寄卖', self.circle_name)
 
     @classmethod
     def create_seller(cls, email, circle_name, password=None, **kwargs):

@@ -3,5 +3,19 @@
 {% block subtitle %}参展社团 - 现场摊位{% endblock %}
 {% block stitle %}stall-circle{% endblock %}
 {% block content %}
-    <h4>【暂时没有消息】</h4>
+    <h3>【直参摊位】</h3>
+    {% if has_perm %}<h3>有权限</h3>{% else %}<h3>没权限</h3>{% endif %}
+    <div id="display-stalls">
+    {% for stall in stalls %}
+        <div class="display-seller">
+            <a href="{% url 'pmo2015:stall' 'circle' stall.pk as turl %}" style="background-image: url('{{ stall.circle_image.url }}');"
+               class="seller-thumb img-href">{{ stall.circle_name }}</a>
+            <div class="seller-title">
+                <a href="{{ turl }}">{{ stall.circle_name }}</a>
+            </div>
+        </div>
+    {% empty %}
+    <h4>暂时没有消息</h4>
+    {% endfor %}
+    </div>
 {% endblock %}

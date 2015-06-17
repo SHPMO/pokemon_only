@@ -1335,3 +1335,32 @@ to {top: 50px;}
     height: 147px;
     overflow: hidden;
 }
+.seller-item {
+    position: relative;
+    margin: 0;
+    width: 100%;
+    height: 193px;
+}
+.seller-item-cover {
+    margin: 15px;
+    width: 163px;
+    height: 163px;
+    background-size: contain;
+}
+.seller-item-metas {
+    margin: 20px 10px;
+    width: 367px;
+    height: 153px;
+}
+.seller-item-meta {
+    display: block;
+    width: 100%;
+    height: 22px;
+    overflow: hidden;
+}
+.seller-item-intro {
+    display: block;
+    width: 100%;
+    height: 87px;
+    overflow: hidden;
+}

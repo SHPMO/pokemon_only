@@ -3,11 +3,11 @@
 {% block subtitle %}{{ seller.circle_name }} - 参展社团 - 现场摊位{% endblock %}
 {% block stitle %}stall-circle-detail{% endblock %}
 {% block content %}
-    {% static 'pmo2015/images/circle_image.png' as default_circle_image %}
+    {% static 'pmo2015/images/circle_image.png' as default_image %}
     <div id="seller-metas">
         <div id="seller-meta-left" class="seller-meta">
             <div id="seller-logo"
-                 style="background-image: url('{% if seller.circle_image %}{{ seller.circle_image.url }}{% else %} {{ default_circle_image }}{% endif %}');"></div>
+                 style="background-image: url('{% if seller.circle_image %}{{ seller.circle_image.url }}{% else %} {{ default_image }}{% endif %}');"></div>
             <div id="seller-id">（摊位号：{{ seller.seller_id|default:'【暂无】' }}）</div>
         </div>
         <div id="seller-meta-right" class="seller-meta">
@@ -16,7 +16,19 @@
         </div>
     </div>
     <div class="split-line"></div>
-    {% for item in seller.item_set.objects %}
+    {% for item in seller.item_set.all %}
+    {% url 'pmo2015:stall' 'item' item.pk as turl%}
+    <div class="seller-item">
+        <a href="{{ turl }}" target="_blank"
+             style="background-image: url('{% if item.cover_image %}{{ item.cover_image.url }}{% else %} {{ default_image }}{% endif %}');"
+             class="seller-item-cover seller-meta img-href">{{ item.name }}</a>
+        <div class="seller-item-metas seller-meta">
+            <div class="seller-item-meta"><a href="{{ turl }}" target="_blank" class="maintext-href">{{ item.name }}</a></div>
+            <span class="seller-item-meta">价格：{{ item.price|floatformat:2 }} 元</span>
+            <span class="seller-item-meta">出品社团：{{ item.circle }}</span>
+            <span class="seller-item-intro">简介：{{ item.introduction|linebreaksbr }}</span>
+        </div>
+    </div>
     {% empty %}
     <h3>【暂无商品信息】</h3>
     {% endfor %}

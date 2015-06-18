@@ -85,9 +85,3 @@ class Seller(BaseStallModel):
             self.status = 4
         self.item_set.update(validated=passed)
         self.save()
-
-    @classmethod
-    def gen_stall_id(cls, pmo):
-        if pmo not in settings.PMO_LIST.keys():
-            raise settings.PmoError
-        tkey = '%s_id' % pmo

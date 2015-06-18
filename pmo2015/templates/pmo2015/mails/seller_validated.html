@@ -1,14 +1,13 @@
 {% extends 'mail_base.html' %}
 {% block content %}
-{% if player.status == 1 %}
-    <p>恭喜您，您的对战报名申请审核已通过。</p>
-    <p>您的参赛编号为 <strong>{{ signup_id }}</strong> ，请于PMO当天于现场查询对战分区。</p>
-    <p>请凭您的淘宝订单号 {{ player.taobao_id }} 作为凭据报名参赛。</p>
-    <p>祝您好运！</p>
+{% if seller.status == 3 %}
+    <p>恭喜您，您的{% if seller.is_stall %}摊位{% else %}寄卖{% endif %}申请审核已通过。</p>
+    <p>您的摊位号将通过邮件提醒，请注意查收。</p>
 {% else %}
-    <p>很遗憾，您的对战报名申请审核未通过。</p>
+    <p>很遗憾，您的{% if seller.is_stall %}摊位{% else %}寄卖{% endif %}申请审核未通过。</p>
 {% endif %}
 {% if message %}
     {{ message|linebreaks }}
 {% endif %}
+    <p>感谢支持！</p>
 {% endblock %}

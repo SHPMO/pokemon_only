@@ -48,9 +48,22 @@ class StallView(CommonView):
             items = Item.objects.filter(pmo=self.pmo)
         else:
             items = Item.objects.filter(pmo=self.pmo, validated=True)
-        total = (items.count() + 4) // 5
-        items = items[page * 5 - 5:page * 5]
-
+        total = (items.count() + 9) // 10
+        items = items[page * 10 - 10:page * 10]
+        if len(items) == 0:
+            itemlist = None
+        else:
+            itemlist = [(items[0].seller, [items[0]])]
+            for i in range(1, len(items)):
+                if items[i].seller == items[i-1].seller:
+                    itemlist[-1][1].append(items[i])
+                else:
+                    itemlist.append((items[i].seller, [items[i]]))
+        kwargs.update({
+            'itemlist': itemlist,
+            'prev': page - 1 if page > 1 else None,
+            'next': page + 1 if page < total else None
+        })
 
     def _item_detail_get(self, item_id, kwargs):
         pass

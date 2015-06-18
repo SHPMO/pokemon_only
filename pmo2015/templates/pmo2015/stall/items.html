@@ -3,16 +3,43 @@
 {% block subtitle %}参展贩售物 - 现场摊位{% endblock %}
 {% block stitle %}stall-item{% endblock %}
 {% block content %}
-    {% for seller in itemlist %}
-    <div class="item-seller">
-        <div id="seller-logo"
-         style="background-image: url('{% if seller.circle_image %}{{ seller.circle_image.url }}{% else %} {{ default_image }}{% endif %}');"></div>
-        <div id="seller-id">（摊位号：{{ seller.seller_id|default:'【暂无】' }}）</div>
+    {% static 'pmo2015/images/circle_image.png' as default_image %}
+    {% if itemlist %}
+    {% for seller, items in itemlist %}
+    <div class="item-list clear-group">
+        {% url 'pmo2015:stall' 'circle' as turl %}
+        <div class="item-seller clear-group">
+            <a href="{{ turl }}?type={% if seller.is_stall %}stall{% else %}consing{% endif %}&p={{ seller.pk }}" target="_blank"
+               style="background-image: url('{% if seller.circle_image %}{{ seller.circle_image.url }}{% else %} {{ default_image }}{% endif %}');"
+               class="seller-thumb img-href">{{ seller.circle_name }}</a>
+            <div class="seller-title">
+                <a href="{{ turl }}?type={% if seller.is_stall %}stall{% else %}consing{% endif %}&p={{ seller.pk }}"
+                   target="_blank" class="black">{{ seller.circle_name }}</a>
+            </div>
+            <div id="seller-id">（摊位号：{{ seller.seller_id|default:'【暂无】' }}）</div>
+        </div>
+        <div class="item-items">
+            {% for item in items %}
+                {% url 'pmo2015:stall' 'item' item.pk as turl %}
+                <div class="item-item">
+                    <a href="{{ turl }}" target="_blank"
+                       style="background-image: url('{% if item.cover_image %}{{ item.cover_image.url }}{% else %} {{ default_image }}{% endif %}');"
+                       class="item-cover img-href">{{ item.name }}</a>
+                    <div class="item-metas seller-meta">
+                        <div class="item-meta"><a href="{{ turl }}" target="_blank" class="maintext-href">{{ item.name }}</a></div>
+                        <span class="item-meta">价格：{{ item.price|floatformat:2 }} 元</span>
+                        <span class="item-meta">出品社团：{{ item.circle }}</span>
+                        <span class="item-intro">简介：{{ item.introduction|linebreaksbr }}</span>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
-    <div class="item-item">
-    {% for item in itemlist.seller %}
-        <div>{{ item.name }}</div>
+    <div class="split-line"></div>
     {% endfor %}
-    </div>
-    {% endfor %}
+    {% if prev %} <a class="maintext-href news-nav news-prev" href=".?page={{ prev }}">上一页</a>{% endif %}
+    {% if next %} <a class="maintext-href news-nav news-next" href=".?page={{ next }}">下一页</a>{% endif %}
+    {% else %}
+    <h3>【暂时没有消息】</h3>
+    {% endif %}
 {% endblock %}

@@ -20,7 +20,7 @@ a:hover {
     transition: all 0.4s;
     background-color: #e4f190;
 }
-a.img-href:hover {
+a.img-href:hover, a.panel-href:hover {
     background-color: transparent;
 }
 
@@ -1356,23 +1356,47 @@ to {top: 50px;}
     width: 367px;
     height: 153px;
 }
-.seller-item-meta {
+.seller-item-meta, .item-meta {
     display: block;
     width: 100%;
     height: 22px;
     overflow: hidden;
 }
-.seller-item-intro {
+.seller-item-intro, .item-intro {
     display: block;
     width: 100%;
     height: 87px;
     overflow: hidden;
 }
-.item-seller {
-    float: left;
-    width: 193px;
+.item-list {
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
 }
-.item-item {
+.item-seller {
+    margin: 15px 0;
+    float: left;
+    width: 163px;
+}
+.item-items {
+    margin: 15px;
     float: left;
     width: 387px;
+}
+.item-item {
+    position: relative;
+    margin: 0;
+    width: 100%;
+    height: 203px;
+}
+.item-cover {
+    float: left;
+    width: 163px;
+    height: 163px;
+    background-size: contain;
+}
+.item-metas {
+    margin: 10px -10px 20px 10px;
+    width: 224px;
+    height: 163px;
 }

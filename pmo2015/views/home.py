@@ -7,11 +7,11 @@ from pmo2015.models import Vote
 
 def home(request):
     if 'method' in request.GET:
-        if len(Vote.objects.filter(ip_address=request.META.get("REMOTE_ADDR"))) > 0 or request.session.get('vote'):
+        if Vote.objects.filter(ip_address=request.META.get("REMOTE_ADDR")).count() > 0 or request.session.get('vote'):
             return HttpResponse('true')
         else:
             return HttpResponse('')
-    vote_aq = len(Vote.objects.filter(choice=Vote.TEAM_AQUA))
+    vote_aq = Vote.objects.filter(choice=Vote.TEAM_AQUA).count()
     vote_mg = Vote.objects.count() - vote_aq
     return render(
         request,

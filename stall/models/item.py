@@ -7,6 +7,7 @@ from stall.models.seller import Seller
 class Item(BaseStallModel):
     class Meta:
         app_label = 'stall'
+        ordering = ["seller"]
 
     validated = models.BooleanField(default=False)
     seller = models.ForeignKey(Seller)

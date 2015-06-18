@@ -16,20 +16,24 @@
         </div>
     </div>
     <div class="split-line"></div>
-    {% for item in seller.item_set.all %}
-    {% url 'pmo2015:stall' 'item' item.pk as turl%}
-    <div class="seller-item">
-        <a href="{{ turl }}" target="_blank"
-             style="background-image: url('{% if item.cover_image %}{{ item.cover_image.url }}{% else %} {{ default_image }}{% endif %}');"
-             class="seller-item-cover seller-meta img-href">{{ item.name }}</a>
-        <div class="seller-item-metas seller-meta">
-            <div class="seller-item-meta"><a href="{{ turl }}" target="_blank" class="maintext-href">{{ item.name }}</a></div>
-            <span class="seller-item-meta">价格：{{ item.price|floatformat:2 }} 元</span>
-            <span class="seller-item-meta">出品社团：{{ item.circle }}</span>
-            <span class="seller-item-intro">简介：{{ item.introduction|linebreaksbr }}</span>
+    {% if items %}
+        {% for item in items %}
+        {% url 'pmo2015:stall' 'item' item.pk as turl%}
+        <div class="seller-item">
+            <a href="{{ turl }}" target="_blank"
+                 style="background-image: url('{% if item.cover_image %}{{ item.cover_image.url }}{% else %} {{ default_image }}{% endif %}');"
+                 class="seller-item-cover seller-meta img-href">{{ item.name }}</a>
+            <div class="seller-item-metas seller-meta">
+                <div class="seller-item-meta"><a href="{{ turl }}" target="_blank" class="maintext-href">{{ item.name }}</a></div>
+                <span class="seller-item-meta">价格：{{ item.price|floatformat:2 }} 元</span>
+                <span class="seller-item-meta">出品社团：{{ item.circle }}</span>
+                <span class="seller-item-intro">简介：{{ item.introduction|linebreaksbr }}</span>
+            </div>
         </div>
-    </div>
-    {% empty %}
+        {% endfor %}
+    {% if prev %} <a class="maintext-href news-nav news-prev" href=".?type={{ tp }}&p={{ seller.pk }}&page={{ prev }}">上一页</a>{% endif %}
+    {% if next %} <a class="maintext-href news-nav news-next" href=".?type={{ tp }}&p={{ seller.pk }}&page={{ next }}">下一页</a>{% endif %}
+    {% else %}
     <h3>【暂无商品信息】</h3>
-    {% endfor %}
+    {% endif %}
 {% endblock %}

@@ -1,7 +1,18 @@
 {% extends "pmo2015/base.html" %}
 {% load staticfiles %}
 {% block subtitle %}参展贩售物 - 现场摊位{% endblock %}
-{% block stitle %}stall-items{% endblock %}
+{% block stitle %}stall-item{% endblock %}
 {% block content %}
-    <h4>【暂时没有消息】</h4>
+    {% for seller in itemlist %}
+    <div class="item-seller">
+        <div id="seller-logo"
+         style="background-image: url('{% if seller.circle_image %}{{ seller.circle_image.url }}{% else %} {{ default_image }}{% endif %}');"></div>
+        <div id="seller-id">（摊位号：{{ seller.seller_id|default:'【暂无】' }}）</div>
+    </div>
+    <div class="item-item">
+    {% for item in itemlist.seller %}
+        <div>{{ item.name }}</div>
+    {% endfor %}
+    </div>
+    {% endfor %}
 {% endblock %}

@@ -28,9 +28,10 @@ class AuthedApiView(ApiView):
             raise Http404
         pmo = request.POST.get('pmo')
         seller = request.user.seller_set.filter(pmo=pmo)
-        if len(seller) == 0:
+        cs = seller.count()
+        if cs == 0:
             return self.return_me(-2, '不存在该用户')
-        elif len(seller) > 1:
+        elif cs > 1:
             return self.return_me()
         self.pmo = pmo
         self.seller = seller[0]

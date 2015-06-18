@@ -31,4 +31,5 @@ class BasePlayer(models.Model):
             self.status = 1
         else:
             self.status = 2
+        self.save()
 

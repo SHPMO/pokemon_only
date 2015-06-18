@@ -281,7 +281,7 @@ a.nav-href {
     right: 39px;
     top: 50px;
 }
-.stall-items::before {
+.stall-item::before {
     content: "参展贩售物";
     right: 39px;
     top: 44px;
@@ -1307,9 +1307,13 @@ to {top: 50px;}
 }
 .seller-meta {
     float: left;
+    height: 100%;
 }
 #seller-meta-left {
     width: 193px;
+}
+#seller-meta-right {
+    width: 387px;
 }
 #seller-logo {
     margin: 15px 15px 0;
@@ -1363,4 +1367,12 @@ to {top: 50px;}
     width: 100%;
     height: 87px;
     overflow: hidden;
+}
+.item-seller {
+    float: left;
+    width: 193px;
+}
+.item-item {
+    float: left;
+    width: 387px;
 }

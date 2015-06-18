@@ -1,0 +1,19 @@
+{% extends 'pmo2015/admin/base.html' %}
+{% block content %}
+<div>审核摊位</div>
+{% if current %}
+<form action="." method="post">
+    <label for="seller-message">附加信息：</label>
+    <textarea id="seller-message" name="message" style="height:100px;width:200px;"></textarea>
+    <input type="hidden" name="seller_id" value="{{ current.pk }}">
+    <button name="submit" value="accept">审核通过</button>
+    <button name="submit" value="reject">审核不通过</button>
+    {% csrf_token %}
+</form>
+{% endif %}
+<ul>
+{% for seller in sellers %}
+    <li><a href=".?seller_id={{ seller.pk }}">{{ seller }}</a></li>
+{% endfor %}
+</ul>
+{% endblock %}

@@ -87,7 +87,7 @@ def _vote(request, *args, **kwargs):
     ip_address = request.META.get("REMOTE_ADDR")
     if not all((choice, ip_address)) or choice not in {Vote.TEAM_AQUA, Vote.TEAM_MAGMA}:
         return _return_me(-1)
-    if len(Vote.objects.filter(ip_address=ip_address)) > 0 or request.session.get('vote'):
+    if Vote.objects.filter(ip_address=ip_address).count() > 0 or request.session.get('vote'):
         return _return_me(1)
     vote = Vote.objects.create(
         choice=choice,

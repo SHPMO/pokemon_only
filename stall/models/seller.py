@@ -1,4 +1,5 @@
 # coding=utf-8
+from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import User
 from stall.models.bases import BaseStallModel
@@ -82,3 +83,11 @@ class Seller(BaseStallModel):
             self.status = 3
         else:
             self.status = 4
+        self.item_set.update(validated=passed)
+        self.save()
+
+    @classmethod
+    def gen_stall_id(cls, pmo):
+        if pmo not in settings.PMO_LIST.keys():
+            raise settings.PmoError
+        tkey = '%s_id' % pmo

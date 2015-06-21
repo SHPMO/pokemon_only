@@ -10,7 +10,7 @@ class StallView(CommonView):
 
     def _circle_get(self, kwargs):
         if self.has_perm:
-            sellers = Seller.objects.filter(pmo=self.pmo)
+            sellers = Seller.objects.filter(pmo=self.pmo).exclude(status=4)
         else:
             sellers = Seller.objects.filter(pmo=self.pmo, status=3)
         stalls = sellers.filter(is_stall=True)
@@ -38,7 +38,7 @@ class StallView(CommonView):
 
     def _item_get(self, page, kwargs):
         if self.has_perm:
-            items = Item.objects.filter(pmo=self.pmo)
+            items = Item.objects.filter(pmo=self.pmo).exclude(seller__status=4)
         else:
             items = Item.objects.filter(pmo=self.pmo, validated=True)
         total = (items.count() + 9) // 10

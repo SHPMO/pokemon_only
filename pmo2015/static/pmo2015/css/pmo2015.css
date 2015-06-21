@@ -1324,6 +1324,7 @@ to {top: 50px;}
     width: 387px;
 }
 #seller-logo, #item-logo {
+    display: block;
     margin: 15px 15px 0;
     border: #838ba3 solid 1px;
     width: 161px;

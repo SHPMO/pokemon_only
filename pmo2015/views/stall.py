@@ -71,8 +71,6 @@ class StallView(CommonView):
         })
 
     def get(self, request, sub=None, subsub=None, *args, **kwargs):
-        print(sub)
-        print(subsub)
         if sub in {'circles', 'items'}:
             raise Http404
         if request.user.is_authenticated() and any(request.user.groups.filter(name='Pmo2015AdminGroup')):

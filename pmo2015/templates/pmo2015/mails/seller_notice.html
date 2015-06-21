@@ -1,0 +1,10 @@
+{% extends 'mail_base.html' %}
+{% block content %}
+    {% if seller.is_stall %}
+        {% url 'pmo2015:register' 'stall' as turl %}
+    {% else %}
+        {% url 'pmo2015:register' 'consign' as turl %}
+    {% endif %}
+    <p>您收到了新的{% if seller.is_stall %}摊位{% else %}寄卖{% endif %}通知，请前往<a href="{{ base_url }}{{ turl }}#notice">这里</a>查看。</p>
+    <div>{{ seller.notice|linebreaks }}</div>
+{% endblock %}

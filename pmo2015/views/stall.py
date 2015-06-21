@@ -4,7 +4,7 @@ from stall.models import Seller, Item
 
 
 class StallView(CommonView):
-    _sub_list = ["diagram", "circle", "items", "item", "detail"]
+    _sub_list = ["diagram", "circle", "items", "item", "circles"]
     name = "stall"
     has_perm = False
 
@@ -20,14 +20,8 @@ class StallView(CommonView):
             'consigns': consigns
         })
 
-    def _circle_detail_get(self, tp, circle_id, page, kwargs):
-        if tp == 'stall':
-            is_stall = True
-        elif tp == 'consign':
-            is_stall = False
-        else:
-            raise Http404
-        seller = Seller.objects.filter(pmo=self.pmo, is_stall=is_stall, pk=circle_id)
+    def _circle_detail_get(self, circle_id, page, kwargs):
+        seller = Seller.objects.filter(pmo=self.pmo, pk=circle_id)
         if seller.count() != 1:
             raise Http404
         seller = seller[0]
@@ -36,7 +30,6 @@ class StallView(CommonView):
         total = (seller.item_set.count() + 4) // 5
         items = seller.item_set.all()[page * 5 - 5:page * 5]
         kwargs.update({
-            'tp': tp,
             'seller': seller,
             'items': items,
             'prev': page - 1 if page > 1 else None,
@@ -50,7 +43,7 @@ class StallView(CommonView):
             items = Item.objects.filter(pmo=self.pmo, validated=True)
         total = (items.count() + 9) // 10
         items = items[page * 10 - 10:page * 10]
-        if len(items) == 0:
+        if items.count() == 0:
             itemlist = None
         else:
             itemlist = [(items[0].seller, [items[0]])]
@@ -66,22 +59,31 @@ class StallView(CommonView):
         })
 
     def _item_detail_get(self, item_id, kwargs):
-        pass
+        item = Item.objects.filter(pmo=self.pmo, pk=item_id)
+        if item.count() != 1:
+            item = None
+        else:
+            item = item[0]
+            if not (self.has_perm or item.validated):
+                item = None
+        kwargs.update({
+            'item': item
+        })
 
     def get(self, request, sub=None, subsub=None, *args, **kwargs):
-        if sub in {'detail', 'items'}:
+        print(sub)
+        print(subsub)
+        if sub in {'circles', 'items'}:
             raise Http404
         if request.user.is_authenticated() and any(request.user.groups.filter(name='Pmo2015AdminGroup')):
             self.has_perm = True
         if sub == 'circle':
-            tp = request.GET.get('type')
-            circle_id = request.GET.get('p')
-            page = int(request.GET.get('page', 1))
-            if all((tp, circle_id)):
-                sub = 'detail'
-                self._circle_detail_get(tp, circle_id, page, kwargs)
-            else:
+            if subsub is None:
+                sub = 'circles'
                 self._circle_get(kwargs)
+            else:
+                page = int(request.GET.get('page', 1))
+                self._circle_detail_get(subsub, page, kwargs)
         elif sub == 'item':
             if subsub is None:
                 sub = 'items'

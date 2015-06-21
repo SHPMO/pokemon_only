@@ -228,7 +228,7 @@ class AdminView(CommonView):
         else:
             raise Http404
         send_mail(
-            '%s对战报名结果' % settings.EMAIL_SUBJECT_PREFIX, "",
+            '%s%s申请结果' % (settings.EMAIL_SUBJECT_PREFIX, "摊位" if current.is_stall else "寄卖"), "",
             settings.EMAIL_HOST_USER, [current.email], fail_silently=False,
             html_message=loader.get_template('pmo2015/mails/seller_validated.html').render({
                 'seller': current, 'base_url': settings.BASE_URL,

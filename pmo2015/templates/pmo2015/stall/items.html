@@ -25,11 +25,11 @@
                     <a href="{{ turl }}" target="_blank"
                        style="background-image: url('{% if item.cover_image %}{{ item.cover_image.url }}{% else %} {{ default_image }}{% endif %}');"
                        class="item-cover img-href">{{ item.name }}</a>
-                    <div class="item-metas seller-meta">
-                        <div class="item-meta"><a href="{{ turl }}" target="_blank" class="maintext-href">{{ item.name }}</a></div>
-                        <span class="item-meta">价格：{{ item.price|floatformat:2 }} 元</span>
-                        <span class="item-meta">出品社团：{{ item.circle }}</span>
-                        <span class="item-intro">简介：{{ item.introduction|linebreaksbr }}</span>
+                    <div class="item-item-metas seller-meta">
+                        <div class="seller-item-meta"><a href="{{ turl }}" target="_blank" class="maintext-href">{{ item.name }}</a></div>
+                        <span class="seller-item-meta">价格：{{ item.price|floatformat:2 }} 元</span>
+                        <span class="seller-item-meta">出品社团：{{ item.circle }}</span>
+                        <span class="seller-item-intro">简介：{{ item.introduction|linebreaksbr }}</span>
                     </div>
                 </div>
             {% endfor %}

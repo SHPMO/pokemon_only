@@ -7,6 +7,7 @@ class StallView(CommonView):
     _sub_list = ["diagram", "circle", "items", "item", "circles"]
     name = "stall"
     has_perm = False
+    user_seller = None
 
     def _circle_get(self, kwargs):
         if self.has_perm:
@@ -25,7 +26,7 @@ class StallView(CommonView):
         if seller.count() != 1:
             raise Http404
         seller = seller[0]
-        if not self.has_perm and seller.status != 3:
+        if (not self.has_perm and seller.status != 3) and not (self.user_seller == seller):
             raise Http404
         total = (seller.item_set.count() + 4) // 5
         items = seller.item_set.all()[page * 5 - 5:page * 5]
@@ -64,17 +65,23 @@ class StallView(CommonView):
             item = None
         else:
             item = item[0]
-            if not (self.has_perm or item.validated):
+            if (not (self.has_perm or item.validated)) and not (self.user_seller == item.seller):
                 item = None
         kwargs.update({
             'item': item
         })
 
+    def check_perm(self, request):
+        if request.user.is_authenticated() and any(request.user.groups.filter(name='Pmo2015AdminGroup')):
+            self.has_perm = True
+        user_seller = request.user.seller_set.filter(pmo=self.pmo)
+        if user_seller.count() == 1:
+            self.user_seller = user_seller[0]
+
     def get(self, request, sub=None, subsub=None, *args, **kwargs):
         if sub in {'circles', 'items'}:
             raise Http404
-        if request.user.is_authenticated() and any(request.user.groups.filter(name='Pmo2015AdminGroup')):
-            self.has_perm = True
+        self.check_perm(request)
         if sub == 'circle':
             if subsub is None:
                 sub = 'circles'

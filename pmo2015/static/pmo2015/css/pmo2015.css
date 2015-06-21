@@ -592,6 +592,13 @@ a.nav-href {
     background: #838ba3;
     border-color: #838ba3;
 }
+.anchor-button {
+    cursor: default;
+    display: block;
+    padding: 5px 0;
+    width: 85px;
+    text-align: center;
+}
 
 .items-table {
     width: 531px;

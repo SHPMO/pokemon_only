@@ -62,6 +62,7 @@
     {% endif %}
     <div class="controls-group oneline-group">
         <button id="seller-submit" class="button-submit form-control form-button" name="submit">保存</button>
+        <a target="_blank" href="{% url "pmo2015:stall" "circle" seller.pk %}" id="seller-preview" class="anchor-button button-submit form-control form-button">预览</a>
     </div>
     {% csrf_token %}
     <input type="hidden" name="pmo" value="pmo2015">

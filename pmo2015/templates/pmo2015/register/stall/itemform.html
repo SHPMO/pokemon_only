@@ -98,4 +98,5 @@
 {% csrf_token %}
 <div class="controls-group oneline-group">
     <button id="items-submit" class="button-submit form-control form-button">保存</button>
+    <a target="_blank" href="{% url "pmo2015:stall" "item" item.pk %}" id="items-preview" class="button-submit form-control form-button">预览</a>
 </div>

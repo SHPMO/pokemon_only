@@ -72,11 +72,12 @@ class StallView(CommonView):
         })
 
     def check_perm(self, request):
-        if request.user.is_authenticated() and any(request.user.groups.filter(name='Pmo2015AdminGroup')):
-            self.has_perm = True
-        user_seller = request.user.seller_set.filter(pmo=self.pmo)
-        if user_seller.count() == 1:
-            self.user_seller = user_seller[0]
+        if request.user.is_authenticated():
+            if any(request.user.groups.filter(name='Pmo2015AdminGroup')):
+                self.has_perm = True
+            user_seller = request.user.seller_set.filter(pmo=self.pmo)
+            if user_seller.count() == 1:
+                self.user_seller = user_seller[0]
 
     def get(self, request, sub=None, subsub=None, *args, **kwargs):
         if sub in {'circles', 'items'}:

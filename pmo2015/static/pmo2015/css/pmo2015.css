@@ -1294,7 +1294,9 @@ to {top: 50px;}
     margin: 15px;
 }
 .seller-thumb {
-    height: 163px;
+    border: #838ba3 solid 1px;
+    height: 162px;
+    width: 162px;
     background-size: contain;
 }
 .seller-title {
@@ -1323,8 +1325,9 @@ to {top: 50px;}
 }
 #seller-logo, #item-logo {
     margin: 15px 15px 0;
-    width: 163px;
-    height: 163px;
+    border: #838ba3 solid 1px;
+    width: 162px;
+    height: 162px;
     background: center no-repeat;
     background-size: contain;
 }
@@ -1353,8 +1356,9 @@ to {top: 50px;}
 }
 .seller-item-cover {
     margin: 15px;
-    width: 163px;
-    height: 163px;
+    border: #838ba3 solid 1px;
+    width: 162px;
+    height: 162px;
     background-size: contain;
 }
 .seller-item-metas {
@@ -1399,8 +1403,9 @@ to {top: 50px;}
 }
 .item-cover {
     float: left;
-    width: 163px;
-    height: 163px;
+    border: #838ba3 solid 1px;
+    width: 162px;
+    height: 162px;
     background-size: contain;
 }
 .item-item-metas {

@@ -2,7 +2,7 @@
 {% block content %}
 <div>审核摊位</div>
 {% if current %}
-<div><a href="{% url "pmo2015:stall" "circle" current.pk %}" target="_blank">预览</a></div>
+<div><a href="{% url "pmo2015:stall" "circle" current.pk %}" target="_blank">{{ current.circle_name }}</a></div>
 <form action="." method="post">
     <label for="seller-message">附加信息：</label>
     <textarea id="seller-message" name="message" style="height:100px;width:200px;"></textarea>

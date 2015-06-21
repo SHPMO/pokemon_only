@@ -10,8 +10,8 @@
     {% static 'pmo2015/images/circle_image.png' as default_image %}
     <div id="item-metas">
         <div id="item-meta-left" class="item-meta">
-            <div id="item-logo"
-                 style="background-image: url('{% if item.cover_image %}{{ item.cover_image.url }}{% else %} {{ default_image }}{% endif %}');"></div>
+            <a id="item-logo" rel="shadowbox" href="{% if item.cover_image %}{{ item.cover_image.url }}{% else %} {{ default_image }}{% endif %}"
+                 style="background-image: url('{% if item.cover_image %}{{ item.cover_image.url }}{% else %} {{ default_image }}{% endif %}');"></a>
         </div>
         <div id="item-meta-right" class="item-meta">
             <div id="item-name">{{ item.name }}</div>

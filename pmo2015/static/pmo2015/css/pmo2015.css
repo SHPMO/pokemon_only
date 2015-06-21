@@ -193,7 +193,7 @@ a.nav-href {
     position: absolute;
     width: 660px;
     left: 50%;
-    top: 162px;
+    top: 161px;
     margin-left: -336px;
     border: 5px solid #4a4949;
     border-radius: 4px;
@@ -1295,8 +1295,8 @@ to {top: 50px;}
 }
 .seller-thumb {
     border: #838ba3 solid 1px;
-    height: 162px;
-    width: 162px;
+    height: 161px;
+    width: 161px;
     background-size: contain;
 }
 .seller-title {
@@ -1326,8 +1326,8 @@ to {top: 50px;}
 #seller-logo, #item-logo {
     margin: 15px 15px 0;
     border: #838ba3 solid 1px;
-    width: 162px;
-    height: 162px;
+    width: 161px;
+    height: 161px;
     background: center no-repeat;
     background-size: contain;
 }
@@ -1357,8 +1357,8 @@ to {top: 50px;}
 .seller-item-cover {
     margin: 15px;
     border: #838ba3 solid 1px;
-    width: 162px;
-    height: 162px;
+    width: 161px;
+    height: 161px;
     background-size: contain;
 }
 .seller-item-metas {
@@ -1404,8 +1404,8 @@ to {top: 50px;}
 .item-cover {
     float: left;
     border: #838ba3 solid 1px;
-    width: 162px;
-    height: 162px;
+    width: 161px;
+    height: 161px;
     background-size: contain;
 }
 .item-item-metas {

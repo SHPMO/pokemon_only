@@ -41,7 +41,7 @@ var pst = {
     "stall": [0, 1, {
         "现场摊位": "diagram",
         "参展社团": "circle",
-        "参展贩售物": "goods"
+        "参展贩售物": "item"
     }],
     "event": [1, 0, {
         "联机对战": "battle",

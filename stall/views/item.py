@@ -29,7 +29,7 @@ class ItemView(AuthedApiView):
             seller=self.seller,
             pmo=self.pmo
         )
-        if len(item) == 1:
+        if item.count() == 1:
             return item[0]
         return None
 
@@ -90,7 +90,7 @@ class ItemView(AuthedApiView):
                 item=item,
                 pmo=self.pmo
             )
-            if len(item_picture) != 1:
+            if item_picture.count() != 1:
                 return self.return_me(5, '不存在的id')
             item_picture.delete()
         except:

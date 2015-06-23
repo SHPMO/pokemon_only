@@ -8,6 +8,7 @@ from django.views.generic import TemplateView
 class CommonView(TemplateView):
     _sub_list = {}
     name = ''
+    pmo = 'pmo2015'
 
     def get(self, request, sub=None, *args, **kwargs):
         if not sub:
@@ -21,11 +22,6 @@ class CommonView(TemplateView):
 class BaseInfoView(CommonView):
     _sub_list = ["schedule", "place", "ticket", "prize"]
     name = "baseinfo"
-
-
-class StallView(CommonView):
-    _sub_list = ["diagram", "circle", "items"]
-    name = "stall"
 
 
 class EventView(CommonView):

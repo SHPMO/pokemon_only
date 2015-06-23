@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^baseinfo/(?P<sub>.+)/$', BaseInfoView.as_view(), name='baseinfo'),
 
     url(r'^stall/$', StallView.as_view(), name='stall'),
+    url(r'^stall/(?P<sub>.+)/(?P<subsub>\d+)/$', StallView.as_view(), name='stall'),
     url(r'^stall/(?P<sub>.+)/$', StallView.as_view(), name='stall'),
 
     url(r'^event/$', EventView.as_view(), name='event'),

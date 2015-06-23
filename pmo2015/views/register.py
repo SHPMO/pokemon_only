@@ -18,19 +18,18 @@ class RegisterView(CommonView):
     }
     name = "register"
 
-    @staticmethod
-    def _get_items(seller, page=1):
+    def _get_items(self, seller, page=1):
         if page <= 1:
             page = 1
         else:
-            a = Item.objects.filter(seller=seller, pmo='pmo2015').count()
+            a = Item.objects.filter(seller=seller, pmo=self.pmo).count()
             if page > (a+4) // 5:
                 page = (a+4) // 5
-        items = Item.objects.filter(seller=seller, pmo='pmo2015')[page*5-5:page*5]
+        items = Item.objects.filter(seller=seller, pmo=self.pmo)[page*5-5:page*5]
         ret = []
-        for i in range(len(items)):
+        for i in range(items.count()):
             ret.append((page*5 - 4 + i, items[i]))
-        for i in range(len(items), 5):
+        for i in range(items.count(), 5):
             ret.append((page*5 - 4 + i, None))
         return ret, page
 
@@ -38,9 +37,9 @@ class RegisterView(CommonView):
     def _get_images(item):
         images = item.itempicture_set.all()
         ret = []
-        for i in range(len(images)):
+        for i in range(images.count()):
             ret.append((i + 1, images[i].picture.url, images[i].pk))
-        for i in range(len(images), 5):
+        for i in range(images.count(), 5):
             ret.append((i + 1, None, None))
         return ret
 
@@ -54,14 +53,14 @@ class RegisterView(CommonView):
         if sub in {'stall', 'consign'}:
             if not request.user.is_authenticated():
                 return redirect("pmo2015:register", sub='signupin')
-            seller = request.user.seller_set.filter(pmo='pmo2015')
-            if len(seller) != 1:
+            seller = request.user.seller_set.filter(pmo=self.pmo)
+            if seller.count() != 1:
                 return redirect("pmo2015:register", sub='signupin')
             seller = seller[0]
             if 'item_id' in request.GET:
                 item_id = request.GET['item_id']
-                item = Item.objects.filter(pk=item_id, pmo='pmo2015', seller=seller)
-                if len(item) == 1:
+                item = Item.objects.filter(pk=item_id, pmo=self.pmo, seller=seller)
+                if item.count() == 1:
                     return render(
                         request,
                         'pmo2015/register/stall/itemform.html',

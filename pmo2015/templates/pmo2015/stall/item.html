@@ -1,8 +1,65 @@
 {% extends "pmo2015/base.html" %}
 {% load staticfiles %}
-{% block subtitle %}{{ seller.circle_name }} - 参展社团 - 现场摊位{% endblock %}
-{% block stitle %}stall-circle-detail{% endblock %}
+{% block more_heads %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/shadowbox.css' %}">
+    <script type="text/javascript" src="{% static 'js/shadowbox.js' %}"></script>
+{% endblock %}
+{% block subtitle %}{{ item.name }} - 贩售物详情 - 现场摊位{% endblock %}
+{% block stitle %}stall-item-detail{% endblock %}
 {% block content %}
     {% static 'pmo2015/images/circle_image.png' as default_image %}
-
+    <div id="item-metas">
+        <div id="item-meta-left" class="item-meta">
+            <a id="item-logo" rel="shadowbox" href="{% if item.cover_image %}{{ item.cover_image.url }}{% else %} {{ default_image }}{% endif %}"
+                 style="background-image: url('{% if item.cover_image %}{{ item.cover_image.url }}{% else %} {{ default_image }}{% endif %}');"></a>
+        </div>
+        <div id="item-meta-right" class="item-meta">
+            <div id="item-name">{{ item.name }}</div>
+            <div id="item-type" class="item-meta-value">种类：{{ item.item_type }}</div>
+            <div id="item-content" class="item-meta-value">内容：{{ item.content }}</div>
+            <div id="item-price" class="item-meta-value">价格：{{ item.price|floatformat:2 }} 元</div>
+            <div id="item-url" class="item-meta-value">链接：<a href="{{ item.url }}"  class="maintext-href" target="_blank">{{ item.url }}</a></div>
+            <div id="item-from" class="item-meta-value">来自：<a target="_blank" class="maintext-href"
+                href="{% url "pmo2015:stall" "circle" item.seller.pk %}">{{ item.seller.circle_name }}</a>
+            </div>
+        </div>
+    </div>
+    <ul id="item-others">
+        <li id="item-circle" class="item-others-value">
+            <span>出品社团：</span>
+            <span>{{ item.circle }}</span>
+        </li>
+        <li id="item-introduction" class="item-others-multiline">
+            <span>简介：</span>
+            <div>{{ item.introduction|linebreaksbr }}</div>
+        </li>
+        <li id="item-authors" class="item-others-multiline">
+            <span>作者名单：</span>
+            <div>{{ item.authors|linebreaksbr }}</div>
+        </li>
+        <li id="item-forto" class="item-others-value">
+            <span>面向人群：</span>
+            <span>{{ item.forto }}</span>
+        </li>
+        <li id="item-is_restricted" class="item-others-value">
+            <span>限制级是否：</span>
+            <span>{{ item.is_restricted }}</span>
+        </li>
+        <li id="item-is_started_with" class="item-others-value">
+            <span>是否首发：</span>
+            <span>{% if item.is_started_with %}是{% else %}否{% endif %}</span>
+        </li>
+    </ul>
+    <div id="item-images" class="item-others-multiline clear-group">
+        <span>相关图像：</span>
+        <div>
+            {% for picture in item.itempicture_set.all %}
+            <a href="{{ picture.picture.url }}" rel="shadowbox"
+                style="background-image: url('{{ picture.picture.url }}');"
+                 class="item-image-thumb"></a>
+            {% empty %}
+            <h4>没有相关图像</h4>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

@@ -21,6 +21,6 @@ class ValidateCode(BaseStallModel):
         code = ""
         for i in range(20):
             code += random.choice(cls.MSTR)
-        if len(cls.objects.filter(code=code)) > 0:
+        if cls.objects.filter(code=code).count() > 0:
             return cls.create(seller)
         return cls.objects.create(code=code, seller=seller, pmo=seller.pmo)

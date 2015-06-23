@@ -32,7 +32,7 @@ class SignupView(ApiView):
         else:
             return self.return_me(4, "请选择类型。")
         s_seller = Seller.objects.filter(email=signup.cleaned_data['email'])
-        if len(s_seller) > 0:
+        if s_seller.count() > 0:
             if s_seller[0].is_active:
                 return self.return_me(2, "该Email已被注册。")
             else:

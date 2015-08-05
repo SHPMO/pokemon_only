@@ -1,7 +1,15 @@
 {% extends "pmo2015/base.html" %}
 {% load staticfiles %}
+{% block more_heads %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/shadowbox.css' %}">
+    <script type="text/javascript" src="{% static 'js/shadowbox.js' %}"></script>
+{% endblock %}
 {% block subtitle %}场地摊位图 - 现场摊位{% endblock %}
 {% block stitle %}stall-diagram{% endblock %}
 {% block content %}
-    <h4>【暂时没有消息】</h4>
+    <h4>【现场摊位图】</h4>
+    <div>
+        <a id="diagram-image" rel="shadowbox" href="{% static "pmo2015/images/diagram.jpg" %}"
+             style="background-image: url({% static "pmo2015/images/diagram.jpg" %});"></a>
+    </div>
 {% endblock %}

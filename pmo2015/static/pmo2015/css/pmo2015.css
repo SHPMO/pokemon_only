@@ -242,6 +242,16 @@ a.nav-href {
     width: 24px;
 }
 
+#diagram-image {
+    display: block;
+    margin: 15px 15px 0;
+    border: #838ba3 solid 1px;
+    width: 580px;
+    height: 580px;
+    background: center no-repeat;
+    background-size: contain;
+}
+
 .title-schedule::before {
     content: "活动时间与";
     right: 22px;

@@ -285,16 +285,31 @@ a.nav-href {
 }
 
 #diagram-table {
+    margin-top: 20px;
     width: 100%;
     text-align: center;
+    border: solid 1px #666666;
+    border-collapse: collapse;
 }
+
 #diagram-table th {
+    height: 30px;
     width: 50%;
+    border: solid 1px #666666;
 }
+
 #diagram-table td {
-    border: solid 1px #000000;
-    height: 22px;
+    height: 30px;
+    border: solid 1px #666666;
     margin: 2px;
+}
+
+#diagram-table td:nth-child(odd) {
+    width: 70px;
+}
+
+#diagram-table td:nth-child(even) {
+    width: 220px;
 }
 
 .title-schedule::before {

@@ -241,6 +241,22 @@ class AdminView(CommonView):
             current.do_validate(True)
         elif me == 'reject':
             current.do_validate(False)
+        elif me == 'setid':
+            seller_id = request.POST.get('sellerid')
+            if seller_id:
+                current.seller_id = seller_id
+                current.save()
+                if request.POST.get('send_email') == 'send':
+                    send_mail(
+                        '%s%s通知' % (settings.EMAIL_SUBJECT_PREFIX, "摊位" if current.is_stall else "寄卖"), "",
+                        settings.EMAIL_HOST_USER, [current.email], fail_silently=False,
+                        html_message=loader.get_template('pmo2015/mails/seller_sellerid.html').render({
+                            'seller': current, 'base_url': settings.BASE_URL,
+                        })
+                    )
+            response = redirect("pmo2015:admin", sub='stall')
+            response['Location'] += '?seller_id=%s' % current.pk
+            return response
         else:
             raise Http404
         send_mail(

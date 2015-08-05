@@ -33,6 +33,13 @@
     <div>
         <button name="submit" value="notice">修改摊位通知</button>
     </div>
+    <div>
+        <label for="seller-sellerid">摊位号：</label>
+        <textarea id="seller-sellerid" name="sellerid" style="width:200px;">{{ current.seller_id }}</textarea>
+    </div>
+    <div>
+        <button name="submit" value="setid">设置摊位号</button>
+    </div>
     <input type="hidden" name="seller_id" value="{{ current.pk }}">
     {% csrf_token %}
 </form>

@@ -1341,7 +1341,9 @@ to {top: 50px;}
 }
 #seller-id {
     text-align: center;
-    width: 100%;
+    width: 110%;
+    margin-left: -5%;
+    margin-right: 5%;
     font-size: 1em;
 }
 #seller-name {

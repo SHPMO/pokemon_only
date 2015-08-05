@@ -17,7 +17,7 @@
             <div id="item-name">{{ item.name }}</div>
             <div id="item-type" class="item-meta-value">种类：{{ item.item_type }}</div>
             <div id="item-content" class="item-meta-value">内容：{{ item.content }}</div>
-            <div id="item-price" class="item-meta-value">价格：{{ item.price|floatformat:2 }} 元</div>
+            <div id="item-price" class="item-meta-value">{% if item.price == -1 %}未定{% else %}{{ item.price|floatformat:2 }} 元{% endif %}</div>
             <div id="item-url" class="item-meta-value">链接：<a href="{{ item.url }}"  class="maintext-href" target="_blank">{{ item.url }}</a></div>
             <div id="item-from" class="item-meta-value">来自：<a target="_blank" class="maintext-href"
                 href="{% url "pmo2015:stall" "circle" item.seller.pk %}">{{ item.seller.circle_name }}</a>

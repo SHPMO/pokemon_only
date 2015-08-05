@@ -27,7 +27,7 @@
                        class="item-cover img-href">{{ item.name }}</a>
                     <div class="item-item-metas seller-meta">
                         <div class="seller-item-meta"><a href="{{ turl }}" target="_blank" class="maintext-href">{{ item.name }}</a></div>
-                        <span class="seller-item-meta">价格：{{ item.price|floatformat:2 }} 元</span>
+                        <span class="seller-item-meta">{% if item.price == -1 %}未定{% else %}{{ item.price|floatformat:2 }} 元{% endif %}</span>
                         <span class="seller-item-meta">出品社团：{{ item.circle }}</span>
                         <span class="seller-item-intro">简介：{{ item.introduction|linebreaksbr }}</span>
                     </div>

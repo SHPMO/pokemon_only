@@ -7,13 +7,13 @@
     {% if itemlist %}
     {% for seller, items in itemlist %}
     <div class="item-list clear-group">
-        {% url 'pmo2015:stall' 'circle' as turl %}
+        {% url 'pmo2015:stall' 'circle' seller.pk as turl %}
         <div class="item-seller clear-group">
-            <a href="{{ turl }}?type={% if seller.is_stall %}stall{% else %}consing{% endif %}&p={{ seller.pk }}" target="_blank"
+            <a href="{{ turl }}" target="_blank"
                style="background-image: url('{% if seller.circle_image %}{{ seller.circle_image.url }}{% else %} {{ default_image }}{% endif %}');"
                class="seller-thumb img-href">{{ seller.circle_name }}</a>
             <div class="seller-title">
-                <a href="{{ turl }}?type={% if seller.is_stall %}stall{% else %}consing{% endif %}&p={{ seller.pk }}"
+                <a href="{{ turl }}"
                    target="_blank" class="black">{{ seller.circle_name }}</a>
             </div>
             <div id="seller-id">（摊位号：{{ seller.seller_id|default:'【暂无】' }}）</div>

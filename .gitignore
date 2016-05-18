@@ -11,3 +11,4 @@ migrations/
 /static/admin/
 /static/pmo2015/
 /uwsgi_pmo.xml
+/env/

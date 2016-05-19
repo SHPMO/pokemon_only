@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'stall',
     'tourney',
     'pmo2015',
+    'pmo2016',
     'captcha',
 )
 
@@ -134,5 +135,6 @@ CAPTCHA_IMAGE_SIZE = (300, 31)
 
 PMO_LIST = {
     'unknown': False,
-    'pmo2015': True
+    'pmo2015': False,
+    'pmo2016': True
 }

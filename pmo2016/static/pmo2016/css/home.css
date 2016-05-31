@@ -1,0 +1,59 @@
+html, body, #main-container {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#main-container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    background: #fcedcc;
+    background: url('../images/left.png') left no-repeat, url('../images/right.png') right no-repeat;
+    background-size: contain;
+}
+
+#gb {
+    background: url('../images/GB.svg') bottom no-repeat;
+    background-size: contain;
+    min-width: 400px;
+    width: 25%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 1;
+}
+
+#pikachu {
+    position: absolute;
+
+    background: url('../images/pikachu.png') center no-repeat;
+    background-size: contain;
+    width: 300px;
+    height: 300px;
+    /*margin-left: auto;*/
+    /*margin-right: auto;*/
+    left: 50%;
+    margin-left: -150px;
+}
+
+#gb-screen {
+    position: relative;
+    background: url('../images/GB-bg.svg') center no-repeat;
+    background-size: contain;
+}
+
+#hero {
+    position: relative;
+}
+
+@media screen and (max-width: 480px) {
+    #main-container {
+        background-image: none;
+    }
+
+    #gb {
+        background-position: center;
+        min-width: 100%;
+    }
+}

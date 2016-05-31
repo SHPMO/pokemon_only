@@ -2,7 +2,8 @@
 <html>
 <head lang="zh">
     <meta charset="UTF-8">
-    <link rel="shortcut icon" type="image/png" href="{% block icon %}{% static 'images/favicon.ico' %}{% endblock %}">
+    <link rel="shortcut icon" type="image/png"
+          href="{% block icon %}{% static 'pmo2016/images/favicon.ico' %}{% endblock %}">
     <title>{% block title %}Untitled{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/default.css' %}">
     <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
@@ -10,7 +11,7 @@
     {% block heads %}{% endblock %}
 </head>
 <body{% block bodytype %}{% endblock %}>
-    {% block body %}
-    {% endblock %}
+{% block body %}
+{% endblock %}
 </body>
 </html>

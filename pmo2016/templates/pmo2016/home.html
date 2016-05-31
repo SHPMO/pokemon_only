@@ -1,0 +1,25 @@
+<!DOCTYPE html>{% load staticfiles %}
+<html>
+<head lang="zh">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="shortcut icon" type="image/png"
+          href="{% block icon %}{% static 'pmo2016/images/favicon.ico' %}{% endblock %}">
+    <title>魔都PMO2016</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/default.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'pmo2016/css/home.css' %}">
+    <script type="text/javascript" src="{% static 'js/vue.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'pmo2016/js/home.js' %}"></script>
+</head>
+<body>
+<div id="main-container">
+    <div id="pikachu"></div>
+    <div id="gb">
+        <div id="gb-screen">
+            <img id="hero" v-bind:src="heroImage" v-bind:style="heroObject">
+        </div>
+    </div>
+</div>
+</body>
+</html>

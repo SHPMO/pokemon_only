@@ -16,8 +16,10 @@
 <div id="main-container">
     <div id="pikachu"></div>
     <div id="gb">
-        <div id="gb-screen">
-            <img id="hero" v-bind:src="heroImage" v-bind:style="heroObject">
+        <div id="gb-screen" v-bind:style="screenStyle">
+            <img id="hero" v-bind:src="heroImage" v-bind:style="heroStyle">
+        </div>
+        <div id="gb-buttons" v-bind:style="buttonsStyle" v-on:click="buttonPressed">
         </div>
     </div>
 </div>

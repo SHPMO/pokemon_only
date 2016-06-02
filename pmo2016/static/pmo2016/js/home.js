@@ -1,5 +1,5 @@
 window.onload = function () {
-    var static_path = "/static/pmo2016/";
+    var static_path = '/static/pmo2016/';
     var data = {
         map: [
             [-1, -1, -1, -1, -1, -1, -1, -1],
@@ -10,51 +10,139 @@ window.onload = function () {
             [0, 0, 0, -1, 0, 0, 0, 0],
             [-1, 0, 0, 0, 0, 0, -1, 0],
             [-1, 0, 0, 0, 0, 0, -1, 0]
-        ]
+        ],
+        totalImages: [3, 2, 3, 2]
     };
-    var vm = new Vue({
-        el: '#main-container',
-        data: {
-            cell: 0,
-            hero: {
-                x: 3,
-                y: 6,
-                direction: 0,
-                status: 0
-            }
-        },
-        computed: {
-            heroImage: function () {
-                return static_path + "images/hero-" + this.hero.direction + "-" + this.hero.status + ".svg";
-            },
-
-            heroObject: function () {
-                return {
-                    width: this.cell + "px",
-                    height: this.cell + "px",
-                    left: this.hero.x * this.cell + "px",
-                    top: this.hero.y * this.cell + "px"
-                }
-            }
-        },
-        methods: {}
-    });
-    window.vm = vm;
-
 
     var gb = document.getElementById('gb');
     var screen = document.getElementById('gb-screen');
     window.onresize = function () {
         if (gb.clientWidth / 287 * 413 <= gb.clientHeight) {
-            var unit = gb.clientWidth / 287;
+            vm.unit = gb.clientWidth / 287;
         } else {
-            var unit = gb.clientHeight / 413;
+            vm.unit = gb.clientHeight / 413;
         }
-        screen.style.left = (gb.clientWidth / 2 - 60.5 * unit) + "px";
-        screen.style.top = (gb.clientHeight - 328 * unit) + "px";
-        screen.style.width = 128 * unit + "px";
-        screen.style.height = 128 * unit + "px";
-        vm.cell = 16 * unit;
     };
+
+    var vm = new Vue({
+        el: '#main-container',
+        data: {
+            unit: 0,
+            hero: {
+                direction: 0,
+                status: 0,
+                x: 3,
+                y: 3
+            }
+        },
+        computed: {
+            cell: function () {
+                return 16 * this.unit;
+            },
+            heroImage: function () {
+                return static_path + 'images/hero-' + this.hero.direction + '-' + this.hero.status + '.svg';
+            },
+            heroStyle: function () {
+                return {
+                    width: this.cell + 'px',
+                    height: this.cell + 'px',
+                    left: 4 * this.cell + 'px',
+                    top: 3.75 * this.cell + 'px'
+                }
+            },
+            screenStyle: function () {
+                return {
+                    left: gb.clientWidth / 2 - 76.5 * this.unit + 'px',
+                    top: gb.clientHeight - 344 * this.unit + 'px',
+                    width: 160 * this.unit + 'px',
+                    height: 144 * this.unit + 'px',
+                    backgroundSize: 128 * this.unit + 'px, ' + 128 * this.unit + 'px',
+                    backgroundPositionX: this.cell * (4 - this.hero.x) + 'px',
+                    backgroundPositionY: this.cell * (4 - this.hero.y) + 'px'
+                }
+            },
+            buttonsStyle: function () {
+                return {
+                    top: gb.clientHeight - 294 * this.unit + 'px',
+                    height: 150 * this.unit + 'px'
+                }
+            }
+        },
+        methods: {
+            buttonPressed: function (event) {
+                var x = event.offsetX / this.unit, y = event.offsetY / this.unit;
+                if (x >= 56.333 && x <= 83.333) {
+                    if (y >= 0 && y <= 22)
+                        pressUp();
+                    else if (y >= 49 && y <= 71)
+                        pressDown();
+                } else if (y >= 22 && y <= 49) {
+                    if (x >= 34.333 && x <= 56.333)
+                        pressLeft();
+                    else if (x >= 83.333 && x <= 105.333)
+                        pressRight();
+                } else if (Math.pow(x - 250.119, 2) + Math.pow(y - 25.071, 2) <= Math.pow(14.572, 2)) {
+                    pressA();
+                } else if (Math.pow(x - 214.904, 2) + Math.pow(y - 46.929, 2) <= Math.pow(14.571, 2)) {
+                    pressB();
+                } else if (y >= 99 && y <= 114.62) {
+                    if (x >= 100 && x <= 132.47)
+                        pressSelect();
+                    else if (x >= 141 && x <= 173.47) {
+                        pressStart();
+                    }
+                }
+            }
+        }
+    });
+    window.vm = vm;
+
+    var moving = null;
+
+    function move(direction) {
+        if (moving)
+            return;
+        if (direction != vm.hero.direction) {
+            vm.hero.direction = direction;
+            return;
+        }
+        var dx = 0, dy = 0;
+        switch (vm.hero.direction) {
+            case 0:
+                dy = 1;
+                break;
+            case 1:
+                dx = -1;
+                break;
+            case 2:
+                dy = -1;
+                break;
+            case 3:
+                dx = 1;
+                break;
+        }
+        var y = vm.hero.y + dy;
+        var x = vm.hero.x + dx;
+        if (y < 0 || x < 0 || y > 7 || x > 7 || data.map[y][x] != 0) {
+            return;
+        }
+        (function go(status) {
+            if (status == 3) {
+                moving = null;
+                vm.hero.x = Math.round(vm.hero.x);
+                vm.hero.y = Math.round(vm.hero.y);
+                vm.hero.status = 0;
+                return;
+            }
+            vm.hero.x += dx / 3;
+            vm.hero.y += dy / 3;
+            vm.hero.status += 1;
+            vm.hero.status %= data.totalImages[vm.hero.direction];
+            moving = setTimeout(go, 300, status + 1);
+        })(0);
+    }
+
+    
+
     window.onresize();
 };

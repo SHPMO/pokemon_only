@@ -39,8 +39,7 @@ html, body, #main-container {
 
 #gb-screen {
     position: relative;
-    background: url('../images/GB-bg.svg') center no-repeat;
-    background-size: contain;
+    background: url('../images/GB-bg.svg') no-repeat;
 }
 
 #hero {
@@ -56,4 +55,12 @@ html, body, #main-container {
         background-position: center;
         min-width: 100%;
     }
+}
+#gb-buttons {
+    width: 100%;
+    position: relative;
+}
+
+.gb-button {
+    float: left;
 }

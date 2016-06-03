@@ -46,6 +46,10 @@ html, body, #main-container {
     position: relative;
 }
 
+#dialog {
+
+}
+
 @media screen and (max-width: 480px) {
     #main-container {
         background-image: none;

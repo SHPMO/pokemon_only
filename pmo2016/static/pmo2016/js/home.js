@@ -33,6 +33,9 @@ window.onload = function () {
                 status: 0,
                 x: 3,
                 y: 3
+            },
+            dialog: {
+                status: 0
             }
         },
         computed: {
@@ -142,7 +145,37 @@ window.onload = function () {
         })(0);
     }
 
-    
+    function pressUp() {
+        move(2);
+    }
+
+    function pressDown() {
+        move(0);
+    }
+
+    function pressLeft() {
+        move(1);
+    }
+
+    function pressRight() {
+        move(3);
+    }
+
+    function pressA() {
+
+    }
+
+    function pressB() {
+
+    }
+
+    function pressSelect() {
+
+    }
+
+    function pressStart() {
+
+    }
 
     window.onresize();
 };

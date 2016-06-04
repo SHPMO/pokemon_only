@@ -1,15 +1,32 @@
+@font-face {
+    font-family: xiangsu;
+    src: url('../xiangsu.TTF');
+}
+
 html, body, #main-container {
     margin: 0;
     width: 100%;
     height: 100%;
+    font-family: xiangsu, serif;
+}
+
+div {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: default;
 }
 
 #main-container {
     display: flex;
     height: 100%;
     width: 100%;
-    background: #fcedcc;
-    background: url('../images/left.png') left no-repeat, url('../images/right.png') right no-repeat;
+    background: url('../images/left.png') left no-repeat,
+    url('../images/right.png') right no-repeat, #fcedcc;
     background-size: contain;
 }
 
@@ -24,15 +41,41 @@ html, body, #main-container {
     z-index: 1;
 }
 
-#pikachu {
+.bg-element {
     position: absolute;
-
-    background: url('../images/pikachu.png') center no-repeat;
     background-size: contain;
+}
+
+#year20th {
+    background: url('../images/20th.png') no-repeat center;
+    width: 362px;
+    height: 188px;
+    left: 50%;
+    margin-left: -181px;
+}
+
+#year1996 {
+    background: url('../images/1996.png') no-repeat center;
+    width: 198px;
+    height: 92px;
+    top: 50%;
+    left: 25%;
+    margin-top: -46px;
+}
+
+#year2016 {
+    background: url('../images/1996.png') no-repeat center;
+    width: 198px;
+    height: 92px;
+    top: 50%;
+    right: 25%;
+    margin-top: -46px;
+}
+
+#pikachu {
+    background: url('../images/pikachu.png') center no-repeat;
     width: 300px;
     height: 300px;
-    /*margin-left: auto;*/
-    /*margin-right: auto;*/
     left: 50%;
     margin-left: -150px;
 }
@@ -43,11 +86,35 @@ html, body, #main-container {
 }
 
 #hero {
-    position: relative;
+    position: absolute;
+}
+
+#select {
+    position: absolute;
+    left: 0;
+    padding-right: 0;
+    background: url("../images/select.svg") no-repeat center;
+    background-size: contain;
+}
+}
+
+#yesno {
+    position: absolute;
+    right: 0;
+    padding-right: 0;
+    background: url("../images/yesno.svg") no-repeat center;
+    background-size: contain;
+}
+
+#yesno-cursor, #dialog-cursor, #select-cursor {
+    position: absolute;
 }
 
 #dialog {
-
+    position: absolute;
+    bottom: 0;
+    background: url("../images/dialog.svg") no-repeat center;
+    background-size: contain;
 }
 
 @media screen and (max-width: 480px) {
@@ -55,11 +122,15 @@ html, body, #main-container {
         background-image: none;
     }
 
+    .bg-element {
+        display: none;
+    }
+
     #gb {
-        background-position: center;
         min-width: 100%;
     }
 }
+
 #gb-buttons {
     width: 100%;
     position: relative;

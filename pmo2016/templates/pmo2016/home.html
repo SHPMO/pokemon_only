@@ -14,11 +14,27 @@
 </head>
 <body>
 <div id="main-container">
-    <div id="pikachu"></div>
+    <div id="year20th" class="bg-element"></div>
+    <div id="year1996" class="bg-element"></div>
+    <div id="year2016" class="bg-element"></div>
+    <div id="pikachu" class="bg-element"></div>
     <div id="gb">
         <div id="gb-screen" v-bind:style="screenStyle">
             <img id="hero" v-bind:src="heroImage" v-bind:style="heroStyle">
-            <div id="dialog"></div>
+            <div id="select" v-bind:style="selectStyle">
+                << select.options[0] >><br>
+                << select.options[1] >><br>
+                << select.options[2] >><br>
+                << select.options[3] >>
+            </div>
+            <img id="select-cursor" src="{% static 'pmo2016/images/select-cursor.svg' %}"
+                 v-bind:style="selectCursorStyle">
+            <div id="yesno" v-bind:style="yesnoStyle"><< yesno.yes >><br><< yesno.no >></div>
+            <img id="yesno-cursor" src="{% static 'pmo2016/images/select-cursor.svg' %}"
+                 v-bind:style="yesnoCursorStyle">
+            <div id="dialog" v-bind:style="dialogStyle">{!! dialog.message !!}</div>
+            <img id="dialog-cursor" src="{% static 'pmo2016/images/dialog-cursor.svg' %}"
+                 v-bind:style="dialogCursorStyle">
         </div>
         <div id="gb-buttons" v-bind:style="buttonsStyle" v-on:click="buttonPressed">
         </div>

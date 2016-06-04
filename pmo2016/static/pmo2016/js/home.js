@@ -1,22 +1,140 @@
 window.onload = function () {
+
+    Vue.config.delimiters = ['<<', '>>'];
+    Vue.config.unsafeDelimiters = ['{!!', '!!}']
+
     var static_path = '/static/pmo2016/';
     var data = {
         map: [
             [-1, -1, -1, -1, -1, -1, -1, -1],
-            [-1, -1, -1, 0, 0, 0, 0, -1],
+            ['computer', 'table', 'table', 0, 0, 0, 0, 'stair'],
             [0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, -1, 0, 0, 0, 0],
-            [0, 0, 0, -1, 0, 0, 0, 0],
-            [-1, 0, 0, 0, 0, 0, -1, 0],
-            [-1, 0, 0, 0, 0, 0, -1, 0]
+            [0, 0, 0, 'tv', 0, 0, 0, 0],
+            [0, 0, 0, 'wiiu', 0, 0, 0, 0],
+            ['bed', 0, 0, 0, 0, 0, 'tree', 0],
+            ['bed', 0, 0, 0, 0, 0, 'tree', 0]
         ],
-        totalImages: [3, 2, 3, 2]
+        totalImages: [4, 2, 4, 2],
+        computer: {
+            type: 2,
+            message: ['你打开了电脑', '', '', '要做什么？'],
+            options: ['PMO官博', '对战报名', '摊位申请', '关闭'],
+            callback: function (notcancelled) {
+                if (notcancelled && vm.select.status != 3) {
+                    var hrefs = [
+                        'http://weibo.com/SHPMO',
+                        'register/battle/',
+                        'register/stall/'
+                    ];
+                    window.open(hrefs[vm.select.status], '_blank');
+                }
+                waiting = null;
+                clearDialog();
+            }
+        },
+        stair: {
+            type: 1,
+            message: ['出发去PMO吧！'],
+            yes: '是',
+            no: '否',
+            callback: function (notcancelled) {
+                if (notcancelled && vm.yesno.status == 1) {
+                    window.open('baseinfo/place/', '_blank');
+                }
+                waiting = null;
+                clearDialog();
+            }
+        },
+        table: {
+            type: 1,
+            message: ['桌上什么都没有...', '', '',
+                '...', '', '',
+                '桌底好像有东西？'],
+            yes: '捡起',
+            no: '无视',
+            callback: function (notcancelled) {
+                if (notcancelled && vm.yesno.status == 1) {
+                    var items = ['不变石', '金珠', '精灵球', '大师球', '伤药', '奇异甜食'];
+                    trigger({
+                        type: 0,
+                        message: [
+                            '——你得到了一个...' + items[Math.floor(items.length * Math.random())] + '！'
+                        ],
+                        callback: function (notcancelled) {
+                            waiting = null;
+                            clearDialog();
+                        }
+                    });
+                } else {
+                    clearDialog();
+                }
+                waiting = null;
+            }
+        },
+        tree: {
+            type: 0,
+            message: ['只是一盆普通的景观植物'],
+            callback: function (notcancelled) {
+                waiting = null;
+                clearDialog();
+            }
+        },
+        tv: {
+            type: 0,
+            message: [
+                '「嘻嘻嘻嘻嘻——」', '', '',
+                '？... ...', '', '',
+                '好像听到了奇怪的笑声'
+            ],
+            callback: function (notcancelled) {
+                waiting = null;
+                clearDialog();
+            }
+        },
+        wiiu: {
+            type: 0,
+            message: [
+                '你在玩宝可梦拳', '... ...',
+                '怪力的肌肉实在太美了！', '',
+                '你心满意足准备出发去PMO'
+            ],
+            callback: function (notcancelled) {
+                waiting = null;
+                clearDialog();
+            }
+        },
+        bed: {
+            type: 1,
+            message: ['要睡觉吗？'],
+            yes: '是',
+            no: '否',
+            callback: function (notcancelled) {
+                if (notcancelled && vm.yesno.status == 1) {
+                    trigger({
+                        type: 0,
+                        message: [
+                            '检测连接到PGL', '... ...', '',
+                            'error-code：006-0112', '... ...', '',
+                            'SAD'
+                        ],
+                        callback: function (notcancelled) {
+                            waiting = null;
+                            clearDialog();
+                        }
+                    })
+                } else {
+                    clearDialog();
+                }
+                waiting = null;
+            }
+        }
     };
 
     var gb = document.getElementById('gb');
     var screen = document.getElementById('gb-screen');
     window.onresize = function () {
+        vm.unit -= 1;
         if (gb.clientWidth / 287 * 413 <= gb.clientHeight) {
             vm.unit = gb.clientWidth / 287;
         } else {
@@ -34,8 +152,19 @@ window.onload = function () {
                 x: 3,
                 y: 3
             },
+            select: {
+                status: -1,
+                options: []
+            },
+            yesno: {
+                status: -1,
+                yes: null,
+                no: null
+            },
             dialog: {
-                status: 0
+                status: -1,
+                message: "",
+                cursor: false
             }
         },
         computed: {
@@ -61,7 +190,8 @@ window.onload = function () {
                     height: 144 * this.unit + 'px',
                     backgroundSize: 128 * this.unit + 'px, ' + 128 * this.unit + 'px',
                     backgroundPositionX: this.cell * (4 - this.hero.x) + 'px',
-                    backgroundPositionY: this.cell * (4 - this.hero.y) + 'px'
+                    backgroundPositionY: this.cell * (4 - this.hero.y) + 'px',
+                    fontSize: 11 * this.unit + 'px'
                 }
             },
             buttonsStyle: function () {
@@ -69,31 +199,84 @@ window.onload = function () {
                     top: gb.clientHeight - 294 * this.unit + 'px',
                     height: 150 * this.unit + 'px'
                 }
+            },
+            selectStyle: function () {
+                return {
+                    opacity: this.select.status == -1 ? 0 : 1,
+                    height: 80 * this.unit + 'px',
+                    width: 96 * this.unit + 'px',
+                    paddingTop: 9 * this.unit + 'px',
+                    paddingLeft: 15 * this.unit + 'px',
+                    paddingBottom: 12 * this.unit + 'px',
+                    lineHeight: 16 * this.unit + 'px'
+                }
+            },
+            selectCursorStyle: function () {
+                return {
+                    opacity: this.select.status == -1 ? 0 : 1,
+                    height: 7 * this.unit + 'px',
+                    width: 5 * this.unit + 'px',
+                    left: 8 * this.unit + 'px',
+                    top: (14 + 15.1 * this.select.status ) * this.unit + 'px'
+                }
+            },
+            yesnoStyle: function () {
+                return {
+                    opacity: this.yesno.status == -1 ? 0 : 1,
+                    bottom: 48 * this.unit + 'px',
+                    height: 40 * this.unit + 'px',
+                    width: 48 * this.unit + 'px',
+                    paddingTop: 9 * this.unit + 'px',
+                    paddingLeft: 15 * this.unit + 'px',
+                    paddingBottom: 12 * this.unit + 'px',
+                }
+            },
+            yesnoCursorStyle: function () {
+                return {
+                    opacity: this.yesno.status == -1 ? 0 : 1,
+                    height: 7 * this.unit + 'px',
+                    width: 5 * this.unit + 'px',
+                    right: 34 * this.unit + 'px',
+                    bottom: (59 + 11.5 * this.yesno.status ) * this.unit + 'px'
+                }
+            },
+            dialogStyle: function () {
+                return {
+                    opacity: this.dialog.status == -1 ? 0 : 1,
+                    height: 48 * this.unit + 'px',
+                    width: 160 * this.unit + 'px',
+                    padding: 12 * this.unit + 'px'
+                }
+            },
+            dialogCursorStyle: function () {
+                return {
+                    opacity: this.dialog.cursor ? 1 : 0,
+                    height: 5 * this.unit + 'px',
+                    width: 7 * this.unit + 'px',
+                    bottom: 12 * this.unit + 'px',
+                    right: 12 * this.unit + 'px'
+                }
             }
         },
         methods: {
             buttonPressed: function (event) {
                 var x = event.offsetX / this.unit, y = event.offsetY / this.unit;
-                if (x >= 56.333 && x <= 83.333) {
-                    if (y >= 0 && y <= 22)
-                        pressUp();
-                    else if (y >= 49 && y <= 71)
-                        pressDown();
-                } else if (y >= 22 && y <= 49) {
-                    if (x >= 34.333 && x <= 56.333)
-                        pressLeft();
-                    else if (x >= 83.333 && x <= 105.333)
-                        pressRight();
+                if (x >= 56.333 && x <= 83.333 && y >= 0 && y <= 22) {
+                    pressUp();
+                } else if (x >= 56.333 && x <= 83.333 && y >= 49 && y <= 71) {
+                    pressDown();
+                } else if (y >= 22 && y <= 49 && x >= 34.333 && x <= 56.333) {
+                    pressLeft();
+                } else if (y >= 22 && y <= 49 && x >= 83.333 && x <= 105.333) {
+                    pressRight();
                 } else if (Math.pow(x - 250.119, 2) + Math.pow(y - 25.071, 2) <= Math.pow(14.572, 2)) {
                     pressA();
                 } else if (Math.pow(x - 214.904, 2) + Math.pow(y - 46.929, 2) <= Math.pow(14.571, 2)) {
                     pressB();
-                } else if (y >= 99 && y <= 114.62) {
-                    if (x >= 100 && x <= 132.47)
-                        pressSelect();
-                    else if (x >= 141 && x <= 173.47) {
-                        pressStart();
-                    }
+                } else if (x >= 100 && x <= 132.47 && y >= 99 && y <= 114.62) {
+                    pressSelect();
+                } else if (x >= 141 && x <= 173.47 && y >= 99 && y <= 114.62) {
+                    pressStart();
                 }
             }
         }
@@ -101,9 +284,11 @@ window.onload = function () {
     window.vm = vm;
 
     var moving = null;
+    var talking = null;
+    var waiting = null;
 
     function move(direction) {
-        if (moving)
+        if (moving || talking || waiting)
             return;
         if (direction != vm.hero.direction) {
             vm.hero.direction = direction;
@@ -126,31 +311,54 @@ window.onload = function () {
         }
         var y = vm.hero.y + dy;
         var x = vm.hero.x + dx;
-        if (y < 0 || x < 0 || y > 7 || x > 7 || data.map[y][x] != 0) {
+        if (y < 0 || x < 0 || y > 7 || x > 7 || (data.map[y][x] != 0 && data.map[y][x] != 'stair')) {
             return;
         }
         (function go(status) {
-            if (status == 3) {
-                moving = null;
+            if (status % 5 == 0) {
+                vm.hero.status++;
+                vm.hero.status %= data.totalImages[vm.hero.direction];
+            }
+            if (status == 10) {
                 vm.hero.x = Math.round(vm.hero.x);
                 vm.hero.y = Math.round(vm.hero.y);
-                vm.hero.status = 0;
+                if (vm.hero.status % 2 != 0)
+                    vm.hero.status--;
+                moving = null;
+                if (data.map[vm.hero.y][vm.hero.x] == 'stair') {
+                    trigger(data.stair);
+                }
                 return;
             }
-            vm.hero.x += dx / 3;
-            vm.hero.y += dy / 3;
-            vm.hero.status += 1;
-            vm.hero.status %= data.totalImages[vm.hero.direction];
-            moving = setTimeout(go, 300, status + 1);
+            vm.hero.x += dx / 10;
+            vm.hero.y += dy / 10;
+            moving = setTimeout(go, 40, status + 1);
         })(0);
     }
 
     function pressUp() {
-        move(2);
+        if (waiting) {
+            if (waiting.type == 1 && vm.yesno.status == 0) {
+                vm.yesno.status = 1;
+            } else if (waiting.type == 2 && vm.select.status > 0) {
+                vm.select.status--;
+            }
+        } else {
+
+            move(2);
+        }
     }
 
     function pressDown() {
-        move(0);
+        if (waiting) {
+            if (waiting.type == 1 && vm.yesno.status == 1) {
+                vm.yesno.status = 0;
+            } else if (waiting.type == 2 && vm.select.status < vm.select.options.length - 1) {
+                vm.select.status++;
+            }
+        } else {
+            move(0);
+        }
     }
 
     function pressLeft() {
@@ -162,11 +370,64 @@ window.onload = function () {
     }
 
     function pressA() {
+        if (moving) {
+            return;
+        }
+        if (talking) {
+            if (waiting) {
+                vm.dialog.cursor = false;
+                if (sentence == waiting.message.length - 1) {
+                    clearDialog();
+                    waiting = null;
+                    return;
+                }
 
+                var tmp = waiting.message[sentence] + '<br>';
+                sentence++;
+                if (waiting.message[sentence] == '') {
+                    tmp = '';
+                    oneline = true;
+                    sentence++;
+                }
+                vm.dialog.message = tmp;
+                setTimeout(talk, talkDelay, 0, waiting);
+                waiting = null;
+            } else {
+
+            }
+        } else if (waiting) {
+            waiting.callback(true);
+        } else {
+            var x = vm.hero.x + (vm.hero.direction == 1 ? -1 : 0) + (vm.hero.direction == 3 ? 1 : 0);
+            var y = vm.hero.y + (vm.hero.direction == 0 ? 1 : 0) + (vm.hero.direction == 2 ? -1 : 0);
+            if (y < 0 || x < 0 || y > 7 || x > 7 || data.map[y][x] == 0 && data.map[y][x] == -1) {
+                return;
+            }
+            var event = data.map[y][x];
+            if (typeof event === 'string') {
+                if (event == 'tv' && vm.hero.direction != 0) {
+                    return;
+                }
+                trigger(data[event]);
+            }
+        }
     }
 
     function pressB() {
+        if (moving) {
+            return;
+        }
+        if (talking) {
+            if (waiting) {
+                pressA()
+            } else {
 
+            }
+        } else if (waiting) {
+            waiting.callback(false);
+        } else {
+
+        }
     }
 
     function pressSelect() {
@@ -175,6 +436,73 @@ window.onload = function () {
 
     function pressStart() {
 
+    }
+
+    function trigger(event) {
+        clearDialog();
+        vm.dialog.status = 0;
+        talking = setTimeout(talk, 0, 0, event);
+    }
+
+    var talkDelay = 60;
+    var sentence = 0;
+    var waitDelay = 800;
+    var oneline = true;
+    var shining = null;
+
+    function wait() {
+        if (shining && waiting) {
+            vm.dialog.cursor = !vm.dialog.cursor;
+            shining = setTimeout(wait, waitDelay);
+        } else {
+            vm.dialog.cursor = false;
+            shining = null;
+        }
+    }
+
+    function talk(status, event) {
+        if (status >= event.message[sentence].length) {
+            if (oneline && sentence != event.message.length - 1) {
+                vm.dialog.message += '<br>';
+                oneline = false;
+                sentence++;
+                talking = setTimeout(talk, talkDelay, 0, event);
+            } else if (sentence != event.message.length - 1) {
+                waiting = event;
+                shining = setTimeout(wait, talkDelay);
+            } else {
+                if (event.type == 1) {
+                    vm.yesno.status = 1;
+                    vm.yesno.yes = event.yes;
+                    vm.yesno.no = event.no;
+                    shining = null;
+                    waiting = event;
+                    talking = null;
+                } else if (event.type == 2) {
+                    vm.select.status = 0;
+                    vm.select.options = event.options;
+                    shining = null;
+                    waiting = event;
+                    talking = null;
+                }
+                else {
+                    waiting = event;
+                    talking = null;
+                }
+            }
+        } else {
+            vm.dialog.message += event.message[sentence][status];
+            talking = setTimeout(talk, talkDelay, status + 1, event);
+        }
+    }
+
+    function clearDialog() {
+        vm.dialog.message = '';
+        vm.dialog.status = -1;
+        vm.select.status = -1;
+        vm.yesno.status = -1;
+        sentence = 0;
+        oneline = true;
     }
 
     window.onresize();

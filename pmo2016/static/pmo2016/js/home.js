@@ -397,7 +397,6 @@ window.onload = function () {
         methods: {
             buttonPressed: function (event) {
                 var x = event.offsetX / this.unit, y = event.offsetY / this.unit;
-                console.log(x, y);
                 if (x >= 56.333 && x <= 83.333 && y >= 0 && y <= 22) {
                     pressUp();
                 } else if (x >= 56.333 && x <= 83.333 && y >= 49 && y <= 71) {

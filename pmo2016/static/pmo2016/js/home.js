@@ -133,28 +133,44 @@ window.onload = function () {
             options: [
                 {
                     name: '基本信息',
-                    href: 'baseinfo/', options: [
-                    {name: '活动时间与当日行程', href: 'schedule/'},
-                    {name: '场地信息', href: 'place'},
-                    {name: '票务信息', href: 'ticket'},
-                    {name: '奖品一览', href: 'prize'}
-                ]
+                    href: 'baseinfo/',
+                    options: [
+                        {name: '活动时间与当日行程', href: 'schedule/'},
+                        {name: '场地信息', href: 'place/'},
+                        {name: '票务信息', href: 'ticket/'},
+                        {name: '奖品一览', href: 'prize/'}
+                    ]
                 }, {
                     name: '现场摊位',
                     href: 'stall/',
-                    options: []
+                    options: [
+                        {name: '现场摊位', href: 'diagram/'},
+                        {name: '参展社团', href: 'circle/'},
+                        {name: '参展贩售物', href: 'item/'}
+                    ]
                 }, {
                     name: '现场活动',
                     href: 'event/',
-                    options: []
+                    options: [
+                        {name: '联机对战', href: 'battle/'},
+                        {name: '场地活动', href: 'venue/'},
+                        {name: '幸运抽奖', href: 'raffle/'}
+                    ]
                 }, {
                     name: '报名申请',
                     href: 'register/',
-                    options: []
+                    options: [
+                        {name: '对战报名', href: 'battle/'},
+                        {name: '摊位申请', href: 'stall/'}
+                    ]
                 }, {
                     name: 'QA留言板',
-                    href: 'qabook',
-                    options: []
+                    href: 'qabook/',
+                    options: [
+                        {name: '常见Q&A', href: 'faq/'},
+                        {name: '参展礼仪与建议', href: 'manner/'},
+                        {name: '留言板', href: 'guestbook/'}
+                    ]
                 }, {name: '关闭'}
             ],
             callback: function (notcancelled) {
@@ -197,10 +213,10 @@ window.onload = function () {
     var screen = document.getElementById('gb-screen');
     window.onresize = function () {
         vm.unit -= 1;
-        if (gb.clientWidth / 287 * 413 <= gb.clientHeight) {
+        if (gb.clientWidth / 287 * 450 <= gb.clientHeight) {
             vm.unit = gb.clientWidth / 287;
         } else {
-            vm.unit = gb.clientHeight / 413;
+            vm.unit = gb.clientHeight / 450;
         }
     };
 
@@ -255,7 +271,7 @@ window.onload = function () {
             screenStyle: function () {
                 return {
                     left: gb.clientWidth / 2 - 76.5 * this.unit + 'px',
-                    top: gb.clientHeight - 344 * this.unit + 'px',
+                    top: gb.clientHeight - 381 * this.unit + 'px',
                     width: 160 * this.unit + 'px',
                     height: 144 * this.unit + 'px',
                     backgroundSize: 128 * this.unit + 'px, ' + 128 * this.unit + 'px',
@@ -266,7 +282,7 @@ window.onload = function () {
             },
             buttonsStyle: function () {
                 return {
-                    top: gb.clientHeight - 294 * this.unit + 'px',
+                    top: gb.clientHeight - 331 * this.unit + 'px',
                     height: 150 * this.unit + 'px'
                 }
             },

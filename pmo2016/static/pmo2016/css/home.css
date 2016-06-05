@@ -43,19 +43,21 @@ div {
 
 .bg-element {
     position: absolute;
-    background-size: contain;
 }
 
 #year20th {
     background: url('../images/20th.png') no-repeat center;
+    background-size: contain;
     width: 362px;
     height: 188px;
     left: 50%;
     margin-left: -181px;
+    bottom: 80%;
 }
 
 #year1996 {
     background: url('../images/1996.png') no-repeat center;
+    background-size: contain;
     width: 198px;
     height: 92px;
     top: 50%;
@@ -64,8 +66,9 @@ div {
 }
 
 #year2016 {
-    background: url('../images/1996.png') no-repeat center;
-    width: 198px;
+    background: url('../images/2016.png') no-repeat center;
+    background-size: contain;
+    width: 193px;
     height: 92px;
     top: 50%;
     right: 25%;
@@ -73,16 +76,18 @@ div {
 }
 
 #pikachu {
-    background: url('../images/pikachu.png') center no-repeat;
+    background: url('../images/pikachu.png') no-repeat center;
+    background-size: contain;
     width: 300px;
     height: 300px;
     left: 50%;
     margin-left: -150px;
+    bottom: 70%;
 }
 
 #gb-screen {
     position: relative;
-    background: url('../images/GB-bg.svg') no-repeat;
+    background: url('../images/GB-bg.svg') no-repeat center;
 }
 
 #hero {

@@ -1444,3 +1444,18 @@ a.nav-href {
     background: #ffffff no-repeat center;
     background-size: contain;
 }
+
+.table-bordered {
+    border-collapse: collapse;
+
+}
+
+.table-bordered td {
+    border: solid 2px #111111;
+    text-align: center;
+    padding: 5px 30px;
+}
+
+#price-table {
+    margin: 1.5em auto;
+}

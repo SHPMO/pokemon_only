@@ -207,6 +207,7 @@ window.onload = function () {
     var vm = new Vue({
         el: '#main-container',
         data: {
+            started: false,
             unit: 0,
             hero: {
                 direction: 0,
@@ -390,6 +391,9 @@ window.onload = function () {
                     pressStart();
                 }
             }
+        },
+        ready: function () {
+            this.started = true;
         }
     });
     window.vm = vm;
@@ -665,5 +669,4 @@ window.onload = function () {
     }
 
     window.onresize();
-}
-;
+};

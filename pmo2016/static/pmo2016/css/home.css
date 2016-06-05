@@ -28,6 +28,7 @@ div {
     background: url('../images/left.png') left no-repeat,
     url('../images/right.png') right no-repeat, #fcedcc;
     background-size: contain;
+    opacity: 0;
 }
 
 #gb {

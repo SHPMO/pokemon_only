@@ -13,7 +13,7 @@
     <script type="text/javascript" src="{% static 'pmo2016/js/home.js' %}"></script>
 </head>
 <body>
-<div id="main-container">
+<div id="main-container" v-bind:style="{opacity: started ? 1 : 0}>
     <div id="year20th" class="bg-element"></div>
     <div id="year1996" class="bg-element"></div>
     <div id="year2016" class="bg-element"></div>

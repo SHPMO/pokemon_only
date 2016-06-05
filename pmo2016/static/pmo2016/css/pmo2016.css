@@ -10,7 +10,16 @@ html, body {
 
 body {
     font-family: xiangsu, serif;
+}
+
+.bg1 {
     background: url("../images/BG1.jpg") repeat;
+}
+.bg2 {
+    background: url("../images/BG2.jpg") repeat;
+}
+.bg3 {
+    background: url("../images/BG3.jpg") repeat;
 }
 
 p {

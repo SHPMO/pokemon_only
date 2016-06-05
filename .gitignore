@@ -9,7 +9,11 @@ migrations/
 /__pycache__/
 /media/
 /log/
-/static/admin/
-/static/pmo2015/
+
+/static
+!/static/css/
+!/static/images/
+!/static/js/
+
 /uwsgi_pmo.xml
 /env/

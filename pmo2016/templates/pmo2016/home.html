@@ -13,12 +13,12 @@
     <script type="text/javascript" src="{% static 'pmo2016/js/home.js' %}"></script>
 </head>
 <body>
-<div id="main-container" v-bind:style="{opacity: started ? 1 : 0}>
+<div id="main-container">
     <div id="year20th" class="bg-element"></div>
     <div id="year1996" class="bg-element"></div>
     <div id="year2016" class="bg-element"></div>
     <div id="pikachu" class="bg-element"></div>
-    <div id="gb">
+    <div id="gb" v-bind:style="{opacity: started ? 1 : 0}>
         <div id="gb-screen" v-bind:style="screenStyle">
             <img id="hero" v-bind:src="heroImage" v-bind:style="heroStyle">
             <div id="select" v-bind:style="selectStyle">

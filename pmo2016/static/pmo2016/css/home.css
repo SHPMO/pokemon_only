@@ -28,7 +28,6 @@ div {
     background: url('../images/left.png') left no-repeat,
     url('../images/right.png') right no-repeat, #fcedcc;
     background-size: contain;
-    opacity: 0;
 }
 
 #gb {
@@ -40,6 +39,7 @@ div {
     margin-left: auto;
     margin-right: auto;
     z-index: 1;
+    opacity: 0;
 }
 
 .bg-element {

@@ -1,0 +1,45 @@
+{% extends "pmo2016/base.html" %}
+{% load staticfiles %}
+{% block subtitle %}参展贩售物 - 现场摊位{% endblock %}
+{% block stitle %}stall-item{% endblock %}
+{% block content %}
+    {% static 'pmo2016/images/circle_image.png' as default_image %}
+    {% if itemlist %}
+    {% for seller, items in itemlist %}
+    <div class="item-list clear-group">
+        {% url 'pmo2016:stall' 'circle' seller.pk as turl %}
+        <div class="item-seller clear-group">
+            <a href="{{ turl }}" target="_blank"
+               style="background-image: url('{% if seller.circle_image %}{{ seller.circle_image.url }}{% else %} {{ default_image }}{% endif %}');"
+               class="seller-thumb img-href">{{ seller.circle_name }}</a>
+            <div class="seller-title">
+                <a href="{{ turl }}"
+                   target="_blank" class="black">{{ seller.circle_name }}</a>
+            </div>
+            <div id="seller-id">（摊位号：{{ seller.seller_id|default:'【暂无】' }}）</div>
+        </div>
+        <div class="item-items">
+            {% for item in items %}
+                {% url 'pmo2016:stall' 'item' item.pk as turl %}
+                <div class="item-item">
+                    <a href="{{ turl }}" target="_blank"
+                       style="background-image: url('{% if item.cover_image %}{{ item.cover_image.url }}{% else %} {{ default_image }}{% endif %}');"
+                       class="item-cover img-href">{{ item.name }}</a>
+                    <div class="item-item-metas seller-meta">
+                        <div class="seller-item-meta"><a href="{{ turl }}" target="_blank" class="maintext-href">{{ item.name }}</a></div>
+                        <span class="seller-item-meta">{% if item.price == -1 %}未定{% else %}{{ item.price|floatformat:2 }} 元{% endif %}</span>
+                        <span class="seller-item-meta">出品社团：{{ item.circle }}</span>
+                        <span class="seller-item-intro">简介：{{ item.introduction|linebreaksbr }}</span>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="split-line"></div>
+    {% endfor %}
+    {% if prev %} <a class="maintext-href news-nav news-prev" href=".?page={{ prev }}">上一页</a>{% endif %}
+    {% if next %} <a class="maintext-href news-nav news-next" href=".?page={{ next }}">下一页</a>{% endif %}
+    {% else %}
+    <h3>【暂时没有消息】</h3>
+    {% endif %}
+{% endblock %}

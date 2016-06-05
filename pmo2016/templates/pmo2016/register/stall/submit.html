@@ -1,0 +1,35 @@
+<h3>申请提交</h3>
+<div id="error-message-submit">
+    <p id="error-submit" class="error-message-text"></p>
+</div>
+<form id="submit-input" action="{% url "stall:submit" %}" method="post" onsubmit="return false;">
+    <h4>【其他信息】</h4>
+    {% if seller.is_stall %}
+    <div class="controls-group oneline-group">
+        <label class="form-label" for="text-booth">摊位数*</label>
+        <input id="text-booth" class="form-control form-text" type="text" required="required"
+               name="booth" value="{{ seller.booth }}">
+    </div>
+    <div class="controls-group oneline-group">
+        <label class="form-label" for="text-number_of_people">人数*</label>
+        <input id="text-number_of_people" class="form-control form-text" type="text" required="required"
+               name="number_of_people" value="{{ seller.number_of_people }}">
+    </div>
+    {% endif %}
+    <div class="controls-group multiline-group">
+        <label class="form-label" for="text-remarks">备注</label>
+        <textarea id="text-remarks" class="form-control form-textarea"
+                  name="remarks">{{ seller.remarks }}</textarea>
+    </div>
+    <p class="controls-group">
+        <input id="text-agreement" class="form-option" type="checkbox" required="required"
+               name="agreement" {% if seller.status != 1 %}checked="checked"{% endif %}>
+        <label for="text-agreement">我已仔细阅读并同意<a href="#instructions" class="maintext-href">申请须知</a>。</label>
+    </p>
+    <div class="controls-group oneline-group">
+        <button id="submit-submit" class="button-submit form-control form-button"
+                name="submit">申请{% if seller.is_stall %}摊位{% else %}寄卖{% endif %}</button>
+    </div>
+    {% csrf_token %}
+    <input type="hidden" name="pmo" value="pmo2016">
+</form>

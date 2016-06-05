@@ -20,14 +20,10 @@ window.onload = function () {
             type: 2,
             message: ['你打开了电脑', '', '', '要做什么？'],
             options: ['PMO官博', '对战报名', '摊位申请', '关闭'],
+            hrefs: ['http://weibo.com/SHPMO', 'register/battle/', 'register/stall/'],
             callback: function (notcancelled) {
                 if (notcancelled && vm.select.status != 3) {
-                    var hrefs = [
-                        'http://weibo.com/SHPMO',
-                        'register/battle/',
-                        'register/stall/'
-                    ];
-                    window.open(hrefs[vm.select.status], '_blank');
+                    window.open(this.hrefs[vm.select.status], '_blank');
                 }
                 waiting = null;
                 clearDialog();
@@ -53,19 +49,22 @@ window.onload = function () {
                 '桌底好像有东西？'],
             yes: '捡起',
             no: '无视',
+            items: ['不变石', '金珠', '精灵球', '大师球', '伤药', '奇异甜食'],
+            getItem: {
+                type: 0,
+                message: [
+                    ''
+                ],
+                callback: function (notcancelled) {
+                    waiting = null;
+                    clearDialog();
+                }
+            },
             callback: function (notcancelled) {
                 if (notcancelled && vm.yesno.status == 1) {
-                    var items = ['不变石', '金珠', '精灵球', '大师球', '伤药', '奇异甜食'];
-                    trigger({
-                        type: 0,
-                        message: [
-                            '——你得到了一个...' + items[Math.floor(items.length * Math.random())] + '！'
-                        ],
-                        callback: function (notcancelled) {
-                            waiting = null;
-                            clearDialog();
-                        }
-                    });
+                    this.getItem.message[0] = '——你得到了一个...' +
+                        this.items[Math.floor(this.items.length * Math.random())] + '！';
+                    trigger(this.getItem);
                 } else {
                     clearDialog();
                 }
@@ -128,6 +127,69 @@ window.onload = function () {
                 }
                 waiting = null;
             }
+        },
+        menu: {
+            type: 3,
+            options: [
+                {
+                    name: '基本信息',
+                    href: 'baseinfo/', options: [
+                    {name: '活动时间与当日行程', href: 'schedule/'},
+                    {name: '场地信息', href: 'place'},
+                    {name: '票务信息', href: 'ticket'},
+                    {name: '奖品一览', href: 'prize'}
+                ]
+                }, {
+                    name: '现场摊位',
+                    href: 'stall/',
+                    options: []
+                }, {
+                    name: '现场活动',
+                    href: 'event/',
+                    options: []
+                }, {
+                    name: '报名申请',
+                    href: 'register/',
+                    options: []
+                }, {
+                    name: 'QA留言板',
+                    href: 'qabook',
+                    options: []
+                }, {name: '关闭'}
+            ],
+            callback: function (notcancelled) {
+                if (notcancelled && vm.menu.status != 5) {
+                    var option = this.options[vm.menu.status];
+                    var list = '';
+                    for (var i = 0; i < option.options.length; ++i) {
+                        var link = option.href + option.options[i].href;
+                        list += '<a href="' + link + '" target="_blank">' + option.options[i].name + '</a><br>';
+                    }
+                    vm.menu.submenu.message = list;
+                    vm.menu.submenu.status = 0;
+                    waiting = this.submenu;
+                } else {
+                    clearDialog();
+                    waiting = null;
+                }
+            },
+            submenu: {
+                type: 4,
+                callback: function (notcancelled) {
+                    if (notcancelled) {
+                        var link = data.menu.options[vm.menu.status].href +
+                            data.menu.options[vm.menu.status].options[vm.menu.submenu.status].href;
+                        window.open(link, '_blank');
+                        menuLast = vm.menu.status;
+                        waiting = null;
+                        clearDialog();
+                    } else {
+                        waiting = data.menu;
+                        vm.menu.submenu.status = -1;
+                    }
+                }
+            }
+
         }
     };
 
@@ -165,6 +227,14 @@ window.onload = function () {
                 status: -1,
                 message: "",
                 cursor: false
+            },
+            menu: {
+                status: -1,
+                message: "",
+                submenu: {
+                    status: -1,
+                    message: ""
+                }
             }
         },
         computed: {
@@ -202,7 +272,7 @@ window.onload = function () {
             },
             selectStyle: function () {
                 return {
-                    opacity: this.select.status == -1 ? 0 : 1,
+                    display: this.select.status == -1 ? 'none' : 'block',
                     height: 80 * this.unit + 'px',
                     width: 96 * this.unit + 'px',
                     paddingTop: 9 * this.unit + 'px',
@@ -213,7 +283,7 @@ window.onload = function () {
             },
             selectCursorStyle: function () {
                 return {
-                    opacity: this.select.status == -1 ? 0 : 1,
+                    display: this.select.status == -1 ? 'none' : 'block',
                     height: 7 * this.unit + 'px',
                     width: 5 * this.unit + 'px',
                     left: 8 * this.unit + 'px',
@@ -222,7 +292,7 @@ window.onload = function () {
             },
             yesnoStyle: function () {
                 return {
-                    opacity: this.yesno.status == -1 ? 0 : 1,
+                    display: this.yesno.status == -1 ? 'none' : 'block',
                     bottom: 48 * this.unit + 'px',
                     height: 40 * this.unit + 'px',
                     width: 48 * this.unit + 'px',
@@ -233,7 +303,7 @@ window.onload = function () {
             },
             yesnoCursorStyle: function () {
                 return {
-                    opacity: this.yesno.status == -1 ? 0 : 1,
+                    display: this.yesno.status == -1 ? 'none' : 'block',
                     height: 7 * this.unit + 'px',
                     width: 5 * this.unit + 'px',
                     right: 34 * this.unit + 'px',
@@ -242,7 +312,7 @@ window.onload = function () {
             },
             dialogStyle: function () {
                 return {
-                    opacity: this.dialog.status == -1 ? 0 : 1,
+                    display: this.dialog.status == -1 ? 'none' : 'block',
                     height: 48 * this.unit + 'px',
                     width: 160 * this.unit + 'px',
                     padding: 12 * this.unit + 'px'
@@ -250,11 +320,52 @@ window.onload = function () {
             },
             dialogCursorStyle: function () {
                 return {
-                    opacity: this.dialog.cursor ? 1 : 0,
+                    display: this.dialog.cursor ? 'none' : 'block',
                     height: 5 * this.unit + 'px',
                     width: 7 * this.unit + 'px',
                     bottom: 12 * this.unit + 'px',
                     right: 12 * this.unit + 'px'
+                }
+            },
+            menuStyle: function () {
+                return {
+                    display: this.menu.status == -1 ?'none' : 'block',
+                    height: 112 * this.unit + 'px',
+                    width: 64 * this.unit + 'px',
+                    paddingTop: 10 * this.unit + 'px',
+                    paddingLeft: 12 * this.unit + 'px',
+                    paddingBottom: 12 * this.unit + 'px',
+                    lineHeight: 16 * this.unit + 'px'
+                }
+            },
+            menuCursorStyle: function () {
+                return {
+                    display: this.menu.status == -1 ? 'none' : 'block',
+                    height: 7 * this.unit + 'px',
+                    width: 5 * this.unit + 'px',
+                    right: 52 * this.unit + 'px',
+                    top: (14 + 15.55 * this.menu.status ) * this.unit + 'px'
+                }
+            },
+            submenuStyle: function () {
+                return {
+                    display: this.menu.submenu.status == -1 ? 'none' : 'block',
+                    height: 88 * this.unit + 'px',
+                    width: 128 * this.unit + 'px',
+                    paddingTop: 10 * this.unit + 'px',
+                    paddingLeft: 12 * this.unit + 'px',
+                    paddingBottom: 12 * this.unit + 'px',
+                    lineHeight: 16 * this.unit + 'px',
+                    top: 16 * this.unit + 'px'
+                }
+            },
+            submenuCursorStyle: function () {
+                return {
+                    display: this.menu.submenu.status == -1 ? 'none' : 'block',
+                    height: 7 * this.unit + 'px',
+                    width: 5 * this.unit + 'px',
+                    left: 39 * this.unit + 'px',
+                    top: (30 + 15.55 * this.menu.submenu.status ) * this.unit + 'px'
                 }
             }
         },
@@ -273,9 +384,9 @@ window.onload = function () {
                     pressA();
                 } else if (Math.pow(x - 214.904, 2) + Math.pow(y - 46.929, 2) <= Math.pow(14.571, 2)) {
                     pressB();
-                } else if (x >= 100 && x <= 132.47 && y >= 99 && y <= 114.62) {
+                } else if (x >= 100 && x <= 132.47 && y >= 91 && y <= 106.62) {
                     pressSelect();
-                } else if (x >= 141 && x <= 173.47 && y >= 99 && y <= 114.62) {
+                } else if (x >= 141 && x <= 173.47 && y >= 91 && y <= 106.62) {
                     pressStart();
                 }
             }
@@ -291,6 +402,7 @@ window.onload = function () {
         if (moving || talking || waiting)
             return;
         if (direction != vm.hero.direction) {
+            vm.hero.status = 0;
             vm.hero.direction = direction;
             return;
         }
@@ -316,8 +428,8 @@ window.onload = function () {
         }
         (function go(status) {
             if (status % 5 == 0) {
-                vm.hero.status++;
-                vm.hero.status %= data.totalImages[vm.hero.direction];
+                var p = vm.hero.status + 1;
+                vm.hero.status = p % data.totalImages[vm.hero.direction];
             }
             if (status == 10) {
                 vm.hero.x = Math.round(vm.hero.x);
@@ -340,11 +452,26 @@ window.onload = function () {
         if (waiting) {
             if (waiting.type == 1 && vm.yesno.status == 0) {
                 vm.yesno.status = 1;
-            } else if (waiting.type == 2 && vm.select.status > 0) {
-                vm.select.status--;
+            } else if (waiting.type == 2) {
+                if (vm.select.status > 0) {
+                    vm.select.status--;
+                } else {
+                    vm.select.status = 3;
+                }
+            } else if (waiting.type == 3) {
+                if (vm.menu.status > 0) {
+                    vm.menu.status--;
+                } else {
+                    vm.menu.status = 5;
+                }
+            } else if (waiting.type == 4) {
+                if (vm.menu.submenu.status > 0) {
+                    vm.menu.submenu.status--;
+                } else {
+                    vm.menu.submenu.status = data.menu.options[vm.menu.status].options.length - 1;
+                }
             }
         } else {
-
             move(2);
         }
     }
@@ -353,8 +480,24 @@ window.onload = function () {
         if (waiting) {
             if (waiting.type == 1 && vm.yesno.status == 1) {
                 vm.yesno.status = 0;
-            } else if (waiting.type == 2 && vm.select.status < vm.select.options.length - 1) {
-                vm.select.status++;
+            } else if (waiting.type == 2) {
+                if (vm.select.status < 3) {
+                    vm.select.status++;
+                } else {
+                    vm.select.status = 0
+                }
+            } else if (waiting.type == 3) {
+                if (vm.menu.status < 5) {
+                    vm.menu.status++;
+                } else {
+                    vm.menu.status = 0;
+                }
+            } else if (waiting.type == 4) {
+                if (vm.menu.submenu.status < data.menu.options[vm.menu.status].options.length - 1) {
+                    vm.menu.submenu.status++;
+                } else {
+                    vm.menu.submenu.status = 0;
+                }
             }
         } else {
             move(0);
@@ -434,8 +577,22 @@ window.onload = function () {
 
     }
 
-    function pressStart() {
+    var menuLast = 0;
 
+    function pressStart() {
+        if (moving || talking)
+            return;
+        if (waiting && waiting.type == 3) {
+            clearDialog();
+            waiting = null;
+            return;
+        }
+        var list = data.menu.options[0].name;
+        for (var i = 1; i < data.menu.options.length; ++i)
+            list += '<br>' + data.menu.options[i].name;
+        vm.menu.message = list;
+        waiting = data.menu;
+        vm.menu.status = menuLast;
     }
 
     function trigger(event) {
@@ -501,9 +658,12 @@ window.onload = function () {
         vm.dialog.status = -1;
         vm.select.status = -1;
         vm.yesno.status = -1;
+        vm.menu.status = -1;
+        vm.menu.submenu.status = -1;
         sentence = 0;
         oneline = true;
     }
 
     window.onresize();
-};
+}
+;

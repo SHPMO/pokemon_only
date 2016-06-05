@@ -210,12 +210,6 @@ a.nav-href {
     background: url("../images/cfooter.png") no-repeat;
 }
 
-#sub-content {
-    top: 252px;
-    width: 100%;
-    background: url("../images/ccontent.png") repeat-y;
-}
-
 #main-content {
     position: absolute;
     width: 660px;

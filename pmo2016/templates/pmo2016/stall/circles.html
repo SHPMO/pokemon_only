@@ -1,0 +1,25 @@
+{% extends "pmo2016/base.html" %}
+{% load staticfiles %}
+{% block subtitle %}参展社团 - 现场摊位{% endblock %}
+{% block stitle %}stall-circle{% endblock %}
+{% block content %}
+    {% static 'pmo2016/images/circle_image.png' as default_image %}
+    {% if stalls %}
+        <h3>摊位列表</h3>
+        <div id="display-stalls" class="clear-group">
+            {% for stall in stalls %}
+                <div class="display-seller">
+                    <a href="{{ stall.pk }}/" target="_blank"
+                       style="background-image: url('
+                               {% if stall.circle_image %}{{ stall.circle_image.url }}{% else %} {{ default_image }}{% endif %}');"
+                       class="seller-thumb img-href">{{ stall.circle_name }}</a>
+                    <div class="seller-title">
+                        <a href="{{ stall.pk }}/" target="_blank" class="black">{{ stall.circle_name }}</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <h3>【暂时没有消息】</h3>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends "pmo2016/base.html" %}
+{% load staticfiles %}
+{% block more_heads %}
+    <script type="text/javascript" src="{% static 'pmo2016/js/captcha.js' %}"></script>
+    <script type="text/javascript" src="{% static 'pmo2016/js/guestbook.js' %}"></script>
+{% endblock %}
+{% block subtitle %}留言板 - QA留言板{% endblock %}
+{% block stitle %}faq-guestbook{% endblock %}
+{% block content %}
+    <h3>【留言】</h3>
+    <div id="error-message">
+        <p id="error-guestbook" class="error-message-text"></p>
+    </div>
+    <div class="input-area">
+        <form id="message-input" onsubmit="return false;" method="post" action="{% url 'pmo2016:api' 'guestbook'%}">
+            <div class="controls-group oneline-group">
+                <label class="form-label" for="text-nickname">昵称*</label>
+                <input id="text-nickname" class="form-control form-text" type="text" name="nickname" value="{{ nickname }}">
+            </div>
+            <div class="controls-group oneline-group">
+                <label class="form-label" for="text-email">Email</label>
+                <input id="text-email" class="form-control form-text" type="email" name="email" value="{{ email }}">
+            </div>
+            <div class="controls-group multiline-group">
+                <label class="form-label" for="text-message">留言*</label>
+                <textarea id="text-message" class="form-control form-textarea" name="message">{{ message }}</textarea>
+            </div>
+            <div class="controls-group oneline-group">
+                <label class="form-label">验证码*</label>
+                <div id="guestbook_captcha" class="captcha-box form-control">
+                    {{ form.captcha }}
+                </div>
+            </div>
+            <div class="controls-group oneline-group">
+                <button id="button-submit" class="button-submit form-control form-button" name="submit">提交</button>
+            </div>
+            {% csrf_token %}
+        </form>
+    </div>
+    <div id="guestbook-others">
+    <p>您还可以通过邮箱
+        <a class="maintext-href" href="mailto:{{ contact_email }}">contact@getdaze.org</a>
+        或是微博 <a class="maintext-href" href="{{ weibo_url }}">@魔都PMO2016_相连</a>
+        联系我们。
+    </p>
+    </div>
+    <div class="split-line"></div>
+    <div id="message-area">
+        <div id="message-nav">
+            <form id="page-nav" method="get" action=".">
+                <span>共 {{ comment_number }} 条留言 第 {{ page }} 页</span>
+                <label for="text-page">跳转到</label>
+                <input id="text-page" class="form-control form-small-text" type="number" min="1" max="{{ max_page }}" name="page" value="{{ page }}">
+                <button id="page-submit" class="button-small form-button form-control">跳转</button>
+            </form>
+        </div>
+    {% for main_comment in main_comments %}
+        <div id="message-p{{ main_comment.id }}" class="comment-box{% if forloop.last %} comment-box-last{% endif %}">
+            <div class="comment-meta">
+                <span class="comment-nickname">{{ main_comment.nickname }}</span>
+                <span class="comment-datetime">{{ main_comment.gen_time }}</span>
+            </div>
+            <div class="comment-content">{{ main_comment.content|linebreaks }}</div>
+        {% for back_comment in main_comment.backcomment2016_set.all %}
+            <div id="backcomment-p{{ back_comment.id }}" class="backcomment-box">
+                <div class="backcomment-meta comment-meta">
+                    <span class="backcomment-admin comment-nickname">{{ back_comment.admin.nickname }}</span><span> 的回复</span>
+                    <span class="backcomment-datetime comment-datetime">{{ back_comment.gen_time }}</span>
+                </div>
+                <div class="backcomment-content comment-content">{{ back_comment.content|linebreaks }}</div>
+            </div>
+        {% endfor %}
+        </div>
+    {% empty %}
+        <div id="message-none">暂时没有留言。</div>
+    {% endfor %}
+    </div>
+{% endblock %}

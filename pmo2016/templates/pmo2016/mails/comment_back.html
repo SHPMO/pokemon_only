@@ -1,0 +1,5 @@
+{% extends 'mail_base.html' %}
+{% block content %}
+<p>您有留言被回复，请到<a href="{{ base_url }}{% url 'pmo2016:qabook' 'guestbook' %}?page={{ page }}">留言板</a>页面查看详情。</p>
+{{ back_comment.content|linebreaks }}
+{% endblock %}

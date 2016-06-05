@@ -1,0 +1,10 @@
+{% extends "pmo2016/base.html" %}
+{% load staticfiles %}
+{% block subtitle %}幸运抽奖 - 现场活动{% endblock %}
+{% block stitle %}event-raffle{% endblock %}
+{% block content %}
+    <h3>【抽奖规则】</h3>
+    <p>下午3点，我们将直接用电脑抽ID编号开奖，中奖者务必带好自己的门票上台领奖。</p>
+    <h3>【抽奖奖品】</h3>
+    <p><a href="{% url 'pmo2016:baseinfo' 'prize' %}" class="maintext-href">点我查看</a></p>
+{% endblock %}

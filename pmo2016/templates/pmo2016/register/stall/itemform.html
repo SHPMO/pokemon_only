@@ -1,0 +1,103 @@
+<div class="controls-group oneline-group">
+    <label class="form-label" for="text-name">名称*</label>
+    <input id="text-name" class="form-control form-text" type="text" required="required"
+           name="name" value="{{ item.name }}">
+    <span class="form-additional">（本子请打上《》）</span>
+</div>
+<div class="controls-group oneline-group">
+    <label class="form-label" for="text-item_type">种类*</label>
+    <input id="text-item_type" class="form-control form-text" type="text" required="required"
+           name="item_type" value="{{ item.item_type }}">
+    <span class="form-additional">（同人本/周边/手工品）</span>
+</div>
+<div class="controls-group oneline-group">
+    <label class="form-label" for="text-content">内容*</label>
+    <input id="text-content" class="form-control form-text" type="text" required="required"
+           name="content" value="{{ item.content }}">
+    <span class="form-additional">（例如漫画/小说/挂件/徽章）</span>
+</div>
+<div class="controls-group oneline-group">
+    <label class="form-label" for="text-price">价格*</label>
+    <input id="text-price" class="form-control form-text" type="text" required="required"
+           name="price" value="{{ item.price }}">
+    <span class="form-additional">（请写清楚价格，用-1表示“未定”）</span>
+</div>
+<div class="controls-group oneline-group">
+    <label class="form-label" for="text-url">链接</label>
+    <input id="text-url" class="form-control form-text" type="text"
+           name="url" value="{{ item.url }}">
+    <span class="form-additional">（外部链接）</span>
+</div>
+<div class="controls-group multiline-group">
+    <label class="form-label" for="text-authors">作者名单</label>
+    <textarea id="text-authors" class="form-control form-textarea" name="authors">{{ item.authors }}</textarea>
+    <span class="form-additional form-textspan">（具体的制作人员们）</span>
+</div>
+<div class="controls-group multiline-group">
+    <label class="form-label" for="text-introduction">简介</label>
+    <textarea id="text-introduction" class="form-control form-textarea" name="introduction">{{ item.introduction }}</textarea>
+    <span class="form-additional form-textspan">（将会显示在列表中）</span>
+</div>
+<div class="controls-group multiline-group clear-group">
+    <label class="form-label" for="text-introduction">图像</label>
+    <div class="images-preview clear-group">
+        <div id="file-cover_image" class="image-preview form-control form-image{% if item.cover_image %} image-uploaded"
+            style="background-image: url('{{ item.cover_image.url }}');">{% else %}">{% endif %}
+            <span class="image-tag">封面</span>
+            <span class="image-method upload-button">
+                <input type="file" class="item-image upload-input" name="cover_image"
+                       accept="image/*"{% if item.cover_image %} data-image_id="0"{% endif %}>
+            </span>
+        </div>
+        {% for i, image, image_id in images %}
+            <div id="file-item_image_{{ i }}" class="image-preview form-control{% if image %} image-uploaded"
+                style="background-image: url('{{ image }}');">{% else %}">{% endif %}
+                <span class="image-method upload-button">
+                    <input type="file" class="item-image upload-input" name="item_image_{{ i }}"
+                       accept="image/*" {% if image %}data-image_id="{{ image_id }}"{% endif %}>
+                </span>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+<div class="controls-group oneline-group">
+    <label class="form-label" for="text-forto">面向人群*</label>
+    <input id="text-forto" class="form-control form-text" type="text" required="required"
+           name="forto" value="{{ item.forto }}">
+    <span class="form-additional">（大众向/女性向/男性向等）</span>
+</div>
+<div class="controls-group oneline-group">
+    <label class="form-label" for="text-is_restricted">限制级*</label>
+    <input id="text-is_restricted" class="form-control form-text" type="text" required="required"
+           name="is_restricted" value="{{ item.is_restricted }}">
+    <span class="form-additional">（是的话请详细写明级别。R18以上须单独审核）</span>
+</div>
+<div class="controls-group oneline-group">
+    <label class="form-label" for="text-circle">出品社团*</label>
+    <input id="text-circle" class="form-control form-text" type="text" required="required"
+           name="circle" value="{{ item.circle }}">
+</div>
+<div class="controls-group oneline-group">
+    <label class="form-label">是否首发*</label>
+    <div id="type-select" class="oneline-select form-control form-indent">
+        <div class="inline-control inline-control-two">
+            <input id="select-start_with" type="radio" name="is_started_with" value="true"
+                {% if item.is_started_with %} checked="checked"{% endif %}>
+            <label for="select-start_with">是</label>
+        </div>
+        <div class="inline-control inline-control-two">
+            <input id="select-start_without" type="radio" name="is_started_with" value="false"
+                {% if not item.is_started_with %} checked="checked"{% endif %}>
+            <label for="select-start_without">否</label>
+        </div>
+    </div>
+</div>
+<input type="hidden" name="item_id" value="{{ item.pk }}">
+<input type="hidden" name="pmo" value="pmo2016">
+<input type="hidden" name="method" value="save">
+{% csrf_token %}
+<div class="controls-group oneline-group">
+    <button id="items-submit" class="button-submit form-control form-button">保存</button>
+    <a target="_blank" href="{% url "pmo2016:stall" "item" item.pk %}" id="items-preview" class="anchor-button button-submit form-control form-button"
+       title="预览上次保存的内容">当前预览</a>
+</div>

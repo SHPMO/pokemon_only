@@ -31,6 +31,7 @@ class Seller(BaseStallModel):
     proposer_phone = models.CharField(max_length=20, help_text="电话")
     proposer_id = models.CharField(max_length=18, help_text="身份证号")
     booth = models.SmallIntegerField(default=1, help_text="申请摊位数")
+    number_of_people = models.SmallIntegerField(default=1, help_text="申请人数")
     remarks = models.TextField(default='', help_text="备注")
 
     status = models.IntegerField(help_text="状态")

@@ -6,7 +6,6 @@ from pmo2015.views import (
     QABookView, ApiView, AdminView
 )
 
-
 urlpatterns = [
     url(r'^$', 'pmo2015.views.home', name='home'),
 
@@ -34,6 +33,5 @@ urlpatterns = [
     url(r'^admin/$', AdminView.as_view(), name='admin'),
     url(r'^admin/(?P<sub>.+)/$', AdminView.as_view(), name='admin'),
 
-    url(r'^test/$', 'pmo2015.views.test', name='test'),
+    # url(r'^test/$', 'pmo2015.views.test', name='test'),
 ]
-

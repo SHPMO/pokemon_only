@@ -16,7 +16,7 @@ class AdminView(CommonView):
     admin = None
 
     def _init(self, request):
-        if not (request.user.is_authenticated() and any(request.user.groups.filter(name='Pmo2015AdminGroup'))):
+        if not (request.user.is_authenticated() and any(request.user.groups.filter(name='PmoAdminGroup'))):
             raise Http404
         self.admin = request.user.pmoadmin
 
@@ -304,7 +304,7 @@ class AdminView(CommonView):
             username = request.POST.get("username")
             password = request.POST.get("password")
             user = authenticate(username=username, password=password)
-            if user is None or not any(user.groups.filter(name='Pmo2015AdminGroup')):
+            if user is None or not any(user.groups.filter(name='PmoAdminGroup')):
                 response = redirect("pmo2015:admin", sub='login')
                 response['Location'] += '?fail=1'
                 return response

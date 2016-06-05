@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}{% block subtitle %}{% endblock %} - Pokemon Only 2016{% endblock %}
+{% block icon %}{% static 'pmo2016/images/favicon.ico' %}{% endblock %}
+{% block heads %}
+    <link rel="stylesheet" type="text/css" href="{% static 'pmo2016/css/pmo2016.css' %}">
+    <script type="text/javascript" src="{% static 'pmo2016/js/pmo2016.js' %}"></script>
+    {% block more_heads %}{% endblock %}
+{% endblock %}
+{% block body %}
+    <header id="pmo-header">
+        <div id="header-container">
+            <div id="logo" class="global-nav">
+                <a href="{% url 'pmo2016:home' %}" class="logo-href img-href"><span class="logo">home</span></a>
+            </div>
+            <ul id="nav-hrefs" class="global-nav">
+                <li id="nav-baseinfo" class="nav-list">
+                    <span class="nav-href">基本信息</span>
+                    <ul id="subnav-baseinfo" class="subnav-hrefs nodisplay-object">
+                        <li class="subnav-list">
+                            <a href="{% url 'pmo2016:baseinfo' 'schedule' %}" class="subnav-href">活动时间与当日行程</a>
+                        </li>
+                        <li class="subnav-list">
+                            <a href="{% url 'pmo2016:baseinfo' 'place' %}" class="subnav-href">场地信息</a>
+                        </li>
+                        <li class="subnav-list">
+                            <a href="{% url 'pmo2016:baseinfo' 'ticket' %}" class="subnav-href">票务信息</a>
+                        </li>
+                        <li class="subnav-list subnav-list-last">
+                            <a href="{% url 'pmo2016:baseinfo' 'prize' %}" class="subnav-href">奖品一览</a>
+                        </li>
+                    </ul>
+                </li>
+                <li id="nav-stall" class="nav-list">
+                    <span class="nav-href">现场摊位</span>
+                    <ul id="subnav-stall" class="subnav-hrefs nodisplay-object">
+                        <li class="subnav-list">
+                            <a href="{% url 'pmo2016:stall' 'diagram' %}" class="subnav-href">现场摊位</a>
+                        </li>
+                        <li class="subnav-list">
+                            <a href="{% url 'pmo2016:stall' 'circle' %}" class="subnav-href">参展社团</a>
+                        </li>
+                        <li class="subnav-list subnav-list-last">
+                            <a href="{% url 'pmo2016:stall' 'item' %}" class="subnav-href">参展贩售物</a>
+                        </li>
+                    </ul>
+                </li>
+                <li id="nav-event" class="nav-list">
+                    <span class="nav-href">现场活动</span>
+                    <ul id="subnav-event" class="subnav-hrefs nodisplay-object">
+                        <li class="subnav-list">
+                            <a href="{% url 'pmo2016:event' 'battle' %}" class="subnav-href">联机对战</a>
+                        </li>
+                        <li class="subnav-list">
+                            <a href="{% url 'pmo2016:event' 'venue' %}" class="subnav-href">场地活动</a>
+                        </li>
+                        <li class="subnav-list subnav-list-last">
+                            <a href="{% url 'pmo2016:event' 'raffle' %}" class="subnav-href">幸运抽奖</a>
+                        </li>
+                    </ul>
+                </li>
+                <li id="nav-register" class="nav-list">
+                    <span class="nav-href">在线报名</span>
+                    <ul id="subnav-register" class="subnav-hrefs nodisplay-object">
+                        <li class="subnav-list">
+                            <a href="{% url 'pmo2016:register' 'battle' %}" class="subnav-href">对战报名</a>
+                        </li>
+                        <li class="subnav-list subnav-list-last">
+                            <a href="{% url 'pmo2016:register' 'stall' %}" class="subnav-href">摊位申请</a>
+                        </li>
+                    </ul>
+                </li>
+                <li id="nav-qabook" class="nav-list">
+                    <span class="nav-href">QA留言板</span>
+                    <ul id="subnav-qabook" class="subnav-hrefs nodisplay-object">
+                        <li class="subnav-list">
+                            <a href="{% url 'pmo2016:qabook' 'faq' %}" class="subnav-href">常见Q&A</a>
+                        </li>
+                        <li class="subnav-list">
+                            <a href="{% url 'pmo2016:qabook' 'manner' %}" class="subnav-href">参展礼仪与建议</a>
+                        </li>
+                        <li class="subnav-list subnav-list-last">
+                            <a href="{% url 'pmo2016:qabook' 'guestbook' %}" class="subnav-href">留言板</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div id="header-border"></div>
+    </header>
+    <div id="main-container">
+        <div id="main-content">
+            <div id="sub-title" class="sub-object">
+                <div id="subtitle" class="{% block stitle %}title-untitled{% endblock %}"></div>
+            </div>
+            <div id="content">
+                {% block content %}Maintaining{% endblock %}
+            </div>
+        </div>
+        <div id="nav-panel">{% block panels %}{% endblock %}</div>
+    </div>
+{% endblock %}

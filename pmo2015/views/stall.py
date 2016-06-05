@@ -73,7 +73,7 @@ class StallView(CommonView):
 
     def check_perm(self, request):
         if request.user.is_authenticated():
-            if any(request.user.groups.filter(name='Pmo2015AdminGroup')):
+            if any(request.user.groups.filter(name='PmoAdminGroup')):
                 self.has_perm = True
             user_seller = request.user.seller_set.filter(pmo=self.pmo)
             if user_seller.count() == 1:

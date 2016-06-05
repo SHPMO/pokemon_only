@@ -1,0 +1,19 @@
+<table class="controls-group items-table" data-page="{{ page }}">
+    <thead>
+        <tr>
+            <th id="item-numbers" class="first-head">编号</th>
+            <th id="item-names" class="last-head">名称</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i, item in items %}
+            <tr class="oneline-group">
+                <td class="item-number">{% if item %}{{ i }}{% endif %}</td>
+                <td {% if item %}class="item-name" data-item_id="{{ item.pk }}"{% endif %}>
+                    <span>{{ item.name|default:"" }}</span>
+                    {% if item %}<span class="item-delete">X</span>{% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

@@ -96,7 +96,6 @@ div {
     background: url("../images/select.svg") no-repeat center;
     background-size: contain;
 }
-}
 
 #yesno {
     position: absolute;
@@ -106,15 +105,30 @@ div {
     background-size: contain;
 }
 
-#yesno-cursor, #dialog-cursor, #select-cursor {
-    position: absolute;
-}
-
 #dialog {
     position: absolute;
     bottom: 0;
     background: url("../images/dialog.svg") no-repeat center;
     background-size: contain;
+}
+
+#menu {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: url("../images/menu.svg") no-repeat center;
+    background-size: contain;
+}
+
+#submenu {
+    position: absolute;
+    right: 0;
+    background: url("../images/submenu.svg") no-repeat center;
+    background-size: contain;
+}
+
+#yesno-cursor, #dialog-cursor, #select-cursor, #menu-cursor, #submenu-cursor {
+    position: absolute;
 }
 
 @media screen and (max-width: 480px) {
@@ -138,4 +152,19 @@ div {
 
 .gb-button {
     float: left;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
+    background-color: #7d797a;
+    color: #F6F6F6;
 }

@@ -1,0 +1,70 @@
+<h3>基本信息</h3>
+<div id="error-message-information">
+    <p id="error-information" class="error-message-text"></p>
+</div>
+<form id="seller-input" action="{% url "stall:seller" %}" method="post" onsubmit="return false;">
+    <h4>【社团资料】</h4>
+    <div class="controls-group oneline-group">
+        <label class="form-label" for="text-circle_name">摊位名*</label>
+        <input id="text-circle_name" class="form-control form-text" type="text" required="required"
+               name="circle_name" value="{{ seller.circle_name }}">
+    </div>
+    <div class="controls-group multiline-group">
+        <label class="form-label" for="text-circle_description">摊位介绍</label>
+        <textarea id="text-circle_description" class="form-control form-textarea"
+                  name="circle_description">{{ seller.circle_description }}</textarea>
+    </div>
+    <div class="controls-group multiline-group clear-group">
+        <label class="form-label" for="file-circle_image">社团logo</label>
+        <img id="image-circle_image" class="form-control form-image"
+                {% if seller.circle_image %} src="{{ seller.circle_image.url }}"{% endif %}>
+        <button id="file-upload" class="upload-button button-mleft form-control form-button">
+            <span>上传文件</span>
+            <input type="file" id="file-circle_image" class="upload-input" name="circle_image"
+                   accept="image/*" data-url="{% url 'stall:seller' 'upload' %}">
+        </button>
+        <p id="error-upload-circle_image"></p>
+    </div>
+    <h4>【申请人信息】</h4>
+    <div class="controls-group oneline-group">
+        <label class="form-label" for="text-proposer_name">姓名*</label>
+        <input id="text-proposer_name" class="form-control form-text" type="text" required="required"
+               name="proposer_name" value="{{ seller.proposer_name }}">
+        <span class="form-additional">（要求≥18周岁，请填写真名）</span>
+    </div>
+    <div class="controls-group oneline-group">
+        <label class="form-label" for="text-proposer_sex">性别*</label>
+        <input id="text-proposer_sex" class="form-control form-text" type="text" required="required"
+               name="proposer_sex" value="{{ seller.proposer_sex }}">
+    </div>
+    <div class="controls-group oneline-group">
+        <label class="form-label" for="text-proposer_qq">QQ</label>
+        <input id="text-proposer_qq" class="form-control form-text" type="text"
+               name="proposer_qq" value="{{ seller.proposer_qq }}">
+    </div>
+    <div class="controls-group oneline-group">
+        <label class="form-label" for="text-proposer_email">Email*</label>
+        <input id="text-proposer_email" class="form-control form-text" type="text" required="required"
+               value="{{ seller.email }}" disabled="disabled">
+    </div>
+    <div class="controls-group oneline-group">
+        <label class="form-label" for="text-proposer_phone">移动电话*</label>
+        <input id="text-proposer_phone" class="form-control form-text" type="text" required="required"
+               name="proposer_phone" value="{{ seller.proposer_phone }}">
+    </div>
+    {% if seller.is_stall %}
+    <div class="controls-group oneline-group">
+        <label class="form-label" for="text-proposer_id">身份证号*</label>
+        <input id="text-proposer_id" class="form-control form-text" type="text" required="required"
+               name="proposer_id" value="{{ seller.proposer_id }}">
+        <span class="form-additional">（用于签约时核对信息，不会泄露）</span>
+    </div>
+    {% endif %}
+    <div class="controls-group oneline-group">
+        <button id="seller-submit" class="button-submit form-control form-button" name="submit">保存</button>
+        <a target="_blank" href="{% url "pmo2016:stall" "circle" seller.pk %}" id="seller-preview" class="anchor-button button-submit form-control form-button"
+           title="预览上次保存的内容">当前预览</a>
+    </div>
+    {% csrf_token %}
+    <input type="hidden" name="pmo" value="pmo2016">
+</form>

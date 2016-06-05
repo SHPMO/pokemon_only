@@ -1,0 +1,44 @@
+{% extends "pmo2016/base.html" %}
+{% load staticfiles %}
+{% block more_heads %}
+    <script type="text/javascript" src="{% static 'pmo2016/js/captcha.js' %}"></script>
+    <script type="text/javascript" src="{% static 'pmo2016/js/battle.js' %}"></script>
+{% endblock %}
+{% block subtitle %}对战报名 - 在线报名{% endblock %}
+{% block stitle %}register-battle{% endblock %}
+{% block content %}
+    <h3>【报名信息】</h3>
+    <div id="error-message">
+        <p class="error-message-text"></p>
+    </div>
+    <div class="input-area">
+        <form id="register-input" action="{% url "pmo2016:api" "battle" %}" method="post" onsubmit="return false;">
+            <div class="controls-group oneline-group">
+                <label class="form-label" for="text-nickname">昵称*</label>
+                <input id="text-nickname" class="form-control form-text" type="text" name="nickname">
+            </div>
+            <div class="controls-group oneline-group">
+                <label class="form-label" for="text-email">Email*</label>
+                <input id="text-email" class="form-control form-text" type="email" name="email">
+            </div>
+            <div class="controls-group oneline-group">
+                <label class="form-label" for="text-taobao">ID号*</label>
+                <input id="text-taobao" class="form-control form-text" type="text" name="taobao" maxlength="5">
+            </div>
+            <div class="controls-group oneline-group">
+                <label class="form-label">验证码*</label>
+                <div id="battle_captcha" class="captcha-box form-control">
+                    {{ form.captcha }}
+                </div>
+            </div>
+            <div class="controls-group oneline-group">
+                <button id="button-submit" class="button-submit form-control form-button" name="submit">提交</button>
+            </div>
+            {% csrf_token %}
+        </form>
+    </div>
+    <div class="split-line"></div>
+    <div id="intro-area">
+        <p><a class="maintext-href" href="{% url 'pmo2016:event' 'battle'%}">对战规则</a></p>
+    </div>
+{% endblock %}

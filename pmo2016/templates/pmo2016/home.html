@@ -35,6 +35,12 @@
             <div id="dialog" v-bind:style="dialogStyle">{!! dialog.message !!}</div>
             <img id="dialog-cursor" src="{% static 'pmo2016/images/dialog-cursor.svg' %}"
                  v-bind:style="dialogCursorStyle">
+            <div id="menu" v-bind:style="menuStyle">{!! menu.message !!}</div>
+            <img id="menu-cursor" src="{% static 'pmo2016/images/select-cursor.svg' %}"
+                 v-bind:style="menuCursorStyle">
+            <div id="submenu" v-bind:style="submenuStyle">{!! menu.submenu.message !!}</div>
+            <img id="submenu-cursor" src="{% static 'pmo2016/images/select-cursor.svg' %}"
+                 v-bind:style="submenuCursorStyle">
         </div>
         <div id="gb-buttons" v-bind:style="buttonsStyle" v-on:click="buttonPressed">
         </div>

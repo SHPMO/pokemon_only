@@ -1,0 +1,23 @@
+{% extends 'pmo2016/admin/base.html' %}
+{% block content %}
+<div>审核报名</div>
+{% if current %}
+<p>昵称：{{ current.player_name }}</p>
+<p>状态：{% if current.status == 0 %}待审{% elif current.status == 1 %}通过{% else %}拒绝{% endif %}</p>
+<p>Email：{{ current.email }}</p>
+<p>淘宝交易号：{{ current.taobao_id }}</p>
+<form action="." method="post">
+    <label for="battle-message">附加信息：</label>
+    <textarea id="battle-message" name="message" style="height:100px;width:200px;"></textarea>
+    <input type="hidden" name="player_id" value="{{ current.pk }}">
+    <button name="submit" value="accept">审核通过</button>
+    <button name="submit" value="reject">审核不通过</button>
+    {% csrf_token %}
+</form>
+{% endif %}
+<ul>
+{% for player in player_list %}
+    <li><a href=".?player_id={{ player.pk }}">{{ player }}</a></li>
+{% endfor %}
+</ul>
+{% endblock %}

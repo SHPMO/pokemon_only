@@ -1,0 +1,28 @@
+{% extends "pmo2016/base.html" %}
+{% load staticfiles %}
+{% block subtitle %}活动时间与当日行程 - 基本信息{% endblock %}
+{% block stitle %}title-schedule{% endblock %}
+{% block content %}
+    <h3>主题</h3>
+    <p>It's been 20 years...</p>
+    <p><strong>主标题</strong>：相连</p>
+    <p><strong>主办</strong>：无mega宝可梦保护祈福协会</p>
+    <p><strong>时间</strong>：2016年7月16日/星期六 9:30~16:30</p>
+    <p><strong>地点</strong>：诺宝中心酒店——楼兰晶剧场（闵行区星中路1688号）</p>
+    <p>场地相关请戳<a href="{% url 'pmo2016:baseinfo' 'place' %}" class="maintext-href">这里</a></p>
+    <h3>主要内容</h3>
+    <p>精灵宝可梦系列相关同人物贩售</p>
+    <p>PMO官方闯关小游戏</p>
+    <p>联机对战赛</p>
+    <p>WiiU游戏宝可梦拳体验</p>
+    <h3>当日行程</h3>
+    <table id="schedule-table">
+        <tr><td>08:30</td><td>摊主&官方布置</td></tr>
+        <tr><td>09:30</td><td>正式开场</td></tr>
+        <tr><td>10:00</td><td>对战赛预赛&小游戏部分开启</td></tr>
+        <tr><td>12:00</td><td>进入淘汰赛&剩余小游戏开启（对战区半场转为休息区）</td></tr>
+        <tr><td>13:00</td><td>半决赛决赛直播&期间小游戏暂停（对战区全部转为休息区）</td></tr>
+        <tr><td>15:30</td><td>抽奖</td></tr>
+        <tr><td>16:30</td><td>闭场</td></tr>
+    </table>
+{% endblock %}

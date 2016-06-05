@@ -1,0 +1,18 @@
+{% extends "pmo2016/base.html" %}
+{% load staticfiles %}
+{% block subtitle %}场地信息 - 基本信息{% endblock %}
+{% block stitle %}title-place{% endblock %}
+{% block content %}
+    <h3>主场地</h3>
+    <p><strong>地点</strong>：诺宝中心</p>
+    <p>上海市闵行区漕宝路1688号</p>
+    <p><strong>附近地铁站</strong>：9号线-星中路站（2号口出）</p>
+    <p>点击下图获取更多信息</p>
+    <div>
+        <a href='http://api.map.baidu.com/geocoder?address=诺宝中心&output=html' target='_blank'>
+            <img style="margin:2px" width="580" height="500" src="http://api.map.baidu.com/staticimage?
+                width=540&height=360&zoom=17&center=诺宝中心" />
+        </a>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh">
+    <meta charset="UTF-8">
+    <title>admin</title>
+</head>
+<body>
+<div>
+    <span>你好，{{ admin.nickname }}。</span>
+    <a href="{% url 'pmo2016:admin' 'logout' %}">注销</a>
+    <a href="{% url 'pmo2016:admin' %}">管理主页</a>
+</div>
+{% block content %}{% endblock %}
+</body>
+</html>

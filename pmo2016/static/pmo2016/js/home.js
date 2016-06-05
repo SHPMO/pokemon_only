@@ -251,6 +251,13 @@ window.onload = function () {
                     status: -1,
                     message: ""
                 }
+            },
+            welcome: {
+                bgLeftRight: false,
+                bgYears: false,
+                gb: false,
+                pikachu: false,
+                gbScreen: false,
             }
         },
         computed: {
@@ -270,6 +277,7 @@ window.onload = function () {
             },
             screenStyle: function () {
                 return {
+                    display: this.power ? 'block' : 'none',
                     left: gb.clientWidth / 2 - 76.5 * this.unit + 'px',
                     top: gb.clientHeight - 381 * this.unit + 'px',
                     width: 160 * this.unit + 'px',
@@ -283,7 +291,8 @@ window.onload = function () {
             buttonsStyle: function () {
                 return {
                     top: gb.clientHeight - 331 * this.unit + 'px',
-                    height: 150 * this.unit + 'px'
+                    height: 150 * this.unit + 'px',
+                    width: 287 * this.unit + 'px'
                 }
             },
             selectStyle: function () {
@@ -388,6 +397,7 @@ window.onload = function () {
         methods: {
             buttonPressed: function (event) {
                 var x = event.offsetX / this.unit, y = event.offsetY / this.unit;
+                console.log(x, y);
                 if (x >= 56.333 && x <= 83.333 && y >= 0 && y <= 22) {
                     pressUp();
                 } else if (x >= 56.333 && x <= 83.333 && y >= 49 && y <= 71) {
@@ -405,6 +415,33 @@ window.onload = function () {
                 } else if (x >= 141 && x <= 173.47 && y >= 91 && y <= 106.62) {
                     pressStart();
                 }
+            }
+        },
+        ready: function () {
+            this.$el.style.display = "flex";
+            this.welcome.bgLeftRight = true;
+        },
+        watch: {
+            'welcome.bgLeftRight': function () {
+                setTimeout(function () {
+                    vm.welcome.bgYears = true;
+                }, 800);
+            },
+            'welcome.bgYears': function () {
+                setTimeout(function () {
+                    vm.welcome.gb = true;
+                }, 800);
+            },
+            'welcome.gb': function () {
+                setTimeout(function () {
+                    vm.welcome.pikachu = true;
+                }, 800);
+            },
+            'welcome.pikachu': function () {
+                setTimeout(function () {
+                    window.onresize();
+                    vm.welcome.gbScreen = true;
+                }, 800);
             }
         }
     });
@@ -681,6 +718,4 @@ window.onload = function () {
         sentence = 0;
         oneline = true;
     }
-
-    window.onresize();
 };

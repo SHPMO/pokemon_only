@@ -8,6 +8,7 @@ html, body, #main-container {
     width: 100%;
     height: 100%;
     font-family: xiangsu, serif;
+    overflow: hidden;
 }
 
 div {
@@ -22,12 +23,11 @@ div {
 }
 
 #main-container {
-    display: flex;
+    display: none;
     height: 100%;
     width: 100%;
-    background: url('../images/left.png') left no-repeat,
-    url('../images/right.png') right no-repeat, #fcedcc;
-    background-size: contain;
+    background: #fcedcc;
+
 }
 
 #gb {
@@ -45,6 +45,13 @@ div {
     position: absolute;
 }
 
+#bg-leftright {
+    height: 100%;
+    width: 100%;
+    background: url('../images/left.png') left no-repeat, url('../images/right.png') right no-repeat;
+    background-size: contain;
+}
+
 #year20th {
     background: url('../images/20th.png') no-repeat center;
     background-size: contain;
@@ -52,7 +59,17 @@ div {
     height: 188px;
     left: 50%;
     margin-left: -181px;
-    bottom: 80%;
+    bottom: 75%;
+}
+
+#pikachu {
+    background: url('../images/pikachu.png') no-repeat center;
+    background-size: contain;
+    width: 300px;
+    height: 300px;
+    left: 50%;
+    margin-left: -150px;
+    bottom: 65%;
 }
 
 #year1996 {
@@ -73,16 +90,6 @@ div {
     top: 50%;
     right: 25%;
     margin-top: -46px;
-}
-
-#pikachu {
-    background: url('../images/pikachu.png') no-repeat center;
-    background-size: contain;
-    width: 300px;
-    height: 300px;
-    left: 50%;
-    margin-left: -150px;
-    bottom: 70%;
 }
 
 #gb-screen {
@@ -151,8 +158,9 @@ div {
 }
 
 #gb-buttons {
-    width: 100%;
     position: relative;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .gb-button {
@@ -172,4 +180,91 @@ a:hover {
     transition: all 0.4s;
     background-color: #7d797a;
     color: #F6F6F6;
+}
+
+.welcomeLeftRight-enter {
+    animation: welcomeLeftRight-in 1s;
+}
+
+@keyframes welcomeLeftRight-in {
+    0% {
+        transform: scale(2);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.welcomeYearLeft-enter {
+    animation: welcomeYearLeft-in 1s;
+}
+
+@keyframes welcomeYearLeft-in {
+    0% {
+        margin-left: -100px;
+        opacity: 0;
+    }
+    80% {
+        margin-left: 20px;
+    }
+    100% {
+        margin-left: 0;
+        opacity: 1;
+    }
+}
+
+.welcomeYearRight-enter {
+    animation: welcomeYearRight-in 1s;
+}
+
+@keyframes welcomeYearRight-in {
+    0% {
+        margin-right: -100px;
+        opacity: 0;
+    }
+    80% {
+        margin-right: 30px;
+    }
+    100% {
+        margin-right: 0;
+        opacity: 1;
+    }
+}
+
+.welcomeGB-enter {
+    animation: welcomeGB-in 1s;
+}
+
+@keyframes welcomeGB-in {
+    0% {
+        margin-top: 100%;
+    }
+    100% {
+        margin-top: 0;
+    }
+}
+
+.welcomePikachu-enter {
+    animation: welcomePikachu-in 1s;
+}
+
+@keyframes welcomePikachu-in {
+    0% {
+        bottom: 40%;
+    }
+}
+
+.welcomeGBScreen-enter {
+    animation: welcomeGBScreen-in 1s;
+}
+
+@keyframes welcomeGBScreen-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }

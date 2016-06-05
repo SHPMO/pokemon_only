@@ -14,12 +14,13 @@
 </head>
 <body>
 <div id="main-container">
-    <div id="year20th" class="bg-element"></div>
-    <div id="year1996" class="bg-element"></div>
-    <div id="year2016" class="bg-element"></div>
-    <div id="pikachu" class="bg-element"></div>
-    <div id="gb">
-        <div id="gb-screen" v-bind:style="screenStyle">
+    <div id="bg-leftright" class="bg-element" v-show="welcome.bgLeftRight" transition="welcomeLeftRight"></div>
+    <div id="year20th" class="bg-element" v-show="welcome.pikachu" transition="welcomePikachu"></div>
+    <div id="pikachu" class="bg-element" v-show="welcome.pikachu" transition="welcomePikachu"></div>
+    <div id="year1996" class="bg-element" v-show="welcome.bgYears" transition="welcomeYearLeft"></div>
+    <div id="year2016" class="bg-element" v-show="welcome.bgYears" transition="welcomeYearRight"></div>
+    <div id="gb" v-show="welcome.gb" transition="welcomeGB">
+        <div id="gb-screen" v-bind:style="screenStyle" v-show="welcome.gbScreen" transition="welcomeGBScreen">
             <img id="hero" v-bind:src="heroImage" v-bind:style="heroStyle">
             <div id="select" v-bind:style="selectStyle">
                 << select.options[0] >><br>

@@ -7,3 +7,5 @@ class BattleForm(forms.Form):
     email = forms.EmailField()
     captcha = CaptchaField()
     taobao = forms.CharField(max_length=5, min_length=5)
+    phone = forms.CharField(max_length=20)
+    receiver_name = forms.CharField(max_length=40)

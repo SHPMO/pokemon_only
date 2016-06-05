@@ -26,6 +26,15 @@
                 <input id="text-taobao" class="form-control form-text" type="text" name="taobao" maxlength="5">
             </div>
             <div class="controls-group oneline-group">
+                <label class="form-label" for="text-phone">手机号*</label>
+                <input id="text-phone" class="form-control form-text" type="text" name="phone" maxlength="20">
+            </div>
+            <div class="controls-group oneline-group">
+                <label class="form-label" for="text-receiver_name">收货人名*</label>
+                <input id="text-receiver_name" class="form-control form-text" type="text" name="receiver_name"
+                       maxlength="40">
+            </div>
+            <div class="controls-group oneline-group">
                 <label class="form-label">验证码*</label>
                 <div id="battle_captcha" class="captcha-box form-control">
                     {{ form.captcha }}
@@ -39,6 +48,6 @@
     </div>
     <div class="split-line"></div>
     <div id="intro-area">
-        <p><a class="maintext-href" href="{% url 'pmo2016:event' 'battle'%}">对战规则</a></p>
+        <p><a class="maintext-href" href="{% url 'pmo2016:event' 'battle' %}">对战规则</a></p>
     </div>
 {% endblock %}

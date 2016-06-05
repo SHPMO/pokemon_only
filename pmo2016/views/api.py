@@ -47,6 +47,8 @@ def _battle(request, *args, **kwargs):
     player_name = form.cleaned_data['nickname']
     email = form.cleaned_data['email']
     taobao_id = form.cleaned_data['taobao']
+    phone = form.cleaned_data['phone']
+    receiver_name = form.cleaned_data['receiver_name']
     ip_address = request.META.get("REMOTE_ADDR")
     if ip_address is None:
         return _return_me(-1)
@@ -58,7 +60,9 @@ def _battle(request, *args, **kwargs):
                 player_name=player_name,
                 email=email,
                 taobao_id=taobao_id,
-                signup_ip=ip_address
+                signup_ip=ip_address,
+                phone=phone,
+                receiver_name=receiver_name
             )
         except AssertionError:
             return _return_me(3)

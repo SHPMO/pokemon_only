@@ -660,6 +660,8 @@ window.onload = function () {
         vm.yesno.status = -1;
         vm.menu.status = -1;
         vm.menu.submenu.status = -1;
+        shining = null;
+        vm.dialog.cursor = false;
         sentence = 0;
         oneline = true;
     }

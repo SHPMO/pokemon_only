@@ -320,7 +320,7 @@ window.onload = function () {
             },
             dialogCursorStyle: function () {
                 return {
-                    display: this.dialog.cursor ? 'none' : 'block',
+                    display: this.dialog.cursor ? 'block' : 'none',
                     height: 5 * this.unit + 'px',
                     width: 7 * this.unit + 'px',
                     bottom: 12 * this.unit + 'px',
@@ -329,7 +329,7 @@ window.onload = function () {
             },
             menuStyle: function () {
                 return {
-                    display: this.menu.status == -1 ?'none' : 'block',
+                    display: this.menu.status == -1 ? 'none' : 'block',
                     height: 112 * this.unit + 'px',
                     width: 64 * this.unit + 'px',
                     paddingTop: 10 * this.unit + 'px',

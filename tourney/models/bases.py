@@ -1,9 +1,5 @@
 from django.db import models
 from django.utils.html import escape
-    taobao_id = models.CharField(max_length=16)
-    status = models.SmallIntegerField(default=0)
-    signup_time = models.DateTimeField(auto_now=True)
-    signup_ip = models.GenericIPAddressField()
 
 
 class BasePlayer(models.Model):

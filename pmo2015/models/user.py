@@ -1,11 +1,16 @@
-# coding=utf-8
+from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import User, Group, Permission
 
 
 class PmoAdmin(models.Model):
-    user = models.OneToOneField(User)
+    user = models.ForeignKey(User)
     nickname = models.CharField(max_length=30)
+    PMO_CHOICES = tuple(
+        (x, x)
+        for x in settings.PMO_LIST
+    )
+    pmo = models.CharField(max_length=10, default='unknown', choices=PMO_CHOICES, help_text="漫展")
 
     @classmethod
     def create(cls, username, email, password, *args, **kwargs):

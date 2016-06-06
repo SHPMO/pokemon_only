@@ -18,7 +18,7 @@ class AdminView(CommonView):
     def _init(self, request):
         if not (request.user.is_authenticated() and any(request.user.groups.filter(name='PmoAdminGroup'))):
             raise Http404
-        self.admin = request.user.pmoadmin
+        self.admin = request.user.pmoadmin_set.get(pmo='pmo2015')
 
     def _default(self):
         return redirect("pmo2015:admin")
@@ -143,8 +143,8 @@ class AdminView(CommonView):
             if page is None:
                 raise Http404
             p = loader.get_template('pmo2015/mails/comment_back.html').render({
-                    'back_comment': back_comment, 'page': page, 'base_url': settings.BASE_URL
-                })
+                'back_comment': back_comment, 'page': page, 'base_url': settings.BASE_URL
+            })
             send_mail(
                 '%s留言回复' % settings.EMAIL_SUBJECT_PREFIX, "",
                 settings.EMAIL_HOST_USER, [main_comment.email], fail_silently=False,

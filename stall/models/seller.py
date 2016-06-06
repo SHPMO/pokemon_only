@@ -61,11 +61,11 @@ class Seller(BaseStallModel):
             raise ValueError('Users must have an email address')
         if not circle_name:
             raise ValueError('Users must have a circle name')
-        user = User.objects.create_user(
-            username=email,
-            email=email,
-            password=password
-        )
+        user, created = User.objects.get_or_create(username=email)
+        if created:
+            user.email = email
+            user.set_password(password)
+            user.save()
         try:
             seller = cls.objects.create(
                 email=email,

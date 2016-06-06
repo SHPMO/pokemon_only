@@ -12,7 +12,7 @@ class SignupView(ApiView):
     @staticmethod
     def send_validate_mail(seller, validate_code):
         send_mail(
-            '%sPMO摊位/寄卖用户激活邮件' % settings.EMAIL_SUBJECT_PREFIX, "",
+            '%sPMO摊位用户激活邮件' % settings.EMAIL_SUBJECT_PREFIX, "",
             settings.EMAIL_HOST_USER, [seller.email], fail_silently=False,
             html_message=loader.get_template('stall/validate_email.html').render({
                 'validate_code': validate_code.code, 'base_url': settings.BASE_URL

@@ -3,7 +3,9 @@
 <p>您已提交报名信息，报名结果将以邮件形式通知您。</p>
 <p>昵称：{{ player.player_name }}</p>
 <p>Email：{{ player.email }}</p>
-<p>淘宝交易号：{{ player.taobao_id }}</p>
+<p>门票ID号：{{ player.taobao_id }}</p>
+<p>手机号：{{ player.phone }}</p>
+<p>收货人名：{{ player.receiver_name }}</p>
 <p>如有疑问，请通过以下方式联系我们：</p>
 <ul>
     <li><a href="{{ base_url }}{% url 'pmo2016:qabook' 'guestbook'%}">PMO2016留言板</a></li>

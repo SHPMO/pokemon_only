@@ -5,7 +5,9 @@
 <p>昵称：{{ current.player_name }}</p>
 <p>状态：{% if current.status == 0 %}待审{% elif current.status == 1 %}通过{% else %}拒绝{% endif %}</p>
 <p>Email：{{ current.email }}</p>
-<p>淘宝交易号：{{ current.taobao_id }}</p>
+<p>ID号：{{ current.taobao_id }}</p>
+<p>手机号：{{ current.phone }}</p>
+<p>收货人名：{{ current.receiver_name }}</p>
 <form action="." method="post">
     <label for="battle-message">附加信息：</label>
     <textarea id="battle-message" name="message" style="height:100px;width:200px;"></textarea>

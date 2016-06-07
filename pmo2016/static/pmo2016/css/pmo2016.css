@@ -15,9 +15,11 @@ body {
 .bg1 {
     background: url("../images/BG1.jpg") repeat;
 }
+
 .bg2 {
     background: url("../images/BG2.jpg") repeat;
 }
+
 .bg3 {
     background: url("../images/BG3.jpg") repeat;
 }
@@ -1274,8 +1276,8 @@ a.nav-href {
 
 .seller-title {
     font-size: 1.25em;
-    margin-top: 9px;
     text-align: center;
+    line-height: 34px;
 }
 
 .seller-title a {

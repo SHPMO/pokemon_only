@@ -10,8 +10,7 @@
             {% for stall in stalls %}
                 <div class="display-seller">
                     <a href="{{ stall.pk }}/" target="_blank"
-                       style="background-image: url('
-                               {% if stall.circle_image %}{{ stall.circle_image.url }}{% else %} {{ default_image }}{% endif %}');"
+                       style="background-image: url('{% if stall.circle_image %}{{ stall.circle_image.url }}{% else %} {{ default_image }}{% endif %}');"
                        class="seller-thumb img-href">{{ stall.circle_name }}</a>
                     <div class="seller-title">
                         <a href="{{ stall.pk }}/" target="_blank" class="black">{{ stall.circle_name }}</a>

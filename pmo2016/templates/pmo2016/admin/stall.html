@@ -1,52 +1,56 @@
 {% extends 'pmo2016/admin/base.html' %}
 {% block content %}
-<div>审核摊位</div>
-{% if current %}
-<div><a href="{% url "pmo2016:stall" "circle" current.pk %}" target="_blank">{{ current.get_status_string }}</a></div>
-<div>申请人信息</div>
-<ul>
-    <li>姓名：{{ current.proposer_name }}</li>
-    <li>性别：{{ current.proposer_sex }}</li>
-    <li>QQ：{{ current.proposer_qq }}</li>
-    <li>电话：{{ current.proposer_phone }}</li>
-    <li>身份证号：{{ current.proposer_id }}</li>
-    <li>申请摊位数：{{ current.booth }}</li>
-    <li>备注：{{ current.remarks }}</li>
-</ul>
-<form action="." method="post">
-    <div>
-        <label for="seller-message">附加信息：</label>
-        <textarea id="seller-message" name="message" style="height:100px;width:200px;"></textarea>
-    </div>
-    <div>
-        <button name="submit" value="accept">审核通过</button>
-        <button name="submit" value="reject">审核不通过</button>
-    </div>
-    <div>
-        <label for="seller-notice">摊位通知：</label>
-        <textarea id="seller-notice" name="notice" style="height:100px;width:200px;">{{ current.notice }}</textarea>
-    </div>
-    <div>
-        <input id="sendmail" type="checkbox" name="send_email" value="send" checked="checked">
-        <label for="sendmail">发送Email通知</label>
-    </div>
-    <div>
-        <button name="submit" value="notice">修改摊位通知</button>
-    </div>
-    <div>
-        <label for="seller-sellerid">摊位号：</label>
-        <input type="text" id="seller-sellerid" name="sellerid" style="width:200px;" value="{{ current.seller_id }}">
-    </div>
-    <div>
-        <button name="submit" value="setid">设置摊位号</button>
-    </div>
-    <input type="hidden" name="seller_id" value="{{ current.pk }}">
-    {% csrf_token %}
-</form>
-{% endif %}
-<ul>
-{% for seller in sellers %}
-    <li><a href=".?seller_id={{ seller.pk }}">{{ seller.get_status_string }}</a></li>
-{% endfor %}
-</ul>
+    <div>审核摊位</div>
+    {% if current %}
+        <div><a href="{% url "pmo2016:stall" "circle" current.pk %}" target="_blank">{{ current.get_status_string }}</a>
+        </div>
+        <div>申请人信息</div>
+        <ul>
+            <li>姓名：{{ current.proposer_name }}</li>
+            <li>性别：{{ current.proposer_sex }}</li>
+            <li>QQ：{{ current.proposer_qq }}</li>
+            <li>电话：{{ current.proposer_phone }}</li>
+            <li>身份证号：{{ current.proposer_id }}</li>
+            <li>申请桌子数：{{ current.booth }}</li>
+            <li>申请人数：{{ current.number_of_people }}</li>
+            <li>备注：{{ current.remarks }}</li>
+        </ul>
+        <form action="." method="post">
+            <div>
+                <label for="seller-message">附加信息：</label>
+                <textarea id="seller-message" name="message" style="height:100px;width:200px;"></textarea>
+            </div>
+            <div>
+                <button name="submit" value="accept">审核通过</button>
+                <button name="submit" value="reject">审核不通过</button>
+            </div>
+            <div>
+                <label for="seller-notice">摊位通知：</label>
+                <textarea id="seller-notice" name="notice"
+                          style="height:100px;width:200px;">{{ current.notice }}</textarea>
+            </div>
+            <div>
+                <input id="sendmail" type="checkbox" name="send_email" value="send" checked="checked">
+                <label for="sendmail">发送Email通知</label>
+            </div>
+            <div>
+                <button name="submit" value="notice">修改摊位通知</button>
+            </div>
+            <div>
+                <label for="seller-sellerid">摊位号：</label>
+                <input type="text" id="seller-sellerid" name="sellerid" style="width:200px;"
+                       value="{{ current.seller_id }}">
+            </div>
+            <div>
+                <button name="submit" value="setid">设置摊位号</button>
+            </div>
+            <input type="hidden" name="seller_id" value="{{ current.pk }}">
+            {% csrf_token %}
+        </form>
+    {% endif %}
+    <ul>
+        {% for seller in sellers %}
+            <li><a href=".?seller_id={{ seller.pk }}">{{ seller.get_status_string }}</a></li>
+        {% endfor %}
+    </ul>
 {% endblock %}

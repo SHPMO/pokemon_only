@@ -62,7 +62,7 @@ class AdminView(CommonView):
             main_comment.delete()
             return self._backcomment_post_return()
         elif method == 'delete_back':
-            back_comment = BackComment.objects.filter(pk=back_id)
+            back_comment = BackComment2016.objects.filter(pk=back_id)
             if back_comment.count() == 1:
                 back_comment = back_comment[0]
                 back_comment.delete()
@@ -70,14 +70,14 @@ class AdminView(CommonView):
         if content == "":
             return self._backcomment_post_return(main_comment.pk)
         if back_id == '-1':
-            back_comment = BackComment.create(
+            back_comment = BackComment2016.create(
                 toward=main_comment,
                 admin=self.admin,
                 content=content,
                 ip_address=request.META.get('REMOTE_ADDR')
             )
         else:
-            back_comment = BackComment.objects.filter(pk=back_id)
+            back_comment = BackComment2016.objects.filter(pk=back_id)
             if back_comment.count() != 1:
                 raise Http404
             back_comment = back_comment[0]

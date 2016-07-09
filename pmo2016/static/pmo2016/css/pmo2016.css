@@ -208,7 +208,7 @@ a.nav-href {
 }
 
 #sub-title {
-    z-index: 1;
+    z-index: 4;
     top: -40px;
     right: -60px;
     width: 94px;
@@ -268,7 +268,7 @@ a.nav-href {
     display: block;
     border: #838ba3 solid 1px;
     width: 580px;
-    height: 710px;
+    height: 414px;
     background: center no-repeat;
     background-size: contain;
 }

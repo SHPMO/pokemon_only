@@ -97,7 +97,7 @@ class ItemView(AuthedApiView):
             return self.return_me()
         return self.return_me(0, '删除成功')
 
-    def _add_item(self, request):
+    def _add_item(self, request, *args, **kwargs):
         item = Item.create(self.seller, request.POST.get('pmo'))
         if item is None:
             return self.return_me(3, '未指定物品')

@@ -5,4 +5,5 @@ from stall.views.seller import SellerView
 from stall.views.item import ItemView
 from stall.views.submit import SubmitView
 from stall.views.cancel import CancelView
+from stall.views.api import PublicApiView
 

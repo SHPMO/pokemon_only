@@ -8,7 +8,7 @@ class ApiView(View):
     seller = None
     pmo = None
 
-    def get(self, request):
+    def get(self, request, *args, **kwargs):
         raise Http404
 
     def return_me(self, error_code=-1, message=None, **kwargs):

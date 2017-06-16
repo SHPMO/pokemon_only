@@ -1,0 +1,46 @@
+{% extends "pmo2017/base.html" %}
+{% load staticfiles %}
+{% block more_heads %}
+    <script type="text/javascript" src="{% static 'pmo2017/js/switch.js' %}"></script>
+    <script type="text/javascript" src="{% static 'pmo2017/js/signupin.js' %}"></script>
+    <script type="text/javascript" src="{% static 'pmo2017/js/captcha.js' %}"></script>
+{% endblock %}
+{% block subtitle %}注册和登录账号 - 在线报名{% endblock %}
+{% block stitle %}register-signupin{% endblock %}
+{% block content %}
+    <div id="content-stallinfo" class="nodisplay-object content-page">
+        {% include 'pmo2017/register/stall/instructions.html' %}
+    </div>
+    <div id="content-login" class="nodisplay-object content-page">
+        <h3>【登录】</h3>
+        <div id="error-message">
+            <p id="error-login" class="error-message-text">{{ error_message_login }}</p>
+        </div>
+        <form id="login-input" action="{% url "stall:login" %}" method="post" onsubmit="return false;">
+            <div class="controls-group oneline-group">
+                <label class="form-label" for="text-email">Email</label>
+                <input id="text-email" class="form-control form-text" type="email" name="email">
+            </div>
+            <div class="controls-group oneline-group">
+                <label class="form-label" for="text-password">密码</label>
+                <input id="text-password" class="form-control form-text" type="password" name="password">
+            </div>
+            <div class="controls-group oneline-group">
+                <label class="form-label">验证码</label>
+                <div id="login_captcha" class="captcha-box form-control">
+                    {{ login_form.captcha }}
+                </div>
+            </div>
+            <div class="controls-group oneline-group">
+                <button id="login-submit" class="button-submit form-control form-button" name="submit">提交</button>
+            </div>
+            {% csrf_token %}
+            <input type="hidden" name="pmo" value="pmo2017">
+        </form>
+    </div>
+{% endblock %}
+
+{% block panels %}
+    <div id="switch-login" class="pmo-panel switch-panel panel-blue-r"><span>登录</span></div>
+    <div id="switch-stallinfo" class="pmo-panel switch-panel panel-purple-r"><span>摊位须知</span></div>
+{% endblock %}

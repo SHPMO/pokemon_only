@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}{% block subtitle %}{% endblock %} - Pokemon Only 2017{% endblock %}
+{% block icon %}{% static 'pmo2017/images/favicon.ico' %}{% endblock %}
+{% block heads %}
+    <link rel="stylesheet" type="text/css" href="{% static 'pmo2017/css/pmo2017.css' %}">
+    <script type="text/javascript" src="{% static 'pmo2017/js/pmo2017.js' %}"></script>
+    {% block more_heads %}{% endblock %}
+{% endblock %}
+{% block body %}
+    <div id="main-container">
+        <div id="main-content">
+            <div id="sub-title" class="sub-object">
+                <div id="subtitle" class="{% block stitle %}title-untitled{% endblock %}"></div>
+            </div>
+            <div id="content">
+                {% block content %}Maintaining{% endblock %}
+            </div>
+        </div>
+        <div id="nav-panel">{% block panels %}{% endblock %}</div>
+    </div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'pmo2017/admin/base.html' %}
+{% block content %}
+<div>登录</div>
+{% if fail %}<div>登录失败</div>{% endif %}
+<form action="." method="post">
+    <div>
+        <label for="username">用户名</label>
+        <input type="text" name="username" id="username" style="width:400px;">
+    </div>
+    <div>
+        <label for="password">密码</label>
+        <input type="password" name="password" id="password" style="width:400px;">
+    </div>
+    <input type="submit" name="submit">
+    {% csrf_token %}
+</form>
+{% endblock %}

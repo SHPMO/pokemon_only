@@ -20,7 +20,8 @@ class PmoAdmin(models.Model):
         user.save()
         return cls.objects.create(
             nickname=username,
-            user=user
+            user=user,
+            **kwargs
         )
 
     @staticmethod

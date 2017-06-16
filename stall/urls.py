@@ -4,6 +4,7 @@ from stall.views import (
     SellerView, ItemView, SubmitView, CancelView,
     PublicApiView
 )
+from django.views.decorators.csrf import ensure_csrf_cookie
 
 urlpatterns = [
     url(r'^signup/$', SignupView.as_view(), name='signup'),
@@ -15,5 +16,5 @@ urlpatterns = [
     url(r'^item/$', ItemView.as_view(), name='item'),
     url(r'^submit/$', SubmitView.as_view(), name='submit'),
     url(r'^cancel/$', CancelView.as_view(), name='cancel'),
-    url(r'^api/(?P<method>.+)/$', PublicApiView.as_view(), name='public_api')
+    url(r'^api/(?P<method>.+)/$', ensure_csrf_cookie(PublicApiView.as_view()), name='public_api')
 ]

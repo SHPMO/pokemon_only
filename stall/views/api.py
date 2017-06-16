@@ -7,17 +7,21 @@ class PublicApiView(ApiView):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.method_dict = {
+            "test": self._test,
             "get_item": self._get_item,
             "get_seller": self._get_seller,
         }
 
-    def post(self, request, method=None, *args, **kwargs):
+    def get(self, request, method=None, *args, **kwargs):
         if method not in self.method_dict:
             return self.return_me(4, "未知方法")
-        self.pmo = request.POST.get("pmo")
+        self.pmo = request.GET.get("pmo")
         if not self.pmo:
             return self.return_me(5, "未知PMO")
         return self.method_dict[method](request, *args, **kwargs)
+
+    def post(self, request, method, *args, **kwargs):
+        raise Http404
 
     @staticmethod
     def _item_info(item):
@@ -31,8 +35,11 @@ class PublicApiView(ApiView):
             is_restricted=item.is_restricted, circle=item.circle,
             is_started_with=item.is_started_with, item_pictures=[
                 picture.picture.url for picture in item.itempicture_set.all()
-                ]
+            ]
         )
+
+    def _test(self, request, *args, **kwargs):
+        return self.return_me(0, "success")
 
     def _get_item(self, request, *args, **kwargs):
         item_id = request.POST.get("item_id")

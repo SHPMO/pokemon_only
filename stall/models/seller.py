@@ -64,6 +64,8 @@ class Seller(BaseStallModel):
         user, created = User.objects.get_or_create(username=email)
         if created:
             user.email = email
+            user.save()
+        if password is not None:
             user.set_password(password)
             user.save()
         try:

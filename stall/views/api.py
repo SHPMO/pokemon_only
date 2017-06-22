@@ -88,6 +88,7 @@ class PublicApiView(ApiView):
         if seller_id:
             sellers = Seller.objects.filter(
                 pk=seller_id,
+                status=3,
                 is_active=True,
                 pmo=self.pmo
             )
@@ -96,8 +97,10 @@ class PublicApiView(ApiView):
             ) if sellers.count() == 1 else self.return_me(-1, "找不到商家")
         sellers = Seller.objects.filter(
             is_active=True,
+            status=3,
             pmo=self.pmo
         )
         return self.return_me(0, "OK", sellers=[
             self._seller_info(seller) for seller in sellers
-            ])
+        ])
+

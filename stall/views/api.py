@@ -30,11 +30,11 @@ class PublicApiView(ApiView):
             name=item.name, item_type=item.item_type,
             content=item.content, price=item.price,
             url=item.url, authors=item.authors,
-            introduction=item.introduction,
-            cover_image=item.cover_image.url, forto=item.forto,
+            introduction=item.introduction, forto=item.forto,
+            cover_image=item.cover_image.url if item.cover_image else None,
             is_restricted=item.is_restricted, circle=item.circle,
             is_started_with=item.is_started_with, item_pictures=[
-                picture.picture.url for picture in item.itempicture_set.all()
+                picture.picture.url for picture in item.itempicture_set.all() if picture.picture
             ]
         )
 
@@ -46,6 +46,7 @@ class PublicApiView(ApiView):
         if item_id:
             items = Item.objects.filter(
                 pk=item_id,
+                validated=True,
                 pmo=self.pmo
             )
             return self.return_me(
@@ -55,28 +56,31 @@ class PublicApiView(ApiView):
         if seller_id:
             items = Item.objects.filter(
                 seller_id=seller_id,
+                validated=True,
                 pmo=self.pmo
             )
             return self.return_me(
                 0, "OK", items=[
                     self._item_info(item) for item in items
-                    ]
+                ]
             ) if items.count() > 0 else self.return_me(-1, "找不到商家")
         items = Item.objects.filter(
+            validated=True,
             pmo=self.pmo
         )
         return self.return_me(0, "OK", items=[
             self._item_info(item) for item in items
-            ])
+        ])
 
     @staticmethod
     def _seller_info(seller):
         return dict(
             id=seller.pk, circle_name=seller.circle_name,
-            circle_description=seller.circle_description, circle_image=seller.circle_image.url,
+            circle_description=seller.circle_description,
+            circle_image=seller.circle_image.url if seller.circle_image else None,
             seller_id=seller.seller_id, items=[
                 item.pk for item in seller.item_set.filter(validated=True)
-                ]
+            ]
         )
 
     def _get_seller(self, request, *args, **kwargs):

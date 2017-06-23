@@ -42,7 +42,7 @@ class PublicApiView(ApiView):
         return self.return_me(0, "success")
 
     def _get_item(self, request, *args, **kwargs):
-        item_id = request.POST.get("item_id")
+        item_id = request.GET.get("item_id")
         if item_id:
             items = Item.objects.filter(
                 pk=item_id,
@@ -50,9 +50,9 @@ class PublicApiView(ApiView):
                 pmo=self.pmo
             )
             return self.return_me(
-                0, "OK", **self._item_info(items[0])
+                0, "OK", data=self._item_info(items[0])
             ) if items.count() == 1 else self.return_me(-1, "找不到商品")
-        seller_id = request.POST.get("seller_id")
+        seller_id = request.GET.get("seller_id")
         if seller_id:
             items = Item.objects.filter(
                 seller_id=seller_id,
@@ -60,7 +60,7 @@ class PublicApiView(ApiView):
                 pmo=self.pmo
             )
             return self.return_me(
-                0, "OK", items=[
+                0, "OK", data=[
                     self._item_info(item) for item in items
                 ]
             ) if items.count() > 0 else self.return_me(-1, "找不到商家")
@@ -68,7 +68,7 @@ class PublicApiView(ApiView):
             validated=True,
             pmo=self.pmo
         )
-        return self.return_me(0, "OK", items=[
+        return self.return_me(0, "OK", data=[
             self._item_info(item) for item in items
         ])
 
@@ -84,7 +84,7 @@ class PublicApiView(ApiView):
         )
 
     def _get_seller(self, request, *args, **kwargs):
-        seller_id = request.POST.get("seller_id")
+        seller_id = request.GET.get("seller_id")
         if seller_id:
             sellers = Seller.objects.filter(
                 pk=seller_id,
@@ -93,14 +93,14 @@ class PublicApiView(ApiView):
                 pmo=self.pmo
             )
             return self.return_me(
-                0, "OK", **self._seller_info(sellers[0])
+                0, "OK", data=self._seller_info(sellers[0])
             ) if sellers.count() == 1 else self.return_me(-1, "找不到商家")
         sellers = Seller.objects.filter(
             is_active=True,
             status=3,
             pmo=self.pmo
         )
-        return self.return_me(0, "OK", sellers=[
+        return self.return_me(0, "OK", data=[
             self._seller_info(seller) for seller in sellers
         ])
 

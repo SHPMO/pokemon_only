@@ -60,9 +60,9 @@ class PublicApiView(ApiView):
                 pmo=self.pmo
             )
             return self.return_me(
-                0, "OK", data=[
-                    self._item_info(item) for item in items
-                ]
+                0, "OK", data={
+                    item.pk: self._item_info(item) for item in items
+                }
             ) if items.count() > 0 else self.return_me(-1, "找不到商家")
         items = Item.objects.filter(
             validated=True,

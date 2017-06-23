@@ -68,9 +68,9 @@ class PublicApiView(ApiView):
             validated=True,
             pmo=self.pmo
         )
-        return self.return_me(0, "OK", data=[
-            self._item_info(item) for item in items
-        ])
+        return self.return_me(0, "OK", data={
+            item.pk: self._item_info(item) for item in items
+        })
 
     @staticmethod
     def _seller_info(seller):
@@ -100,7 +100,7 @@ class PublicApiView(ApiView):
             status=3,
             pmo=self.pmo
         )
-        return self.return_me(0, "OK", data=[
-            self._seller_info(seller) for seller in sellers
-        ])
+        return self.return_me(0, "OK", data={
+            seller.pk: self._seller_info(seller) for seller in sellers
+        })
 

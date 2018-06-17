@@ -17,3 +17,6 @@ migrations/
 
 /uwsgi_pmo.xml
 /env/
+
+*.bak
+/pmo2018/

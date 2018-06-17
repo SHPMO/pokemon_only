@@ -2,7 +2,7 @@
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, Http404
 from django.shortcuts import redirect, render
-from pmo2017.views.common import CommonView
+from dashboard.views.common import CommonView
 from stall.forms import LoginForm
 from stall.models import Item
 from captcha.helpers import captcha_image_url
@@ -51,10 +51,10 @@ class RegisterView(CommonView):
             raise Http404
         if sub == 'stall':
             if not request.user.is_authenticated():
-                return redirect("pmo2017:register", sub='signupin')
+                return redirect("dashboard:register", sub='signupin')
             seller = request.user.seller_set.filter(pmo=self.pmo)
             if seller.count() != 1:
-                return redirect("pmo2017:register", sub='signupin')
+                return redirect("dashboard:register", sub='signupin')
             seller = seller[0]
             if 'item_id' in request.GET:
                 item_id = request.GET['item_id']
@@ -62,7 +62,7 @@ class RegisterView(CommonView):
                 if item.count() == 1:
                     return render(
                         request,
-                        'pmo2017/register/stall/itemform.html',
+                        'dashboard/register/stall/itemform.html',
                         {
                             'item': item[0],
                             'images': self._get_images(item[0])
@@ -76,7 +76,7 @@ class RegisterView(CommonView):
                 except ValueError:
                     raise Http404
                 items, page = self._get_items(seller, page)
-                return render(request, 'pmo2017/register/stall/itemtable.html', {
+                return render(request, 'dashboard/register/stall/itemtable.html', {
                     'items': items,
                     'page': page
                 })
@@ -92,7 +92,7 @@ class RegisterView(CommonView):
             else:
                 kwargs.update({
                     'is_stall': is_stall,
-                    'correct_url': reverse('pmo2017:register', kwargs={'sub': 'consign' if is_stall else 'stall'})
+                    'correct_url': reverse('dashboard:register', kwargs={'sub': 'consign' if is_stall else 'stall'})
                 })
                 sub = 'wrong'
         elif sub == 'signupin':

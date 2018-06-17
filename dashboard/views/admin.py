@@ -5,7 +5,7 @@ from django.core.mail import send_mail
 from django.http import HttpResponse, Http404
 from django.shortcuts import redirect
 from django.template import loader
-from pmo2017.views.common import CommonView
+from dashboard.views.common import CommonView
 from stall.models import Seller
 
 
@@ -17,10 +17,10 @@ class AdminView(CommonView):
     def _init(self, request):
         if not (request.user.is_authenticated() and any(request.user.groups.filter(name='PmoAdminGroup'))):
             raise Http404
-        self.admin = request.user.pmoadmin_set.get(pmo='pmo2017')
+        self.admin = request.user.pmoadmin_set.get(pmo='dashboard')
 
     def _default(self):
-        return redirect("pmo2017:admin")
+        return redirect("dashboard:admin")
 
     def _info_get(self, request, kwargs):
         kwargs.update({
@@ -36,7 +36,7 @@ class AdminView(CommonView):
         if ncn:
             self.admin.nickname = ncn
             self.admin.save()
-        return redirect("pmo2017:admin", sub='info')
+        return redirect("dashboard:admin", sub='info')
 
     def _stall_get(self, request, kwargs):
         current = Seller.objects.filter(pmo=self.pmo, pk=request.GET.get('seller_id'))
@@ -64,11 +64,11 @@ class AdminView(CommonView):
                     send_mail(
                         '%s%s通知' % (settings.EMAIL_SUBJECT_PREFIX, "摊位" if current.is_stall else "寄卖"), "",
                         settings.EMAIL_HOST_USER, [current.email], fail_silently=False,
-                        html_message=loader.get_template('pmo2017/mails/seller_notice.html').render({
+                        html_message=loader.get_template('dashboard/mails/seller_notice.html').render({
                             'seller': current, 'base_url': settings.BASE_URL,
                         })
                     )
-            response = redirect("pmo2017:admin", sub='stall')
+            response = redirect("dashboard:admin", sub='stall')
             response['Location'] += '?seller_id=%s' % current.pk
             return response
         elif me == 'accept':
@@ -84,11 +84,11 @@ class AdminView(CommonView):
                     send_mail(
                         '%s%s通知' % (settings.EMAIL_SUBJECT_PREFIX, "摊位" if current.is_stall else "寄卖"), "",
                         settings.EMAIL_HOST_USER, [current.email], fail_silently=False,
-                        html_message=loader.get_template('pmo2017/mails/seller_sellerid.html').render({
+                        html_message=loader.get_template('dashboard/mails/seller_sellerid.html').render({
                             'seller': current, 'base_url': settings.BASE_URL,
                         })
                     )
-            response = redirect("pmo2017:admin", sub='stall')
+            response = redirect("dashboard:admin", sub='stall')
             response['Location'] += '?seller_id=%s' % current.pk
             return response
         else:
@@ -96,12 +96,12 @@ class AdminView(CommonView):
         send_mail(
             '%s%s申请结果' % (settings.EMAIL_SUBJECT_PREFIX, "摊位" if current.is_stall else "寄卖"), "",
             settings.EMAIL_HOST_USER, [current.email], fail_silently=False,
-            html_message=loader.get_template('pmo2017/mails/seller_validated.html').render({
+            html_message=loader.get_template('dashboard/mails/seller_validated.html').render({
                 'seller': current, 'base_url': settings.BASE_URL,
                 'message': request.POST.get('message', '')
             })
         )
-        response = redirect("pmo2017:admin", sub='stall')
+        response = redirect("dashboard:admin", sub='stall')
         response['Location'] += '?seller_id=%s' % current.pk
         return response
 
@@ -133,7 +133,7 @@ class AdminView(CommonView):
             password = request.POST.get("password")
             user = authenticate(username=username, password=password)
             if user is None or not any(user.groups.filter(name='PmoAdminGroup')):
-                response = redirect("pmo2017:admin", sub='login')
+                response = redirect("dashboard:admin", sub='login')
                 response['Location'] += '?fail=1'
                 return response
             login(request, user)

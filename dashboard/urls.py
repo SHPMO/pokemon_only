@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from pmo2017.views import (
+from dashboard.views import (
     StallView,
     RegisterView,
     AdminView
@@ -17,5 +17,5 @@ urlpatterns = [
     url(r'^admin/$', AdminView.as_view(), name='admin'),
     url(r'^admin/(?P<sub>.+)/$', AdminView.as_view(), name='admin'),
 
-    # url(r'^test/$', 'pmo2017.views.test', name='test'),
+    # url(r'^test/$', 'dashboard.views.test', name='test'),
 ]

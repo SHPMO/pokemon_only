@@ -42,7 +42,7 @@ INSTALLED_APPS = (
     'tourney',
     'pmo2015',
     'pmo2016',
-    'pmo2017',
+    'dashboard',
     'captcha',
 )
 
@@ -127,7 +127,7 @@ WEIBO_URL = 'http://weibo.com/SHPMO'
 with open(os.path.join(DATA_DIR, 'secret_email.txt')) as f:
     EMAIL_HOST, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD = f.read().split()
 EMAIL_PORT = 465
-EMAIL_SUBJECT_PREFIX = '[PMO2017] '
+EMAIL_SUBJECT_PREFIX = '[PMO2018] '
 EMAIL_USE_SSL = True
 
 import pmo2015.helpers
@@ -138,5 +138,6 @@ PMO_LIST = {
     'unknown': False,
     'pmo2015': False,
     'pmo2016': False,
-    'pmo2017': True
+    'pmo2017': False,
+    'pmo2018': True
 }

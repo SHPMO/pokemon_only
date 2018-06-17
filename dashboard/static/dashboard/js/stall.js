@@ -1,4 +1,4 @@
-var pmo = 'pmo2017';
+var pmo = 'pmo2018';
 var csrftoken = $.cookie('csrftoken');
 
 function testRequired(mi) {

@@ -2,7 +2,7 @@
 {% block content %}
 {% if seller.status == 3 %}
     <p>恭喜您，您的摊位申请审核已通过。</p>
-<!--    <p>摊位链接：<a href="{{ base_url }}{% url 'pmo2017:stall' 'circle' seller.pk %}">{{ base_url }}{% url 'pmo2017:stall' 'circle' seller.pk %}</a></p> -->
+<!--    <p>摊位链接：<a href="{{ base_url }}{% url 'dashboard:stall' 'circle' seller.pk %}">{{ base_url }}{% url 'dashboard:stall' 'circle' seller.pk %}</a></p> -->
     <p>您的摊位号将通过邮件提醒，请注意查收。</p>
 {% else %}
     <p>很遗憾，您的摊位申请审核未通过。</p>

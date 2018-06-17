@@ -5,7 +5,6 @@
 /data/secret_key.txt
 /data/secret_email.txt
 /.idea/
-migrations/
 /__pycache__/
 /media/
 /log/
@@ -17,6 +16,7 @@ migrations/
 
 /uwsgi_pmo.xml
 /env/
+/venv/
 
 *.bak
 /pmo2018/

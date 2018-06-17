@@ -1,5 +1,5 @@
 from django.http import Http404
-from pmo2017.views.common import CommonView
+from dashboard.views.common import CommonView
 from stall.models import Seller, Item
 
 

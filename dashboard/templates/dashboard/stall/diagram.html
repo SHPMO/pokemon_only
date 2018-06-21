@@ -1,4 +1,4 @@
-{% extends "pmo2017/base.html" %}
+{% extends "dashboard/base.html" %}
 {% load staticfiles %}
 {% block more_heads %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/shadowbox.css' %}">
@@ -9,8 +9,8 @@
 {% block content %}
     <h3>【现场摊位图】</h3>
     <div>
-        <a id="diagram-image" rel="shadowbox" href="{% static "pmo2017/images/diagram.jpg" %}"
-             style="background-image: url({% static "pmo2017/images/diagram.jpg" %});"></a>
+        <a id="diagram-image" rel="shadowbox" href="{% static "dashboard/images/diagram.jpg" %}"
+             style="background-image: url({% static "dashboard/images/diagram.jpg" %});"></a>
     </div>
     <table id="diagram-table">
         <tr>

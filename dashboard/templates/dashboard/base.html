@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% block title %}{% block subtitle %}{% endblock %} - Pokemon Only 2017{% endblock %}
-{% block icon %}{% static 'pmo2017/images/favicon.ico' %}{% endblock %}
+{% block icon %}{% static 'dashboard/images/favicon.ico' %}{% endblock %}
 {% block heads %}
-    <link rel="stylesheet" type="text/css" href="{% static 'pmo2017/css/pmo2017.css' %}">
-    <script type="text/javascript" src="{% static 'pmo2017/js/pmo2017.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'dashboard/css/dashboard.css' %}">
+    <script type="text/javascript" src="{% static 'dashboard/js/dashboard.js' %}"></script>
     {% block more_heads %}{% endblock %}
 {% endblock %}
 {% block body %}

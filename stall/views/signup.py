@@ -76,6 +76,6 @@ class ValidateView(View):
         vc.seller.status = 1
         vc.save()
         vc.seller.save()
-        response = redirect("%s:register" % vc.pmo, sub='signupin')
+        response = redirect("dashboard:register", sub='signupin')
         response['Location'] += '?validated=1#login'
         return response

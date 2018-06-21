@@ -1,15 +1,15 @@
-{% extends "pmo2017/base.html" %}
+{% extends "dashboard/base.html" %}
 {% load staticfiles %}
 {% block more_heads %}
-    <script type="text/javascript" src="{% static 'pmo2017/js/switch.js' %}"></script>
-    <script type="text/javascript" src="{% static 'pmo2017/js/signupin.js' %}"></script>
-    <script type="text/javascript" src="{% static 'pmo2017/js/captcha.js' %}"></script>
+    <script type="text/javascript" src="{% static 'dashboard/js/switch.js' %}"></script>
+    <script type="text/javascript" src="{% static 'dashboard/js/signupin.js' %}"></script>
+    <script type="text/javascript" src="{% static 'dashboard/js/captcha.js' %}"></script>
 {% endblock %}
 {% block subtitle %}注册和登录账号 - 在线报名{% endblock %}
 {% block stitle %}register-signupin{% endblock %}
 {% block content %}
     <div id="content-stallinfo" class="nodisplay-object content-page">
-        {% include 'pmo2017/register/stall/instructions.html' %}
+        {% include 'dashboard/register/stall/instructions.html' %}
     </div>
     <div id="content-login" class="nodisplay-object content-page">
         <h3>【登录】</h3>
@@ -35,7 +35,7 @@
                 <button id="login-submit" class="button-submit form-control form-button" name="submit">提交</button>
             </div>
             {% csrf_token %}
-            <input type="hidden" name="pmo" value="pmo2017">
+            <input type="hidden" name="pmo" value="pmo2018">
         </form>
     </div>
 {% endblock %}

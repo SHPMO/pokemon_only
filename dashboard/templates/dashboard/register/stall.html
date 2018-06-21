@@ -1,30 +1,30 @@
-{% extends "pmo2017/base.html" %}
+{% extends "dashboard/base.html" %}
 {% load staticfiles %}
 {% block more_heads %}
     <script type="text/javascript" src="{% static 'js/jquery.ui.widget.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/jquery.iframe-transport.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/jquery.fileupload.js' %}"></script>
-    <script type="text/javascript" src="{% static 'pmo2017/js/switch.js' %}"></script>
-    <script type="text/javascript" src="{% static 'pmo2017/js/stall.js' %}"></script>
-    <script type="text/javascript" src="{% static 'pmo2017/js/logout.js' %}"></script>
+    <script type="text/javascript" src="{% static 'dashboard/js/switch.js' %}"></script>
+    <script type="text/javascript" src="{% static 'dashboard/js/stall.js' %}"></script>
+    <script type="text/javascript" src="{% static 'dashboard/js/logout.js' %}"></script>
 {% endblock %}
 {% block subtitle %}{% if seller.is_stall %}摊位{% else %}寄卖{% endif %}申请 - 在线报名{% endblock %}
 {% block stitle %}register-{% if seller.is_stall %}stall{% else %}consign{% endif %}{% endblock %}
 {% block content %}
     <div id="content-notice" class="nodisplay-object content-page">
-        {% include "pmo2017/register/stall/notice.html" %}
+        {% include "dashboard/register/stall/notice.html" %}
     </div>
     <div id="content-instructions" class="nodisplay-object content-page">
-        {% include "pmo2017/register/stall/instructions.html" %}
+        {% include "dashboard/register/stall/instructions.html" %}
     </div>
     <div id="content-information" class="nodisplay-object content-page">
-        {% include "pmo2017/register/stall/information.html" %}
+        {% include "dashboard/register/stall/information.html" %}
     </div>
     <div id="content-items" class="nodisplay-object content-page">
-        {% include "pmo2017/register/stall/items.html" %}
+        {% include "dashboard/register/stall/items.html" %}
     </div>
     <div id="content-submit" class="nodisplay-object content-page">
-        {% include "pmo2017/register/stall/submit.html" %}
+        {% include "dashboard/register/stall/submit.html" %}
     </div>
 {% endblock %}
 

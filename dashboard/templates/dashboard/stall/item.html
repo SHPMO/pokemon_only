@@ -1,4 +1,4 @@
-{% extends "pmo2017/base.html" %}
+{% extends "dashboard/base.html" %}
 {% load staticfiles %}
 {% block more_heads %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/shadowbox.css' %}">
@@ -7,7 +7,7 @@
 {% block subtitle %}{{ item.name }} - 贩售物详情 - 现场摊位{% endblock %}
 {% block stitle %}stall-item-detail{% endblock %}
 {% block content %}
-    {% static 'pmo2017/images/circle_image.png' as default_image %}
+    {% static 'dashboard/images/circle_image.png' as default_image %}
     <div id="item-metas">
         <div id="item-meta-left" class="item-meta">
             <a id="item-logo" rel="shadowbox" href="{% if item.cover_image %}{{ item.cover_image.url }}{% else %} {{ default_image }}{% endif %}"
@@ -20,7 +20,7 @@
             <div id="item-price" class="item-meta-value">{% if item.price == -1 %}未定{% else %}{{ item.price|floatformat:2 }} 元{% endif %}</div>
             <div id="item-url" class="item-meta-value">链接：<a href="{{ item.url }}"  class="maintext-href" target="_blank">{{ item.url }}</a></div>
             <div id="item-from" class="item-meta-value">来自：<a target="_blank" class="maintext-href"
-                href="{% url "pmo2017:stall" "circle" item.seller.pk %}">{{ item.seller.circle_name }}</a>
+                href="{% url "dashboard:stall" "circle" item.seller.pk %}">{{ item.seller.circle_name }}</a>
             </div>
         </div>
     </div>

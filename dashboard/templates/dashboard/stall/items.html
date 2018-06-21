@@ -1,13 +1,13 @@
-{% extends "pmo2017/base.html" %}
+{% extends "dashboard/base.html" %}
 {% load staticfiles %}
 {% block subtitle %}参展贩售物 - 现场摊位{% endblock %}
 {% block stitle %}stall-item{% endblock %}
 {% block content %}
-    {% static 'pmo2017/images/circle_image.png' as default_image %}
+    {% static 'dashboard/images/circle_image.png' as default_image %}
     {% if itemlist %}
     {% for seller, items in itemlist %}
     <div class="item-list clear-group">
-        {% url 'pmo2017:stall' 'circle' seller.pk as turl %}
+        {% url 'dashboard:stall' 'circle' seller.pk as turl %}
         <div class="item-seller clear-group">
             <a href="{{ turl }}" target="_blank"
                style="background-image: url('{% if seller.circle_image %}{{ seller.circle_image.url }}{% else %} {{ default_image }}{% endif %}');"
@@ -20,7 +20,7 @@
         </div>
         <div class="item-items">
             {% for item in items %}
-                {% url 'pmo2017:stall' 'item' item.pk as turl %}
+                {% url 'dashboard:stall' 'item' item.pk as turl %}
                 <div class="item-item">
                     <a href="{{ turl }}" target="_blank"
                        style="background-image: url('{% if item.cover_image %}{{ item.cover_image.url }}{% else %} {{ default_image }}{% endif %}');"

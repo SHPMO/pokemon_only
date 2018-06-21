@@ -1,9 +1,9 @@
-{% extends "pmo2017/base.html" %}
+{% extends "dashboard/base.html" %}
 {% load staticfiles %}
 {% block subtitle %}参展社团 - 现场摊位{% endblock %}
 {% block stitle %}stall-circle{% endblock %}
 {% block content %}
-    {% static 'pmo2017/images/circle_image.png' as default_image %}
+    {% static 'dashboard/images/circle_image.png' as default_image %}
     {% if stalls %}
         <h3>摊位列表</h3>
         <div id="display-stalls" class="clear-group">

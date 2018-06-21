@@ -28,7 +28,7 @@ class LoginView(ApiView):
         login(request, user)
         return self.return_me(
             0, "登录成功",
-            redirect_to=reverse("%s:register" % form.cleaned_data["pmo"], kwargs={"sub": "stall" if seller.is_stall else "consign"})
+            redirect_to=reverse("dashboard:register", kwargs={"sub": "stall" if seller.is_stall else "consign"})
         )
 
 

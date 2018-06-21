@@ -1,6 +1,6 @@
 {% extends 'mail_base.html' %}
 {% block content %}
-        {% url 'pmo2017:register' 'stall' as turl %}
+        {% url 'dashboard:register' 'stall' as turl %}
     <p>您收到了新的摊位通知，请前往<a href="{{ base_url }}{{ turl }}#notice">这里</a>查看。</p>
     <div>{{ seller.notice|linebreaks }}</div>
 {% endblock %}

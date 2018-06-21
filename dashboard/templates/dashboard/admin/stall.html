@@ -1,8 +1,8 @@
-{% extends 'pmo2017/admin/base.html' %}
+{% extends 'dashboard/admin/base.html' %}
 {% block content %}
     <div>审核摊位</div>
     {% if current %}
-        <div><a href="{% url "pmo2017:stall" "circle" current.pk %}" target="_blank">{{ current.get_status_string }}</a>
+        <div><a href="{% url "dashboard:stall" "circle" current.pk %}" target="_blank">{{ current.get_status_string }}</a>
         <div>申请人信息</div>
         <ul>
             <li>姓名：{{ current.proposer_name }}</li>

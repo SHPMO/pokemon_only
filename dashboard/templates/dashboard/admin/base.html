@@ -7,8 +7,8 @@
 <body>
 <div>
     <span>你好，{{ admin.nickname }}。</span>
-    <a href="{% url 'pmo2017:admin' 'logout' %}">注销</a>
-    <a href="{% url 'pmo2017:admin' %}">管理主页</a>
+    <a href="{% url 'dashboard:admin' 'logout' %}">注销</a>
+    <a href="{% url 'dashboard:admin' %}">管理主页</a>
 </div>
 {% block content %}{% endblock %}
 </body>

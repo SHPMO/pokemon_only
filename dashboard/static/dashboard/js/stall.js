@@ -225,6 +225,28 @@ function bindItemForm() {
     });
     $('.image-uploaded').children('.image-method').click(deleteImage);
     $("#items-submit").click(itemSubmit);
+    $("#items-delete").click(function (e) {
+        if (!confirm('真的要删除吗？'))
+            return;
+        $.post(
+            item_url, {
+                "csrfmiddlewaretoken": csrftoken,
+                'item_id': item_id,
+                'method': 'delete_item',
+                'pmo': pmo
+            }, function (data, e) {
+                if (data.error != 0) {
+                    alert(data.message);
+                } else {
+                    loadTable();
+                    if (item_id == data.item_id) {
+                        $('#item-info').addClass('nodisplay-object');
+                        $('#items-input').empty();
+                        autoHeight();
+                    }
+                }
+            }
+        );})
 }
 function bindTable() {
     var id = $('.item-delete');

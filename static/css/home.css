@@ -99,7 +99,7 @@ body {
 
 #home-picture {
     position: absolute;
-    top: 64px;
+    top: 115px;
     right: 129px;
 }
 
@@ -133,6 +133,13 @@ body {
     -ms-transition: all 0.4s;
     -o-transition: all 0.4s;
     transition: all 0.4s;
+    width: 45px;
+    height: 45px;
+}
+
+#href-pmo-icon {
+    width: 55px;
+    height: 55px;
 }
 
 .href-image {
@@ -174,7 +181,7 @@ body {
     cursor: pointer;
 }
 
-#href-back{
+#href-back {
     margin-top: 100px;
 }
 

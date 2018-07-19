@@ -15,3 +15,4 @@ class ItemForm(BaseForm):
     is_restricted = forms.CharField(max_length=20)
     circle = forms.CharField(max_length=40)
     item_id = forms.IntegerField()
+    item_order = forms.IntegerField()

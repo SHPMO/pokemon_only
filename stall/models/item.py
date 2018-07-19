@@ -28,11 +28,15 @@ class Item(BaseStallModel):
     circle = models.CharField(max_length=40, default="", help_text="出品社团")
     is_started_with = models.BooleanField(default=False, help_text="是否首发")
 
+    item_order = models.IntegerField(default=0, help_text="商品排序")
+
     @classmethod
     def create(cls, seller, pmo, **kwargs):
+        order = cls.objects.filter(seller=seller, pmo=pmo).aggregate(models.Max("item_order"))['item_order__max']
         item = cls.objects.create(
             seller=seller,
             pmo=pmo,
+            order=order + 1 if order is not None else 0,
             **kwargs
         )
         return item
@@ -44,6 +48,7 @@ class Item(BaseStallModel):
 class ItemPicture(BaseStallModel):
     class Meta:
         app_label = 'stall'
+
     picture = models.ImageField(upload_to="items/%Y/%m/%d", max_length=1024, help_text="图片")
     item = models.ForeignKey(Item)
 

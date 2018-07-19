@@ -92,6 +92,11 @@
         </div>
     </div>
 </div>
+<div class="controls-group oneline-group">
+    <label class="form-label" for="text-circle">商品排序*</label>
+    <input id="text-order" class="form-control form-text" type="text" required="required"
+           name="item_order" value="{{ item.item_order }}">
+</div>
 <input type="hidden" name="item_id" value="{{ item.pk }}">
 <input type="hidden" name="pmo" value="pmo2018">
 <input type="hidden" name="method" value="save">

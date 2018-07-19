@@ -36,7 +36,7 @@ class Item(BaseStallModel):
         item = cls.objects.create(
             seller=seller,
             pmo=pmo,
-            order=order + 1 if order is not None else 0,
+            item_order=order + 1 if order is not None else 0,
             **kwargs
         )
         return item

@@ -8,40 +8,50 @@ body {
     height: 100%;
     width: 100%;
 }
+
 .ball-half {
     position: absolute;
     height: 50%;
     width: 100%;
 }
+
 #ball-redhalf {
     top: 0;
 }
+
 #ball-whitehalf {
     bottom: 0;
 }
+
 .ball-half-bg {
     height: 100%;
     width: 100%;
 }
+
 #ball-redhalf-bg {
     background: #ff3636;
 }
+
 #ball-whitehalf-bg {
     background: #ffffff;
 }
+
 .ball-half-line {
     background: #000000;
     position: absolute;
     width: 100%;
 }
+
 #ball-redhalf-line {
     bottom: -27px;
     height: 54px;
 }
+
 #ball-whitehalf-line {
     top: 0;
     height: 27px;
 }
+
 .ball-half-circle {
     position: absolute;
     left: 50%;
@@ -49,6 +59,7 @@ body {
     width: 120px;
     border: #000000 solid;
 }
+
 #ball-redhalf-circle {
     height: 120px;
     bottom: -110px;
@@ -59,6 +70,7 @@ body {
     border-radius: 50%;
     z-index: 1;
 }
+
 #ball-whitehalf-circle {
     height: 60px;
     top: 0;
@@ -74,6 +86,7 @@ body {
     height: 100%;
     width: 100%;
 }
+
 #main-content {
     position: absolute;
     top: 50%;
@@ -89,6 +102,7 @@ body {
     top: 64px;
     right: 129px;
 }
+
 #home-copyright {
     position: absolute;
     right: 129px;
@@ -98,17 +112,21 @@ body {
 .main-side {
     height: 100%;
 }
+
 #main-left {
     float: left;
     width: 340px;
 }
+
 #main-right {
     float: right;
     width: 750px;
 }
-#main-hrefs {
+
+#main-hrefs, #sub-hrefs {
     height: 100%;
 }
+
 .href-icon {
     -webkit-transition: all 0.4s;
     -moz-transition: all 0.4s;
@@ -116,48 +134,72 @@ body {
     -o-transition: all 0.4s;
     transition: all 0.4s;
 }
+
 .href-image {
     margin-left: 15px;
 }
+
 .href-object {
     position: relative;
     width: 100%;
+    text-align: right;
 }
+
 .href-object a:hover .hidden-object {
     opacity: 1;
 }
+
 .href-object a {
-    float: right;
+    color: inherit;
+    text-decoration: none;
 }
+
 #href-gdz {
     top: 170px;
     /* right: 20px; */
 }
+
 #href-pmo {
-    top: 235px;
-    right: -7px;
+    margin-top: 200px;
+    font-size: 2rem;
 }
+
 #href-pmos {
-    top: 290px;
-    right: 10px;
+    margin-top: 80px;
     height: 32px;
+    font-size: 1.5rem;
 }
 
 #href-pmos, #href-back {
     cursor: pointer;
 }
 
+#href-back{
+    margin-top: 100px;
+}
+
+.href-pmo {
+    margin-top: 40px;
+    font-size: 1.5rem;
+}
+
+.href-pmo img, .href-pmo span {
+    vertical-align: middle;
+}
+
 .main-line {
     position: absolute;
-    background: -webkit-radial-gradient(#ffffff,#444444, #111111, #000000);
-    background: -moz-radial-gradient(#ffffff,#444444, #111111, #000000);
+    background: -webkit-radial-gradient(#ffffff, #444444, #111111, #000000);
+    background: -moz-radial-gradient(#ffffff, #444444, #111111, #000000);
 }
+
 #main-line-vertical {
     top: 0;
     left: 358px;
     width: 10px;
     height: 550px;
 }
+
 #main-line-horizontal {
     top: 245px;
     left: 100px;

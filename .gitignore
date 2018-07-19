@@ -10,9 +10,9 @@
 /log/
 
 /static
-!/static/css/
-!/static/images/
-!/static/js/
+!/static/css
+!/static/images
+!/static/js
 
 /uwsgi_pmo.xml
 /env/

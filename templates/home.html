@@ -1,50 +1,74 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% block heads %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
-    <script type="text/javascript" src="{% static 'js/autosize.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/home.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+<script type="text/javascript" src="{% static 'js/autosize.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/home.js' %}"></script>
 {% endblock %}
 {% block title %}GET DA☆ZE!{% endblock %}
 {% block body %}
-    <div id="main-container">
-        <div id="main-content-bg" class="hidden-object">
-            <div id="main-content">
-                <div id="main-left" class="main-side">
-                    <div id="main-hrefs">
-                        <div id="href-pmo" class="clear-group href-object">
-                            <a href="/pmo2016">
-                                <img id="href-pmo-icon" src="{% static 'pmo2016/images/logo.png' %}" class="href-icon hidden-object">
-                                <img id="href-pmo-img" src="{% static 'images/hrefpmo2016.png' %}" class="href-image">
-                            </a>
-                        </div>
-                        <div id="href-pmos" class="clear-group href-object">
-                            <a href="/pmo2015">
-                                <img id="href-pmos-icon" src="{% static 'pmo2015/images/logo.png' %}" class="href-icon hidden-object">
-                                <img id="href-pmos-img" src="{% static 'images/hrefpmos.png' %}" class="href-image">
-                            </a>
-                        </div>
+<div id="main-container">
+    <div id="main-content-bg" class="hidden-object">
+        <div id="main-content">
+            <div id="main-left" class="main-side">
+                <div id="main-hrefs">
+                    <div id="href-pmo" class="clear-group href-object">
+                        <a href="/pmo2018">
+                            <img id="href-pmo-icon" src="{% static 'images/logo-pmo2018.png' %}"
+                                 class="href-icon hidden-object">
+                            <span>彩虹火箭队基地</span>
+                        </a>
                     </div>
-                    <!-- 没想好用什么线
-                    <div id="main-line-horizontal" class="main-line"></div>
-                    <div id="main-line-vertical" class="main-line"></div>
-                    -->
+                    <div id="href-pmos" class="clear-group href-object">
+                        历届 PMO
+                    </div>
                 </div>
-                <div id="main-right" class="main-side">
-                    <img id="home-picture" src="{% static 'images/homepic.png' %}">
-                    <img id="home-copyright" src="{% static 'images/copyright.png' %}">
+                <div id="sub-hrefs nodisplay-object">
+                    <div id="href-back" class="clear-group href-object">
+                        返回
+                    </div>
+                    <div id="href-pmo2017" class="clear-group href-object">
+                        <a href="https://pmo.getdaze.org/">
+                            <img id="href-pmo2017-icon" src="{% static 'images/logo-pmo2017.png' %}"
+                                 class="href-icon hidden-object">
+                            <span>阿罗拉旅游局</span>
+                        </a>
+                    </div>
+                    <div id="href-pmo2016" class="clear-group href-object">
+                        <a href="/pmo2016">
+                            <img id="href-pmo2016-icon" src="{% static 'pmo2016/images/logo.png' %}"
+                                 class="href-icon hidden-object">
+                            <span>魔都PMO2016</span>
+                        </a>
+                    </div>
+                    <div id="href-pmo2015" class="clear-group href-object">
+                        <a href="/pmo2015">
+                            <img id="href-pmo2015-icon" src="{% static 'pmo2015/images/logo.png' %}"
+                                 class="href-icon hidden-object">
+                            <span>Pokemon Only 2015</span>
+                        </a>
+                    </div>
                 </div>
+                <!-- 没想好用什么线
+                <div id="main-line-horizontal" class="main-line"></div>
+                <div id="main-line-vertical" class="main-line"></div>
+                -->
+            </div>
+            <div id="main-right" class="main-side">
+                <img id="home-picture" src="{% static 'images/homepic.png' %}">
+                <img id="home-copyright" src="{% static 'images/copyright.png' %}">
             </div>
         </div>
-        <div id="ball-redhalf" class="ball-half">
-            <div id="ball-redhalf-bg" class="ball-half-bg"></div>
-            <div id="ball-redhalf-line" class="ball-half-line"></div>
-            <div id="ball-redhalf-circle" class="ball-half-circle"></div>
-        </div>
-        <div id="ball-whitehalf" class="ball-half">
-            <div id="ball-whitehalf-line" class="ball-half-line"></div>
-            <div id="ball-whitehalf-bg" class="ball-half-bg"></div>
-            <div id="ball-whitehalf-circle" class="ball-half-circle"></div>
-        </div>
     </div>
+    <div id="ball-redhalf" class="ball-half">
+        <div id="ball-redhalf-bg" class="ball-half-bg"></div>
+        <div id="ball-redhalf-line" class="ball-half-line"></div>
+        <div id="ball-redhalf-circle" class="ball-half-circle"></div>
+    </div>
+    <div id="ball-whitehalf" class="ball-half">
+        <div id="ball-whitehalf-line" class="ball-half-line"></div>
+        <div id="ball-whitehalf-bg" class="ball-half-bg"></div>
+        <div id="ball-whitehalf-circle" class="ball-half-circle"></div>
+    </div>
+</div>
 {% endblock %}

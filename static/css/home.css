@@ -143,6 +143,10 @@ body {
     height: 32px;
 }
 
+#href-pmos, #href-back {
+    cursor: pointer;
+}
+
 .main-line {
     position: absolute;
     background: -webkit-radial-gradient(#ffffff,#444444, #111111, #000000);

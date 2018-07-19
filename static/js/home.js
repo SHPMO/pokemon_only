@@ -21,8 +21,25 @@ function ball_open() {
         $('#main-content-bg').animate({opacity: '0'}, 400);
     }
 }
+
+function show_pmos(toshow) {
+    return function () {
+        var main = $('#main-hrefs');
+        var sub = $('#sub-hrefs');
+        if (toshow){
+            main.addClass('nodisplay-object');
+            sub.removeClass('nodisplay-object');
+        } else {
+            main.removeClass('nodisplay-object');
+            sub.addClass('nodisplay-object');
+        }
+    }
+}
+
 $(document).ready(function (){
         $('.ball-half').click(ball_open);
+        $('#href-pmos').click(show_pmos(true));
+        $('#href-back').click(show_pmos(false));
     }
 );
 

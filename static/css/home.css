@@ -92,9 +92,9 @@ body {
     top: 50%;
     margin-top: -327px;
     left: 50%;
-    margin-left: -550px;
+    margin-left: -600px;
     height: 654px;
-    width: 1100px;
+    width: 1200px;
 }
 
 #home-picture {
@@ -115,7 +115,7 @@ body {
 
 #main-left {
     float: left;
-    width: 340px;
+    width: 450px;
 }
 
 #main-right {

@@ -99,14 +99,14 @@ body {
 
 #home-picture {
     position: absolute;
-    top: 115px;
+    top: 16px;
     right: 129px;
 }
 
 #home-copyright {
     position: absolute;
+    top: 556px;
     right: 129px;
-    bottom: 120px;
 }
 
 .main-side {
@@ -186,7 +186,7 @@ body {
 }
 
 .href-pmo {
-    margin-top: 40px;
+    margin-top: 28px;
     font-size: 1.5rem;
 }
 

@@ -9,7 +9,7 @@
 /media/
 /log/
 
-/static
+/static/*
 !/static/css
 !/static/images
 !/static/js

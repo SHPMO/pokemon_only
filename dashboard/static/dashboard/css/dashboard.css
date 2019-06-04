@@ -52,24 +52,6 @@ a.img-href:hover, a.panel-href:hover {
     background-color: transparent;
 }
 
-#pmo-header {
-    z-index: 4;
-    position: relative;
-    width: 100%;
-    height: 74px;
-    min-width: 980px;
-    background: #ffffff;
-}
-
-#pmo-footer {
-    z-index: 2;
-    position: relative;
-    width: 100%;
-    height: 328px;
-    background: url("../images/footer.png") repeat-x center;
-    min-width: 980px;
-}
-
 #header-container {
     width: 840px;
     height: 64px;
@@ -85,13 +67,6 @@ a.img-href:hover, a.panel-href:hover {
     width: 100px;
     height: 100%;
     overflow: hidden;
-}
-
-.logo {
-    display: block;
-    height: 45px;
-    background: url('../images/logo.png') no-repeat;
-    width: 45px;
 }
 
 .logo-href {
@@ -179,19 +154,6 @@ a.nav-href {
 #main-container {
     padding-top: 40px;
     min-width: 980px;
-}
-
-#pmo-backicon {
-    z-index: 1;
-    width: 345px;
-    height: 295px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    margin-left: -172px;
-    margin-top: -190px;
-    background: url("../images/bgicon.png") no-repeat;
-    opacity: 0.5;
 }
 
 .sub-object {
@@ -355,25 +317,19 @@ a.nav-href {
 .register-battle::before {
     content: "对战报名";
     right: 35px;
-    top: 45px;
+    top: 25px;
 }
 
 .register-signupin::before {
     content: "注册登录";
     right: 35px;
-    top: 45px;
+    top: 25px;
 }
 
 .register-stall::before {
     content: "摊位申请";
     right: 35px;
-    top: 45px;
-}
-
-.register-consign::before {
-    content: "寄卖申请";
-    right: 35px;
-    top: 45px;
+    top: 25px;
 }
 
 .event-battle::before {
@@ -999,15 +955,6 @@ a.nav-href {
     bottom: 10px;
 }
 
-#home-header-wb {
-    position: absolute;
-    right: 100px;
-    bottom: -10px;
-    background: url("../images/wb.png") no-repeat;
-    width: 233px;
-    height: 50px;
-}
-
 #home-footer {
     position: relative;
     z-index: 1;
@@ -1026,28 +973,6 @@ a.nav-href {
     left: 50%;
     margin-left: -640px;
     min-width: 1280px;
-}
-
-#home-footer-center-top {
-    background: url("../images/home-footer-center.png") center;
-    height: 108px;
-    width: 100%;
-}
-
-#home-footer-center-bottom {
-    background: url("../images/home-footer-cbg.png");
-    width: 100%;
-    margin-top: -8px;
-}
-
-#home-footer-left {
-    left: 0;
-    background: url("../images/home-footer-lbg.png");
-}
-
-#home-footer-right {
-    right: 0;
-    background: url("../images/home-footer-rbg.png");
 }
 
 .home-footer-side {
@@ -1078,137 +1003,6 @@ a.nav-href {
     position: relative;
     z-index: 2;
     float: left;
-}
-
-#mascot-left {
-    background: url("../images/as.gif") no-repeat;
-    width: 115px;
-    height: 191px;
-    top: 2px;
-    left: 82px;
-}
-
-#mascot-right {
-    background: url("../images/or.gif") no-repeat;
-    width: 225px;
-    height: 202px;
-    top: -10px;
-    left: 893px;
-}
-
-#home-vote {
-    position: relative;
-    height: 58px;
-    width: 884px;
-    top: 148px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.vote-area {
-    height: 100%;
-}
-
-.vote-part {
-    width: 388px;
-}
-
-.vote-href {
-    cursor: pointer;
-}
-
-#vote-vs {
-    position: absolute;
-    background: url("../images/vs.png") no-repeat;
-    width: 72px;
-    height: 42px;
-    left: 405px;
-}
-
-#vote-team-aq {
-    position: absolute;
-    left: 0;
-}
-
-#vote-team-mg {
-    position: absolute;
-    right: 0;
-}
-
-.vote-aq {
-    float: right;
-}
-
-.vote-mg {
-    float: left;
-}
-
-.vote-area span {
-    margin-left: 5px;
-    margin-right: 5px;
-}
-
-.vote-text {
-    padding-top: 10px;
-    font-size: 10px;
-}
-
-#vote-aq-href {
-    background: url("../images/vote-aq.png") no-repeat;
-    width: 105px;
-    height: 28px;
-}
-
-#vote-mg-href {
-    background: url("../images/vote-mg.png") no-repeat;
-    width: 108px;
-    height: 32px;
-    margin-top: -2px;
-}
-
-.vote-bar {
-    position: relative;
-    text-align: center;
-    height: 17px;
-    width: 381px;
-    border: solid 3px #434343;
-    border-radius: 9px;
-    background: -moz-linear-gradient(top, #7d797a, #dddcdc, #e9e9e9);
-    background: -webkit-linear-gradient(top, #7d797a, #dddcdc, #e9e9e9);
-    background: linear-gradient(to bottom, #7d797a, #dddcdc, #e9e9e9);
-}
-
-#vote-aq-bar {
-    top: 5px;
-}
-
-#vote-mg-bar {
-    top: 3px;
-}
-
-.vote-bar-content {
-    position: absolute;
-    height: 17px;
-    min-width: 2%;
-}
-
-#vote-aq-bar-content {
-    right: 0;
-    background: url('../images/bar-aq.png') no-repeat right;
-}
-
-#vote-mg-bar-content {
-    left: 0;
-    background: url('../images/bar-mg.png') no-repeat;
-}
-
-#home-panels {
-    z-index: 4;
-    position: relative;
-    top: 45px;
-    float: right;
-    width: 284px;
-    overflow: hidden;
 }
 
 .home-panel {

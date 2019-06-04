@@ -7,7 +7,7 @@ from django.views.generic import TemplateView
 class CommonView(TemplateView):
     _sub_list = {}
     name = ''
-    pmo = 'pmo2018'
+    pmo = 'pmo2019'
 
     def get(self, request, sub=None, *args, **kwargs):
         if not sub:

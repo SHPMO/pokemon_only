@@ -16,7 +16,7 @@
         <div id="error-message">
             <p id="error-signup" class="error-message-text">{{ error_message_signup }}</p>
         </div>
-        <form id="signup-input" action="{% url "stall:signup" %}" method="post" onsubmit="return false;">
+        <form id="signup-input" action="{% url 'stall:signup' %}" method="post" onsubmit="return false;">
             <div class="controls-group oneline-group">
                 <label class="form-label" for="text-email">Email*</label>
                 <input id="text-email" class="form-control form-text" type="email" name="email">
@@ -52,7 +52,7 @@
         <div id="error-message">
             <p id="error-login" class="error-message-text">{{ error_message_login }}</p>
         </div>
-        <form id="login-input" action="{% url "stall:login" %}" method="post" onsubmit="return false;">
+        <form id="login-input" action="{% url 'stall:login' %}" method="post" onsubmit="return false;">
             <div class="controls-group oneline-group">
                 <label class="form-label" for="text-email">Email</label>
                 <input id="text-email" class="form-control form-text" type="email" name="email">

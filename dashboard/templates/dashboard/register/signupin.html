@@ -11,12 +11,48 @@
     <div id="content-stallinfo" class="nodisplay-object content-page">
         {% include 'dashboard/register/stall/instructions.html' %}
     </div>
+    <div id="content-signup" class="nodisplay-object content-page">
+        <h3>【注册】</h3>
+        <div id="error-message-signup">
+            <p id="error-signup" class="error-message-text">{{ error_message_signup }}</p>
+        </div>
+        <form id="signup-input" action="{% url 'stall:signup' %}" method="post" onsubmit="return false;">
+            <div class="controls-group oneline-group">
+                <label class="form-label" for="text-email-signup">Email*</label>
+                <input id="text-email-signup" class="form-control form-text" type="email" name="email">
+            </div>
+            <div class="controls-group oneline-group">
+                <label class="form-label" for="text-password-signup">密码*</label>
+                <input id="text-password-signup" class="form-control form-text" type="password" name="password">
+            </div>
+            <div class="controls-group oneline-group">
+                <label class="form-label" for="text-repassword">重复*</label>
+                <input id="text-repassword" class="form-control form-text" type="password" name="repassword">
+            </div>
+            <div class="controls-group oneline-group">
+                <label class="form-label" for="text-circle">社团名*</label>
+                <input id="text-circle" class="form-control form-text" type="text" name="circle_name">
+            </div>
+            <div class="controls-group oneline-group">
+                <label class="form-label">验证码*</label>
+                <div id="signup_captcha" class="captcha-box form-control">
+                    {{ signup_form.captcha }}
+                </div>
+            </div>
+            <div class="controls-group oneline-group">
+                <button id="signup-submit" class="button-submit form-control form-button" name="submit">提交</button>
+            </div>
+            {% csrf_token %}
+            <input type="hidden" name="pmo" value="pmo2019">
+            <input type="hidden" name="type" value="stall">
+        </form>
+    </div>
     <div id="content-login" class="nodisplay-object content-page">
         <h3>【登录】</h3>
         <div id="error-message">
             <p id="error-login" class="error-message-text">{{ error_message_login }}</p>
         </div>
-        <form id="login-input" action="{% url "stall:login" %}" method="post" onsubmit="return false;">
+        <form id="login-input" action="{% url 'stall:login' %}" method="post" onsubmit="return false;">
             <div class="controls-group oneline-group">
                 <label class="form-label" for="text-email">Email</label>
                 <input id="text-email" class="form-control form-text" type="email" name="email">
@@ -35,12 +71,13 @@
                 <button id="login-submit" class="button-submit form-control form-button" name="submit">提交</button>
             </div>
             {% csrf_token %}
-            <input type="hidden" name="pmo" value="pmo2018">
+            <input type="hidden" name="pmo" value="pmo2019">
         </form>
     </div>
 {% endblock %}
 
 {% block panels %}
+    <div id="switch-signup" class="pmo-panel switch-panel panel-red-r"><span>注册</span></div>
     <div id="switch-login" class="pmo-panel switch-panel panel-blue-r"><span>登录</span></div>
     <div id="switch-stallinfo" class="pmo-panel switch-panel panel-purple-r"><span>摊位须知</span></div>
 {% endblock %}

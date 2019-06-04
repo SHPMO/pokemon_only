@@ -1,3 +1,4 @@
+from captcha.fields import CaptchaField
 from django import forms
 
 from stall.forms.bases import BaseForm
@@ -8,5 +9,5 @@ class SignupForm(BaseForm):
     password = forms.CharField(min_length=6, max_length=128)
     repassword = forms.CharField(max_length=128)
     type = forms.CharField(max_length=10)
-    #    captcha = CaptchaField()
+    captcha = CaptchaField()
     circle_name = forms.CharField(max_length=40)

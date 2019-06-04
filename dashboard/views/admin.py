@@ -18,7 +18,7 @@ class AdminView(CommonView):
     def _init(self, request):
         if not (request.user.is_authenticated and any(request.user.groups.filter(name='PmoAdminGroup'))):
             raise Http404
-        # self.admin = request.user.pmoadmin_set.get(pmo='pmo2018')
+        # self.admin = request.user.pmoadmin_set.get(pmo='pmo2019')
         self.admin = request.user.pmoadmin_set.first()
 
     def _default(self):

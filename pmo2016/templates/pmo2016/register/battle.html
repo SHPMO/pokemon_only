@@ -12,7 +12,7 @@
         <p class="error-message-text"></p>
     </div>
     <div class="input-area">
-        <form id="register-input" action="{% url "pmo2016:api" "battle" %}" method="post" onsubmit="return false;">
+        <form id="register-input" action="{% url 'pmo2016:api' 'battle' %}" method="post" onsubmit="return false;">
             <div class="controls-group oneline-group">
                 <label class="form-label" for="text-nickname">昵称*</label>
                 <input id="text-nickname" class="form-control form-text" type="text" name="nickname">

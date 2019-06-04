@@ -6,7 +6,7 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import redirect, render
 
 from dashboard.views.common import CommonView
-from stall.forms import LoginForm
+from stall.forms import LoginForm, SignupForm
 from stall.models import Item
 
 
@@ -99,6 +99,7 @@ class RegisterView(CommonView):
         elif sub == 'signupin':
             kwargs.update({
                 'login_form': LoginForm(),
+                'signup_form': SignupForm(),
                 'error_message_login': self._err_dict.get(request.GET.get('validated', None), "")
             })
         return super().get(request, sub, *args, **kwargs)

@@ -16,10 +16,12 @@ function bindSubmit() {
                         msg = data.message
                         break
                     case 1:
-                        if (data.message.captcha != undefined)
+                        if (data.message.captcha !== undefined)
                             msg = '验证码错误'
-                        else if (data.message.password != undefined)
+                        else if (data.message.password !== undefined)
                             msg = '密码至少需要6位'
+                        else if (data.message.pmo !== undefined)
+                            msg = '现在无法注册'
                         else
                             msg = '*为必填项'
                         break
@@ -52,9 +54,9 @@ function bindSubmit() {
                         location.href = data.redirect_to
                         break
                     case 1:
-                        if (data.message.captcha != undefined)
+                        if (data.message.captcha !== undefined)
                             msg = '验证码错误'
-                        else if (data.message.email != undefined)
+                        else if (data.message.email !== undefined)
                             msg = '请输入正确的邮箱地址'
                         else
                             msg = '所有项目不能为空'

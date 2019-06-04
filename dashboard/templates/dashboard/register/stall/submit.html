@@ -2,7 +2,7 @@
 <div id="error-message-submit">
     <p id="error-submit" class="error-message-text"></p>
 </div>
-<form id="submit-input" action="{% url "stall:submit" %}" method="post" onsubmit="return false;">
+<form id="submit-input" action="{% url 'stall:submit' %}" method="post" onsubmit="return false;">
     <h4>【其他信息】</h4>
     {% if seller.is_stall %}
     <div class="controls-group oneline-group">
@@ -31,5 +31,5 @@
                 name="submit">申请{% if seller.is_stall %}摊位{% else %}寄卖{% endif %}</button>
     </div>
     {% csrf_token %}
-    <input type="hidden" name="pmo" value="pmo2018">
+    <input type="hidden" name="pmo" value="pmo2019">
 </form>

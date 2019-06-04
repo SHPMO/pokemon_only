@@ -8,7 +8,7 @@
 </div>
 <div class="controls-group oneline-group">
     <button id="items-add" class="button-submit form-control form-button" name="submit"
-            data-url="{% url "stall:item" %}">添加</button>
+            data-url="{% url 'stall:item' %}">添加</button>
     <button id="items-next" class="button-submit form-control form-button items-pages" value="1">下一页</button>
     <button id="items-prev" class="button-submit form-control form-button items-pages" value="-1">上一页</button>
 </div>
@@ -22,5 +22,5 @@
         <input id="text-number" class="form-control form-text" type="text"
                name="number" disabled="disabled">
     </div>
-    <form id="items-input" action="{% url "stall:item" %}" method="post" onsubmit="return false;"></form>
+    <form id="items-input" action="{% url 'stall:item' %}" method="post" onsubmit="return false;"></form>
 </div>

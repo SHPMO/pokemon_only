@@ -1,4 +1,5 @@
 from django.http import Http404
+
 from dashboard.views.common import CommonView
 from stall.models import Seller, Item
 
@@ -49,7 +50,7 @@ class StallView(CommonView):
         else:
             itemlist = [(items[0].seller, [items[0]])]
             for i in range(1, len(items)):
-                if items[i].seller == items[i-1].seller:
+                if items[i].seller == items[i - 1].seller:
                     itemlist[-1][1].append(items[i])
                 else:
                     itemlist.append((items[i].seller, [items[i]]))
@@ -72,7 +73,7 @@ class StallView(CommonView):
         })
 
     def check_perm(self, request):
-        if request.user.is_authenticated():
+        if request.user.is_authenticated:
             if any(request.user.groups.filter(name='PmoAdminGroup')):
                 self.has_perm = True
             user_seller = request.user.seller_set.filter(pmo=self.pmo)

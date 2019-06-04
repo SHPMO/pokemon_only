@@ -1,7 +1,8 @@
 from django.contrib.auth import authenticate, login, logout
-from django.core.urlresolvers import reverse
-from stall.views.bases import ApiView
+from django.urls import reverse
+
 from stall.forms import LoginForm
+from stall.views.bases import ApiView
 
 
 class LoginView(ApiView):
@@ -34,7 +35,7 @@ class LoginView(ApiView):
 
 class LogoutView(ApiView):
     def get(self, request, *args, **kwargs):
-        if not request.user.is_authenticated():
+        if not request.user.is_authenticated:
             return self.return_me(1, "未登录")
         logout(request)
         return self.return_me(0, "注销成功")

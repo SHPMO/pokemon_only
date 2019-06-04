@@ -1,5 +1,5 @@
-from stall.views.bases import AuthedApiView
 from stall.forms import SellerForm
+from stall.views.bases import AuthedApiView
 
 
 class SellerView(AuthedApiView):

@@ -1,12 +1,14 @@
+import json
 import random
+
 from django.conf import settings
 from django.core.mail import send_mail
+from django.http import HttpResponse, Http404
 from django.template import loader
 from django.views.generic import View
-from django.http import HttpResponse, Http404
-import json
-from pmo2015.models import MainComment, Player, Vote
+
 from pmo2015.forms import MessageForm, BattleForm
+from pmo2015.models import MainComment, Player, Vote
 
 
 def _return_me(error_code, **kwargs):
@@ -95,6 +97,7 @@ def _vote(request, *args, **kwargs):
     )
     request.session['vote'] = vote.id
     return _return_me(0, vote=0 if choice == Vote.TEAM_AQUA else 1)
+
 
 _api_list = {
     'guestbook': _guestbook,

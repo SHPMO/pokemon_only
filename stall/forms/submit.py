@@ -1,4 +1,5 @@
 from django import forms
+
 from stall.forms.bases import BaseForm
 
 

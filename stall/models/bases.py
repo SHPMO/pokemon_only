@@ -10,9 +10,10 @@ class BaseStallModel(models.Model):
 
     PMO_CHOICES = tuple(
         (x, x)
-        for x in settings.PMO_LIST
+            for x in settings.PMO_LIST
     )
     pmo = models.CharField(max_length=10, default='unknown', choices=PMO_CHOICES, help_text="漫展")
+
 
 class Option(models.Model):
     class Meta:

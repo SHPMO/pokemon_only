@@ -2,6 +2,7 @@ body {
     overflow: hidden;
     background: url("../images/mainbg.png");
 }
+
 #error-container {
     background: url("../images/bg404.png") no-repeat center;
     position: absolute;
@@ -12,6 +13,7 @@ body {
     width: 794px;
     height: 590px;
 }
+
 #href-return {
     position: absolute;
     right: 81px;

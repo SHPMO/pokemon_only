@@ -28,7 +28,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = (
@@ -80,7 +79,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'msite.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
@@ -90,7 +88,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -104,7 +101,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
@@ -131,6 +127,7 @@ EMAIL_SUBJECT_PREFIX = '[PMO2018] '
 EMAIL_USE_SSL = True
 
 import pmo2015.helpers
+
 CAPTCHA_CHALLENGE_FUNCT = pmo2015.helpers.word_challenge
 CAPTCHA_IMAGE_SIZE = (300, 31)
 

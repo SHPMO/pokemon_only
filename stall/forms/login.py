@@ -1,5 +1,6 @@
-from django import forms
 from captcha.fields import CaptchaField
+from django import forms
+
 from stall.forms.bases import BaseForm
 
 

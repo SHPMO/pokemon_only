@@ -1,11 +1,11 @@
 from django.db import models
-from django.utils.html import escape
 
 
 class BasePlayer(models.Model):
     class Meta:
         app_label = 'tourney'
         abstract = True
+
     player_name = models.CharField(max_length=30)
     email = models.EmailField()
     taobao_id = models.CharField(max_length=16)
@@ -32,4 +32,3 @@ class BasePlayer(models.Model):
         else:
             self.status = 2
         self.save()
-

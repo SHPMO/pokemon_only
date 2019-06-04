@@ -1,14 +1,14 @@
 from django.conf import settings
+from django.contrib.auth.models import User, Group
 from django.db import models
-from django.contrib.auth.models import User, Group, Permission
 
 
 class PmoAdmin(models.Model):
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, models.CASCADE)
     nickname = models.CharField(max_length=30)
     PMO_CHOICES = tuple(
         (x, x)
-        for x in settings.PMO_LIST
+            for x in settings.PMO_LIST
     )
     pmo = models.CharField(max_length=10, default='unknown', choices=PMO_CHOICES, help_text="漫展")
 

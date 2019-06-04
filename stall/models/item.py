@@ -1,5 +1,6 @@
 # coding=utf-8
 from django.db import models
+
 from stall.models.bases import BaseStallModel
 from stall.models.seller import Seller
 
@@ -10,7 +11,7 @@ class Item(BaseStallModel):
         ordering = ["seller"]
 
     validated = models.BooleanField(default=False)
-    seller = models.ForeignKey(Seller)
+    seller = models.ForeignKey(Seller, models.CASCADE)
 
     name = models.CharField(max_length=50, default="未命名")
     item_type = models.CharField(max_length=20, default="", help_text="种类")
@@ -50,7 +51,7 @@ class ItemPicture(BaseStallModel):
         app_label = 'stall'
 
     picture = models.ImageField(upload_to="items/%Y/%m/%d", max_length=1024, help_text="图片")
-    item = models.ForeignKey(Item)
+    item = models.ForeignKey(Item, models.CASCADE)
 
     def __str__(self):
         return "%s %s" % (self.id, self.item.name)

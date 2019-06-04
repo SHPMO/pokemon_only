@@ -3,9 +3,10 @@ from captcha.helpers import captcha_image_url
 from captcha.models import CaptchaStore
 from django.conf import settings
 from django.http import HttpResponse
+
 from pmo2015.forms import MessageForm
-from pmo2015.views.common import CommonView
 from pmo2015.models import MainComment
+from pmo2015.views.common import CommonView
 
 
 class QABookView(CommonView):
@@ -20,7 +21,7 @@ class QABookView(CommonView):
                 return HttpResponse(cimageurl)
             try:
                 page = kwargs["page"] = int(request.GET.get("page", 1))
-                l, r = (page-1) * 5, page * 5
+                l, r = (page - 1) * 5, page * 5
                 kwargs["main_comments"] = MainComment.objects.order_by('-gen_time')[l:r]
             except ValueError:
                 kwargs["error"] = 2

@@ -1,9 +1,9 @@
 window.onload = function () {
 
-    Vue.config.delimiters = ['<<', '>>'];
+    Vue.config.delimiters = ['<<', '>>']
     Vue.config.unsafeDelimiters = ['{!!', '!!}']
 
-    var static_path = '/static/pmo2016/';
+    var static_path = '/static/pmo2016/'
     var data = {
         map: [
             [-1, -1, -1, -1, -1, -1, -1, -1],
@@ -23,10 +23,10 @@ window.onload = function () {
             hrefs: ['http://weibo.com/SHPMO', 'register/battle/', 'register/stall/'],
             callback: function (notcancelled) {
                 if (notcancelled && vm.select.status != 3) {
-                    window.open(this.hrefs[vm.select.status], '_blank');
+                    window.open(this.hrefs[vm.select.status], '_blank')
                 }
-                waiting = null;
-                clearDialog();
+                waiting = null
+                clearDialog()
             }
         },
         stair: {
@@ -36,10 +36,10 @@ window.onload = function () {
             no: '否',
             callback: function (notcancelled) {
                 if (notcancelled && vm.yesno.status == 1) {
-                    window.open('baseinfo/place/', '_blank');
+                    window.open('baseinfo/place/', '_blank')
                 }
-                waiting = null;
-                clearDialog();
+                waiting = null
+                clearDialog()
             }
         },
         table: {
@@ -56,27 +56,27 @@ window.onload = function () {
                     ''
                 ],
                 callback: function (notcancelled) {
-                    waiting = null;
-                    clearDialog();
+                    waiting = null
+                    clearDialog()
                 }
             },
             callback: function (notcancelled) {
                 if (notcancelled && vm.yesno.status == 1) {
                     this.getItem.message[0] = '——你得到了一个...' +
-                        this.items[Math.floor(this.items.length * Math.random())] + '！';
-                    trigger(this.getItem);
+                        this.items[Math.floor(this.items.length * Math.random())] + '！'
+                    trigger(this.getItem)
                 } else {
-                    clearDialog();
+                    clearDialog()
                 }
-                waiting = null;
+                waiting = null
             }
         },
         tree: {
             type: 0,
             message: ['只是一盆普通的景观植物'],
             callback: function (notcancelled) {
-                waiting = null;
-                clearDialog();
+                waiting = null
+                clearDialog()
             }
         },
         tv: {
@@ -87,8 +87,8 @@ window.onload = function () {
                 '好像听到了奇怪的笑声'
             ],
             callback: function (notcancelled) {
-                waiting = null;
-                clearDialog();
+                waiting = null
+                clearDialog()
             }
         },
         wiiu: {
@@ -99,8 +99,8 @@ window.onload = function () {
                 '你心满意足准备出发去PMO'
             ],
             callback: function (notcancelled) {
-                waiting = null;
-                clearDialog();
+                waiting = null
+                clearDialog()
             }
         },
         bed: {
@@ -118,14 +118,14 @@ window.onload = function () {
                             'SAD'
                         ],
                         callback: function (notcancelled) {
-                            waiting = null;
-                            clearDialog();
+                            waiting = null
+                            clearDialog()
                         }
                     })
                 } else {
-                    clearDialog();
+                    clearDialog()
                 }
-                waiting = null;
+                waiting = null
             }
         },
         menu: {
@@ -175,18 +175,18 @@ window.onload = function () {
             ],
             callback: function (notcancelled) {
                 if (notcancelled && vm.menu.status != 5) {
-                    var option = this.options[vm.menu.status];
-                    var list = '';
+                    var option = this.options[vm.menu.status]
+                    var list = ''
                     for (var i = 0; i < option.options.length; ++i) {
-                        var link = option.href + option.options[i].href;
-                        list += '<a href="' + link + '" target="_blank">' + option.options[i].name + '</a><br>';
+                        var link = option.href + option.options[i].href
+                        list += '<a href="' + link + '" target="_blank">' + option.options[i].name + '</a><br>'
                     }
-                    vm.menu.submenu.message = list;
-                    vm.menu.submenu.status = 0;
-                    waiting = this.submenu;
+                    vm.menu.submenu.message = list
+                    vm.menu.submenu.status = 0
+                    waiting = this.submenu
                 } else {
-                    clearDialog();
-                    waiting = null;
+                    clearDialog()
+                    waiting = null
                 }
             },
             submenu: {
@@ -194,31 +194,31 @@ window.onload = function () {
                 callback: function (notcancelled) {
                     if (notcancelled) {
                         var link = data.menu.options[vm.menu.status].href +
-                            data.menu.options[vm.menu.status].options[vm.menu.submenu.status].href;
-                        window.open(link, '_blank');
-                        menuLast = vm.menu.status;
-                        waiting = null;
-                        clearDialog();
+                            data.menu.options[vm.menu.status].options[vm.menu.submenu.status].href
+                        window.open(link, '_blank')
+                        menuLast = vm.menu.status
+                        waiting = null
+                        clearDialog()
                     } else {
-                        waiting = data.menu;
-                        vm.menu.submenu.status = -1;
+                        waiting = data.menu
+                        vm.menu.submenu.status = -1
                     }
                 }
             }
 
         }
-    };
+    }
 
-    var gb = document.getElementById('gb');
-    var screen = document.getElementById('gb-screen');
+    var gb = document.getElementById('gb')
+    var screen = document.getElementById('gb-screen')
     window.onresize = function () {
-        vm.unit -= 1;
+        vm.unit -= 1
         if (gb.clientWidth / 287 * 450 <= gb.clientHeight) {
-            vm.unit = gb.clientWidth / 287;
+            vm.unit = gb.clientWidth / 287
         } else {
-            vm.unit = gb.clientHeight / 450;
+            vm.unit = gb.clientHeight / 450
         }
-    };
+    }
 
     var vm = new Vue({
         el: '#main-container',
@@ -241,15 +241,15 @@ window.onload = function () {
             },
             dialog: {
                 status: -1,
-                message: "",
+                message: '',
                 cursor: false
             },
             menu: {
                 status: -1,
-                message: "",
+                message: '',
                 submenu: {
                     status: -1,
-                    message: ""
+                    message: ''
                 }
             },
             welcome: {
@@ -262,10 +262,10 @@ window.onload = function () {
         },
         computed: {
             cell: function () {
-                return 16 * this.unit;
+                return 16 * this.unit
             },
             heroImage: function () {
-                return static_path + 'images/hero-' + this.hero.direction + '-' + this.hero.status + '.svg';
+                return static_path + 'images/hero-' + this.hero.direction + '-' + this.hero.status + '.svg'
             },
             heroStyle: function () {
                 return {
@@ -312,7 +312,7 @@ window.onload = function () {
                     height: 7 * this.unit + 'px',
                     width: 5 * this.unit + 'px',
                     left: 8 * this.unit + 'px',
-                    top: (14 + 15.1 * this.select.status ) * this.unit + 'px'
+                    top: (14 + 15.1 * this.select.status) * this.unit + 'px'
                 }
             },
             yesnoStyle: function () {
@@ -332,7 +332,7 @@ window.onload = function () {
                     height: 7 * this.unit + 'px',
                     width: 5 * this.unit + 'px',
                     right: 34 * this.unit + 'px',
-                    bottom: (59 + 11.5 * this.yesno.status ) * this.unit + 'px'
+                    bottom: (59 + 11.5 * this.yesno.status) * this.unit + 'px'
                 }
             },
             dialogStyle: function () {
@@ -369,7 +369,7 @@ window.onload = function () {
                     height: 7 * this.unit + 'px',
                     width: 5 * this.unit + 'px',
                     right: 52 * this.unit + 'px',
-                    top: (14 + 15.55 * this.menu.status ) * this.unit + 'px'
+                    top: (14 + 15.55 * this.menu.status) * this.unit + 'px'
                 }
             },
             submenuStyle: function () {
@@ -390,227 +390,227 @@ window.onload = function () {
                     height: 7 * this.unit + 'px',
                     width: 5 * this.unit + 'px',
                     left: 39 * this.unit + 'px',
-                    top: (30 + 15.55 * this.menu.submenu.status ) * this.unit + 'px'
+                    top: (30 + 15.55 * this.menu.submenu.status) * this.unit + 'px'
                 }
             }
         },
         methods: {
             buttonPressed: function (event) {
-                var x = event.offsetX / this.unit, y = event.offsetY / this.unit;
+                var x = event.offsetX / this.unit, y = event.offsetY / this.unit
                 if (x >= 56.333 && x <= 83.333 && y >= 0 && y <= 22) {
-                    pressUp();
+                    pressUp()
                 } else if (x >= 56.333 && x <= 83.333 && y >= 49 && y <= 71) {
-                    pressDown();
+                    pressDown()
                 } else if (y >= 22 && y <= 49 && x >= 34.333 && x <= 56.333) {
-                    pressLeft();
+                    pressLeft()
                 } else if (y >= 22 && y <= 49 && x >= 83.333 && x <= 105.333) {
-                    pressRight();
+                    pressRight()
                 } else if (Math.pow(x - 250.119, 2) + Math.pow(y - 25.071, 2) <= Math.pow(14.572, 2)) {
-                    pressA();
+                    pressA()
                 } else if (Math.pow(x - 214.904, 2) + Math.pow(y - 46.929, 2) <= Math.pow(14.571, 2)) {
-                    pressB();
+                    pressB()
                 } else if (x >= 100 && x <= 132.47 && y >= 91 && y <= 106.62) {
-                    pressSelect();
+                    pressSelect()
                 } else if (x >= 141 && x <= 173.47 && y >= 91 && y <= 106.62) {
-                    pressStart();
+                    pressStart()
                 }
             }
         },
         ready: function () {
-            this.$el.style.display = "flex";
-            this.welcome.bgLeftRight = true;
+            this.$el.style.display = 'flex'
+            this.welcome.bgLeftRight = true
         },
         watch: {
             'welcome.bgLeftRight': function () {
                 setTimeout(function () {
-                    vm.welcome.bgYears = true;
-                }, 800);
+                    vm.welcome.bgYears = true
+                }, 800)
             },
             'welcome.bgYears': function () {
                 setTimeout(function () {
-                    vm.welcome.gb = true;
-                }, 800);
+                    vm.welcome.gb = true
+                }, 800)
             },
             'welcome.gb': function () {
                 setTimeout(function () {
-                    vm.welcome.pikachu = true;
-                }, 800);
+                    vm.welcome.pikachu = true
+                }, 800)
             },
             'welcome.pikachu': function () {
                 setTimeout(function () {
-                    window.onresize();
-                    vm.welcome.gbScreen = true;
-                }, 800);
+                    window.onresize()
+                    vm.welcome.gbScreen = true
+                }, 800)
             }
         }
-    });
-    window.vm = vm;
+    })
+    window.vm = vm
 
-    var moving = null;
-    var talking = null;
-    var waiting = null;
+    var moving = null
+    var talking = null
+    var waiting = null
 
     function move(direction) {
         if (moving || talking || waiting)
-            return;
+            return
         if (direction != vm.hero.direction) {
-            vm.hero.status = 0;
-            vm.hero.direction = direction;
-            return;
+            vm.hero.status = 0
+            vm.hero.direction = direction
+            return
         }
-        var dx = 0, dy = 0;
+        var dx = 0, dy = 0
         switch (vm.hero.direction) {
             case 0:
-                dy = 1;
-                break;
+                dy = 1
+                break
             case 1:
-                dx = -1;
-                break;
+                dx = -1
+                break
             case 2:
-                dy = -1;
-                break;
+                dy = -1
+                break
             case 3:
-                dx = 1;
-                break;
+                dx = 1
+                break
         }
-        var y = vm.hero.y + dy;
-        var x = vm.hero.x + dx;
+        var y = vm.hero.y + dy
+        var x = vm.hero.x + dx
         if (y < 0 || x < 0 || y > 7 || x > 7 || (data.map[y][x] != 0 && data.map[y][x] != 'stair')) {
-            return;
+            return
         }
         (function go(status) {
             if (status % 5 == 0) {
-                var p = vm.hero.status + 1;
-                vm.hero.status = p % data.totalImages[vm.hero.direction];
+                var p = vm.hero.status + 1
+                vm.hero.status = p % data.totalImages[vm.hero.direction]
             }
             if (status == 10) {
-                vm.hero.x = Math.round(vm.hero.x);
-                vm.hero.y = Math.round(vm.hero.y);
+                vm.hero.x = Math.round(vm.hero.x)
+                vm.hero.y = Math.round(vm.hero.y)
                 if (vm.hero.status % 2 != 0)
-                    vm.hero.status--;
-                moving = null;
+                    vm.hero.status--
+                moving = null
                 if (data.map[vm.hero.y][vm.hero.x] == 'stair') {
-                    trigger(data.stair);
+                    trigger(data.stair)
                 }
-                return;
+                return
             }
-            vm.hero.x += dx / 10;
-            vm.hero.y += dy / 10;
-            moving = setTimeout(go, 40, status + 1);
-        })(0);
+            vm.hero.x += dx / 10
+            vm.hero.y += dy / 10
+            moving = setTimeout(go, 40, status + 1)
+        })(0)
     }
 
     function pressUp() {
         if (waiting) {
             if (waiting.type == 1 && vm.yesno.status == 0) {
-                vm.yesno.status = 1;
+                vm.yesno.status = 1
             } else if (waiting.type == 2) {
                 if (vm.select.status > 0) {
-                    vm.select.status--;
+                    vm.select.status--
                 } else {
-                    vm.select.status = 3;
+                    vm.select.status = 3
                 }
             } else if (waiting.type == 3) {
                 if (vm.menu.status > 0) {
-                    vm.menu.status--;
+                    vm.menu.status--
                 } else {
-                    vm.menu.status = 5;
+                    vm.menu.status = 5
                 }
             } else if (waiting.type == 4) {
                 if (vm.menu.submenu.status > 0) {
-                    vm.menu.submenu.status--;
+                    vm.menu.submenu.status--
                 } else {
-                    vm.menu.submenu.status = data.menu.options[vm.menu.status].options.length - 1;
+                    vm.menu.submenu.status = data.menu.options[vm.menu.status].options.length - 1
                 }
             }
         } else {
-            move(2);
+            move(2)
         }
     }
 
     function pressDown() {
         if (waiting) {
             if (waiting.type == 1 && vm.yesno.status == 1) {
-                vm.yesno.status = 0;
+                vm.yesno.status = 0
             } else if (waiting.type == 2) {
                 if (vm.select.status < 3) {
-                    vm.select.status++;
+                    vm.select.status++
                 } else {
                     vm.select.status = 0
                 }
             } else if (waiting.type == 3) {
                 if (vm.menu.status < 5) {
-                    vm.menu.status++;
+                    vm.menu.status++
                 } else {
-                    vm.menu.status = 0;
+                    vm.menu.status = 0
                 }
             } else if (waiting.type == 4) {
                 if (vm.menu.submenu.status < data.menu.options[vm.menu.status].options.length - 1) {
-                    vm.menu.submenu.status++;
+                    vm.menu.submenu.status++
                 } else {
-                    vm.menu.submenu.status = 0;
+                    vm.menu.submenu.status = 0
                 }
             }
         } else {
-            move(0);
+            move(0)
         }
     }
 
     function pressLeft() {
-        move(1);
+        move(1)
     }
 
     function pressRight() {
-        move(3);
+        move(3)
     }
 
     function pressA() {
         if (moving) {
-            return;
+            return
         }
         if (talking) {
             if (waiting) {
-                vm.dialog.cursor = false;
+                vm.dialog.cursor = false
                 if (sentence == waiting.message.length - 1) {
-                    clearDialog();
-                    waiting = null;
-                    return;
+                    clearDialog()
+                    waiting = null
+                    return
                 }
 
-                var tmp = waiting.message[sentence] + '<br>';
-                sentence++;
+                var tmp = waiting.message[sentence] + '<br>'
+                sentence++
                 if (waiting.message[sentence] == '') {
-                    tmp = '';
-                    oneline = true;
-                    sentence++;
+                    tmp = ''
+                    oneline = true
+                    sentence++
                 }
-                vm.dialog.message = tmp;
-                setTimeout(talk, talkDelay, 0, waiting);
-                waiting = null;
+                vm.dialog.message = tmp
+                setTimeout(talk, talkDelay, 0, waiting)
+                waiting = null
             } else {
 
             }
         } else if (waiting) {
-            waiting.callback(true);
+            waiting.callback(true)
         } else {
-            var x = vm.hero.x + (vm.hero.direction == 1 ? -1 : 0) + (vm.hero.direction == 3 ? 1 : 0);
-            var y = vm.hero.y + (vm.hero.direction == 0 ? 1 : 0) + (vm.hero.direction == 2 ? -1 : 0);
+            var x = vm.hero.x + (vm.hero.direction == 1 ? -1 : 0) + (vm.hero.direction == 3 ? 1 : 0)
+            var y = vm.hero.y + (vm.hero.direction == 0 ? 1 : 0) + (vm.hero.direction == 2 ? -1 : 0)
             if (y < 0 || x < 0 || y > 7 || x > 7 || data.map[y][x] == 0 && data.map[y][x] == -1) {
-                return;
+                return
             }
-            var event = data.map[y][x];
+            var event = data.map[y][x]
             if (typeof event === 'string') {
                 if (event == 'tv' && vm.hero.direction != 0) {
-                    return;
+                    return
                 }
-                trigger(data[event]);
+                trigger(data[event])
             }
         }
     }
 
     function pressB() {
         if (moving) {
-            return;
+            return
         }
         if (talking) {
             if (waiting) {
@@ -619,7 +619,7 @@ window.onload = function () {
 
             }
         } else if (waiting) {
-            waiting.callback(false);
+            waiting.callback(false)
         } else {
 
         }
@@ -629,92 +629,91 @@ window.onload = function () {
 
     }
 
-    var menuLast = 0;
+    var menuLast = 0
 
     function pressStart() {
         if (moving || talking)
-            return;
+            return
         if (waiting && waiting.type == 3) {
-            clearDialog();
-            waiting = null;
-            return;
+            clearDialog()
+            waiting = null
+            return
         }
-        var list = data.menu.options[0].name;
+        var list = data.menu.options[0].name
         for (var i = 1; i < data.menu.options.length; ++i)
-            list += '<br>' + data.menu.options[i].name;
-        vm.menu.message = list;
-        waiting = data.menu;
-        vm.menu.status = menuLast;
+            list += '<br>' + data.menu.options[i].name
+        vm.menu.message = list
+        waiting = data.menu
+        vm.menu.status = menuLast
     }
 
     function trigger(event) {
-        clearDialog();
-        vm.dialog.status = 0;
-        talking = setTimeout(talk, 0, 0, event);
+        clearDialog()
+        vm.dialog.status = 0
+        talking = setTimeout(talk, 0, 0, event)
     }
 
-    var talkDelay = 60;
-    var sentence = 0;
-    var waitDelay = 800;
-    var oneline = true;
-    var shining = null;
+    var talkDelay = 60
+    var sentence = 0
+    var waitDelay = 800
+    var oneline = true
+    var shining = null
 
     function wait() {
         if (shining && waiting) {
-            vm.dialog.cursor = !vm.dialog.cursor;
-            shining = setTimeout(wait, waitDelay);
+            vm.dialog.cursor = !vm.dialog.cursor
+            shining = setTimeout(wait, waitDelay)
         } else {
-            vm.dialog.cursor = false;
-            shining = null;
+            vm.dialog.cursor = false
+            shining = null
         }
     }
 
     function talk(status, event) {
         if (status >= event.message[sentence].length) {
             if (oneline && sentence != event.message.length - 1) {
-                vm.dialog.message += '<br>';
-                oneline = false;
-                sentence++;
-                talking = setTimeout(talk, talkDelay, 0, event);
+                vm.dialog.message += '<br>'
+                oneline = false
+                sentence++
+                talking = setTimeout(talk, talkDelay, 0, event)
             } else if (sentence != event.message.length - 1) {
-                waiting = event;
-                shining = setTimeout(wait, talkDelay);
+                waiting = event
+                shining = setTimeout(wait, talkDelay)
             } else {
                 if (event.type == 1) {
-                    vm.yesno.status = 1;
-                    vm.yesno.yes = event.yes;
-                    vm.yesno.no = event.no;
-                    shining = null;
-                    waiting = event;
-                    talking = null;
+                    vm.yesno.status = 1
+                    vm.yesno.yes = event.yes
+                    vm.yesno.no = event.no
+                    shining = null
+                    waiting = event
+                    talking = null
                 } else if (event.type == 2) {
-                    vm.select.status = 0;
-                    vm.select.options = event.options;
-                    shining = null;
-                    waiting = event;
-                    talking = null;
-                }
-                else {
-                    waiting = event;
-                    talking = null;
+                    vm.select.status = 0
+                    vm.select.options = event.options
+                    shining = null
+                    waiting = event
+                    talking = null
+                } else {
+                    waiting = event
+                    talking = null
                 }
             }
         } else {
-            vm.dialog.message += event.message[sentence][status];
-            talking = setTimeout(talk, talkDelay, status + 1, event);
+            vm.dialog.message += event.message[sentence][status]
+            talking = setTimeout(talk, talkDelay, status + 1, event)
         }
     }
 
     function clearDialog() {
-        vm.dialog.message = '';
-        vm.dialog.status = -1;
-        vm.select.status = -1;
-        vm.yesno.status = -1;
-        vm.menu.status = -1;
-        vm.menu.submenu.status = -1;
-        shining = null;
-        vm.dialog.cursor = false;
-        sentence = 0;
-        oneline = true;
+        vm.dialog.message = ''
+        vm.dialog.status = -1
+        vm.select.status = -1
+        vm.yesno.status = -1
+        vm.menu.status = -1
+        vm.menu.submenu.status = -1
+        shining = null
+        vm.dialog.cursor = false
+        sentence = 0
+        oneline = true
     }
-};
+}

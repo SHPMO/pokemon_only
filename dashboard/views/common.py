@@ -1,5 +1,4 @@
 # coding=utf-8
-from django.core.urlresolvers import reverse
 from django.http import Http404
 from django.shortcuts import redirect
 from django.views.generic import TemplateView
@@ -17,4 +16,3 @@ class CommonView(TemplateView):
             self.template_name = "dashboard/%s/%s.html" % (self.name, sub)
             return super().get(request, *args, **kwargs)
         raise Http404
-

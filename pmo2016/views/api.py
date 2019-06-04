@@ -1,12 +1,13 @@
-import random
+import json
+
 from django.conf import settings
 from django.core.mail import send_mail
+from django.http import HttpResponse, Http404
 from django.template import loader
 from django.views.generic import View
-from django.http import HttpResponse, Http404
-import json
-from pmo2016.models import MainComment, Player
+
 from pmo2016.forms import MessageForm, BattleForm
+from pmo2016.models import MainComment, Player
 
 
 def _return_me(error_code, **kwargs):

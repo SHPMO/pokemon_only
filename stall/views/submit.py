@@ -1,5 +1,5 @@
-from stall.views.bases import AuthedApiView
 from stall.forms import SubmitForm
+from stall.views.bases import AuthedApiView
 
 
 class SubmitView(AuthedApiView):

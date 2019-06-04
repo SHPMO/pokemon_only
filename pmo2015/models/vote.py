@@ -1,10 +1,12 @@
-from pmo2015.models.bases import BaseModel
 from django.db import models
+
+from pmo2015.models.bases import BaseModel
 
 
 class Vote(BaseModel):
     class Meta:
         app_label = 'pmo2015'
+
     TEAM_AQUA = 'AQ'
     TEAM_MAGMA = 'MG'
     TEAM_CHOICES = (
@@ -19,4 +21,5 @@ class Vote(BaseModel):
     )
 
     def __str__(self):
-        return '%s %s' % (self.TEAM_CHOICES[0][1] if self.choice == self.TEAM_AQUA else self.TEAM_CHOICES[1][1], self.gen_time)
+        return '%s %s' % (
+        self.TEAM_CHOICES[0][1] if self.choice == self.TEAM_AQUA else self.TEAM_CHOICES[1][1], self.gen_time)

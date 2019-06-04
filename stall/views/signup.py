@@ -3,9 +3,10 @@ from django.core.mail import send_mail
 from django.http import Http404, HttpResponse
 from django.shortcuts import redirect, loader
 from django.utils.datastructures import MultiValueDictKeyError
-from stall.views.bases import ApiView, View
+
+from stall.forms import SignupForm
 from stall.models import Seller, ValidateCode
-from stall.forms import LoginForm, SignupForm
+from stall.views.bases import ApiView, View
 
 
 class SignupView(ApiView):

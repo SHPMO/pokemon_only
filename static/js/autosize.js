@@ -1,8 +1,8 @@
 function autoHeight() {
-    $('body').height($(window).height());
+    $('body').height($(window).height())
 }
 
-$(document).ready(function (){
-    $(window).resize(autoHeight);
-    autoHeight();
-});
+$(document).ready(function () {
+    $(window).resize(autoHeight)
+    autoHeight()
+})

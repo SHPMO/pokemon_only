@@ -1,12 +1,13 @@
 # codin=utf-8
-from django.core.urlresolvers import reverse
+from captcha.helpers import captcha_image_url
+from captcha.models import CaptchaStore
+from django.urls import reverse
 from django.http import HttpResponse, Http404
 from django.shortcuts import redirect, render
+
 from dashboard.views.common import CommonView
 from stall.forms import LoginForm
 from stall.models import Item
-from captcha.helpers import captcha_image_url
-from captcha.models import CaptchaStore
 
 
 class RegisterView(CommonView):
@@ -22,14 +23,14 @@ class RegisterView(CommonView):
             page = 1
         else:
             a = Item.objects.filter(seller=seller, pmo=self.pmo).count()
-            if page > (a+4) // 5:
-                page = (a+4) // 5
-        items = Item.objects.filter(seller=seller, pmo=self.pmo).order_by("item_order")[page*5-5:page*5]
+            if page > (a + 4) // 5:
+                page = (a + 4) // 5
+        items = Item.objects.filter(seller=seller, pmo=self.pmo).order_by("item_order")[page * 5 - 5:page * 5]
         ret = []
         for i in range(items.count()):
-            ret.append((page*5 - 4 + i, items[i]))
+            ret.append((page * 5 - 4 + i, items[i]))
         for i in range(items.count(), 5):
-            ret.append((page*5 - 4 + i, None))
+            ret.append((page * 5 - 4 + i, None))
         return ret, page
 
     @staticmethod
@@ -50,7 +51,7 @@ class RegisterView(CommonView):
         if sub == 'wrong':
             raise Http404
         if sub == 'stall':
-            if not request.user.is_authenticated():
+            if not request.user.is_authenticated:
                 return redirect("dashboard:register", sub='signupin')
             seller = request.user.seller_set.filter(pmo=self.pmo)
             if seller.count() != 1:

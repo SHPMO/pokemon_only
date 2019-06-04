@@ -1,7 +1,8 @@
 # coding=utf-8
-from django.views.generic import View
-from django.http import Http404, HttpResponse
 import json
+
+from django.http import Http404, HttpResponse
+from django.views.generic import View
 
 
 class ApiView(View):
@@ -24,7 +25,7 @@ class ApiView(View):
 
 class AuthedApiView(ApiView):
     def post(self, request, cancel=True, *args, **kwargs):
-        if not request.user.is_authenticated():
+        if not request.user.is_authenticated:
             raise Http404
         pmo = request.POST.get('pmo')
         seller = request.user.seller_set.filter(pmo=pmo)

@@ -1,10 +1,11 @@
 from django.conf.urls import url
+from django.views.decorators.csrf import ensure_csrf_cookie
+
 from stall.views import (
     SignupView, ValidateView, LoginView, LogoutView,
     SellerView, ItemView, SubmitView, CancelView,
     PublicApiView
 )
-from django.views.decorators.csrf import ensure_csrf_cookie
 
 urlpatterns = [
     url(r'^signup/$', SignupView.as_view(), name='signup'),
@@ -18,3 +19,5 @@ urlpatterns = [
     url(r'^cancel/$', CancelView.as_view(), name='cancel'),
     url(r'^api/(?P<method>.+)/$', ensure_csrf_cookie(PublicApiView.as_view()), name='public_api')
 ]
+
+app_name = 'stall'

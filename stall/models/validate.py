@@ -1,15 +1,17 @@
 # coding=utf-8
-from django.db import models
-from stall.models.bases import BaseStallModel
-from stall.models.seller import Seller
 import random
 import string
+
+from django.db import models
+
+from stall.models.bases import BaseStallModel
+from stall.models.seller import Seller
 
 
 class ValidateCode(BaseStallModel):
     code = models.CharField(max_length=20, primary_key=True)
     validated = models.BooleanField(default=False)
-    seller = models.ForeignKey(Seller)
+    seller = models.ForeignKey(Seller, models.CASCADE)
 
     MSTR = string.ascii_letters + string.digits
 

@@ -1,7 +1,7 @@
 # coding=utf-8
-from django.conf import settings
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
+
 from stall.models.bases import BaseStallModel
 
 
@@ -9,7 +9,7 @@ class Seller(BaseStallModel):
     class Meta:
         app_label = "stall"
 
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, models.CASCADE)
     email = models.EmailField(
         verbose_name='email address',
         max_length=30,

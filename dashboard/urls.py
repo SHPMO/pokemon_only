@@ -19,3 +19,5 @@ urlpatterns = [
 
     # url(r'^test/$', 'dashboard.views.test', name='test'),
 ]
+
+app_name = 'dashboard'

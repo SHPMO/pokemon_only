@@ -1,6 +1,5 @@
-from django import forms
 from captcha.fields import CaptchaField
-from pmo2015.models import Vote
+from django import forms
 
 
 class BattleForm(forms.Form):

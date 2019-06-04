@@ -1,4 +1,5 @@
 from django.http import Http404
+
 from stall.models import Item, Seller
 from stall.views.bases import ApiView
 
@@ -103,4 +104,3 @@ class PublicApiView(ApiView):
         return self.return_me(0, "OK", data={
             seller.pk: self._seller_info(seller) for seller in sellers
         })
-

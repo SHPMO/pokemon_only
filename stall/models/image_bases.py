@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-from PIL import Image
 from io import StringIO
-from django.db.models.fields.files import ImageField, ImageFieldFile
-from django.core.files.base import ContentFile
 
+from PIL import Image
+from django.core.files.base import ContentFile
+from django.db.models.fields.files import ImageField, ImageFieldFile
 
 _oo = 200701281
 
@@ -15,16 +15,16 @@ def _update_ext(filename, new_ext):
 
 
 class ResizedImageFieldFile(ImageFieldFile):
-    
+
     def save(self, name, content, save=True):
         new_content = StringIO()
         content.file.seek(0)
 
         img = Image.open(content.file)
         img.thumbnail((
-            self.field.max_width, 
+            self.field.max_width,
             self.field.max_height
-            ), Image.ANTIALIAS)
+        ), Image.ANTIALIAS)
         img.save(new_content, format=self.field.format)
 
         new_content = ContentFile(new_content.getvalue())
@@ -34,7 +34,6 @@ class ResizedImageFieldFile(ImageFieldFile):
 
 
 class ResizedImageField(ImageField):
-    
     attr_class = ResizedImageFieldFile
 
     def __init__(self, max_width=100, max_height=100, format='PNG', *args, **kwargs):

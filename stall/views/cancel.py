@@ -1,5 +1,4 @@
 from stall.views.bases import AuthedApiView
-from stall.forms import SubmitForm
 
 
 class CancelView(AuthedApiView):

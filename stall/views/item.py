@@ -1,6 +1,6 @@
-from stall.views.bases import AuthedApiView
 from stall.forms import ItemForm
 from stall.models import Item, ItemPicture
+from stall.views.bases import AuthedApiView
 
 
 class ItemView(AuthedApiView):

@@ -1,23 +1,29 @@
-html, body, label, button, input, textarea, select{
+html, body, label, button, input, textarea, select {
     font-family: "Helvetica Neue", Helvetica, "Nimbus Sans L", Arial, "Liberation Sans", "Hiragino Sans GB", "Source Han Sans CN", "Source Han Sans SC", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti", SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
 }
+
 body {
     margin: 0;
 }
+
 a {
-    text-decoration:none;
+    text-decoration: none;
 }
+
 ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
+
 .hidden-object {
     opacity: 0;
 }
+
 .nodisplay-object {
     display: none;
 }
+
 .img-href {
     display: block;
     text-indent: -9999em;
@@ -25,6 +31,7 @@ ul {
     width: 100%;
     background: no-repeat center;
 }
+
 .clear-group::after {
     content: "";
     display: block;

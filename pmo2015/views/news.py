@@ -1,6 +1,7 @@
 # coding=utf-8
-from django.views.generic import TemplateView
 from django.http import Http404
+from django.views.generic import TemplateView
+
 from pmo2015.models import News
 
 

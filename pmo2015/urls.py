@@ -1,5 +1,6 @@
 from django.conf.urls import url
 
+import pmo2015.views.home
 from pmo2015.views import (
     BaseInfoView, StallView, EventView,
     RegisterView, NewsListView, NewsView,
@@ -7,7 +8,7 @@ from pmo2015.views import (
 )
 
 urlpatterns = [
-    url(r'^$', 'pmo2015.views.home', name='home'),
+    url(r'^$', pmo2015.views.home, name='home'),
 
     url(r'^baseinfo/$', BaseInfoView.as_view(), name='baseinfo'),
     url(r'^baseinfo/(?P<sub>.+)/$', BaseInfoView.as_view(), name='baseinfo'),
@@ -35,3 +36,5 @@ urlpatterns = [
 
     # url(r'^test/$', 'pmo2015.views.test', name='test'),
 ]
+
+app_name = 'pmo2015'

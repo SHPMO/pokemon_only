@@ -2,9 +2,10 @@
 from django.conf import settings
 from django.contrib.auth import authenticate, login, logout
 from django.core.mail import send_mail
-from django.http import HttpResponse, Http404
+from django.http import Http404
 from django.shortcuts import redirect
 from django.template import loader
+
 from pmo2016.models import MainComment, BackComment2016, Player
 from pmo2016.views.common import CommonView
 from stall.models import Seller
@@ -16,7 +17,7 @@ class AdminView(CommonView):
     admin = None
 
     def _init(self, request):
-        if not (request.user.is_authenticated() and any(request.user.groups.filter(name='PmoAdminGroup'))):
+        if not (request.user.is_authenticated and any(request.user.groups.filter(name='PmoAdminGroup'))):
             raise Http404
         self.admin = request.user.pmoadmin_set.get(pmo='pmo2016')
 

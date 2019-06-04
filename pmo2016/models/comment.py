@@ -1,13 +1,14 @@
 from django.db import models
-from django.utils.html import escape
-from pmo2016.models.bases import BaseModel
+
 from pmo2015.models.user import PmoAdmin
+from pmo2016.models.bases import BaseModel
 
 
 class BaseComment(BaseModel):
     class Meta:
         app_label = 'pmo2016'
         abstract = True
+
     content = models.TextField()
 
     def __str__(self):
@@ -17,6 +18,7 @@ class BaseComment(BaseModel):
 class MainComment(BaseComment):
     class Meta:
         app_label = 'pmo2016'
+
     nickname = models.CharField(max_length=30)
     email = models.EmailField(null=True)
 
@@ -24,5 +26,6 @@ class MainComment(BaseComment):
 class BackComment2016(BaseComment):
     class Meta:
         app_label = 'pmo2016'
-    toward = models.ForeignKey(MainComment)
-    admin = models.ForeignKey(PmoAdmin, null=True)
+
+    toward = models.ForeignKey(MainComment, models.CASCADE)
+    admin = models.ForeignKey(PmoAdmin, models.SET_NULL, null=True)

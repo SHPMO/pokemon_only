@@ -8,17 +8,18 @@
     <div class="controls-group oneline-group">
         <label class="form-label" for="text-booth">桌子数*</label>
         <input id="text-booth" class="form-control form-text" type="text" required="required"
-               name="booth" value="{{ seller.booth }}">
+               name="booth" value="{{ seller.booth }}" disabled>
     </div>
     <div class="controls-group oneline-group">
         <label class="form-label" for="text-number_of_people">人数*</label>
         <input id="text-number_of_people" class="form-control form-text" type="text" required="required"
-               name="number_of_people" value="{{ seller.number_of_people }}">
+               name="number_of_people" value="{{ seller.number_of_people }}" disabled>
     </div>
     {% endif %}
     <div class="controls-group multiline-group">
         <label class="form-label" for="text-remarks">备注</label>
         <textarea id="text-remarks" class="form-control form-textarea"
+                  placeholder="（在这里写明所需广告位数）"
                   name="remarks">{{ seller.remarks }}</textarea>
     </div>
     <p class="controls-group">

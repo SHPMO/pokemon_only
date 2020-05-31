@@ -118,11 +118,13 @@ BASE_URL = 'https://www.getdaze.org'
 CONTACT_EMAIL = 'contact@getdaze.org'
 WEIBO_URL = 'http://weibo.com/SHPMO'
 
+CURRENT_PMO = 'pmo2020'
+
 # Email settings
 with open(os.path.join(DATA_DIR, 'secret_email.txt')) as f:
     EMAIL_HOST, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD = f.read().split()
 EMAIL_PORT = 587
-EMAIL_SUBJECT_PREFIX = '[PMO2019] '
+EMAIL_SUBJECT_PREFIX = '[%s] ' % CURRENT_PMO.upper()
 EMAIL_USE_TLS = True
 
 import pmo2015.helpers
@@ -136,5 +138,6 @@ PMO_LIST = {
     'pmo2016': False,
     'pmo2017': False,
     'pmo2018': False,
-    'pmo2019': True
+    'pmo2019': False,
+    'pmo2020': True
 }

@@ -43,7 +43,7 @@
                 <button id="signup-submit" class="button-submit form-control form-button" name="submit">提交</button>
             </div>
             {% csrf_token %}
-            <input type="hidden" name="pmo" value="pmo2019">
+            <input type="hidden" name="pmo" value="{{ pmo }}">
             <input type="hidden" name="type" value="stall">
         </form>
     </div>
@@ -71,7 +71,7 @@
                 <button id="login-submit" class="button-submit form-control form-button" name="submit">提交</button>
             </div>
             {% csrf_token %}
-            <input type="hidden" name="pmo" value="pmo2019">
+            <input type="hidden" name="pmo" value="{{ pmo }}">
         </form>
     </div>
 {% endblock %}

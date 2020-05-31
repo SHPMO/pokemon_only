@@ -16,7 +16,7 @@ class ValidateCode(BaseStallModel):
     MSTR = string.ascii_letters + string.digits
 
     def __str__(self):
-        return "%s %s" % (self.seller.email, self.code)
+        return "(%s) %s: %s" % (self.pmo, self.seller.email, self.code)
 
     @classmethod
     def create(cls, seller):

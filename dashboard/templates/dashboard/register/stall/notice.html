@@ -19,7 +19,7 @@
     {{ seller.notice|linebreaks }}
 {% endif %}
 
-<button id="logout-button" data-url="{% url 'stall:logout' %}" class="button-submit form-control form-button">注销</button>
+<button id="logout-button" data-url="{% url 'stall:logout' %}" class="button-submit form-control form-button">登出</button>
 {% if seller.status >= 2 and seller.status <= 4 %}
 <button id="cancel-button" data-url="{% url 'stall:cancel' %}" class="button-submit form-control form-button"
         name="cancel">撤销{% if seller.is_stall %}摊位{% else %}寄卖{% endif %}</button>

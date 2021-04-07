@@ -66,7 +66,8 @@ class RegisterView(CommonView):
                         'dashboard/register/stall/itemform.html',
                         {
                             'item': item[0],
-                            'images': self._get_images(item[0])
+                            'images': self._get_images(item[0]),
+                            'pmo': self.pmo
                         }
                     )
                 else:

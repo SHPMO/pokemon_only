@@ -1,4 +1,4 @@
-var pmo = 'pmo2020'
+var pmo = 'pmo2021'
 var csrftoken = $.cookie('csrftoken')
 
 function testRequired(mi) {

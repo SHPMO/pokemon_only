@@ -40,7 +40,7 @@ class SignupView(ApiView):
                 return self.return_me(2, "该Email已被注册。")
             else:
                 validate_code = ValidateCode.objects.get(seller=s_seller[0], pmo=pmo)
-                self.send_validate_mail(s_seller[0], validate_code)
+                self.send_validate_mail(s_seller[0], validate_code, pmo)
                 return self.return_me(6, "已重新发送激活邮件，请前往邮箱查收。")
         try:
             seller = Seller.create_seller(

@@ -138,6 +138,11 @@ body {
 }
 
 #href-pmo-icon {
+    width: 78px;
+    height: 58px;
+}
+
+#href-pmo2019-icon {
     width: 55px;
     height: 55px;
 }

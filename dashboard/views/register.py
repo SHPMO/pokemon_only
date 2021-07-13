@@ -26,10 +26,12 @@ class RegisterView(CommonView):
             if page > (a + 4) // 5:
                 page = (a + 4) // 5
         items = Item.objects.filter(seller=seller, pmo=self.pmo).order_by("item_order")[page * 5 - 5:page * 5]
+        items = list(items)
+        n = len(items)
         ret = []
-        for i in range(items.count()):
+        for i in range(n):
             ret.append((page * 5 - 4 + i, items[i]))
-        for i in range(items.count(), 5):
+        for i in range(n, 5):
             ret.append((page * 5 - 4 + i, None))
         return ret, page
 

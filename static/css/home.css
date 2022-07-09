@@ -85,28 +85,22 @@ body {
     background: #000000;
     height: 100%;
     width: 100%;
+    display: flex;
 }
 
 #main-content {
-    position: absolute;
-    top: 50%;
-    margin-top: -327px;
-    left: 50%;
-    margin-left: -600px;
+    margin: auto;
     height: 654px;
     width: 1200px;
+    display: flex;
 }
 
 #home-picture {
-    position: absolute;
-    top: 16px;
-    right: 129px;
+    width: 100%;
+    height: auto;
 }
 
 #home-copyright {
-    position: absolute;
-    top: 556px;
-    right: 129px;
 }
 
 .main-side {
@@ -114,13 +108,17 @@ body {
 }
 
 #main-left {
-    float: left;
     width: 450px;
 }
 
 #main-right {
-    float: right;
     width: 750px;
+    position: relative;
+    margin-left: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
 }
 
 #main-hrefs, #sub-hrefs {
@@ -138,8 +136,13 @@ body {
 }
 
 #href-pmo-icon {
-    width: 78px;
-    height: 58px;
+    width: 119px;
+    height: 55px;
+}
+
+#href-pmo2021-icon {
+    width: 74px;
+    height: 55px;
 }
 
 #href-pmo2019-icon {

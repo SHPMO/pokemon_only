@@ -145,6 +145,11 @@ body {
 }
 
 #href-pmo-icon {
+    width: 55px;
+    height: 55px;
+}
+
+#href-pmo2022-icon {
     width: 119px;
     height: 55px;
 }

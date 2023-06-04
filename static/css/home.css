@@ -125,6 +125,15 @@ body {
     height: 100%;
 }
 
+#sub-hrefs {
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+#sub-hrefs::-webkit-scrollbar {
+    display: none;
+}
+
 .href-icon {
     -webkit-transition: all 0.4s;
     -moz-transition: all 0.4s;

@@ -36,7 +36,7 @@ class PublicApiView(ApiView):
             is_restricted=item.is_restricted, circle=item.circle,
             is_started_with=item.is_started_with, item_pictures=[
                 picture.picture.url for picture in item.itempicture_set.all() if picture.picture
-            ]
+            ], item_order=item.item_order
         )
 
     def _test(self, request, *args, **kwargs):

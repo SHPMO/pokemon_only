@@ -6,7 +6,7 @@ from django.views.generic import TemplateView
 
 
 class CommonView(TemplateView):
-    _sub_list = {}
+    _sub_list = []
     name = ''
     pmo = settings.CURRENT_PMO
 
